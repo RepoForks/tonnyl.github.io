@@ -1,0 +1,465 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>知乎小报开发总结 | Tony&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tony">
+    
+    <meta name="description" content="总结在开发知乎小报的过程中遇到的问题和相应的解决方法,以及分享开发过程中的一些心得体会">
+    
+    
+    
+    
+    <link rel="alternate" href="http://marktony.github.io/" title="Tony&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Tony&#39;s Blog" title="Tony&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Tony&#39;s Blog">Tony&#39;s Blog</a></h1>
+				<h2 class="blog-motto">我挥舞着键盘和本子，发誓要把这个世界写个明明白白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">首页|Home</a></li>
+					
+						<li><a href="/archives">存档|Archives</a></li>
+					
+						<li><a href="/about">关于|about</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:marktony.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/28/zhihudaily/" title="知乎小报开发总结" itemprop="url">知乎小报开发总结</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://marktony.github.io" title="Tony">Tony</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-04-28T12:10:43.000Z" itemprop="datePublished">2016-04-28</time>
+    Updated:<time datetime="2016-05-11T08:34:34.000Z" itemprop="dateModified">2016-05-11</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知乎小报开发总结"><span class="toc-number">1.</span> <span class="toc-text">知乎小报开发总结</span></a></li></ol>
+		</div>
+		
+		<p>总结在开发知乎小报的过程中遇到的问题和相应的解决方法,以及分享开发过程中的一些心得体会<br><a id="more"></a></p>
+<h2 id="知乎小报开发总结"><a href="#知乎小报开发总结" class="headerlink" title="知乎小报开发总结"></a>知乎小报开发总结</h2><p>总结在知乎小报开发的工程中遇到的问题以及相关的解决办法。</p>
+<p>1.Intent导致的ActivityNotFoundException</p>
+<p>无法找到对应的activity，这个异常在使用Intent启动一些系统级隐式的activity时可能会出现，例如短信、邮件、打开相机等，（还有手机没有邮件、短信app？当然有了！）如果不对这个异常进行处理的话，应用就会直接Crash。</p>
+<pre><code>Uri uri = Uri.parse(&quot;market://details?id=&quot;+getPackageName());
+Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+startActivity(intent);
+</code></pre><p>这个异常在开发简单翻译的过程就曾经遇到过。</p>
+<ul>
+<li><p>方法1: 最佳解决方案–&gt;在发出这个隐式Intent之前调用resolveActivity做检查</p>
+<pre><code>Intent intent = new Intent(Intent.ACTION_XXX);
+ComponentName componentName = intent.resolveActivity(getPackageManager());
+if(componentName != null) {
+String className = componentName.getClassName();
+}
+</code></pre></li>
+<li><p>方法2：使用try-catch捕获这个异常。</p>
+<pre><code>try{
+// to start a mail activity code
+} catch (android.content.ActivityNotFoundException ex){
+// catch Exception
+Snackbar.make(view, &quot;No mail app found&quot;,Snackbar.LENGTH_SHORT).show();
+}
+</code></pre></li>
+</ul>
+<p>2.WebView无图模式的实现</p>
+<p>Android WebView中实现了一个方法</p>
+<pre><code>webView.getSettings().setBlockNetworkImage(boolean config)
+</code></pre><p>官方文档解释为：</p>
+<pre><code>Gets whether the WebView does not load image resources from the network.
+</code></pre><p>当config为true时，不加载图片，反之加载图片，而且是当url加载完成时才开始加载。</p>
+<p>3.接口实现RecyclerView item的点击事件<br>RecyclerView是Google在v7包中新增的一种控件，用于代替ListView,不过它并没有基本的点击事件，所以需要我们自己为item定义点击事件。</p>
+<p>首先需要自定义接口</p>
+<pre><code>public interface OnRecyclerViewOnClickListener {
+    void OnItemClick(View v,int position);
+}
+</code></pre><p>在适配器中定义接口变量</p>
+<pre><code>private OnRecyclerViewOnClickListener mListener;
+</code></pre><p>暴露接口</p>
+<pre><code>public void setItemClickListener(OnRecyclerViewOnClickListener listener){
+    this.mListener = listener;
+}
+</code></pre><p>然后在onCreateViewHolder中注册点击事件</p>
+<pre><code>@Override
+public LatestItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    View view = inflater.inflate(R.layout.latest_item_layout,parent,false);
+    LatestItemViewHolder holder = new LatestItemViewHolder(view,mListener);
+    return holder;
+}
+</code></pre><p>在ViewHolder中设置</p>
+<pre><code>public class LatestItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private OnRecyclerViewOnClickListener listener;
+    private CardView item;
+
+    public LatestItemViewHolder(View itemView,OnRecyclerViewOnClickListener listener) {
+        super(itemView);
+
+        item = (CardView) itemView.findViewById(R.id.card_view_item);
+        this.listener = listener;
+        itemView.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener != null){
+            listener.OnItemClick(v,getLayoutPosition());
+        }
+    }
+}
+</code></pre><p>在Activity或者Fragment中使用</p>
+<pre><code>adapter = new LatestPostAdapter(getActivity(),list);
+rvLatestNews.setAdapter(adapter);
+adapter.setItemClickListener(new OnRecyclerViewOnClickListener() {
+    @Override
+    public void OnItemClick(View v, int position) {
+        // write code
+    }
+});
+</code></pre><p>4.横屏下Crash<br>由于在fragment中使用了RecyclerView，当然也就涉及到了Adapoter的使用。由于我在Adapter的构造函数中传入了Context,这直接导致了横屏下直接崩溃。</p>
+<pre><code>public class LatestPostAdapter extends RecyclerView.Adapter&lt;LatestPostAdapter.LatestItemViewHolder&gt; {
+// some code
+public LatestPostAdapter(Context context, List&lt;LatestPost&gt; list){
+      this.context = context;
+      this.list = list;
+      this.inflater = LayoutInflater.from(context);
+  }
+}
+</code></pre><p>我们不应该保存那些依赖Activity的数据，比如Drawable，Adapter，View或者任何与Context相关联的数据。因为上一个Activity已经没有了，如果你还要保持这些资源的引用，可能导致资源泄露。</p>
+<p>解决的方法</p>
+<ul>
+<li>1.简单粗暴型 直接禁止横屏，当然这只是适用于极少数的情况。可以在manifest文件中对应的activity配置：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">android:screenOrientation="portrait"</div><div class="line">android:screenOrientation="landscape"</div></pre></td></tr></table></figure>
+<p>或者在Java代码中处理</p>
+<pre><code>setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);  
+</code></pre><ul>
+<li><p>2.在横屏时做相应的处理。<br>首先在manifest.xml文件中配置屏幕方向改变时不需要重新载入。</p>
+  <!--configChanges参数的作用是不让activity重启
+  3.2之前的sdk只需要配置前面两个值:keyboardHidden|orientation
+  3.2之后的sdk必须配置三个值keyboardHidden|orientation|screensize
+  -->
+  <activity android:name=".UI.Activities.MainActivity" android:label="@string/app_name" android:configchanges="keyboardHidden|orientation|screenSize" android:theme="@style/AppTheme.NoActionBar">
+
+</activity></li>
+</ul>
+<p>然后在activity中重写方法</p>
+<pre><code>@Override
+public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+}
+</code></pre><p>5.toolbar中小箭头(返回上级activity)<br>好吧，这是个不算高级的问题，但是确实困扰了我一段时间。首先是怎样显示这个箭头。</p>
+<pre><code>private Toolbar toolbar;
+toolbar = (Toolbar) findViewById(R.id.toolbar);
+setSupportActionBar(toolbar);
+// 关键
+getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+</code></pre><p>怎样监听小箭头的点击事件呢？</p>
+<p>由于箭头是位于toolbar中的控件，可以联想到应该是和onOptionsItemSelected方法有关。</p>
+<pre><code>@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+
+   int id = item.getItemId();
+
+   // 小箭头的id为android.R.id.home
+   if (id == android.R.id.home){
+       onBackPressed();
+   }
+
+   return super.onOptionsItemSelected(item);
+ }
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://marktony.github.io/2016/04/28/zhihudaily/" data-title="知乎小报开发总结 | Tony&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/05/01/ANR/" title="ANR">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  ANR</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知乎小报开发总结"><span class="toc-number">1.</span> <span class="toc-text">知乎小报开发总结</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Android/" title="Android">Android<sup>8</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		
+			<li><a href="/categories/涨姿势/" title="涨姿势">涨姿势<sup>3</sup></a></li>
+		
+			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Android/" title="Android">Android<sup>7</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/涨姿势/" title="涨姿势">涨姿势<sup>3</sup></a></li>
+		
+			<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="http://marktony.github.io/" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,welcome to Tony&#39;s blog. <br/>
+			I&#39;m waving the keyboard and notebook , vowing to write the world clearly !</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://marktony.github.io" target="_blank" title="Tony">Tony</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

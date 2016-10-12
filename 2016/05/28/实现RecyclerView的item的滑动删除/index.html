@@ -1,0 +1,371 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>实现RecyclerView的item的滑动删除 | Tony&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tony">
+    
+    <meta name="description" content="利用ItemTouchHelper实现recycler view item的侧滑删除">
+    
+    
+    
+    
+    <link rel="alternate" href="http://marktony.github.io/" title="Tony&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Tony&#39;s Blog" title="Tony&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Tony&#39;s Blog">Tony&#39;s Blog</a></h1>
+				<h2 class="blog-motto">我挥舞着键盘和本子，发誓要把这个世界写个明明白白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">首页|Home</a></li>
+					
+						<li><a href="/archives">存档|Archives</a></li>
+					
+						<li><a href="/about">关于|about</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:marktony.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/28/实现RecyclerView的item的滑动删除/" title="实现RecyclerView的item的滑动删除" itemprop="url">实现RecyclerView的item的滑动删除</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://marktony.github.io" title="Tony">Tony</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-05-28T03:32:35.000Z" itemprop="datePublished">2016-05-28</time>
+    Updated:<time datetime="2016-09-28T13:42:12.000Z" itemprop="dateModified">2016-09-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于ItemTouchHelper"><span class="toc-number">1.</span> <span class="toc-text">关于ItemTouchHelper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li></ol>
+		</div>
+		
+		<p>利用ItemTouchHelper实现recycler view item的侧滑删除<br><a id="more"></a></p>
+<h3 id="关于ItemTouchHelper"><a href="#关于ItemTouchHelper" class="headerlink" title="关于ItemTouchHelper"></a>关于ItemTouchHelper</h3><p>官方文档的解释：</p>
+<blockquote>
+<p>This is a utility class to add swipe to dismiss and drag &amp; drop support to RecyclerView.</p>
+</blockquote>
+<p>从文档不难看出，ItemTouchHelper是一个用于在RecyclerView中实现滑动删除和拖拽的工具类。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li>修改build.gradle文件，添加依赖。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.android.support:recyclerview-v7:23.4.0&apos;</div></pre></td></tr></table></figure>
+<ul>
+<li>构建object与Adapter</li>
+</ul>
+<p>这里假设我已经构建好了实体类CodeLanguage和adapter，在构建adapter时，需要添加一个方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">   mMovies.remove(position);</div><div class="line">   notifyItemRemoved(position);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>创建ItemTouchHelper.SimpleCallback子类</li>
+</ul>
+<p>为了处理拖动和滑动事件，需要创建ItemTouchHelper.SimpleCallback的实现类。这里，只对滑动事件感兴趣，这是我们的callback.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CodeLanguageItemTouchHelper</span> <span class="title">extens</span> <span class="title">ItemTouchHelper</span>.<span class="title">SimpleCallback</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> CodeLanguageAdapter adapter;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CodeLanguageItemTouchHelper</span><span class="params">(CodeLanguageAdapter adapter)</span></span>&#123;</div><div class="line">      <span class="keyword">super</span>(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);</div><div class="line">      <span class="keyword">this</span>.adapter = adapter;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	* If you don't support drag &amp; drop, this method will never be called.</div><div class="line">    * 如果不支持拖拽，那么这个方法就不会被执行。</div><div class="line">	* <span class="doctag">@param</span> recyclerView The RecyclerView to which ItemTouchHelper is attached to. ItemTouchHelper需要附加到的RecyclerView</div><div class="line">	* <span class="doctag">@param</span> viewHolder The ViewHolder which is being dragged by the user. 拖动的ViewHolder</div><div class="line">	* <span class="doctag">@param</span> target The ViewHolder over which the currently active item is being dragged. 目标位置的ViewHolder</div><div class="line">	* <span class="doctag">@return</span> True if the viewHolder has been moved to the adapter position of target. viewHolder是否被移动到目标位置</div><div class="line">	*/</div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onMove</span><span class="params">(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target)</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">   &#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	* Called when a ViewHolder is swiped by the user.</div><div class="line">	* If you don't support swiping, this method will never be called.</div><div class="line">	* 如果不支持滑动，方法不会被执行。</div><div class="line">	* <span class="doctag">@param</span> viewHolder The ViewHolder which has been swiped by the user.</div><div class="line">	* <span class="doctag">@param</span> direction  The direction to which the ViewHolder is swiped.</div><div class="line">	*					It is one of UP, DOWN, LEFT or RIGHT.</div><div class="line">	*					If your getMovementFlags(RecyclerView, ViewHolder) method returned relative flags instead of LEFT / RIGHT;</div><div class="line">	*					`direction` will be relative as well. (START or END).</div><div class="line">	*/</div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSwiped</span><span class="params">(RecyclerView.ViewHolder viewHolder, <span class="keyword">int</span> direction)</span> </span>&#123;</div><div class="line">      <span class="comment">//Remove item</span></div><div class="line">      adapter.remove(viewHolder.getAdapterPosition());</div><div class="line">   &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>CodeLanguageItemTouchHelper默认的构造方法需要传入两个参数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* Creates a Callback for the given drag and swipe allowance.</div><div class="line">* <span class="doctag">@param</span> dragDirs 表示拖拽的方向，有六个类型的值：LEFT、RIGHT、START、END、UP、DOWN</div><div class="line">* <span class="doctag">@param</span> swipeDirs 表示滑动的方向，有六个类型的值：LEFT、RIGHT、START、END、UP、DOWN</div><div class="line">*/</div><div class="line">ItemTouchHelper.SimpleCallback(<span class="keyword">int</span> dragDirs, <span class="keyword">int</span> swipeDirs)</div></pre></td></tr></table></figure>
+<p>CodeLanguageItemTouchHelper默认需要实现两个方法onMove(),onSwiped()，onMove()是对拖拽的实现，onSwiped()是对滑动的实现。</p>
+<ul>
+<li>将ItemTouchHelper添加至RecyclerView</li>
+</ul>
+<p>创建好自己的ItemTouchHelper类后，将它附加到RecyclerView就很简单了。在Activity或者Fragment的onCreate()方法中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ItemTouchHelper.Callback callback = <span class="keyword">new</span> MovieTouchHelper(adapter);</div><div class="line">ItemTouchHelper helper = <span class="keyword">new</span> ItemTouchHelper(callback);</div><div class="line">helper.attachToRecyclerView(codeLanguageRecyclerView);</div></pre></td></tr></table></figure>
+<p>现在所有的工作已经完成。我们现在还没有添加动画，默认的动画系统已经添加。现在就可以使用了。</p>
+<p>示例project在这里：<a href="https://github.com/marktony/zhuanlan" target="_blank" rel="external">GitHub</a>，与上述项目稍有不同。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://marktony.github.io/2016/05/28/实现RecyclerView的item的滑动删除/" data-title="实现RecyclerView的item的滑动删除 | Tony&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/06/10/GitHub-Pages现在支持Https了/" title="GitHub Pages现在支持Https了">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  GitHub Pages现在支持Https了</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/05/27/关于知乎专栏ID的一些说明/"  title="关于知乎专栏ID的一些说明">
+ <strong>NEXT:</strong><br/> 
+ <span>关于知乎专栏ID的一些说明
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于ItemTouchHelper"><span class="toc-number">1.</span> <span class="toc-text">关于ItemTouchHelper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Android/" title="Android">Android<sup>8</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		
+			<li><a href="/categories/涨姿势/" title="涨姿势">涨姿势<sup>3</sup></a></li>
+		
+			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Android/" title="Android">Android<sup>7</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/涨姿势/" title="涨姿势">涨姿势<sup>3</sup></a></li>
+		
+			<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="http://marktony.github.io/" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,welcome to Tony&#39;s blog. <br/>
+			I&#39;m waving the keyboard and notebook , vowing to write the world clearly !</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://marktony.github.io" target="_blank" title="Tony">Tony</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

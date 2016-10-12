@@ -1,0 +1,506 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Activity的四种启动模式 | Tony&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tony">
+    
+    <meta name="description" content="浅析Android中Activity的四种启动模式:standard,singleTop,singleTask,singleInstance">
+    
+    
+    
+    
+    <link rel="alternate" href="http://marktony.github.io/" title="Tony&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Tony&#39;s Blog" title="Tony&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Tony&#39;s Blog">Tony&#39;s Blog</a></h1>
+				<h2 class="blog-motto">我挥舞着键盘和本子，发誓要把这个世界写个明明白白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">首页|Home</a></li>
+					
+						<li><a href="/archives">存档|Archives</a></li>
+					
+						<li><a href="/about">关于|about</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:marktony.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/11/Activity的四种启动模式/" title="Activity的四种启动模式" itemprop="url">Activity的四种启动模式</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://marktony.github.io" title="Tony">Tony</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-05-11T08:35:47.000Z" itemprop="datePublished">2016-05-11</time>
+    Updated:<time datetime="2016-09-28T13:35:22.000Z" itemprop="dateModified">2016-09-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#standard"><span class="toc-number">1.</span> <span class="toc-text">standard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#singleTop"><span class="toc-number">2.</span> <span class="toc-text">singleTop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#singleTask"><span class="toc-number">3.</span> <span class="toc-text">singleTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#singleInstance"><span class="toc-number">4.</span> <span class="toc-text">singleInstance</span></a></li></ol>
+		</div>
+		
+		<p>浅析Android中Activity的四种启动模式:standard,singleTop,singleTask,singleInstance<br><a id="more"></a></p>
+<p>启动模式一共有上述的四种，可以在AndroidManifest.xml文件中通过给<ctivity>标签指定android:launchMode属性来选择启动模式。</ctivity></p>
+<h3 id="standard"><a href="#standard" class="headerlink" title="standard"></a>standard</h3><p>standard是Activity默认的启动模式，在不进行显示指定的情况下，所有Activity都会自动的使用这种模式。Android使用返回栈来管理Activity,在standard模式下，每当启动一个新的Activity,它就会在返回栈中入栈，并处于栈顶的位置。对于使用standard模式的Activity,系统不会在乎这个Activity是否已经在返回栈中，每次启动都会创建一个新的Activity实例。</p>
+<p>现在通过实践来体会一下standard模式，首先是新建一个ActivityTest项目，修改MainActivity的onCreate()中代码，如下所示：</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    Log.d(&quot;Mainactivity&quot;,this.toString());
+
+    Button btn1 = (Button) findViewById(R.id.btn1);
+
+    btn1.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this,MainActivity.class);
+            startActivity(intent);
+        }
+    });
+
+}
+</code></pre><p>代码很简单，在MainActivity的基础上启动MainActivity，从逻辑上讲没什么意义，不过我们在于研究standard模式，因此我们也就不去追究实际的用途了。另外我们还在onCreate()中添加了一句打印日志信息，打印当前Activity的实例。</p>
+<p>现在运行程序，然后再MainActivity界面连续点击两次按钮，观察LogCat中打印的日志信息。</p>
+<pre><code>MainActivity: com.marktony.applicationtest.MainActivity@5e658bb
+MainActivity: com.marktony.applicationtest.MainActivity@cfae411
+MainActivity: com.marktony.applicationtest.MainActivity@b0e0bac
+</code></pre><p>从打印信息中可以很清楚的看到，每次点击按钮就会创建一个新的MainActivity的实例，此时返回栈中也会存在三个MainActivity的实例，因此想要完全退出应用，必须点击三次返回键。</p>
+<h3 id="singleTop"><a href="#singleTop" class="headerlink" title="singleTop"></a>singleTop</h3><p>在某些情况下，你可能会觉得standard模式不太合理。activity明明已经在栈顶了，为什么再次启动时还要创建一个新的Activity实例呢？这时singleTop模式就派上用场了。当Activity的启动模式被指定为singleTop时，在启动Activity时如果发现返回栈的栈顶已经是该Activity，则可以认为直接使用它，不创建新的实例。</p>
+<p>下面看实例,修改AndroidManifest.xml中的MainActivity的启动模式为singleTop:</p>
+<pre><code>&lt;activity android:name=&quot;.MainActivity&quot;
+    android:launchMode=&quot;singleTop&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre><p>重新运行程序，通过LogCat查看日志信息，我们可以看到已经创建了一个新的Activity实例。</p>
+<pre><code>MainActivity: com.marktony.applicationtest.MainActivity@5e658bb
+</code></pre><p>之后不管点击多少次按钮，都不会有新的打印信息出现，因为目前Activity已经处于返回栈的栈顶，每当想要再启动一个MainActivity时都会直接使用栈顶的Activity，因此MainActivity也只会有一个实例，仅按一次返回键即可退出程序。</p>
+<p>不过当MainActivity不在栈顶时，这是再启动MainActivity，还是会创建新的实例，下面来实验一下。修改MainActivity中的代码，如下所示：</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    Log.d(&quot;MainActivity&quot;,this.toString());
+
+    Button btn1 = (Button) findViewById(R.id.btn1);
+
+    btn1.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+            startActivity(intent);
+        }
+    });
+}
+</code></pre><p>这次我们点击按钮启动的是SecondActivity。然后修改SecondActivity中onCreate()方法中的代码，如下所示：</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_second);
+
+    Button btn2 = (Button) findViewById(R.id.btn2);
+    btn2.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new
+            Intent(SecondActivity.this,MainActivity.class);
+            startActivity(intent);
+        }
+    });
+}
+</code></pre><p>我们在SecondActivity中的按钮的点击事件中又加入了启动MainActivity的代码。现在重新运行程序，在MainActivity界面点击按钮进入SecondActivity，然后在SecondActivity界面点击按钮，又会重新进入到MainActivity。查看LogCat中的信息：</p>
+<pre><code>MainActivity: com.marktony.applicationtest.MainActivity@eb60bcf
+SecondActivity: com.marktony.applicationtest.SecondActivity@5cf7342
+MainActivity: com.marktony.applicationtest.MainActivity@a360333
+</code></pre><p>可以看到系统创建了两个不同的MainActivity,这是由于在SecondActivity中再次启动Activity时，栈顶的Activity已经变成了SecondActivity，因此会新建一个新的MainActivity。现在按下back键就会返回到SecondActivity,再次按下back键，又会回到MainActivity,再按一次back键才会退出程序。</p>
+<h3 id="singleTask"><a href="#singleTask" class="headerlink" title="singleTask"></a>singleTask</h3><p>使用singleTask模式可以很好的解决重复创建栈顶Activity的问题，但是正如你看到的，如果该Activity并没有处于栈顶的位置，还是可能创建多个Activity实例的。那么有没有方法可以让Activity在整个应用程序的上下文中指存在一个实例呢？<br>这就要借助singleTask模式来实现了。当Activity的启动模式指定为singleTask，每次启动该Activity时系统首先会在返回栈中检查是否存在该Activity的实例，如果发现已经存在则直接使用该实例，并把在这个Activity之上的所有Activity统统出栈，如果没有发现就会创建一个新的实例。<br>下面通过代码来直观的理解一下。修改AndroidManifest.xml文件中MainActivity的启动模式：</p>
+<pre><code>&lt;activity android:name=&quot;.MainActivity&quot;
+    android:launchMode=&quot;singleTask&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre><p>然后在MainActivity中添加onRestart()方法，并打印日志：</p>
+<pre><code>@Override
+protected void onRestart() {
+    super.onRestart();
+    Log.d(&quot;MainActivity&quot;,&quot;onStart&quot;);
+}
+</code></pre><p>最后在SecondActivity中添加onDestroy()方法，并打印日志：</p>
+<pre><code>@Override
+protected void onDestroy() {
+    super.onDestroy();
+    Log.d(&quot;SecondActivity&quot;,&quot;onDestroy&quot;);
+}
+</code></pre><p>现在重新运行程序，在MainActivity界面点击按钮进入SecondActivity，然后在SecondActivity界面点按钮，又会重新进入到MainActivity。查看LogCat中的日志信息：</p>
+<pre><code>MainActivity: com.marktony.applicationtest.MainActivity@f2c42cf
+SecondActivity: com.marktony.applicationtest.SecondActivity@81ea653
+MainActivity: onStart
+SecondActivity: onDestroy
+</code></pre><p>从打印信息中可以看出，在SecondActivity中启动MainActivity时，会发现返回栈里已经存在一个MainActivity的实例，并且是在SecondActivity的下面，于是SecondActivity会从返回栈中出栈，而MainActivity重新成为了栈顶Activity，因此MainActivity的onRestart()方法和SecondActivity的onDestroy()方法会得到执行。现在返回栈中只剩下一个MainActivity的实例了，按一下back键就可以退出程序。</p>
+<h3 id="singleInstance"><a href="#singleInstance" class="headerlink" title="singleInstance"></a>singleInstance</h3><p>singleInstance应该是四种启动模式中最特殊也最复杂的一种了。不同于以上三种启动模式，指定为singleInstance的Activity会启用一个新的返回栈来管理这个Activity(其实如果singleTask模式指定了不同的taskAffinity，也会启动一个新的返回栈)。那么这么做有什么意义呢？假设我们的程序中有一个Activity是允许其他程序调用的，如果我们想实现其他程序和我们的程序可以共享这个Activity的实例，应该如何实现呢？使用前面三种启动模式肯定是无法实现的，因为每个程序都会有自己的返回栈，同一个Activity在不同的返回栈中入栈时必然是创建新的实例。而使用singleInstance模式就可以解决这个问题，在这种模式下会有一个单独的返回栈来管理这个Activity，不管是那个应用程序来访问这个Activity，都共用的同一个返回栈，也就解决了共享Activity实例的问题。</p>
+<p>OK,talk is cheap,show me the code,我们还是来实践一下。修改AndroidManifest.xml中SecondActivity的启动模式:</p>
+<pre><code>&lt;activity android:name=&quot;.SecondActivity&quot;
+    android:launchMode=&quot;singleInstance&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;com.marktony.applicatiointest.ACTION_START&quot; /&gt;
+        &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;
+        &lt;category android:name=&quot;com.marktony.applicationtest.MY_CATEGORY&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre><p>我们先将SecondActivity的启动模式指定为singleInstance，然后修改MainActivity中onCreate()方法的代码:</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    Log.d(&quot;MainActivity&quot;,&quot;task id is &quot; + getTaskId());
+
+    Button btn1 = (Button) findViewById(R.id.btn1);
+    btn1.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+            startActivity(intent);
+        }
+    });
+
+}
+</code></pre><p>在onCreate()方法中打印了当前返回栈的id。然后修改SecondActivity中onCreate()方法的代码：</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_second);
+
+    Log.d(&quot;SecondActivity&quot;,&quot;task id is &quot; + getTaskId());
+
+    Button btn2 = (Button) findViewById(R.id.btn2);
+    btn2.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(SecondActivity.this,ThirdActivity.class);
+            startActivity(intent);
+        }
+    });
+}
+</code></pre><p>同样在onCreate()方法中打印了当前返回栈的id，然后又修改了按钮点击事件的代码，用于启动ThirdActivity。最后修改ThirdActivity中onCreate()方法的代码：</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_third);
+
+    Log.d(&quot;ThirdActivity&quot;,&quot;task id is &quot; + getTaskId());
+}
+</code></pre><p>仍然是在onCreate()方法中打印了当前返回栈的id。现在重新运行程序，在MainActivity界面中点击按钮进入到SecondActivity，然后在SecondActivity中点击按钮进入到ThirdActivity。查看LogCat中的打印信息：</p>
+<pre><code>MainActivity: task id is 403
+SecondActivity: task id is 404
+ThirdActivity: task id is 403
+</code></pre><p>可以看到，SecondActivity的task id不同于MainActivity和ThirdActivity，这说明SecondActivity确实是存放在一个单独的返回栈中的，而且这个栈中只有SecondActivity这一个Activity。</p>
+<p>然后我们按下back键进行返回，你会发现ThirdActivity竟然返回了MainActivity，再按下back键又会返回到SecondActivity，再按下返回键会退出程序，这是为什么呢？<br>其实原理很简单，由于MainActivity和ThirdActivity是存放在同一个返回栈里的，当在ThirdActivity的界面按下返回键，ThirdActivity会从返回栈中出栈，那么MainActivity就成为了栈顶Activity显示在界面上，因此也就出现了从ThirdActivity直接返回到MainActivity的情况。然后在MainActivity再次按下返回键，这是当前的返回栈已经空了，于是就显示了另一个返回栈的栈顶Activity，及SecondActivity。最后再次按下back键，这是所有的返回栈均被清空了，也就自然的退出了程序。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://marktony.github.io/2016/05/11/Activity的四种启动模式/" data-title="Activity的四种启动模式 | Tony&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/05/12/Java中类成员的初始化/" title="Java中类成员的初始化">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Java中类成员的初始化</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/05/02/进程与线程/"  title="进程与线程">
+ <strong>NEXT:</strong><br/> 
+ <span>进程与线程
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#standard"><span class="toc-number">1.</span> <span class="toc-text">standard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#singleTop"><span class="toc-number">2.</span> <span class="toc-text">singleTop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#singleTask"><span class="toc-number">3.</span> <span class="toc-text">singleTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#singleInstance"><span class="toc-number">4.</span> <span class="toc-text">singleInstance</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Android/" title="Android">Android<sup>8</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		
+			<li><a href="/categories/涨姿势/" title="涨姿势">涨姿势<sup>3</sup></a></li>
+		
+			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Android/" title="Android">Android<sup>7</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/涨姿势/" title="涨姿势">涨姿势<sup>3</sup></a></li>
+		
+			<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="http://marktony.github.io/" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,welcome to Tony&#39;s blog. <br/>
+			I&#39;m waving the keyboard and notebook , vowing to write the world clearly !</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://marktony.github.io" target="_blank" title="Tony">Tony</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

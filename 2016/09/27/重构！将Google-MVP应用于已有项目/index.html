@@ -1,0 +1,358 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>重构！将Google MVP应用于已有项目 | Tony&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tony">
+    
+    <meta name="description" content="将Google官方的Android MVP架构引入到已有的项目中。">
+    
+    
+    
+    
+    <link rel="alternate" href="http://marktony.github.io/" title="Tony&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Tony&#39;s Blog" title="Tony&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Tony&#39;s Blog">Tony&#39;s Blog</a></h1>
+				<h2 class="blog-motto">我挥舞着键盘和本子，发誓要把这个世界写个明明白白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">首页|Home</a></li>
+					
+						<li><a href="/archives">存档|Archives</a></li>
+					
+						<li><a href="/about">关于|about</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:marktony.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/09/27/重构！将Google-MVP应用于已有项目/" title="重构！将Google MVP应用于已有项目" itemprop="url">重构！将Google MVP应用于已有项目</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://marktony.github.io" title="Tony">Tony</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-09-27T10:23:28.000Z" itemprop="datePublished">2016-09-27</time>
+    Updated:<time datetime="2016-09-27T14:12:06.000Z" itemprop="dateModified">2016-09-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google示例项目"><span class="toc-number">2.</span> <span class="toc-text">Google示例项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重构"><span class="toc-number">3.</span> <span class="toc-text">重构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本项目地址"><span class="toc-number">4.</span> <span class="toc-text">本项目地址</span></a></li></ol>
+		</div>
+		
+		<p>将Google官方的Android MVP架构引入到已有的项目中。<br><a id="more"></a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在本次项目重构之前，我的项目采用的是什么架构呢？</p>
+<p>额，没有架构…或者说，不那么标准的MVC，一个页面就是一个Activity或者Fragment，各种数据，网络请求，响应都写在Activity或者Fragment–这两个不怎么标准的Controller中，代码混乱，而且长长长长长长，写代码的时候一时爽，到了维护阶段，那酸爽，不敢相信。采用新的架构迫在眉睫。</p>
+<p>事实上，已经有很多的App项目采用了MVP或者MVVM等架构。由于并没有那么权威的实现，很多开发者也陷入了选择困难症，在各种架构直接摇摆不定，找不到适合自己项目架构。而Google也适时的推出了一系列官方示例用于参考。</p>
+<h3 id="Google示例项目"><a href="#Google示例项目" class="headerlink" title="Google示例项目"></a>Google示例项目</h3><blockquote>
+<p><a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="external">Android Architecture Blueprints [beta]</a></p>
+</blockquote>
+<p>示例项目以一个TODO APP为例，目前仍然在进行中。本次项目重构采用的是基础版 <a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp/" target="_blank" rel="external">todo-mvp</a></p>
+<p>示例项目的代码组织方式和我之前以adapter, activity, fragment等组织方式不同，采用的是按照功能划分，一种功能就是一个包，包内文件以xxxactivity, xxxfragment, xxxcontract, xxxpresenter命名，xxx代表着所要实现的功能。本次项目重构两种方式均有采用。</p>
+<h3 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h3><p>首先是仿照TODO MVP，建立两个Base接口，BaseView和BasePresenter，这两个基本接口是所有的View和Presenter的基类。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BasePresenter</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>BasePresenter中有方法start()，作用是Presenter开始获取数据并改变界面显示，调用时机为Fragment的onResume()方法中。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BaseView</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setPresenter</span><span class="params">(T presenter)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">initViews</span><span class="params">(View view)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>BaseView中有方法setPresenter(),将Presenter示例传入view，调用时机为Presenter实现类的构造方法中，initViews()传入View实例，用于初始化界面元素，调用时机为Fragment的onCreate()方法中。</p>
+<p>接着创建契约类，用于统一管理View和Presenter的所有接口。这里以知乎日报的部分为例。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ZhihuDailyContract</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">View</span> <span class="keyword">extends</span> <span class="title">BaseView</span>&lt;<span class="title">Presenter</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">showError</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">showLoading</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">stopLoading</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">showResults</span><span class="params">(ArrayList&lt;ZhihuDailyNews.Question&gt; list)</span></span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">showNetworkError</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">Presenter</span> <span class="keyword">extends</span> <span class="title">BasePresenter</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">loadPosts</span><span class="params">(<span class="keyword">long</span> date, <span class="keyword">boolean</span> clearing)</span></span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">refresh</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">loadMore</span><span class="params">(<span class="keyword">long</span> date)</span></span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">startReading</span><span class="params">(<span class="keyword">int</span> position)</span></span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">goToSettings</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后创建相应的Activity，在官方的示例项目中，Activity是作为View和Presenter的桥梁使用，用于创建View和Presenter实例。本项目由于涉及了TabLayout和ViewPager的使用，所以创建View和Presenter的部分我放到了ViewPager的Adapter中实现。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPagerAdapter</span> <span class="keyword">extends</span> <span class="title">FragmentPagerAdapter</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String[] titles;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Context context;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainPagerAdapter</span><span class="params">(FragmentManager fm, Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(fm);</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">        titles = context.getResources().getStringArray(R.array.page_titles);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Fragment <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (position == <span class="number">1</span>)&#123;</div><div class="line">            GuokrFragment fragment = GuokrFragment.newInstance();</div><div class="line">            <span class="keyword">new</span> GuokrPresenter(context, fragment);</div><div class="line">            <span class="keyword">return</span> fragment;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (position == <span class="number">2</span>)&#123;</div><div class="line">            DoubanMomentFragment fragment = DoubanMomentFragment.newInstance();</div><div class="line">            <span class="keyword">new</span> DoubanMomentPresenter(context, fragment);</div><div class="line">            <span class="keyword">return</span> fragment;</div><div class="line">        &#125;</div><div class="line">        ZhihuDailyFragment fragment = ZhihuDailyFragment.newInstance();</div><div class="line">        <span class="keyword">new</span> ZhihuDailyPresenter(context, fragment);</div><div class="line">        <span class="keyword">return</span> fragment;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> titles.length;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> CharSequence <span class="title">getPageTitle</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> titles[position];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Fragment在示例项目中的角色为View的具体实现类。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZhihuDailyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span></div><div class="line">        <span class="keyword">implements</span> <span class="title">ZhihuDailyContract</span>.<span class="title">View</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> RecyclerView recyclerView;</div><div class="line">    <span class="keyword">private</span> SwipeRefreshLayout refresh;</div><div class="line">    <span class="keyword">private</span> FloatingActionButton fab;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ZhihuDailyNewsAdapter adapter;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ZhihuDailyContract.Presenter presenter;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ZhihuDailyFragment</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ZhihuDailyFragment <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ZhihuDailyFragment();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Nullable</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        View view = inflater.inflate(R.layout.fragment_douban_zhihu_daily,container,<span class="keyword">false</span>);</div><div class="line"></div><div class="line">        initViews(view);</div><div class="line"></div><div class="line">        presenter.loadPosts(Calendar.getInstance().getTimeInMillis(), <span class="keyword">false</span>);</div><div class="line"></div><div class="line">        refresh.setOnRefreshListener(<span class="keyword">new</span> SwipeRefreshLayout.OnRefreshListener() &#123;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span> </span>&#123;</div><div class="line">                presenter.refresh();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        fab.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                ...</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPresenter</span><span class="params">(ZhihuDailyContract.Presenter presenter)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (presenter != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">this</span>.presenter = presenter;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initViews</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">        recyclerView = (RecyclerView) view.findViewById(R.id.rv_main);</div><div class="line">        recyclerView.setLayoutManager(<span class="keyword">new</span> LinearLayoutManager(getContext()));</div><div class="line">        recyclerView.addItemDecoration(<span class="keyword">new</span> DividerItemDecoration(getActivity(),LinearLayoutManager.VERTICAL));</div><div class="line">        refresh = (SwipeRefreshLayout) view.findViewById(R.id.refresh);</div><div class="line">        fab = (FloatingActionButton) view.findViewById(R.id.fab);</div><div class="line">        fab.setRippleColor(getResources().getColor(R.color.colorPrimaryDark));</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showError</span><span class="params">()</span> </span>&#123;</div><div class="line">        Snackbar.make(fab, R.string.loaded_failed,Snackbar.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showLoading</span><span class="params">()</span> </span>&#123;</div><div class="line">        refresh.post(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                refresh.setRefreshing(<span class="keyword">true</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stopLoading</span><span class="params">()</span> </span>&#123;</div><div class="line">        refresh.post(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                refresh.setRefreshing(<span class="keyword">false</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showResults</span><span class="params">(ArrayList&lt;ZhihuDailyNews.Question&gt; list)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (adapter == <span class="keyword">null</span>) &#123;</div><div class="line">            adapter = <span class="keyword">new</span> ZhihuDailyNewsAdapter(getContext(), list);</div><div class="line">            adapter.setItemClickListener(<span class="keyword">new</span> OnRecyclerViewOnClickListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnItemClick</span><span class="params">(View v, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                    presenter.startReading(position);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            recyclerView.setAdapter(adapter);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            adapter.notifyDataSetChanged();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showNetworkError</span><span class="params">()</span> </span>&#123;</div><div class="line">        Snackbar.make(fab,R.string.no_network_connected,Snackbar.LENGTH_INDEFINITE)</div><div class="line">                .setAction(R.string.go_to_set, <span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                        presenter.goToSettings();</div><div class="line">                    &#125;</div><div class="line">                &#125;).show();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>创建Presenter。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZhihuDailyPresenter</span> <span class="keyword">implements</span> <span class="title">ZhihuDailyContract</span>.<span class="title">Presenter</span>, <span class="title">OnStringListener</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ZhihuDailyContract.View view;</div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line">    <span class="keyword">private</span> StringModelImpl model;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ArrayList&lt;ZhihuDailyNews.Question&gt; list = <span class="keyword">new</span> ArrayList&lt;ZhihuDailyNews.Question&gt;();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ZhihuDailyPresenter</span><span class="params">(Context context, ZhihuDailyContract.View view)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">        <span class="keyword">this</span>.view = view;</div><div class="line">        <span class="keyword">this</span>.view.setPresenter(<span class="keyword">this</span>);</div><div class="line">        model = <span class="keyword">new</span> StringModelImpl(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadPosts</span><span class="params">(<span class="keyword">long</span> date, <span class="keyword">boolean</span> clearing)</span> </span>&#123;</div><div class="line">        view.showLoading();</div><div class="line">        <span class="keyword">if</span> (clearing) &#123;</div><div class="line">            list.clear();</div><div class="line">        &#125;</div><div class="line">        model.load(Api.ZHIHU_HISTORY + formatter.ZhihuDailyDateFormat(date), <span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">refresh</span><span class="params">()</span> </span>&#123;</div><div class="line">        list.clear();</div><div class="line">        loadPosts(Calendar.getInstance().getTimeInMillis(), <span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMore</span><span class="params">(<span class="keyword">long</span> date)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (NetworkState.networkConnected(context)) &#123;</div><div class="line">            model.load(Api.ZHIHU_HISTORY + formatter.ZhihuDailyDateFormat(date), <span class="keyword">this</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            view.showNetworkError();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startReading</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        context.startActivity(<span class="keyword">new</span> Intent(context, ZhihuDetailActivity.class)</div><div class="line">                .putExtra(<span class="string">"id"</span>,list.get(position).getId())</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goToSettings</span><span class="params">()</span> </span>&#123;</div><div class="line">        context.startActivity(<span class="keyword">new</span> Intent(Settings.ACTION_SETTINGS));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(String result)</span> </span>&#123;</div><div class="line">        Gson gson = <span class="keyword">new</span> Gson();</div><div class="line">        ZhihuDailyNews post = gson.fromJson(result, ZhihuDailyNews.class);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (ZhihuDailyNews.Question item : post.getStories()) &#123;</div><div class="line">            list.add(item);</div><div class="line">        &#125;</div><div class="line">        view.showResults(list);</div><div class="line">        view.stopLoading();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(VolleyError error)</span> </span>&#123;</div><div class="line">        view.stopLoading();</div><div class="line">        view.showError();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Presenter获取到了View，并通过调用setPresenter()方法将自身传入，如果需要对改变界面显示，直接调用View层的方法即可。这样Presenter就于View层实现了分离。</p>
+<p>最后是Model层的实现。由于使用了Gson，数据的返回类型只需要为String类型即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnStringListener</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 请求成功时回调</div><div class="line">     * <span class="doctag">@param</span> result</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(String result)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 请求失败时回调</div><div class="line">     * <span class="doctag">@param</span> error</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onError</span><span class="params">(VolleyError error)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>定义了两个方法，分别为请求成功时和请求失败时的回调。</p>
+<p>然后需要一个StringModel的实现类–StringModelImpl。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringModelImpl</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringModelImpl</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">load</span><span class="params">(String url, <span class="keyword">final</span> OnStringListener listener)</span> </span>&#123;</div><div class="line">        StringRequest request = <span class="keyword">new</span> StringRequest(url, <span class="keyword">new</span> Response.Listener&lt;String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                listener.onSuccess(s);</div><div class="line">            &#125;</div><div class="line">        &#125;, <span class="keyword">new</span> Response.ErrorListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onErrorResponse</span><span class="params">(VolleyError volleyError)</span> </span>&#123;</div><div class="line">                listener.onError(volleyError);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        VolleySingleton.getVolleySingleton(context).addToRequestQueue(request);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样，Model, View, Presenter均已实现，实现了各个层次的分离。</p>
+<p>采用MVP架构进行重构，代码量上相对于原项目时有所增加的，但这种数量的增加相对于MVP架构带来的好处是显而易见的。当然这是对于代码量比较大的项目而言，平时用于练手的小项目就没有必要强项目所难，勉强的实现MVP了，这样只会增加代码量而已。</p>
+<h3 id="本项目地址"><a href="#本项目地址" class="headerlink" title="本项目地址"></a>本项目地址</h3><blockquote>
+<p><a href="https://github.com/marktony/ZhihuDaily" target="_blank" rel="external">纸飞机-采用MVP架构，一款集合了知乎日报、果壳精选和豆瓣一刻的综合性阅读客户端</a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://marktony.github.io/2016/09/27/重构！将Google-MVP应用于已有项目/" data-title="重构！将Google MVP应用于已有项目 | Tony&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/07/19/Java中的单例模式/"  title="Java中的单例模式">
+ <strong>NEXT:</strong><br/> 
+ <span>Java中的单例模式
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google示例项目"><span class="toc-number">2.</span> <span class="toc-text">Google示例项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重构"><span class="toc-number">3.</span> <span class="toc-text">重构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本项目地址"><span class="toc-number">4.</span> <span class="toc-text">本项目地址</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Android/" title="Android">Android<sup>8</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		
+			<li><a href="/categories/涨姿势/" title="涨姿势">涨姿势<sup>3</sup></a></li>
+		
+			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Android/" title="Android">Android<sup>7</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/涨姿势/" title="涨姿势">涨姿势<sup>3</sup></a></li>
+		
+			<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="http://marktony.github.io/" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,welcome to Tony&#39;s blog. <br/>
+			I&#39;m waving the keyboard and notebook , vowing to write the world clearly !</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://marktony.github.io" target="_blank" title="Tony">Tony</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
