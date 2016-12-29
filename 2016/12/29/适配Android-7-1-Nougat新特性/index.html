@@ -1,0 +1,503 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>适配Android 7.1 Nougat新特性 | Tony&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tony">
+    
+    <meta name="description" content="老司机带你吃牛轧糖">
+    
+    
+    
+    
+    <link rel="alternate" href="http://marktony.github.io/" title="Tony&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Tony&#39;s Blog" title="Tony&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Tony&#39;s Blog">Tony&#39;s Blog</a></h1>
+				<h2 class="blog-motto">我挥舞着键盘和本子，发誓要把这个世界写个明明白白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">首页|Home</a></li>
+					
+						<li><a href="/archives">存档|Archives</a></li>
+					
+						<li><a href="/about">关于|about</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:marktony.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/12/29/适配Android-7-1-Nougat新特性/" title="适配Android 7.1 Nougat新特性" itemprop="url">适配Android 7.1 Nougat新特性</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://marktony.github.io" title="Tony">Tony</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-12-29T06:37:26.000Z" itemprop="datePublished">2016-12-29</time>
+    更新日期:<time datetime="2016-12-29T15:47:11.000Z" itemprop="dateModified">2016-12-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#What’s-new-in-Android-7-1-Nougat"><span class="toc-number">1.</span> <span class="toc-text">What’s new in Android 7.1 Nougat?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Shortcuts"><span class="toc-number">2.</span> <span class="toc-text">App Shortcuts</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-Static-Shortcuts"><span class="toc-number">2.1.</span> <span class="toc-text">Using Static Shortcuts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-Dynamic-Shortcuts"><span class="toc-number">2.2.</span> <span class="toc-text">Using Dynamic Shortcuts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Extra-Bits"><span class="toc-number">2.3.</span> <span class="toc-text">Extra Bits</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#App-Shortcuts-Best-Practices"><span class="toc-number">2.4.</span> <span class="toc-text">App Shortcuts Best Practices</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Round-Icon-Resources"><span class="toc-number">3.</span> <span class="toc-text">Round Icon Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Image-Keyboard-Support"><span class="toc-number">4.</span> <span class="toc-text">Image Keyboard Support</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#How-it-works"><span class="toc-number">4.1.</span> <span class="toc-text">How it works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Adding-Image-Support-to-Apps"><span class="toc-number">4.2.</span> <span class="toc-text">Adding Image Support to Apps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Adding-Image-Support-to-IMEs"><span class="toc-number">4.3.</span> <span class="toc-text">Adding Image Support to IMEs</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Summary"><span class="toc-number">5.</span> <span class="toc-text">Summary</span></a></li></ol>
+		</div>
+		
+		<p>老司机带你吃牛轧糖<br><a id="more"></a></p>
+<h3 id="What’s-new-in-Android-7-1-Nougat"><a href="#What’s-new-in-Android-7-1-Nougat" class="headerlink" title="What’s new in Android 7.1 Nougat?"></a>What’s new in Android 7.1 Nougat?</h3><p>Android 7.1 Nougat 已经推出有一段时间，相信大多数人和我一样，并没有用上最新的系统，但是，总有一群走在时代的前列线上的Geek们，勇于尝鲜，艰苦奋斗，为刷新版本号贡献自己的力量。好吧，实际上就是我还没有用上7.1，有些眼馋了。那么，和开发者息息相关的有哪些新特性呢？</p>
+<img src="/2016/12/29/适配Android-7-1-Nougat新特性/android_nougat.png" alt="Android 7.1 Nougat" title="Android 7.1 Nougat">
+<p>本次主要介绍3个新特性:<strong>App Shortcuts</strong>, <strong>Round Icon Resource</strong> 和 <strong>Image Keyboard Support</strong>。所有的新特性可以访问谷歌开发者中文博客的文章<a href="http://developers.googleblog.cn/2016/12/android-711-nougat_20.html" target="_blank" rel="external">欢迎使用Android 7.1.1 Nougat</a>。</p>
+<h3 id="App-Shortcuts"><a href="#App-Shortcuts" class="headerlink" title="App Shortcuts"></a>App Shortcuts</h3><p>作为一个密切关注Android发展的伪Geek，在7.1正式版未发布之前，通过网上的一些爆料文章，我就了解到了这一新功能。实际上，这个功能刚开始出现时，我还以为Google Pixel要上压感屏了呢，事实证明，的确是我想多了。</p>
+<p>App Shortcuts允许用户直接在启动器中显示一些操作，让用户立即执行应用的深层次的功能。触发这一功能的操作就是「长按」。这一功能类似于iOS中的「3D Touch」。</p>
+<p>下面通过一张GIF，直观的感受一下App Shortcuts是怎样的。（由于我的一加3并没有升级到最新的7.1，还只是7.0，所以我安装了Nova Launcher来体验。）</p>
+<img src="/2016/12/29/适配Android-7-1-Nougat新特性/app_shortcuts.gif" alt="App Shortcuts" title="App Shortcuts">
+<p>长按图标，收到震动后松手，如果能够看到图标上弹出了支持的跳转操作，说明成功的呼出了Shortcuts功能，如果不支持这一功能，在Nova Launcher上弹出的就是卸载或者移除操作，在Pixel Launcher上不会出现弹出菜单，显示的是常见的长按操作。长按弹出的操作，可以将这个操作已快捷方式图标的形式直接放置在主屏上。如果长按主图标不松手，就可以调整位置了。</p>
+<p>目前，一个应用最多可以支持 <strong>5</strong> 个Shortcut,可以通过<a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html#getMaxShortcutCountPerActivity(" target="_blank" rel="external">getMaxShortcutCountPerActivity</a>)查看Launcher最多支持Shortcut的数量。每一个Shortcut都对应着一个或者多个intent，当用户选择某一个Shortcut时，应该做出特定的动作。下面是一些将一些特定的动作作为Shortcuts的例子：</p>
+<ul>
+<li><p>在地图APP中，指引用户至最常用的位置</p>
+</li>
+<li><p>在聊天APP中，发送信息至某个好友</p>
+</li>
+<li><p>在多媒体APP中，播放下一个电视节目</p>
+</li>
+<li><p>在游戏APP中，加载至上次保存的地方</p>
+</li>
+</ul>
+<p>App Shortcut可以分为两种不同的类型： Static Shortcuts（静态快捷方式） 和 Dynamic Shortcuts（动态快捷方式）。</p>
+<ul>
+<li>Static Shortcuts：在打包到apk的资源文件中定义，所以，直到下一次更新版本时才能改变静态快捷方式的详细说明。</li>
+<li>Dynamic Shortcuts：通过ShortcutManager API在运行时发布，在运行时，应用可以发布，升级和移除快捷方式。</li>
+</ul>
+<h4 id="Using-Static-Shortcuts"><a href="#Using-Static-Shortcuts" class="headerlink" title="Using Static Shortcuts"></a>Using Static Shortcuts</h4><p>创建Static Shortcuts分为以下几步：</p>
+<p>1.在工程的manifest文件 (AndroidManifest.xml)下，找到 intent filter设置为 <strong>android.intent.action.MAIN</strong> 和 <strong>android.intent.category.LAUNCHER</strong> 的Activity。</p>
+<p>2.在次Activity下添加<meta-data>标签，引用定义shortcuts的资源文件。</meta-data></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">        <span class="attr">android:name</span>=<span class="string">".homepage.MainActivity"</span></div><div class="line">        <span class="attr">android:configChanges</span>=<span class="string">"orientation|keyboardHidden|screenSize|screenLayout"</span></div><div class="line">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></div><div class="line">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme.NoActionBar"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></div><div class="line"></div><div class="line">            <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">            <span class="attr">android:name</span>=<span class="string">"android.app.shortcuts"</span></div><div class="line">            <span class="attr">android:resource</span>=<span class="string">"@xml/shortcuts"</span> /&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>3.创建新的资源文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```xml</div><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;shortcuts xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</div><div class="line"></div><div class="line">    &lt;shortcut</div><div class="line">        android:enabled=&quot;true&quot;</div><div class="line">        android:icon=&quot;@drawable/ic_search_circle&quot;</div><div class="line">        android:shortcutId=&quot;search_bookmarks&quot;</div><div class="line">        android:shortcutShortLabel=&quot;@string/search_bookmarks&quot;</div><div class="line">        android:shortcutLongLabel=&quot;@string/search_bookmarks&quot;&gt;</div><div class="line"></div><div class="line">        &lt;intent</div><div class="line">            android:action=&quot;android.intent.action.VIEW&quot;</div><div class="line">            android:targetPackage=&quot;com.marktony.zhihudaily&quot;</div><div class="line">            android:targetClass=&quot;com.marktony.zhihudaily.search.SearchActivity&quot; /&gt;</div><div class="line"></div><div class="line">		&lt;!--如果你的一个shortcut关联着多个intent，你可以在这里继续添</div><div class="line">			加。最后一个intent决定着用户在加载这个shortcut时会看到什么--&gt;</div><div class="line"></div><div class="line">        &lt;categories android:name=&quot;android.shortcut.conversation&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;/shortcut&gt;</div><div class="line"></div><div class="line">	&lt;!--在这里添加更多的shortcut--&gt;</div><div class="line"></div><div class="line">&lt;/shortcuts&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>shortcut</strong>下标签的含义：</p>
+<ul>
+<li><p>enabled:见名知意，shortcut是否可用。如果你决定让这个static shortcut不在可用的话，可直接将其设置为 <strong>false</strong> ，或者直接从 <strong>shortcuts</strong> 标签中移除。</p>
+</li>
+<li><p>icon:显示在左边的图标，可用使用<em>Vector drawable</em>。</p>
+</li>
+<li><p>shortcutDisabledMessage:当禁用此shortcut后，它仍然会出现在用户长按应用图标后的快捷方式列表里，也可以被拖动并固定到桌面上，但是它会呈现灰色并且用户点击时会弹出Toast这个标签所定义的内容。</p>
+</li>
+<li><p>shortcutLongLabel:当启动器有足够多的空间时，会显示这个标签所定义的内容。</p>
+</li>
+<li><p>shortcutShortLabel:shortcut的简要说明，是必需字段。当shortcut被添加到桌面上时，显示的也是这个字段。</p>
+</li>
+<li><p>intent:shortcut关联的一个或者多个intent，当用户点击shortcut时被打开。</p>
+</li>
+<li><p>shortcutId:shortcut的唯一标示id，若存在具有相同shortcutId的shortcut，则只显示一个。</p>
+</li>
+</ul>
+<p>到这里，最简单的shortcut就添加成功了。运行包含上面的文件的项目，点击shortcut就可以直接进入 <strong>SearchActivity</strong>，当按下back键时，直接就退出了应用。如果希望不退出应用，而是进入 <strong>MainActivity</strong> 时，应该怎么办呢？不用着急，在shortcut继续添加intent就可以了。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">shortcuts</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">	</div><div class="line">    <span class="tag">&lt;<span class="name">shortcut</span></span></div><div class="line">        <span class="attr">android:enabled</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_search_circle"</span></div><div class="line">        <span class="attr">android:shortcutId</span>=<span class="string">"search_bookmarks"</span></div><div class="line">        <span class="attr">android:shortcutShortLabel</span>=<span class="string">"@string/search_bookmarks"</span></div><div class="line">        <span class="attr">android:shortcutLongLabel</span>=<span class="string">"@string/search_bookmarks"</span>&gt;</div><div class="line">	</div><div class="line">		<span class="tag">&lt;<span class="name">intent</span></span></div><div class="line">    			<span class="attr">android:action</span>=<span class="string">"android.intent.action.MAIN"</span></div><div class="line">    			<span class="attr">android:targetClass</span>=<span class="string">"com.marktony.zhihudaily.homepage.MainActivity"</span></div><div class="line">		    <span class="attr">android:targetPackage</span>=<span class="string">"com.marktony.zhihudaily"</span> /&gt;</div><div class="line">	</div><div class="line">        <span class="tag">&lt;<span class="name">intent</span></span></div><div class="line">            <span class="attr">android:action</span>=<span class="string">"android.intent.action.VIEW"</span></div><div class="line">            <span class="attr">android:targetPackage</span>=<span class="string">"com.marktony.zhihudaily"</span></div><div class="line">            <span class="attr">android:targetClass</span>=<span class="string">"com.marktony.zhihudaily.search.SearchActivity"</span> /&gt;</div><div class="line">	</div><div class="line">        <span class="tag">&lt;<span class="name">categories</span> <span class="attr">android:name</span>=<span class="string">"android.shortcut.conversation"</span> /&gt;</span></div><div class="line">	</div><div class="line">    <span class="tag">&lt;/<span class="name">shortcut</span>&gt;</span></div><div class="line">	</div><div class="line">  	<span class="comment">&lt;!--在这里添加更多的shortcut--&gt;</span></div><div class="line">	</div><div class="line"> <span class="tag">&lt;/<span class="name">shortcuts</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="Using-Dynamic-Shortcuts"><a href="#Using-Dynamic-Shortcuts" class="headerlink" title="Using Dynamic Shortcuts"></a>Using Dynamic Shortcuts</h4><p>动态快捷方式应该和应用内的特定的、上下文敏感的action链接。这些action应该可以在用户的几次使用之间、甚至是在应用运行过程中被改变。好的候选action包括打电话给特定的人、导航至特定的地方、或者展示当前游戏的分数。</p>
+<p><a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html" target="_blank" rel="external">ShortcutManager</a> API允许我们在动态快捷方式上完成下面的操作：</p>
+<ul>
+<li><p>发布:使用setDynamicShortcuts()重新定义整个动态快捷方式列表，或者是使用addDynamicShortcuts()向已存在的动态快捷方式列表中添加快捷方式。</p>
+</li>
+<li><p>更新:使用updateShortcuts()方法。</p>
+</li>
+<li><p>移除:使用removeDynamicShortcuts()方法移除特定动态快捷方式或者使用removeAllDynamicShortcuts()移除所有动态快捷方式。</p>
+</li>
+</ul>
+<p>下面是在MainActivity的onCreate()中创建动态快捷方式的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line"></div><div class="line">    ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);</div><div class="line"></div><div class="line">    ShortcutInfo webShortcut = <span class="keyword">new</span> ShortcutInfo.Builder(<span class="keyword">this</span>, <span class="string">"shortcut_web"</span>)</div><div class="line">            .setShortLabel(<span class="string">"github"</span>)</div><div class="line">            .setLongLabel(<span class="string">"Open Tonny's github web site"</span>)</div><div class="line">            .setIcon(Icon.createWithResource(<span class="keyword">this</span>, R.drawable.ic_dynamic_shortcut))</div><div class="line">            .setIntent(<span class="keyword">new</span> Intent(Intent.ACTION_VIEW, Uri.parse(<span class="string">"https://marktony.github.io"</span>)))</div><div class="line">            .build();</div><div class="line"></div><div class="line">    shortcutManager.setDynamicShortcuts(Collections.singletonList(webShortcut));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>也可以为动态快捷方式创建返回栈。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line"></div><div class="line">    ShortcutInfo dynamicShortcut = <span class="keyword">new</span> ShortcutInfo.Builder(<span class="keyword">this</span>, <span class="string">"shortcut_dynamic"</span>)</div><div class="line">            .setShortLabel(<span class="string">"Dynamic"</span>)</div><div class="line">            .setLongLabel(<span class="string">"Open dynamic shortcut"</span>)</div><div class="line">            .setIcon(Icon.createWithResource(<span class="keyword">this</span>, R.drawable.ic_dynamic_shortcut_2))</div><div class="line">            .setIntents(</div><div class="line">                    <span class="keyword">new</span> Intent[]&#123;</div><div class="line">                            <span class="keyword">new</span> Intent(Intent.ACTION_MAIN, Uri.EMPTY, <span class="keyword">this</span>, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK),</div><div class="line">                            <span class="keyword">new</span> Intent(DynamicShortcutActivity.ACTION)</div><div class="line">                    &#125;)</div><div class="line">            .build();</div><div class="line"></div><div class="line">    shortcutManager.setDynamicShortcuts(Arrays.asList(webShortcut, dynamicShortcut));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建一个新的空的Activity，名字叫做DynamicShortcutActivity，在manifest文件中注册。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span>  </span></div><div class="line">      <span class="attr">android:name</span>=<span class="string">".DynamicShortcutActivity"</span></div><div class="line">      <span class="attr">android:label</span>=<span class="string">"Dynamic shortcut activity"</span>&gt;</div><div class="line">      <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.marktony.zhihudaily.OPEN_DYNAMIC_SHORTCUT"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>通过清除array中的排序过的intents，当我们通过创建好的shortcut进入DynamicShortcutActivity之后，按下back键，MainActivity就会被加载。</p>
+<p>需要注意的是，在动态创建快捷方式之前，最好是检查一下是否超过了所允许的最大值。否则会抛出相应的异常。</p>
+<h4 id="Extra-Bits"><a href="#Extra-Bits" class="headerlink" title="Extra Bits"></a>Extra Bits</h4><ul>
+<li><p>当static shortcut 和 dynamic shortcut一起展示时，其出现的顺序是怎样定制呢？</p>
+<p>  在 <strong>ShortcutInfo.Builder</strong> 中有一个专门的方法 <strong>setRank(int)</strong> ,通过设置不同的等级，我们就可以控制动态快捷方式的出现顺序，等级越高，出现在快捷方式列表中的位置就越高。</p>
+</li>
+<li><p>我们还可以设置动态快捷方式的shortLabel的字体颜色。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ForegroundColorSpan colorSpan = <span class="keyword">new</span> ForegroundColorSpan(getResources().getColor(android.R.color.holo_red_dark, getTheme()));</div><div class="line">   String label = <span class="string">"github"</span>;</div><div class="line">   SpannableStringBuilder colouredLabel = <span class="keyword">new</span> SpannableStringBuilder(label);</div><div class="line">   colouredLabel.setSpan(colorSpan, <span class="number">0</span>, label.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);</div><div class="line"></div><div class="line">   ShortcutInfo webShortcut = <span class="keyword">new</span> ShortcutInfo.Builder(MainActivity.<span class="keyword">this</span>, <span class="string">"shortcut_web"</span>)</div><div class="line">           .setShortLabel(colouredLabel)</div><div class="line">           .setRank(<span class="number">1</span>)</div><div class="line">           .build();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="App-Shortcuts-Best-Practices"><a href="#App-Shortcuts-Best-Practices" class="headerlink" title="App Shortcuts Best Practices"></a>App Shortcuts Best Practices</h4><p>当设计和创建应用的shortcuts时，应该遵守下面的指导建议：</p>
+<ul>
+<li><p>遵循设计规范:为了保持我们的应用和系统应用的快捷方式在视觉上一致性，应该遵守<a href="https://developer.android.com/shareables/design/app-shortcuts-design-guidelines.pdf" target="_blank" rel="external">App Shortcuts Design Guidelines</a>。</p>
+</li>
+<li><p>发布4个不同的快捷方式:尽管现在的API支持静态和动态总共5个快捷方式，但是为了提高shortcut的视觉效果，建议只添加4个不同的快捷方式。</p>
+</li>
+<li><p>限制快捷方式描述的文本长度:在Launcher中，显示快捷方式时，空间长度受到了限制。如果可能的话，应该将「short description」的文字长度控制在10个字母以内，将「long discription」的长度限制在25个字母以内。</p>
+</li>
+<li><p>保存shortcut和action的历史记录:创建的每一个shortcut，应该考虑到用户能够通过不同的方式完成相同的任务。在这种情况下，记得调用 <strong>reportShortcutUsed()</strong> 方法，这样，launcher就可以提高shortcut对应的actions的反应速度。</p>
+</li>
+<li><p>只有在shortcuts的意义存在时更新：当改变动态快捷方式时，只有在shortcut仍然保持着它的含义时，调用 <strong>updateShortcuts()</strong> 方法改变它的信息。否则，应该使用<strong>addDynamicShortcuts()</strong> 或者 <strong>setDynamicShortcuts()</strong> 创建一个具有新含义的ID的快捷方式。</p>
+<p>  举个例子，如果我们已经创建了导航到一个超市的快捷方式，如果超市的名称改变了但是位置并没有变化时，只更新信息是合适的。但是如果用户开始在一个不同位置的超市购物时，最好是创建一个全新的快捷方式(而不仅仅是更新信息了)。</p>
+</li>
+<li><p>在备份和恢复时，动态shortcuts不应该被保存:正是因为这个原因，推荐我们在需要APP启动和重新发布动态快捷方式时，检查 <strong>getDynamicShortcuts()</strong> 的对象的数量。可以参考<a href="https://developer.android.com/guide/topics/ui/shortcuts.html#backup-and-restore" target="_blank" rel="external">Backup and Restore</a>部分的代码片段。</p>
+</li>
+</ul>
+<h3 id="Round-Icon-Resources"><a href="#Round-Icon-Resources" class="headerlink" title="Round Icon Resources"></a>Round Icon Resources</h3><p>在Android 7.1上，Google推出了一个部分用户可能不太喜欢的特性–圆形图标。圆形图标长什么样，可以看看下面的图。</p>
+<img src="/2016/12/29/适配Android-7-1-Nougat新特性/round_icon.png" alt="round icon" title="round icon">
+<blockquote>
+<p>同时，圆形图标规范也作为一部分内容加入到了更新说明和开发文档中。<br>应用程序现在可以定义圆形启动器图标以用于特定的移动设备之上。当启动器请求应用程序图标时，程序框架应返回 android：icon 或 android：roundIcon，视设备具体要求而定。因此，应用程序在开发时应该确保同时定义 android：icon和 android：roundIcon 两个变量。您可以使用 Image Asset Studio 来设计圆形图标。</p>
+<p>您应该确保在支持新的圆形图标的设备上测试您的应用程序，以确保应用程序图标的外观无虞和实际效果。测试您的资源的一种方法是在 Google Pixel 设备上安装您的应用。您还可以通过运行 Android 模拟器并使用 Google API 模拟器系统（目标 API 等级为 25）测试您的图标。</p>
+</blockquote>
+<p>我们可以通过 <strong>Android Studio</strong> 自带的 <strong>Image Asset Studio</strong>设计图标。在项目的 <strong>res</strong> 目录下点击鼠标右键，选择 <strong>new</strong> –&gt; <strong>Image Asset</strong> 即可设计图标。</p>
+<img src="/2016/12/29/适配Android-7-1-Nougat新特性/ImageAssetStudio.png" alt="Image Asset Studio" title="Image Asset Studio">
+<p>更多关于设计应用图标的信息，可以参考<a href="https://material.google.com/style/icons.html#icons-product-icons" target="_blank" rel="external">Material Design guidelines</a>。</p>
+<h3 id="Image-Keyboard-Support"><a href="#Image-Keyboard-Support" class="headerlink" title="Image Keyboard Support"></a>Image Keyboard Support</h3><p>在较早版本的Android系统中，软键盘(例如我们所熟知的Input Method Editors，或者说IME)，只能够给应用发送unicode编码的emoji，对于rich content，应用只能通过使用自建的私有的API实现发送图片的功能。而在Android 7.1中，SDK包含了一个全新的Commit Content API，输入法应用不仅可以调用此 API 实现发送图片和其他rich content，一些通讯应用（比如 Google Messenger）也可以通过此 API 来更好地处理这些来自输入法的图片、网页信息和 GIF 内容。</p>
+<img src="/2016/12/29/适配Android-7-1-Nougat新特性/image-keyboard-sample.png" alt="image keyboard" title="image keyboard">
+<h4 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works"></a>How it works</h4><ol>
+<li><p>当用户点击EditText时，    editor会发送一个它所能接受的 <strong>EditorInfo.contentMimeTypes</strong> MIME 内容类型的列表。</p>
+</li>
+<li><p>IME读取这个在软键盘中支持类型和展示内容的列表。</p>
+</li>
+<li><p>当用户选择一张图片后，IME调用 <strong>commitContent()</strong> 并向editor发送一个InputContentInfo。 <strong>commitContent()</strong> 方法是一个类似于 <strong>commitText()</strong> 的方法，但是是rich content的。 <strong>InputContentInfo</strong> 包含着一个表示content provider中内容的URI。然后我们的应用就可以请求相应的权限并读取URI中的内容。</p>
+</li>
+</ol>
+<img src="/2016/12/29/适配Android-7-1-Nougat新特性/image-keyboard-diagram.png" alt="image keyboard diagram" title="image keyboard diagram">
+<h4 id="Adding-Image-Support-to-Apps"><a href="#Adding-Image-Support-to-Apps" class="headerlink" title="Adding Image Support to Apps"></a>Adding Image Support to Apps</h4><p>为了接收来自IME的rich content，应用必须告诉IME它所能接收的内容类型并之指定当接收到内容后的回调方法。下面是一个怎样创建一个能够接收PNG图片的 <strong>EditText</strong> 的演示代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">EditText editText = <span class="keyword">new</span> EditText(<span class="keyword">this</span>) &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> InputConnection <span class="title">onCreateInputConnection</span><span class="params">(EditorInfo editorInfo)</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> InputConnection ic = <span class="keyword">super</span>.onCreateInputConnection(editorInfo);</div><div class="line">        EditorInfoCompat.setContentMimeTypes(editorInfo,</div><div class="line">                <span class="keyword">new</span> String [] &#123;<span class="string">"image/png"</span>&#125;);</div><div class="line"></div><div class="line">        <span class="keyword">final</span> InputConnectionCompat.OnCommitContentListener callback =</div><div class="line">            <span class="keyword">new</span> InputConnectionCompat.OnCommitContentListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCommitContent</span><span class="params">(InputContentInfoCompat inputContentInfo,</span></span></div><div class="line">                        <span class="keyword">int</span> flags, Bundle opts) &#123;</div><div class="line">                    <span class="comment">// read and display inputContentInfo asynchronously</span></div><div class="line">                    <span class="keyword">if</span> (BuildCompat.isAtLeastNMR1() &amp;&amp; (flags &amp;</div><div class="line">                        InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != <span class="number">0</span>) &#123;</div><div class="line">                        <span class="keyword">try</span> &#123;</div><div class="line">                            inputContentInfo.requestPermission();</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                            <span class="keyword">return</span> <span class="keyword">false</span>; <span class="comment">// return false if failed</span></div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="comment">// read and display inputContentInfo asynchronously.</span></div><div class="line">                    <span class="comment">// call inputContentInfo.releasePermission() as needed.</span></div><div class="line"></div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;  <span class="comment">// return true if succeeded</span></div><div class="line">                &#125;</div><div class="line">            &#125;;</div><div class="line">        <span class="keyword">return</span> InputConnectionCompat.createWrapper(ic, editorInfo, callback);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>代码还是蛮多的，解释一下。</p>
+<ul>
+<li><p>例子使用了support library，并且引用的是 <strong>android.support.v13.view.inputmethod</strong> 而不是 <strong>android.view.inputmethod</strong> 。</p>
+</li>
+<li><p>例子创建了一个 <strong>EditText</strong> 并复写了它改变 <strong>InputConnection</strong> 的 <strong>onCreateInputConnection(EditorInfo)</strong> 方法. <strong>InputConnection</strong> 是IME和正在接收输入的沟通管道。</p>
+</li>
+<li><p>调用 <strong>super.onCreateInputConnection()</strong> 保留了内建的行为(包括发送和接收文本)，并提供给我们一个 <strong>InputConnection</strong> 的引用。</p>
+</li>
+<li><p><strong>setContentMimeTypes()</strong> 向 <strong>EditorInfo</strong> 添加了一个所支持的MIME类型的列表。 需要保证在 <strong>setContentMimeTypes()</strong> 之前调用 <strong>super.onCreateInputConnection()</strong> 。</p>
+</li>
+<li><p>回调在IME提交内容是被执行。 <strong>onCommitContent()</strong> 方法有一个对包含了内容URI的 <strong>InputContentInfoCompat</strong> 的引用。</p>
+<ul>
+<li>当我们的应用运行在API Level 25或者更高并且IME设置了 <strong>INPUT_CONTENT_GRANT_READ_URI_PERMISSION</strong> flag时，我们应该请求并且释放权限。否则，我们应该在此之前就拥有content URI的访问权限，一是因为权限是由IME授权的，二是content provider不对访问进行约束。更多的信息可以访问<a href="https://developer.android.com/guide/topics/text/image-keyboard.html#adding_image_support_to_imes" target="_blank" rel="external">Adding Image Support to IMEs</a></li>
+</ul>
+</li>
+<li><p><strong>createWrapper()</strong> 包装了inputConnection和已修改的editorInfo，新的InputConnection的回调并且返回。</p>
+</li>
+</ul>
+<p>下面是一些实践小技巧。</p>
+<ul>
+<li><p>不支持rich content的Editor不应该调用 <strong>setContentTypes()</strong> 并把 <strong>EditorInfo.contentMimeTypes</strong> 设置为null。</p>
+</li>
+<li><p>Editor应该忽略掉在 <strong>InputConnectionInfo</strong> 中指定的MIME类型和所接收类型不通的内容。</p>
+</li>
+<li><p>rich content不影响也不被文本指针的位置所影响。editor在进行内容处理是可以直接忽略掉光标的位置。</p>
+</li>
+<li><p>在editor的 <strong>OnCommitContentListener.onCommitContent()</strong> 方法中，我们可以异步的返回true，甚至是在加载内容之前。</p>
+</li>
+<li><p>不同于文本内容在被提交之前可以在IME中被编辑，rich content会被立即提交。需要注意特性，如果想要提供编辑或者删除内容的能力，我们需要自己提供处理逻辑。</p>
+</li>
+</ul>
+<p>为了测试APP，需要确保你的设备或者虚拟机的键盘能够发送rich content。你可以在Android 7.1或者更高的系统中使用Google Keyboard，或者是安装<a href="https://developer.android.com/samples/CommitContentSampleIME/index.html" target="_blank" rel="external">CommitContent IME sample</a>.</p>
+<p>你可以在<a href="https://developer.android.com/samples/CommitContentSampleApp/index.html" target="_blank" rel="external">CommitContent App sample</a>获取到完整的示例代码。</p>
+<h4 id="Adding-Image-Support-to-IMEs"><a href="#Adding-Image-Support-to-IMEs" class="headerlink" title="Adding Image Support to IMEs"></a>Adding Image Support to IMEs</h4><p>想要IME支持发送rich content，需要引入下面所展示的Commit Content API。</p>
+<ul>
+<li><p>复写 <strong>onStartInput()</strong> 或者 <strong>onStartInputView()</strong> ，并读取来自目标editor的支持内容类型列表。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStartInputView</span><span class="params">(EditorInfo info, <span class="keyword">boolean</span> restarting)</span> </span>&#123;</div><div class="line">    String[] mimeTypes = EditorInfoCompat.getContentMimeTypes(editorInfo);</div><div class="line"></div><div class="line">    <span class="keyword">boolean</span> gifSupported = <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">for</span> (String mimeType : mimeTypes) &#123;</div><div class="line">        <span class="keyword">if</span> (ClipDescription.compareMimeTypes(mimeType, <span class="string">"image/gif"</span>)) &#123;</div><div class="line">            gifSupported = <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (gifSupported) &#123;</div><div class="line">        <span class="comment">// the target editor supports GIFs. enable corresponding content</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// the target editor does not support GIFs. disable corresponding content</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>当用户选择了一张图片时，将内容提交给APP。当IME有正在编辑的文本时，应该避免调用 <strong>commitContent()</strong> ，因为这样可能导致editor失去焦点。下面的代码片段展示了怎样提交一张GIF图片。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Commits a GIF image</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> contentUri Content URI of the GIF image to be sent</div><div class="line"> * <span class="doctag">@param</span> imageDescription Description of the GIF image to be sent</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">commitGifImage</span><span class="params">(Uri contentUri, String imageDescription)</span> </span>&#123;</div><div class="line">    InputContentInfoCompat inputContentInfo = <span class="keyword">new</span> InputContentInfoCompat(</div><div class="line">            contentUri,</div><div class="line">            <span class="keyword">new</span> ClipDescription(imageDescription, <span class="keyword">new</span> String[]&#123;<span class="string">"image/gif"</span>&#125;));</div><div class="line">    InputConnection inputConnection = getCurrentInputConnection();</div><div class="line">    EditorInfo editorInfo = getCurrentInputEditorInfo();</div><div class="line">    Int flags = <span class="number">0</span>;</div><div class="line">    If (android.os.Build.VERSION.SDK_INT &gt;= <span class="number">25</span>) &#123;</div><div class="line">        flags |= InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION;</div><div class="line">    &#125;</div><div class="line">    InputConnectionCompat.commitContent(</div><div class="line">            inputConnection, editorInfo, inputContentInfo, flags, opts);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>作为一个IME开发者，有很大可能你需要引入你自己的content provider来响应content URI请求。如果你的IME支持来自像 <strong>MediaStore</strong> 这样已经存在的content provider倒是可以例外。关于创建content provider的更多信息，可以参见 <a href="https://developer.android.com/samples/CommitContentSampleIME/index.html" target="_blank" rel="external">CommitContent IME sample</a>, [Content Provider] (<a href="https://developer.android.com/guide%20/topics/providers/content-providers.html)文档" target="_blank" rel="external">https://developer.android.com/guide%20/topics/providers/content-providers.html)文档</a>, <a href="https://developer.android.com/training/secure-file-sharing/setup-sharing.html" target="_blank" rel="external">File Provider</a>文档。</p>
+</li>
+<li><p>如果正在创建自己的content provider，建议不要export(将 android:export 设置为false)。通过设置 <strong>android:grandUriPermission</strong> 为true允许在provider内部进行权限授予替代。然后，你的IME在内容提交时可以授予访问content URI的权限。有两种实现的方法：</p>
+<ul>
+<li><p>在Android 7.1(API Level 25)或更高的系统中，当调用 <strong>commitContent</strong> 方法时，将flag参数设置为 <strong>INPUT_CONTENT_GRANT_READ_URI_PERMISSION</strong> 。然后，APP收到的 <strong>InputContentInfo</strong> 对象可以通过调用 <strong>requestPermission()</strong> 方法和 <strong>releasePermission()</strong> 请求和释放临时访问权限。</p>
+</li>
+<li><p>在Android 7.0(API Level 24)或者更低的系统中， <strong>INPUT_CONTENT_GRANT_READ_URI_PERMISSION</strong> 直接被忽略，所以我们需要手动的授予内容访问权限。方法就是 <strong>grantUriPermission()</strong> ,但是我们也可以引入满足自己要求的机制。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>权限授予的例子，我们可以在<a href="https://developer.android.com/samples/CommitContentSampleIME/index.html" target="_blank" rel="external">CommitContent IME sample</a>中的doCommitContent()方法。</p>
+<p>为了测试IME，确保我们的设备或者模拟器拥有接收rich content的的应用。我们可以在Android 7.1或者更高的系统中使用Google Messenger应用或者安装<a href="https://developer.android.com/samples/CommitContentSampleApp/index.html" target="_blank" rel="external">CommitContent App Sample</a>。</p>
+<p>获取完整的示例代码，可以访问<a href="https://developer.android.com/samples/CommitContentSampleIME/index.html" target="_blank" rel="external">CommitContent IME Sample</a>。</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Google在刷新版本号的路上简直是在策马奔腾了，嘚儿驾。我们也能够看到Google的努力，Android也在变的越来越好，加油吧，小机器人。</p>
+<p>本次Shortcuts部分的代码可以在我的GitHub仓库<a href="https://github.com/marktony/ZhiHuDaily" target="_blank" rel="external">ZhiHuDaily</a>中看到。欢迎star哟。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://marktony.github.io/2016/12/29/适配Android-7-1-Nougat新特性/" data-title="适配Android 7.1 Nougat新特性 | Tony&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/11/05/JAVA深克隆与浅克隆/"  title="JAVA深克隆与浅克隆">
+ <strong>NEXT:</strong><br/> 
+ <span>JAVA深克隆与浅克隆
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#What’s-new-in-Android-7-1-Nougat"><span class="toc-number">1.</span> <span class="toc-text">What’s new in Android 7.1 Nougat?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Shortcuts"><span class="toc-number">2.</span> <span class="toc-text">App Shortcuts</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-Static-Shortcuts"><span class="toc-number">2.1.</span> <span class="toc-text">Using Static Shortcuts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-Dynamic-Shortcuts"><span class="toc-number">2.2.</span> <span class="toc-text">Using Dynamic Shortcuts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Extra-Bits"><span class="toc-number">2.3.</span> <span class="toc-text">Extra Bits</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#App-Shortcuts-Best-Practices"><span class="toc-number">2.4.</span> <span class="toc-text">App Shortcuts Best Practices</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Round-Icon-Resources"><span class="toc-number">3.</span> <span class="toc-text">Round Icon Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Image-Keyboard-Support"><span class="toc-number">4.</span> <span class="toc-text">Image Keyboard Support</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#How-it-works"><span class="toc-number">4.1.</span> <span class="toc-text">How it works</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Adding-Image-Support-to-Apps"><span class="toc-number">4.2.</span> <span class="toc-text">Adding Image Support to Apps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Adding-Image-Support-to-IMEs"><span class="toc-number">4.3.</span> <span class="toc-text">Adding Image Support to IMEs</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Summary"><span class="toc-number">5.</span> <span class="toc-text">Summary</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/Android/" title="Android">Android<sup>10</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>2</sup></a></li>
+		
+			<li><a href="/categories/涨姿势/" title="涨姿势">涨姿势<sup>4</sup></a></li>
+		
+			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Android/" title="Android">Android<sup>9</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Kotlin/" title="Kotlin">Kotlin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/涨姿势/" title="涨姿势">涨姿势<sup>4</sup></a></li>
+		
+			<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>1</sup></a></li>
+		
+			<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="http://marktony.github.io/" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,welcome to Tony&#39;s blog. <br/>
+			I&#39;m waving the keyboard and notebook , vowing to write the world clearly !</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://marktony.github.io" target="_blank" title="Tony">Tony</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

@@ -78,7 +78,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-07-10T02:31:54.000Z" itemprop="datePublished">2016-07-10</time>
-    更新日期:<time datetime="2016-07-10T02:33:18.000Z" itemprop="dateModified">2016-07-10</time>
+    更新日期:<time datetime="2016-11-22T04:33:08.000Z" itemprop="dateModified">2016-11-22</time>
     
   </p>
 </header>
@@ -108,7 +108,8 @@
 <h3 id="在Android项目中使用Kotlin"><a href="#在Android项目中使用Kotlin" class="headerlink" title="在Android项目中使用Kotlin"></a>在Android项目中使用Kotlin</h3><p>首先当然是要配置开发环境了。从Intellij 15开始，Kotlin插件是默认安装的。但是Android Studio中可能就要我们手动配置了。</p>
 <p>打开 <strong>Android Studio</strong> 进入 <strong>Preferences</strong> 的 <strong>plugin</strong> 栏，选择 <strong>Install JetBrains Plugin</strong>,在搜索框中输入 <strong>Kotlin</strong>,然后就能看到Kotlin插件了，点击安装即可。</p>
 <p>环境配置好后，就可以动手写项目了。按照平时我们新建Android项目的步骤，新建一个项目。然后点击Android Studio的菜单 <strong>Code</strong> 的 <strong>Convert Java File to Kotlin File</strong>,java文件就自动的转换为了Kotlin文件。是不是很简单呢。</p>
-<h3 id="印象"><a href="#印象" class="headerlink" title="印象"></a>印象</h3><p>我并没有用Kotlin进行Android开发的经验，这次的项目也主要是作为练手使用。给我的感觉就是省事儿，能减少很多不必要的代码。可以不用写很多的findViewById了。设置监听器也方便了很多了。<br>Talk is cheap, show you the code.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</div><div class="line">        setContentView(R.layout.activity_main)</div><div class="line"></div><div class="line">        textView.text = <span class="string">"Hello Kotlin"</span></div><div class="line"></div><div class="line">        textView.setOnClickListener &#123;</div><div class="line">          Snackbar.make(fab,<span class="string">"Hello Snackbar"</span>,Snackbar.LENGTH_SHORT)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="印象"><a href="#印象" class="headerlink" title="印象"></a>印象</h3><p>我并没有用Kotlin进行Android开发的经验，这次的项目也主要是作为练手使用。给我的感觉就是省事儿，能减少很多不必要的代码。可以不用写很多的findViewById了。设置监听器也方便了很多了。<br>Talk is cheap, show you the code.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</div><div class="line">        setContentView(R.layout.activity_main)</div><div class="line"></div><div class="line">        textView.text = <span class="string">"Hello Kotlin"</span></div><div class="line"></div><div class="line">        textView.setOnClickListener &#123;</div><div class="line">          Snackbar.make(fab,<span class="string">"Hello Snackbar"</span>,Snackbar.LENGTH_SHORT)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>上手印象不错，以后有机会会尝试使用Kotlin！</p>
   
 	</div>
@@ -175,7 +176,7 @@
 	<p class="asidetitle">分类</p>
 		<ul>
 		
-			<li><a href="/categories/Android/" title="Android">Android<sup>9</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>10</sup></a></li>
 		
 			<li><a href="/categories/Java/" title="Java">Java<sup>2</sup></a></li>
 		
@@ -194,7 +195,7 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/Android/" title="Android">Android<sup>8</sup></a></li>
+			<li><a href="/tags/Android/" title="Android">Android<sup>9</sup></a></li>
 		
 			<li><a href="/tags/Java/" title="Java">Java<sup>3</sup></a></li>
 		
