@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Title -->
+    
+    <title>
+        简洁优雅地实现夜间模式 | Tonny&#39;s Blog
+    </title>
+    
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+    
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Tonny">
+    <meta name="description" content="null">
+    <meta name="keywords" content="Tonny">
+    
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Tonny&#39;s Blog">
+    
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://marktony.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="简洁优雅地实现夜间模式 | Tonny&#39;s Blog">
+    <meta property="og:description" content="null">
+    
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+        
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+    
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+	
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+    
+    <!-- Custom Head -->
+    
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                <!-- Post TOC -->
+
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现"><span class="post-toc-number">2.</span> <span class="post-toc-text">实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加依赖"><span class="post-toc-number">3.</span> <span class="post-toc-text">添加依赖</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备资源"><span class="post-toc-number">4.</span> <span class="post-toc-text">准备资源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用"><span class="post-toc-number">5.</span> <span class="post-toc-text">应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#静态应用"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">静态应用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#动态应用"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">动态应用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Q-amp-A"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">Q&A</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码"><span class="post-toc-number">6.</span> <span class="post-toc-text">代码</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://ww4.sinaimg.cn/mw690/6db4aff6gw1f1obxgzgyjj21jk12swjl.jpg)">
+	
+        <p class="article-headline-p">
+            简洁优雅地实现夜间模式
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+    
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Tonny</strong>
+        <span>Dec 31, 2016</span>
+    </div>
+    
+    <div class="section-spacer"></div>
+	
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
+    
+
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Android/">Android</a>
+    </ul>
+    
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+
+    
+
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=简洁优雅地实现夜间模式&url=http://marktony.github.io//2016/12/31/简洁优雅地实现夜间模式/index.html&via=Tonny" target="_blank">
+        <li class="mdl-menu__item">
+            Share to Twitter
+        </li>
+    </a>
+
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://marktony.github.io//2016/12/31/简洁优雅地实现夜间模式/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            Share to Google+
+        </li>
+    </a>
+
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=简洁优雅地实现夜间模式&url=http://marktony.github.io//2016/12/31/简洁优雅地实现夜间模式/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            Share to Weibo
+        </li>
+    </a>
+
+    <!-- Share LinkedIn -->
+    <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://marktony.github.io//2016/12/31/简洁优雅地实现夜间模式/index.html&title=简洁优雅地实现夜间模式" target="_blank">
+        <li class="mdl-menu__item">
+            Share to LinkedIn
+        </li>
+    </a>
+
+    <!-- Share QQ -->
+    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Tonny&#39;s Blog&title=简洁优雅地实现夜间模式&summary=null&pics=http://marktony.github.io/img/favicon.png&url=http://marktony.github.io/2016/12/31/简洁优雅地实现夜间模式/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            Share to QQ
+        </li>
+    </a>
+
+    <!-- Share Telegram -->
+    <a class="post_share-link" href="https://telegram.me/share/url?url=http://marktony.github.io/2016/12/31/简洁优雅地实现夜间模式/index.html&text=简洁优雅地实现夜间模式" target="_blank">
+        <li class="mdl-menu__item">
+            Share to Telegram
+        </li>
+    </a>
+</ul>
+
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<p>使用官方Support Library实现日间与夜间模式<br><a id="more"></a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android 6.0 Marshmallow 预览版中曾经短暂出现过相关的夜间模式的功能，只是在正式版中被移除了，在Android 7.0 Nougat上，用户们再次经历了「得而复失」的遗憾，在开发者预览版中，夜间模式和暗色模式先是开启，然后有再次被移除。而在正式版中，夜间模式也没有出现。但其实相关的代码一直存在于系统中，只是默认没有被开启。如何开启这项功能，可以参考少数派的这一篇文章，<a href="http://sspai.com/35273" target="_blank" rel="external">帮你找回 Android 7.0 夜间模式的 2 款应用</a>。</p>
+<p>不过，今天要介绍的主要内容并不是关于系统的夜间模式，而是如何给我们开发的APP添加夜间模式的功能。毫不夸张的说，夜间模式现在已经是阅读类App的标配了。事实上，日间模式与夜间模式就是给APP定义并应用两套不同颜色的主题。用户可以自动或者手动的开启。我们先看两个我认为实现地很优雅的例子：知乎和Twitter。</p>
+<img src="/2016/12/31/简洁优雅地实现夜间模式/zhihu_twitter_nightmode.gif" alt="zhihu_twitter_nightmode" title="zhihu_twitter_nightmode">
+<p>这两个APP在切换的工程中，并没有出现闪现黑屏的情况，切换也比较顺滑。我们的目标就是利用Support Library实现同样的效果。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.android.support:appcompat-v7:25.1.0&apos;</div></pre></td></tr></table></figure>
+<p>由于Support Library在23.2.0的版本中才添加了Theme.AppCompat.DayNight主题，所以依赖的版本必须是高于23.2.0的，并且，这个特性支持的最低SDK版本为14，所以，需要兼容Android 4.0的设备，是不能使用这个特性的，在API Level 14以下的设备会默认使用亮色主题。不过现在4.0以下的设备应该比较少了吧，毕竟微信的minSdkVersion都设置为14了。</p>
+<h3 id="准备资源"><a href="#准备资源" class="headerlink" title="准备资源"></a>准备资源</h3><ol>
+<li><p>让我们自己的主题继承并应用DayNight主题。</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppTheme"</span> <span class="attr">parent</span>=<span class="string">"Theme.AppCompat.DayNight.DarkActionBar"</span>&gt;</span><span class="xml"></span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>@color/colorPrimaryDark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--customize your theme here--&gt;</span></div><div class="line">        </div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>新建夜间模式资源文件夹:在<code>res</code>目录下新建<code>values-night</code>文件夹，然后在此目录下新建<code>colors.xml</code>文件在夜间模式下的应用的资源。当然也可以根据需要新建<code>drawable-night</code>,<code>layout-night</code>等后缀为<code>-night</code>的夜间资源文件夹。<br>我的<code>values</code>和<code>values-night</code>目录下的<code>colors.xml</code>的内容如下:</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="comment">&lt;!--values-colors.xml--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>#009688<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>#00796B<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>#009688<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"textColorPrimary"</span>&gt;</span>#616161<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"viewBackground"</span>&gt;</span>@android:color/white<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="comment">&lt;!--values-night-colors.xml&gt;</span></div><div class="line">&lt;resources&gt;</div><div class="line">    &lt;color name="colorPrimary"&gt;#35464e&lt;/color&gt;</div><div class="line">    &lt;color name="colorPrimaryDark"&gt;#212a2f&lt;/color&gt;</div><div class="line">    &lt;color name="colorAccent"&gt;#212a2f&lt;/color&gt;</div><div class="line">    &lt;color name="textColorPrimary"&gt;#616161&lt;/color&gt;</div><div class="line">    &lt;color name="viewBackground"&gt;#212a2f&lt;/color&gt;</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使Activity继承自AppCompatActivity。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="comment">// code here</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    	</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><h4 id="静态应用"><a href="#静态应用" class="headerlink" title="静态应用"></a>静态应用</h4><p>在Application的继承类下设置初始主题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line">        </div><div class="line">		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">		<span class="comment">// other code here</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里<code>AppCompatDelegate.setDefaultNightMode()</code>方法可以接受的参数值有4个：</p>
+<ul>
+<li>MODE_NIGHT_NO. Always use the day (light) theme(一直应用日间(light)主题).</li>
+<li>MODE_NIGHT_YES. Always use the night (dark) theme(一直使用夜间(dark)主题).</li>
+<li>MODE_NIGHT_AUTO. Changes between day/night based on the time of day(根据当前时间在day/night主题间切换).</li>
+<li>MODE_NIGHT_FOLLOW_SYSTEM(默认选项). This setting follows the system’s setting, which is essentially MODE_NIGHT_NO(跟随系统，通常为MODE_NIGHT_NO).</li>
+</ul>
+<p>我们可以在任何时候调用这个方法，因为这个方法是静态的。但是这个值并不是一直存在的，每次在开启进程时需要重新设置。在上面的代码中，我是在<code>onCreate()</code>方法中设置的，网上也有大神建议在Activity或者Application的<strong>static</strong>代码块中设置。如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">	    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line">        </div><div class="line">		<span class="comment">// other code here</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="动态应用"><a href="#动态应用" class="headerlink" title="动态应用"></a>动态应用</h4><p>虽然上面的静态应用的设置非常简单，但是这种方式的应用场景还是太少了。我们更多的还是需要动态的根据需要动态的切换。</p>
+<ol>
+<li><p>检测当前主题模式</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> mode = getResources().getConfiguration().uiMode &amp; Configuration.UI_MODE_NIGHT_MASK;</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置主题</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(mode == Configuration.UI_MODE_NIGHT_YES) &#123;</div><div class="line">	AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(mode == Configuration.UI_MODE_NIGHT_NO) &#123;</div><div class="line">	AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="comment">// blah blah</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">recreate();</div></pre></td></tr></table></figure>
+<p> 在调用<code>recreate()</code>方法之前，还可以创建一些动画进行过渡。而且，众所周知，调用<code>recreate()</code>需要对一些数据进行保存，例如fragment，CheckBox,RadioBox等。如下所示:</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       	<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">   	</div><div class="line">   	 	<span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">   	 		FragmentManager manager = getChildFragmentManager();</div><div class="line">			doubanMomentFragment = (DoubanMomentFragment) manager.getFragment(savedInstanceState, <span class="string">"douban"</span>);</div><div class="line">   	 	&#125; <span class="keyword">else</span> &#123;</div><div class="line">   	 		doubanMomentFragment = DoubanMomentFragment.newInstance();</div><div class="line">   	 	&#125;</div><div class="line">   	&#125;</div><div class="line">   	</div><div class="line">   	<span class="meta">@Override</span></div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">      	 <span class="keyword">super</span>.onSaveInstanceState(outState);</div><div class="line">      	 FragmentManager manager = getChildFragmentManager();</div><div class="line">      	 manager.putFragment(outState, <span class="string">"douban"</span>, doubanMomentFragment);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>我们也可以把主题的值存储到SharedPreference中，已便于应用在下一次启动时自动应用主题。
+</code></pre><h4 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h4><ul>
+<li><p>Q:系统默认的颜色不合我的口味怎么办？</p>
+<p>A:使用主题属性,例如:<code>textColor:?android:attr/textColorPrimary</code>,<code>color:?attr/colorControlNormal</code>等。</p>
+</li>
+<li><p>Q:为什么我的WebView颜色没有变化？</p>
+<p>A:因为WebView不能使用主题属性。WebView的颜色实际上取决于网页内容颜色。网页的默认背景色是白色，所以尽管设置了主题为<code>AppCompatDelegate.MODE_NIGHT_YES</code>，网页仍然是白色，所以看起来就很不搭了。所以，网页的内容和背景色等资源也需要适配了。</p>
+</li>
+<li><p>Q:为什么不直接设置为<code>MODE_NIGHT_AUTO</code>呢？</p>
+<p>A:因为使用<code>MODE_NIGHT_AUTO</code>需要请求坐标权限，获取系统的位置。你肯定会说了，这尼玛不是坑爹吗？如果程序已经授予了坐标权限(location permission)(如果你的target SDK为23或者更高，需要考虑运行时权限)，AppCompat会试着去获取上次保存的坐标，根据坐标来计算日出与日落的时间。如果程序没有位置权限或者LocationManager没有存储上次坐标的信息呢？系统或默认设置为早上6点钟为日出，下午10点为日落。用户调整系统时间，当前的主题也会随之改变。如果我们不希望用户在设定主题后，主题还会随着时间改变,<code>MODE_NIGHT_AUTO</code>就不适用了。</p>
+</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本项目代码<a href="https://github.com/marktony/PaperPlane" target="_blank" rel="external">PaperPlane</a> .<br>运行效果</p>
+<img src="/2016/12/31/简洁优雅地实现夜间模式/paper_plane.gif" alt="Paper Plane" title="Paper Plane"> 
+<p>在Android 6.0及以下的设备上，本项目运行时会有切换的过渡动画效果，但是不支持Android 7.0及以上的设备。</p>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2016/12/31/简洁优雅地实现夜间模式/" 
+            data-url="http://marktony.github.io/2016/12/31/简洁优雅地实现夜间模式/"
+            data-title="简洁优雅地实现夜间模式"></div>
+    <!-- 多说评论框 end -->
+</div>
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/12/29/适配Android-7-1-Nougat新特性/" id="post_nav-older" class="next-content">
+            Older
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Tonny's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        marktonymengyi@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:marktonymengyi@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             Home
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+	
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             Archives
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
+        </ul>
+    </li>
+	
+    <!-- Categories  -->
+<!--
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">view_list</i>
+             Category
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/涨姿势/">涨姿势<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/计算机基础/">计算机基础<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">1</span></a>
+        </ul>
+    </li>
+-->
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/Gallery" title="Gellery">
+				Gellery
+			</a>
+		</li>
+	
+		<li>
+			<a href="/About" title="About">
+				About
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             Article Number
+             <span class="sidebar-badge">19</span>
+        </a>
+    </li>
+</ul>
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		Theme - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    
+
+    <!-- Facebook -->
+    
+    
+
+    <!-- Google + -->
+    
+    <a href="https://plus.google.com/101922840132193208151" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+        <span class="visuallyhidden">Google Plus</span>
+    </button></a>
+    
+
+    <!-- Weibo -->
+    
+    <a href="http://weibo.com/5313690193/profile?topnav=1&amp;wvr=6&amp;is_all=1" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+        <span class="visuallyhidden">Weibo</span>
+    </button></a>
+    
+
+    <!-- Instagram -->
+    
+    <a href="https://www.instagram.com/tonny_lztl/" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.png);">
+        <span class="visuallyhidden">Instagram</span>
+    </button></a>
+    
+
+    <!-- Tumblr -->
+    
+    
+
+    <!-- Github -->
+    
+    <a href="https://github.com/marktony" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+
+    <!-- LinkedIn -->
+    
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;Tonny's Blog</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+    <!-- 多说公共 js 代码 start -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tonnysblog"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'https://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共 js 代码 end -->
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+	<script>
+	var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ data_title;
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 6;
+                            var end = first_occur + 6;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+                            str += "<p class=\"search-result\">" + match_content +"...</p>" +"</a>";
+                        }
+                    }
+                })
+                $resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+</script>
+
+	<script>
+        var inputArea = document.querySelector("#search");
+        var getSearchFile = function(){
+            var path = "search.xml";
+            searchFunc(path, 'search', 'local-search-result');
+        }
+
+        inputArea.onfocus = function(){ getSearchFile() }
+	</script>
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>
