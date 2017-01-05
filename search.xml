@@ -147,6 +147,8 @@
 <li><a href="http://stackoverflow.com/questions/tagged/chrome-custom-tabs" target="_blank" rel="external">Chrome Custom Tabs on StackOverflow</a></li>
 <li>我的项目地址:<a href="https://github.com/marktony/PaperPlane" target="_blank" rel="external">PaperPlane</a></li>
 </ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如果我们的应用是面向国外用户的，那理所当然的，应该加入Chrome Custom Tabs的支持，这在很大程度上能够提升用户的体验。如果我们的应用只是面向国内用户，我的建议还是应该加上这项功能，毕竟，还是有部分用户安装了Chrome浏览器，当用户浏览到Custom Tab页面，应该也会像我一样，感觉到眼前一亮吧。</p>
+<p>文章比较长，感谢你的阅读。</p>
 ]]></content>
     </entry>
     
