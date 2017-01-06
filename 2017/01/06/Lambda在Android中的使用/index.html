@@ -4,7 +4,7 @@
     <!-- Title -->
     
     <title>
-        Archives: 2016/5 | Tonny&#39;s Blog
+        Lambda在Android中的使用 | Tonny&#39;s Blog
     </title>
     
     <!-- Favicons -->
@@ -40,7 +40,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://marktony.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Archives: 2016/5 | Tonny&#39;s Blog">
+    <meta property="og:title" content="Lambda在Android中的使用 | Tonny&#39;s Blog">
     <meta property="og:description" content="null">
     
      <!--[if lte IE 9]>
@@ -194,546 +194,250 @@
                 </button>
 				
 				
-                <!-- Index Module -->
-<div class="material-index mdl-grid">
-	
-    <div class="locate-thumbnail-symbol"></div>
-    
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/05/28/实现RecyclerView的item的滑动删除/">实现RecyclerView的item的滑动删除</a></p>
-	</div>
+                <!-- Post TOC -->
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            利用ItemTouchHelper实现recycler view item的侧滑删除
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/05/28/实现RecyclerView的item的滑动删除/" target="_self">Continue Reading</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Tonny's avatar">
-            </div>
-            <div>
-                <strong>Tonny</strong>
-                <span>May 28, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/Android/">Android</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/05/28/实现RecyclerView的item的滑动删除/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Lambda表达式"><span class="post-toc-number">3.</span> <span class="post-toc-text">Lambda表达式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方法引用"><span class="post-toc-number">4.</span> <span class="post-toc-text">方法引用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上下文推断"><span class="post-toc-number">5.</span> <span class="post-toc-text">上下文推断</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
                 
-            </span>
-        </div>
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://blog.takipi.com/wp-content/uploads/2014/03/blog_lambada_2.png)">
+	
+        <p class="article-headline-p">
+            Lambda在Android中的使用
+        </p>
     </div>
-            
-</div>
 
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
 	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
+
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/05/27/关于知乎专栏ID的一些说明/">关于知乎专栏ID的一些说明</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            对什么是知乎专栏ID以及如何在知乎专栏App中添加喜欢的专栏的一些方法。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/05/27/关于知乎专栏ID的一些说明/" target="_self">Continue Reading</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Tonny's avatar">
-            </div>
-            <div>
-                <strong>Tonny</strong>
-                <span>May 27, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/涨姿势/">涨姿势</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/05/27/关于知乎专栏ID的一些说明/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/05/19/Tips/">Tips</a></p>
-	</div>
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+    
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Tonny</strong>
+        <span>Jan 06, 2017</span>
+    </div>
+    
+    <div class="section-spacer"></div>
+	
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            那些我自己踩过的坑!
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/05/19/Tips/" target="_self">Continue Reading</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Tonny's avatar">
-            </div>
-            <div>
-                <strong>Tonny</strong>
-                <span>May 19, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/Android/">Android</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/05/19/Tips/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
+    <!-- Qrcode -->
+    
+
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Android/">Android</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Java/">Java</a>
+    </ul>
+    
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+
+    
+
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Lambda在Android中的使用&url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&via=Tonny" target="_blank">
+        <li class="mdl-menu__item">
+            Share to Twitter
+        </li>
+    </a>
+
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            Share to Google+
+        </li>
+    </a>
+
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Lambda在Android中的使用&url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            Share to Weibo
+        </li>
+    </a>
+
+    <!-- Share LinkedIn -->
+    <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&title=Lambda在Android中的使用" target="_blank">
+        <li class="mdl-menu__item">
+            Share to LinkedIn
+        </li>
+    </a>
+
+    <!-- Share QQ -->
+    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Tonny&#39;s Blog&title=Lambda在Android中的使用&summary=null&pics=http://marktony.github.io/img/favicon.png&url=http://marktony.github.io/2017/01/06/Lambda在Android中的使用/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            Share to QQ
+        </li>
+    </a>
+
+    <!-- Share Telegram -->
+    <a class="post_share-link" href="https://telegram.me/share/url?url=http://marktony.github.io/2017/01/06/Lambda在Android中的使用/index.html&text=Lambda在Android中的使用" target="_blank">
+        <li class="mdl-menu__item">
+            Share to Telegram
+        </li>
+    </a>
+</ul>
+
 </div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/05/14/知乎专栏API分析/">知乎专栏API分析</a></p>
-	</div>
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            知乎专栏API的简单分析
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/05/14/知乎专栏API分析/" target="_self">Continue Reading</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Tonny's avatar">
-            </div>
-            <div>
-                <strong>Tonny</strong>
-                <span>May 14, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/涨姿势/">涨姿势</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/05/14/知乎专栏API分析/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<p>极简主义。<br><a id="more"></a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android支持完整的Java7特性，而升级到Android Nougat(API Level 24)之后，支持了Java8语言的一部分功能：</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html" target="_blank" rel="external">默认和静态接口方法</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html" target="_blank" rel="external">Lambda表达式</a>(在 API 级别 23 及更低版本中也可用)</li>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/repeating.html" target="_blank" rel="external">重复注解</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html" target="_blank" rel="external">方法引用</a>(在 API 级别 23 及更低版本中也可用)</li>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/type_annotations.html" target="_blank" rel="external">类型注解</a>(在 API 级别 23 及更低版本中也可用)</li>
+</ul>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>使用这一部分支持的功能需要一个名为<a href="https://source.android.com/source/jack.html" target="_blank" rel="external">Jack</a>的新编译。而Jack要求Android Studio 2.1或更高，所以，没有升级到2.1或以上的童鞋，需要先升级才能支持使用Jack哟。</p>
+<blockquote>
+<p><a href="https://developer.android.com/tools/building/building-studio.html#instant-run" target="_blank" rel="external">Instant Run</a>目前不能应用于Jack</p>
+</blockquote>
+<p>在<code>app</code>目录下<code>build.gradle</code>文件下添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  defaultConfig &#123;</div><div class="line">    ...</div><div class="line">    jackOptions &#123;</div><div class="line">      enabled true</div><div class="line">    &#125;</div><div class="line">    // 在更老的版本中，使用</div><div class="line">    // useJack true</div><div class="line">    // 可以达到同样的效果</div><div class="line">  &#125;</div><div class="line">  compileOptions &#123;</div><div class="line">    sourceCompatibility JavaVersion.VERSION_1_8</div><div class="line">    targetCompatibility JavaVersion.VERSION_1_8</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>Lambda的语法格式如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(arg1, arg2...) -&gt; &#123; body &#125;</div><div class="line"></div><div class="line">(type1 arg1, type2 arg2...) -&gt; &#123; body &#125;</div></pre></td></tr></table></figure>
+<p>在未使用Lambda表达式之前，我们设置监听器的代码是这样的:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fab.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="comment">// blah, blah</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>而使用Lambda表达式，代码是这样的:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fab.setOnClickListener(v -&gt; &#123;</div><div class="line">	<span class="comment">// blah, blah            </span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>是不是更简洁了呢？</p>
+<p>我们查看一下<code>OnClickListener</code>的源码，发现这个接口中只有一个待实现的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Interface definition for a callback to be invoked when a view is clicked.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnClickListener</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Called when a view has been clicked.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> v The view that was clicked.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>像这种只有一个待实现方法的接口，都可以使用Lambda表达式进行简化。当然，我们也可以自定义接口，然后用Lambda表达式进行实现。</p>
+<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>有时会遇到这样的情况，Lambda表达式什么都没有做，仅仅是调用了已经存在的方法。这种情况下，代码就能进一步精简了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">fab.setOnClickListener( view2 -&gt; showSnackBar(view2));</div><div class="line"></div><div class="line">private void showSnackBar(View view) &#123;</div><div class="line">        Snackbar.make(view, &quot;blah, blah&quot;, Snackbar.LENGTH_SHORT).show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用方法引用之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fab.setOnClickListener(this::showSnackBar);</div></pre></td></tr></table></figure>
+<h3 id="上下文推断"><a href="#上下文推断" class="headerlink" title="上下文推断"></a>上下文推断</h3><p>下面来实现一些例子来了解Lambda的上下文推断。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TestOp</span> </span>&#123;</div><div class="line">   <span class="function">String <span class="title">operate</span> <span class="params">(String s, <span class="keyword">int</span> i)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 使用Lambda表达式进行实现</span></div><div class="line"><span class="comment">// 通过上下文，lambda表达式可以推断出s为String类型，而i为int类型</span></div><div class="line"><span class="comment">// 返回值为String</span></div><div class="line">TestOp myOp = (s,i) -&gt; s + i;</div></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Lambda表达式使用还是很方便的，能够减少编写和维护的代码数量。但是，这种极简主义的写法也并不是所有人都能接受的。对于我而言，技多不压身，学习一下，提高姿势还是挺有必要的。</p>
+
+	
+	
+	
+	
 </div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/05/12/Java中类成员的初始化/">Java中类成员的初始化</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            如果一个类的基本成员变量，在没有进行初始化的情况下，那么它的默认值是多少呢？
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/05/12/Java中类成员的初始化/" target="_self">Continue Reading</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Tonny's avatar">
-            </div>
-            <div>
-                <strong>Tonny</strong>
-                <span>May 12, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/Java/">Java</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/05/12/Java中类成员的初始化/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/05/11/Activity的四种启动模式/">Activity的四种启动模式</a></p>
-	</div>
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            浅析Android中Activity的四种启动模式:standard,singleTop,singleTask,singleInstance
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/05/11/Activity的四种启动模式/" target="_self">Continue Reading</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Tonny's avatar">
-            </div>
-            <div>
-                <strong>Tonny</strong>
-                <span>May 11, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/Android/">Android</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/05/11/Activity的四种启动模式/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
+                <!-- Post Comments -->
                 
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/05/02/进程与线程/">进程与线程</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            进程与线程之间的关系
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/05/02/进程与线程/" target="_self">Continue Reading</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Tonny's avatar">
-            </div>
-            <div>
-                <strong>Tonny</strong>
-                <span>May 02, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/计算机基础/">计算机基础</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/05/02/进程与线程/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/05/01/ANR/">ANR</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            浅谈Android开发中的ANR现象
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/05/01/ANR/" target="_self">Continue Reading</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Tonny's avatar">
-            </div>
-            <div>
-                <strong>Tonny</strong>
-                <span>May 01, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/Android/">Android</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/05/01/ANR/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-    
-	
-		<script>
-    
-    var randomNum;
-    
-    var locatePost = $(".locate-thumbnail-symbol").next();
-    for(var i=0; i < 10; i++){
-        
-        randomNum = Math.floor(Math.random() * 10 + 1);
-        
-        locatePost.children(".post_thumbnail-random").attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/' + randomNum + '.png' + ')')
-        
-        locatePost = locatePost.next();
+                    
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
     }
-    
-</script>
-
-	
-
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2017/01/06/Lambda在Android中的使用/" 
+            data-url="http://marktony.github.io/2017/01/06/Lambda在Android中的使用/"
+            data-title="Lambda在Android中的使用"></div>
+    <!-- 多说评论框 end -->
 </div>
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/01/05/提升体验-Chrome-Custom-Tabs/" id="post_nav-older" class="next-content">
+            Older
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
 
 				
 				
