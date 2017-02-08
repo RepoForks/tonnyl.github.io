@@ -133,7 +133,7 @@
 
     <style>
         body{
-            background-image: url(https://unsplash.it/1200/800/?random);
+            background-image: url(https://source.unsplash.com/daily);
         }
     </style>
 
@@ -214,7 +214,7 @@
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
             <script>
-    var randomNum = Math.floor(Math.random() * 20 + 1);
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
     $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
 </script>
@@ -277,6 +277,17 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
     
 
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;Views
+                    </span>
+                </li>
+            </a>
+        
     
 
     <!-- Share Weibo -->
@@ -350,12 +361,14 @@
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="欢迎来到Tony的博客"><a href="#欢迎来到Tony的博客" class="headerlink" title="欢迎来到Tony的博客"></a>欢迎来到Tony的博客</h3><p>我会在这里分享我在开发过程中的一些问题，或者是心得体会。</p>
-<h3 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h3><p>软件工程，目前大三。对Android开发感兴趣，还在探索中。欢迎交流。</p>
+        <h3 id="欢迎来到Tonny的博客"><a href="#欢迎来到Tonny的博客" class="headerlink" title="欢迎来到Tonny的博客"></a>欢迎来到Tonny的博客</h3><p>我会在这里分享我在开发过程中的一些问题，或者是心得体会。</p>
+<h3 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h3><p>软件工程，目前大三。对Android开发感兴趣，还在探索中。欢迎交流。活跃于以下网站：</p>
 <ul>
 <li><a href="https://github.com/marktony" target="_blank" rel="external">GitHub</a></li>
 <li><a href="http://weibo.com/u/5313690193" target="_blank" rel="external">微博</a></li>
 <li><a href="https://www.zhihu.com/people/kirin-momo" target="_blank" rel="external">知乎</a></li>
+<li><a href="http://www.jianshu.com/u/49606f4d970f" target="_blank" rel="external">简书</a></li>
+<li><a href="https://gold.xitu.io/user/582c81cb128fe10069509b49" target="_blank" rel="external">掘金</a></li>
 </ul>
 <h3 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h3><p><a href="mailto:marktonymengyi@gmail.com" target="_blank" rel="external">Gmail</a></p>
 
@@ -494,11 +507,23 @@
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
+            <a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
         </ul>
     </li>
 
     <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                Categories
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/涨姿势/">涨姿势<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/计算机基础/">计算机基础<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/闲谈/">闲谈<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
     
 
     <!-- Divider -->
@@ -521,7 +546,7 @@
     <li>
         <a href="/archives">
             Number of articles
-            <span class="sidebar-badge">23</span>
+            <span class="sidebar-badge">24</span>
         </a>
     </li>
 </ul>
@@ -736,6 +761,9 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
