@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.2.6 -->
+
     <!-- Title -->
     
     <title>
-        Lambda在Android中的使用 | Tonny&#39;s Blog
+        
+            Lambda在Android中的使用 | 
+        
+        Tonny&#39;s Blog
     </title>
-    
+
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
     <link rel="icon" sizes="192x192" href="/img/favicon.png">
     <link rel="apple-touch-icon" href="/img/favicon.png">
-    
-    <!-- Meta & INfo -->
+
+    <!-- Meta & Info -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Tonny">
     <meta name="description" content="null">
-    <meta name="keywords" content="Tonny">
-    
+    <meta name="keywords" content="null">
+
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-title" content="Title">
@@ -28,29 +36,29 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="480">
-    
+
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    
+
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Tonny&#39;s Blog">
-    
+
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://marktony.github.io">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Lambda在Android中的使用 | Tonny&#39;s Blog">
     <meta property="og:description" content="null">
-    
-     <!--[if lte IE 9]>
+
+    <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
-        
+
         
             <script src="/js/ie-blocker.en.js"></script>
         
     <![endif]-->
-    
+
     <!-- Import CSS -->
     <link rel="stylesheet" href="/css/material.min.css">
     <link rel="stylesheet" href="/css/style.min.css">
@@ -59,14 +67,14 @@
 
 <!-- Other Styles -->
 <style>
-	body, html{
-		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-	}
-	
-    a{
-        color: #00838F
+    body, html {
+        font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     }
-    
+
+    a {
+        color: #00838F;
+    }
+
     .mdl-card__media,
     #search-label,
     #search-form-label:after,
@@ -74,15 +82,15 @@
     #scheme-Paradox .sidebar_archives-count,
     #scheme-Paradox .sidebar-colored .sidebar-header,
     #scheme-Paradox .sidebar-colored .sidebar-badge{
-        background-color: #0097A7 !important
+        background-color: #0097A7 !important;
     }
-    
-	/* Sidebar User Drop Down Menu Text Color */
-	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
-        color: #0097A7 !important
+
+    /* Sidebar User Drop Down Menu Text Color */
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+        color: #0097A7 !important;
     }
-    
+
     #post_entry-right-info,
     .sidebar-colored .sidebar-nav li:hover > a,
     .sidebar-colored .sidebar-nav li:hover > a i,
@@ -92,32 +100,32 @@
     .sidebar-colored .sidebar-nav > .open > a,
     .sidebar-colored .sidebar-nav > .open > a:hover,
     .sidebar-colored .sidebar-nav > .open > a:focus,
-    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
-        color: #0097A7 !important
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+        color: #0097A7 !important;
     }
-    
-    .toTop{
-        background: #757575 !important
-    }
-		
-	.material-layout .material-post>.material-nav,
-	.material-layout .material-index>.material-nav,
-	.material-nav a{
-		color: #757575;
-	}
-		
-	#scheme-Paradox .MD-burger-layer {
-		background-color: #757575;
-	}
 
-	#scheme-Paradox #post-toc-trigger-btn{
-		color: #757575;
-	}
-	
-	.post-toc a:hover{
-		color: #00838F;
-		text-decoration: underline;
-	}
+    .toTop {
+        background: #757575 !important;
+    }
+
+    .material-layout .material-post>.material-nav,
+    .material-layout .material-index>.material-nav,
+    .material-nav a {
+        color: #757575;
+    }
+
+    #scheme-Paradox .MD-burger-layer {
+        background-color: #757575;
+    }
+
+    #scheme-Paradox #post-toc-trigger-btn {
+        color: #757575;
+    }
+
+    .post-toc a:hover {
+        color: #00838F;
+        text-decoration: underline;
+    }
 </style>
 
 
@@ -125,12 +133,7 @@
 
     <style>
         body{
-            background-color: #F5F5F5
-        }
-		
-		/* blog_info bottom background */
-        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-            background-color: #fff;
+            background-image: url(https://unsplash.it/1200/800/?random);
         }
     </style>
 
@@ -155,72 +158,78 @@
         }
     </style>
 
-	<script src="/js/jquery.min.js"></script>
-	
-	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
-	
-	<!-- UC Browser Compatible-->
-	<script>
-		var agent = navigator.userAgent.toLowerCase();
-		if(agent.indexOf('ucbrowser')>0) {
-			document.write('<link rel="stylesheet" href="/css/uc.css">');
-		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
-		}
-	</script>
-    
+
+    <script src="/js/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+    <!-- UC Browser Compatible-->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write('<link rel="stylesheet" href="/css/uc.css">');
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
     <!-- Custom Head -->
     
 </head>
-	
-	
 
-    <body id="scheme-Paradox">
-
-		
-        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
-				
-			
-			
-            <!-- Main Container -->
-            <main class="material-layout__content" id="main">
-				
-                <!-- Top Anchor -->
-                <div id="top"></div>
-				
-				
-                <!-- Hamburger Button -->
-                <button class="MD-burger-icon sidebar-toggle">
-                    <span class="MD-burger-layer"></span>
-                </button>
-				
-				
-                <!-- Post TOC -->
 
     
-	<!-- Back Button -->
-<!--
-	<div class="material-back" id="backhome-div" tabindex="0">
-		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
-			<i class="material-icons" role="presentation">arrow_back</i>
-			<span class="mdl-button__ripple-container">
-				<span class="mdl-ripple"></span>
-			</span>
-		</a>
-	</div>			
--->
-	<!-- Left aligned menu below button -->
-	<button id="post-toc-trigger-btn"
-			class="mdl-button mdl-js-button mdl-button--icon">
-	  <i class="material-icons">format_list_numbered</i>
-	</button>
+        <body id="scheme-Paradox">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
 
-	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-		for="post-toc-trigger-btn">
-			
-			<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Lambda表达式"><span class="post-toc-number">3.</span> <span class="post-toc-text">Lambda表达式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方法引用"><span class="post-toc-number">4.</span> <span class="post-toc-text">方法引用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上下文推断"><span class="post-toc-number">5.</span> <span class="post-toc-text">上下文推断</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
-		
-<!--			<li class="mdl-menu__item">Some Action</li>-->
-	</ul>
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Lambda表达式"><span class="post-toc-number">3.</span> <span class="post-toc-text">Lambda表达式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方法引用"><span class="post-toc-number">4.</span> <span class="post-toc-text">方法引用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上下文推断"><span class="post-toc-number">5.</span> <span class="post-toc-text">上下文推断</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
 
 
 
@@ -228,29 +237,30 @@
 
     <!-- Post Module -->
     <div class="material-post_container">
-		
+
         <div class="material-post mdl-grid">
             <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
 
                 <!-- Post Header(Thumbnail & Title) -->
                 
-	<!-- Paradox Post Header -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://blog.takipi.com/wp-content/uploads/2014/03/blog_lambada_2.png)">
-	
-        <p class="article-headline-p">
-            Lambda在Android中的使用
-        </p>
-    </div>
-
-	
-
-				
-				
-					<!-- Paradox Post Info -->
-					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+    <!-- Paradox Post Header -->
     
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://blog.takipi.com/wp-content/uploads/2014/03/blog_lambada_2.png)">
+    
+            <p class="article-headline-p">
+                Lambda在Android中的使用
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
     <!-- Author Avatar -->
     <div id="author-avatar">
         <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
@@ -260,22 +270,22 @@
         <strong>Tonny</strong>
         <span>Jan 06, 2017</span>
     </div>
-    
+
     <div class="section-spacer"></div>
-	
+
     <!-- Favorite -->
-<!--
-    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-        <i class="material-icons" role="presentation">favorite</i>
-        <span class="visuallyhidden">favorites</span>
-    </button>
--->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
 
     <!-- Qrcode -->
     
 
-
     <!-- Tags (bookmark) -->
+    
     <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
         <i class="material-icons" role="presentation">bookmark</i>
         <span class="visuallyhidden">bookmark</span>
@@ -285,67 +295,89 @@
         <a class="post_tag-link" href="/tags/Android/">Android</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Java/">Java</a>
     </ul>
     
+
     <!-- Share -->
     <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
     <i class="material-icons" role="presentation">share</i>
     <span class="visuallyhidden">share</span>
 </button>
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
 
     
 
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Lambda在Android中的使用&url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Weibo
+            </li>
+        </a>
     
 
     <!-- Share Twitter -->
-    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Lambda在Android中的使用&url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&via=Tonny" target="_blank">
-        <li class="mdl-menu__item">
-            Share to Twitter
-        </li>
-    </a>
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Lambda在Android中的使用&url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&via=Tonny" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Facebook
+            </li>
+        </a>
+    
 
     <!-- Share Google+ -->
-    <a class="post_share-link" href="https://plus.google.com/share?url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html" target="_blank">
-        <li class="mdl-menu__item">
-            Share to Google+
-        </li>
-    </a>
-
-    <!-- Share Weibo -->
-    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Lambda在Android中的使用&url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&pic=&searchPic=false&style=simple" target="_blank">
-        <li class="mdl-menu__item">
-            Share to Weibo
-        </li>
-    </a>
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Google+
+            </li>
+        </a>
+    
 
     <!-- Share LinkedIn -->
-    <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&title=Lambda在Android中的使用" target="_blank">
-        <li class="mdl-menu__item">
-            Share to LinkedIn
-        </li>
-    </a>
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&title=Lambda在Android中的使用" target="_blank">
+            <li class="mdl-menu__item">
+                Share to LinkedIn
+            </li>
+        </a>
+    
 
     <!-- Share QQ -->
-    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Tonny&#39;s Blog&title=Lambda在Android中的使用&summary=null&pics=http://marktony.github.io/img/favicon.png&url=http://marktony.github.io/2017/01/06/Lambda在Android中的使用/index.html" target="_blank">
-        <li class="mdl-menu__item">
-            Share to QQ
-        </li>
-    </a>
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Tonny&#39;s Blog&title=Lambda在Android中的使用&summary=null&pics=http://marktony.github.io/img/favicon.png&url=http://marktony.github.io/2017/01/06/Lambda在Android中的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to QQ
+            </li>
+        </a>
+    
 
     <!-- Share Telegram -->
-    <a class="post_share-link" href="https://telegram.me/share/url?url=http://marktony.github.io/2017/01/06/Lambda在Android中的使用/index.html&text=Lambda在Android中的使用" target="_blank">
-        <li class="mdl-menu__item">
-            Share to Telegram
-        </li>
-    </a>
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://marktony.github.io//2017/01/06/Lambda在Android中的使用/index.html&text=Lambda在Android中的使用" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Telegram
+            </li>
+        </a>
+    
 </ul>
 
 </div>
-				
+
+                
 
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-	
-		<p>极简主义。<br><a id="more"></a></p>
+    
+        <p>极简主义。<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android支持完整的Java7特性，而升级到Android Nougat(API Level 24)之后，支持了Java8语言的一部分功能：</p>
 <ul>
 <li><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html" target="_blank" rel="external">默认和静态接口方法</a></li>
@@ -378,13 +410,13 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TestOp</span> </span>&#123;</div><div class="line">   <span class="function">String <span class="title">operate</span> <span class="params">(String s, <span class="keyword">int</span> i)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 使用Lambda表达式进行实现</span></div><div class="line"><span class="comment">// 通过上下文，lambda表达式可以推断出s为String类型，而i为int类型</span></div><div class="line"><span class="comment">// 返回值为String</span></div><div class="line">TestOp myOp = (s,i) -&gt; s + i;</div></pre></td></tr></table></figure>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Lambda表达式使用还是很方便的，能够减少编写和维护的代码数量。但是，这种极简主义的写法也并不是所有人都能接受的。对于我而言，技多不压身，学习一下，提高姿势还是挺有必要的。</p>
 
-	
-	
-	
-	
+    
+
+    
 </div>
-				
-				
+
+
+                
 
                 <!-- Post Comments -->
                 
@@ -404,12 +436,15 @@
 </style>
 <div id="comments">
     <!-- 多说评论框 start -->
-        <div class="ds-thread" 
-            data-thread-key="2017/01/06/Lambda在Android中的使用/" 
-            data-url="http://marktony.github.io/2017/01/06/Lambda在Android中的使用/"
-            data-title="Lambda在Android中的使用"></div>
+    <div class="ds-thread"
+        data-thread-key=""
+        data-url="http://marktony.github.io/2017/01/06/Lambda在Android中的使用/"
+        data-title="Lambda在Android中的使用">
+    </div>
     <!-- 多说评论框 end -->
 </div>
+
+
 
 
 
@@ -418,7 +453,6 @@
 
             <!-- Post Prev & Next Nav -->
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    
     <!-- Prev Nav -->
     
         <a href="/2017/01/10/我的2016/" id="post_nav-newer" class="prev-content">
@@ -444,26 +478,32 @@
         </a>
     
 </nav>
+
         </div>
     </div>
 
-				
-				
-					<!-- Overlay For Active Sidebar -->
-<div class="sidebar-overlay "></div>
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
 
 <!-- Material sidebar -->
-<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
-	<div id="sidebar-main">
-	    <!-- Sidebar Header -->
-		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
     <!-- Top bar -->
     <div class="top-bar"></div>
 
     <!-- Sidebar toggle button -->
     <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
-    <i class="material-icons">clear_all</i>
-    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
 
     <!-- Sidebar Avatar -->
     <div class="sidebar-image">
@@ -477,15 +517,16 @@
     </a>
 </div>
 
-		<!-- Sidebar Navigation  -->
-		<ul class="nav sidebar-nav">
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
     <!-- User dropdown  -->
     <li class="dropdown">
         <ul id="settings-dropdown" class="dropdown-menu">
-			
+            
                 <li>
                     <a href="mailto:marktonymengyi@gmail.com" target="_blank" title="Email Me">
-						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         Email Me
                     </a>
                 </li>
@@ -497,21 +538,20 @@
     <li id="sidebar-first-li">
         <a href="/" target="_self">
             <i class="material-icons sidebar-material-icons">home</i>
-             Home
+            Home
         </a>
     </li>
 
     <!-- I'm Feeling Lucky -->
-<!--
+    <!--
     <li class="dropdown">
         <a href="" target="_self">
             <i class="material-icons sidebar-material-icons">explore</i>
              sidebar.imlucky
         </a>
     </li>
--->
+    -->
 
-	
     <!-- Archives  -->
     <li class="dropdown">
         <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
@@ -524,81 +564,67 @@
             <a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
         </ul>
     </li>
-	
+
     <!-- Categories  -->
-<!--
-    <li class="dropdown">
-        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-            <i class="material-icons sidebar-material-icons">view_list</i>
-             Category
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-            <li>
-            <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">13</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/涨姿势/">涨姿势<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/计算机基础/">计算机基础<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/闲谈/">闲谈<span class="sidebar_archives-count">1</span></a>
-        </ul>
-    </li>
--->
+    
 
     <!-- Divider -->
     <li class="divider"></li>
 
 
     <!-- Pages  -->
-	
-		<li>
-			<a href="/Gallery" title="Gellery">
-				Gellery
-			</a>
-		</li>
-	
-		<li>
-			<a href="/about" title="about">
-				about
-			</a>
-		</li>
-	
+  	
+        <li>
+            <a href="/about" title="About">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                About
+            </a>
+        </li>
+  	
 
     <!-- Article Numebr  -->
     <li>
         <a href="/archives">
-             Article Number
-             <span class="sidebar-badge">23</span>
+            Number of articles
+            <span class="sidebar-badge">23</span>
         </a>
     </li>
 </ul>
 
-		<!-- Sidebar Divider -->
-		<div class="sidebar-divider"></div>
 
-		<!-- Sidebar Footer -->
-		<!-- 
+        <!-- Sidebar Divider -->
+        <div class="sidebar-divider"></div>
+
+        <!-- Sidebar Footer -->
+        <!--
 I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
 If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
 It will not impact the appearance and can give developers a lot of support :)
 
 很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
 如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
-它不会影响美观并可以给开发者很大的支持。 :) 
+它不会影响美观并可以给开发者很大的支持和动力。 :)
 -->
 
 <!-- Theme Material -->
 <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-		Theme - Material
-		<span class="sidebar-badge badge-circle">i</span>
-	</div>
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        Theme - Material
+        <span class="sidebar-badge badge-circle">i</span>
+    </div>
 </a>
 
 <!-- Help & Support -->
 <!--
 <a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
     <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-		sidebar.help
-		<span class="mdl-button__ripple-container">
-			<span class="mdl-ripple"></span>
-		</span>
-	</div>
+    sidebar.help
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </div>
 </a>
 -->
 
@@ -619,101 +645,138 @@ It will not impact the appearance and can give developers a lot of support :)
         <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
 </a>-->
 
-	</div>
-    
+    </div>
+
     <!-- Sidebar Sponsor -->
     
 
-
 </aside>
 
-				
-				
-				
-					<!-- Footer Top Button -->
-					<div class="toTop-wrap">
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
     <a href="#top" class="toTop">
         <i class="material-icons footer_top-i">expand_less</i>
     </a>
 </div>
-				
-				
-				<!--Footer-->
+
+                    
+
+                    <!--Footer-->
 <footer class="mdl-mini-footer" id="bottom">
-	
-	
-		<!-- Paradox Footer Left Section -->
-		<div class="mdl-mini-footer--left-section sns-list">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
     <!-- Twitter -->
     
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
     
 
     <!-- Facebook -->
     
-    
 
     <!-- Google + -->
     
-    <a href="https://plus.google.com/101922840132193208151" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
-        <span class="visuallyhidden">Google Plus</span>
-    </button></a>
+        <a href="https://plus.google.com/101922840132193208151" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
     
 
     <!-- Weibo -->
     
-    <a href="http://weibo.com/5313690193/profile?topnav=1&amp;wvr=6&amp;is_all=1" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
-        <span class="visuallyhidden">Weibo</span>
-    </button></a>
+        <a href="http://weibo.com/5313690193/profile?topnav=1&amp;wvr=6" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
     
 
     <!-- Instagram -->
     
-    <a href="https://www.instagram.com/tonny_lztl/" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.png);">
-        <span class="visuallyhidden">Instagram</span>
-    </button></a>
+        <a href="https://www.instagram.com/tonny_lztl/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.png);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
     
 
     <!-- Tumblr -->
     
-    
 
     <!-- Github -->
     
-    <a href="https://github.com/marktony" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
-        <span class="visuallyhidden">Github</span>
-    </button></a>
+        <a href="https://github.com/marktony" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
     
 
     <!-- LinkedIn -->
     
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.png);">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+        <a href="https://t.me/TonnyLZ" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.png);">
+                <span class="visuallyhidden">Telegram</span>
+            </button><!--
+     --></a>
     
 </div>
 
 
-		<!--Copyright-->
-		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;Tonny's Blog</div>
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;Tonny's Blog
+        </div>
 
-		<!-- Paradox Footer Right Section -->
+        <!-- Paradox Footer Right Section -->
 
-		<!-- 
-		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
-		It will not impact the appearance and can give developers a lot of support :)
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
 
-		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
-		它不会影响美观并可以给开发者很大的支持。 :) 
-		-->
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
 
-		<div class="mdl-mini-footer--right-section">
-			<div>
-				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
-				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
-			</div>
-		</div>
-	
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
     
 </footer>
-                
-				<!-- Import File -->
+
+
+                    <!-- Import File -->
 <script src="/js/highlight.min.js"></script>
 <script src="/js/js.min.js"></script>
 <script src="/js/nprogress.js"></script>
@@ -723,7 +786,7 @@ It will not impact the appearance and can give developers a lot of support :)
         showSpinner: true
     });
     NProgress.start();
-    
+
     $('#nprogress .bar').css({
         'background': '#FF4081'
     });
@@ -734,13 +797,16 @@ It will not impact the appearance and can give developers a lot of support :)
         'border-top-color': '#FF4081',
         'border-left-color': '#FF4081'
     });
-    
+
     setTimeout(function() {
         NProgress.done();
         $('.fade').removeClass('out');
     }, 800);
 </script>
 
+
+
+    <script src="/js/smoothscroll.js"></script>
 
 
 
@@ -750,17 +816,21 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- 多说公共 js 代码 start -->
     <script type="text/javascript">
-    var duoshuoQuery = {short_name:"tonnysblog"};
+        var duoshuoQuery = {
+            short_name: 'tonnysblog'
+        };
         (function() {
             var ds = document.createElement('script');
-            ds.type = 'text/javascript';ds.async = true;
+            ds.type = 'text/javascript';
+            ds.async = true;
             ds.src = 'https://static.duoshuo.com/embed.js';
             ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0] 
+            (document.getElementsByTagName('head')[0]
              || document.getElementsByTagName('body')[0]).appendChild(ds);
         })();
     </script>
     <!-- 多说公共 js 代码 end -->
+
 
 
 
@@ -770,116 +840,120 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Local Search-->
 
-	<script>
-	var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
-        url: path,
-        dataType: "xml",
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length <= 0) {
-                    return;
-                }
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
+    <script>
+    var searchFunc = function(path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: 'xml',
+            success: function( xmlResponse ) {
+                // get the contents from search data
+                var datas = $( 'entry', xmlResponse ).map(function() {
+                    return {
+                        title: $( 'title', this ).text(),
+                        content: $('content',this).text(),
+                        url: $( 'url' , this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function() {
+                    var str='<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
                     }
-                    // show search results
-                    if (isMatch) {
-                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ data_title;
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out characters
-                            var start = first_occur - 6;
-                            var end = first_occur + 6;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 10;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substr(start, end); 
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
-                            })
-                            str += "<p class=\"search-result\">" + match_content +"...</p>" +"</a>";
+                    // perform local searching
+                    datas.forEach(function(data) {
+                        var isMatch = true;
+                        var content_index = [];
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                        var data_url = data.url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if(data_title != '' && data_content != '') {
+                            keywords.forEach(function(keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if( index_title < 0 && index_content < 0 ) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
                         }
-                    }
-                })
-                $resultContent.innerHTML = str;
-            })
-        }
-    })
-}
+                        // show search results
+                        if (isMatch) {
+                            str += '<li><a href="'+ data_url +'" class="search-result-title" target="_blank">'+ data_title;
+                            var content = data.content.trim().replace(/<[^>]+>/g, '');
+                            if (first_occur >= 0) {
+                                // cut out characters
+                                var start = first_occur - 6;
+                                var end = first_occur + 6;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 10;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, 'gi');
+                                    match_content = match_content.replace(regS, '<em class="search-keyword">'+keyword+'</em>');
+                                })
+                                str += '<p class="search-result">' + match_content +'...</p>' +'</a>';
+                            }
+                        }
+                    });
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    }
 </script>
 
-	<script>
-        var inputArea = document.querySelector("#search");
-        var getSearchFile = function(){
-            var path = "search.xml";
+
+    <script>
+        var inputArea = document.querySelector('#search');
+        var getSearchFile = function() {
+            var path = 'search.xml';
             searchFunc(path, 'search', 'local-search-result');
         }
 
-        inputArea.onfocus = function(){ getSearchFile() }
-	</script>
+        if(inputArea) {
+            inputArea.onfocus = function() {
+                getSearchFile();
+            }
+        }
+    </script>
 
 
 <!-- Window Load-->
 <script>
     $(window).load(function() {
         // Post_Toc parent position fixed
-        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
     });
 </script>
 
 <!-- MathJax Load-->
 
-            </main>
-        </div>
-		
-    </body>
-		
-	
+
+                </main>
+            </div>
+        </body>
+    
 </html>
