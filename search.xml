@@ -4,8 +4,67 @@
   
     
     <entry>
+      <title><![CDATA[GitHub入门与实践]]></title>
+      <url>http://tonnyl.github.io/2017/03/15/GitHub%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5/</url>
+      <content type="html"><![CDATA[<p>欢迎来到GitHub的世界~<br><a id="more"></a></p>
+<h2 id="Welcome-to-GitHub"><a href="#Welcome-to-GitHub" class="headerlink" title="Welcome to GitHub"></a>Welcome to GitHub</h2><h3 id="什么是GitHub"><a href="#什么是GitHub" class="headerlink" title="什么是GitHub"></a>什么是GitHub</h3><p><a href="https://github.com/" target="_blank" rel="external">GitHub</a>是一个<del>同性交友社区</del>，不好意思，拿错剧本了。<a href="https://github.com/" target="_blank" rel="external">GitHub</a>在<a href="https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5" target="_blank" rel="external">Wikipedia</a>上的介绍是<a href="https://zh.wikipedia.org/wiki/GitHub" target="_blank" rel="external">这样</a>的：</p>
+<blockquote>
+<p>GitHub是一个通过<a href="https://zh.wikipedia.org/wiki/Git" target="_blank" rel="external">Git</a>进行<a href="https://zh.wikipedia.org/wiki/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6" target="_blank" rel="external">版本控制</a>的软件源代码托管服务，由GitHub公司（曾称Logical Awesome）的开发者Chris Wanstrath、PJ Hyett和Tom Preston-Werner使用<a href="https://zh.wikipedia.org/wiki/Ruby_on_Rails" target="_blank" rel="external">Ruby on Rails</a>编写而成。</p>
+</blockquote>
+<p>简单来说，GitHub是一个让开发者与他人共享代码的地方。其公司总部位于美国加利福利亚州旧金山，其logo是一只名为Octocat的可爱章鱼猫，就是下面的这个小萌萌了↓</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1fdng5xb7ckj30m80ih1ky.jpg" alt="Octocat"></p>
+<p>当然，她还有可能是这样的🙃<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1fdngajog08j308c08cq33.jpg" alt="Octocat"></p>
+<h3 id="GitHub与Git有什么区别"><a href="#GitHub与Git有什么区别" class="headerlink" title="GitHub与Git有什么区别"></a>GitHub与Git有什么区别</h3><p>Git其实是一种版本控制的协议，定义了一个版本控制的各种操作，类似的还有SVN/CVS，但是和SVN/CVS不同的是，Git采用的是分布式的方式，并不需要服务器端的软件。</p>
+<p>而GitHub是基于Git协议的一个网络代码仓库，也就是说，GitHub上公开的软件源代码都是有Git进行管理，但是GitHub除了提供Git仓库的托管服务外，还为开发者或团队提供了一系列的功能(后面会详细说明)，例如在线浏览、搜索和管理、社交等等，帮助开发者和团队高效率、高品质的编写代码。</p>
+<p>(好吧，说了这么多拗口的话，简单来说，你可以将Git与GitHub的关系理解为「魔兽争霸」和「对战平台」的关系。)</p>
+<h3 id="GitHub的使用情况"><a href="#GitHub的使用情况" class="headerlink" title="GitHub的使用情况"></a>GitHub的使用情况</h3><p>截止到2015年，GitHub已经有超过九百万注册用户和2110万代码库。事实上已经成为了世界上最大的代码存放网站和开源社区。全世界每时每刻都有开发者在使用它。</p>
+<h3 id="GitHub提供的主要功能"><a href="#GitHub提供的主要功能" class="headerlink" title="GitHub提供的主要功能"></a>GitHub提供的主要功能</h3><ul>
+<li><p>Git仓库</p>
+<p>一般情况下，当我们注册了GitHub账户之后，我们免费新建任意个GitHub提供的Git仓库。如果需要建立只对特定用户或自己公开的私有仓库，则需要按照<a href="https://github.com/pricing" target="_blank" rel="external">Plans for all workflows</a>支付每月最低7美元的费用。<br><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fdomdvwo4kj31kw0zaal1.jpg" alt="Plans for all workflows"></p>
+</li>
+<li><p><a href="https://github.com/blog/674-introducing-organizations" target="_blank" rel="external">Organization</a></p>
+<p>通常情况下，如果只是个人使用，个人账户就足够了。但如果是团队或者公司，建议使用Organization账户，它可以统一管理账户和权限，同时也能统一支付一些费用。</p>
+<p>和个人账户类似，如果只是创建公开仓库，创建Organization账户是不收费的。因此，对于小型开发团队而言，Organization或许是个不错的选择。<br><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fdomm5qn0tj30sq0o6q69.jpg" alt="Organization"></p>
+<p>下面是Google Organization账户信息:<br><img src="https://ww2.sinaimg.cn/large/006tNc79gy1fdprpuqo8lj31kw119gz2.jpg" alt="Google Organization Account"></p>
+</li>
+<li><p>Issue</p>
+<p>Issue用于对有一个任务或问题进行追踪和管理。这有点类似于BUG管理系统(例如Mozilla公司出品的<a href="https://bugzilla.mozilla.org/" target="_blank" rel="external">Bugzilla</a>)。在GitHub上，我们每次创建一个Pull Request时，都会要求创建一个Issue。</p>
+<p>每次将要对功能进行更改或者修正时，都应该创建一个Issue(除非是有特殊的原因，最好使用英文，如果使用中文，项目所有者还需要耗费时间和精力替你翻译，而这本是你应该完成的事物)，讨论或者修正都围绕这个Issue为中心进行。只要查看Issue，就能了解和这个更改有关的信息，并以此进行管理。</p>
+<p>在Git的提交信息中写上Issue的ID(例如「#7」)，GitHub就会自动生成从Issue到对应提交的链接。另外，只要按照特定的格式描述提交信息，还可以关闭Issue。</p>
+<p>下面是<a href="https://github.com/google/gson" target="_blank" rel="external">google-gson</a>项目的一个Issue。<br><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fdps9ly95bj31kw10348p.jpg" alt=""></p>
+<p>ps:请不要在Issue中讨论和项目无关的内容(例如灌水、无意义的聊天等),也不要连着发帖,因为你每发布一次无意义的内容，项目的作者和关注(Watch)这个项目的人就会收到一封垃圾邮件。所以，请共同维护GitHub的良好氛围。</p>
+</li>
+<li><p>Wiki</p>
+<p>通过Wiki功能，任何人都可以随时对一篇文章进行更改并保存，因此可以多人共同完成一篇文章。该功能常用于在开发文档或手册的编写中。</p>
+<p>Wiki也是作为Git仓库进行管理的，改进的历史记录也会被切实保存，使用者可以放心的改写，并且支持克隆到本地进行编辑。</p>
+<p>这是开源大户<a href="https://github.com/square" target="_blank" rel="external">square</a>的项目<a href="https://github.com/square/okhttp" target="_blank" rel="external">okhttp</a>的wiki首页:<br><img src="https://ww3.sinaimg.cn/large/006tKfTcgy1fdwyuitbj5j31kw101jw0.jpg" alt="[okhttp wiki](https://github.com/square/okhttp/wiki)"></p>
+</li>
+<li><p>Pull Request</p>
+<p>当我们fork了别人的代码，并做了相应的修改之后，就可以Pull Request向仓库的所有者提出申请，请求对方合并自己修改之后的代码。发出Pull Request之后，对方的管理人员可以查看Pull Request的内容及其中包含的代码更改。</p>
+<p>同时，你可以利用GitHub提供的对Pull Request和源代码差别评论的功能，以行为单位对代码进行讨论。</p>
+<p>square的另外一个项目<a href="https://github.com/square/retrofit" target="_blank" rel="external">retrofit</a>的<a href="https://github.com/square/retrofit/pulls" target="_blank" rel="external">Pull Request</a>:<br><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fdwyzenqh6j31kw11gdpa.jpg" alt="[Pull Request](https://github.com/square/retrofit/pulls)"></p>
+</li>
+<li><p><a href="https://gist.github.com/" target="_blank" rel="external">Gist</a></p>
+<p>有时候我们并不需要为了一个小小的代码片段而开启一个仓库，这个时候Gist就派上用场了。Gist是一个有趣的服务，最简单的功能就是分享代码片段，但她的功能并不局限于此，Gist并不仅仅为开发者服务，任何人(允许匿名)都可以利用她分享内容。</p>
+</li>
+<li><p><a href="https://pages.github.com/" target="_blank" rel="external">GitHub Pages</a></p>
+<p>GitHub Pages 是免费的静态空间服务，可以架设静态网站，包括静态博客。我们可以利用GitHub Pages搭配<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>或者<a href="https://jekyllrb.com/" target="_blank" rel="external">Jekyll</a>等静态博客系统搭建我们自己的博客。</p>
+<p>这是我利用GitHub Pages和Hexo搭配的博客:<br><a href="https://tonnyl.github.io/">https://tonnyl.github.io/</a></p>
+</li>
+</ul>
+<h3 id="GitHub上的一些知名项目"><a href="#GitHub上的一些知名项目" class="headerlink" title="GitHub上的一些知名项目"></a>GitHub上的一些知名项目</h3><ul>
+<li><a href="https://github.com/torvalds/linux" target="_blank" rel="external">Linux</a> - Linux kernel source tree.(43k star, 无穷个贡献者)</li>
+<li><a href="https://github.com/git/git" target="_blank" rel="external">Git</a></li>
+<li><a href="https://github.com/nodejs/node" target="_blank" rel="external">node</a> - Node.js JavaScript runtime.</li>
+<li><a href="https://github.com/rails/rails" target="_blank" rel="external">rails</a> - Ruby on Rails.</li>
+</ul>
+<h3 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h3><p><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fdx06fy4drj30us0q8q8x.jpg" alt="[GitHub](https://github.com/TonnyL)"></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[如何用一周时间开发一款Android APP并在Google Play上线]]></title>
-      <url>http://marktony.github.io/2017/02/08/%E5%A6%82%E4%BD%95%E7%94%A8%E4%B8%80%E5%91%A8%E6%97%B6%E9%97%B4%E5%BC%80%E5%8F%91%E4%B8%80%E6%AC%BEAndroid-APP%E5%B9%B6%E5%9C%A8Google-Play%E4%B8%8A%E7%BA%BF/</url>
+      <url>http://tonnyl.github.io/2017/02/08/%E5%A6%82%E4%BD%95%E7%94%A8%E4%B8%80%E5%91%A8%E6%97%B6%E9%97%B4%E5%BC%80%E5%8F%91%E4%B8%80%E6%AC%BEAndroid-APP%E5%B9%B6%E5%9C%A8Google-Play%E4%B8%8A%E7%BA%BF/</url>
       <content type="html"><![CDATA[<p>目标：实现<a href="https://github.com/marktony/PaperPlane" target="_blank" rel="external">纸飞机</a>App - 采用MVP架构，集合了知乎日报、果壳精选和豆瓣一刻的综合性阅读客户端。效果图如下所示：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2440049-75f9c938a87c3c46.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PaperPlane"></p>
 <p>本次教程分为7天，内容分别为：</p>
@@ -119,7 +178,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.android.volley:volley:1.0.0&apos;</div></pre></td></tr></table></figure>
 <p>然后点击Sync Project with Gradle files。</p>
-<p>首先是整体的架构：MVP。关于整体架构的选择以及更加详细的介绍部分，可以戳这篇文章:<a href="https://marktony.github.io/2016/09/27/%E9%87%8D%E6%9E%84%EF%BC%81%E5%B0%86Google-MVP%E5%BA%94%E7%94%A8%E4%BA%8E%E5%B7%B2%E6%9C%89%E9%A1%B9%E7%9B%AE/">重构！将Google-MVP应用于已有项目</a>。这里我们仿照Google的<a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="external">Android Architecture Blueprints [beta]</a>中的<a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp/" target="_blank" rel="external">todo-mvp</a>。</p>
+<p>首先是整体的架构：MVP。关于整体架构的选择以及更加详细的介绍部分，可以戳这篇文章:<a href="https://marktony.github.io/2016/09/27/%E9%87%8D%E6%9E%84%EF%BC%81%E5%B0%86Google-MVP%E5%BA%94%E7%94%A8%E4%BA%8E%E5%B7%B2%E6%9C%89%E9%A1%B9%E7%9B%AE/" target="_blank" rel="external">重构！将Google-MVP应用于已有项目</a>。这里我们仿照Google的<a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="external">Android Architecture Blueprints [beta]</a>中的<a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp/" target="_blank" rel="external">todo-mvp</a>。</p>
 <ol>
 <li><p>首先创建最基本的BaseView和BasePresenter,他们分别是所有View和Presenter的基类。</p>
 <p> <a href="https://github.com/marktony/PaperPlane/blob/master/app/src/main/java/com/marktony/zhihudaily/BaseView.java" target="_blank" rel="external">Baseview.java</a></p>
@@ -370,7 +429,7 @@ OK，day 3工作完成。
 <p><a href="https://github.com/marktony/PaperPlane/blob/master/app/src/main/java/com/marktony/zhihudaily/bookmarks/BookmarksPresenter.java" target="_blank" rel="external">BookmarksPresenter.java</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookmarksPresenter</span> <span class="keyword">implements</span> <span class="title">BookmarksContract</span>.<span class="title">Presenter</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> BookmarksContract.View view;</div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line">    <span class="keyword">private</span> Gson gson;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ArrayList&lt;DoubanMomentNews.posts&gt; doubanList;</div><div class="line">    <span class="keyword">private</span> ArrayList&lt;GuokrHandpickNews.result&gt; guokrList;</div><div class="line">    <span class="keyword">private</span> ArrayList&lt;ZhihuDailyNews.Question&gt; zhihuList;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ArrayList&lt;Integer&gt; types;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> DatabaseHelper dbHelper;</div><div class="line">    <span class="keyword">private</span> SQLiteDatabase db;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BookmarksPresenter</span><span class="params">(Context context, BookmarksContract.View view)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">        <span class="keyword">this</span>.view = view;</div><div class="line">        <span class="keyword">this</span>.view.setPresenter(<span class="keyword">this</span>);</div><div class="line">        gson = <span class="keyword">new</span> Gson();</div><div class="line">        dbHelper = <span class="keyword">new</span> DatabaseHelper(context, <span class="string">"History.db"</span>, <span class="keyword">null</span>, <span class="number">5</span>);</div><div class="line">        db = dbHelper.getWritableDatabase();</div><div class="line"></div><div class="line">        zhihuList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        guokrList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        doubanList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"></div><div class="line">        types = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadResults</span><span class="params">(<span class="keyword">boolean</span> refresh)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!refresh) &#123;</div><div class="line">            view.showLoading();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            zhihuList.clear();</div><div class="line">            guokrList.clear();</div><div class="line">            doubanList.clear();</div><div class="line">            types.clear();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        checkForFreshData();</div><div class="line"></div><div class="line">        view.showResults(zhihuList, guokrList, doubanList, types);</div><div class="line"></div><div class="line">        view.stopLoading();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startReading</span><span class="params">(BeanType type, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(context, DetailActivity.class);</div><div class="line">        <span class="keyword">switch</span> (type) &#123;</div><div class="line">            <span class="keyword">case</span> TYPE_ZHIHU:</div><div class="line">                ZhihuDailyNews.Question q = zhihuList.get(position - <span class="number">1</span>);</div><div class="line">                intent.putExtra(<span class="string">"type"</span>, BeanType.TYPE_ZHIHU);</div><div class="line">                intent.putExtra(<span class="string">"id"</span>,q.getId());</div><div class="line">                intent.putExtra(<span class="string">"title"</span>, q.getTitle());</div><div class="line">                intent.putExtra(<span class="string">"coverUrl"</span>, q.getImages().get(<span class="number">0</span>));</div><div class="line">                <span class="keyword">break</span>;</div><div class="line"></div><div class="line">            <span class="keyword">case</span> TYPE_GUOKR:</div><div class="line">                GuokrHandpickNews.result r = guokrList.get(position - zhihuList.size() - <span class="number">2</span>);</div><div class="line">                intent.putExtra(<span class="string">"type"</span>, BeanType.TYPE_GUOKR);</div><div class="line">                intent.putExtra(<span class="string">"id"</span>, r.getId());</div><div class="line">                intent.putExtra(<span class="string">"title"</span>, r.getTitle());</div><div class="line">                intent.putExtra(<span class="string">"coverUrl"</span>, r.getHeadline_img());</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> TYPE_DOUBAN:</div><div class="line">                DoubanMomentNews.posts p = doubanList.get(position - zhihuList.size() - guokrList.size() - <span class="number">3</span>);</div><div class="line">                intent.putExtra(<span class="string">"type"</span>, BeanType.TYPE_DOUBAN);</div><div class="line">                intent.putExtra(<span class="string">"id"</span>, p.getId());</div><div class="line">                intent.putExtra(<span class="string">"title"</span>, p.getTitle());</div><div class="line">                <span class="keyword">if</span> (p.getThumbs().size() == <span class="number">0</span>)&#123;</div><div class="line">                    intent.putExtra(<span class="string">"coverUrl"</span>, <span class="string">""</span>);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    intent.putExtra(<span class="string">"image"</span>, p.getThumbs().get(<span class="number">0</span>).getMedium().getUrl());</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        context.startActivity(intent);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkForFreshData</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">// every first one of the 3 lists is with header</span></div><div class="line">        <span class="comment">// add them in advance</span></div><div class="line"></div><div class="line">        types.add(TYPE_ZHIHU_WITH_HEADER);</div><div class="line">        Cursor cursor = db.rawQuery(<span class="string">"select * from Zhihu where bookmark = ?"</span>, <span class="keyword">new</span> String[]&#123;<span class="string">"1"</span>&#125;);</div><div class="line">        <span class="keyword">if</span> (cursor.moveToFirst()) &#123;</div><div class="line">            do &#123;</div><div class="line">                ZhihuDailyNews.Question question = gson.fromJson(cursor.getString(cursor.getColumnIndex(<span class="string">"zhihu_news"</span>)), ZhihuDailyNews.Question.class);</div><div class="line">                zhihuList.add(question);</div><div class="line">                types.add(TYPE_ZHIHU_NORMAL);</div><div class="line">            &#125; <span class="keyword">while</span> (cursor.moveToNext());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        types.add(TYPE_GUOKR_WITH_HEADER);</div><div class="line">        cursor = db.rawQuery(<span class="string">"select * from Guokr where bookmark = ?"</span>, <span class="keyword">new</span> String[]&#123;<span class="string">"1"</span>&#125;);</div><div class="line">        <span class="keyword">if</span> (cursor.moveToFirst()) &#123;</div><div class="line">            do &#123;</div><div class="line">                GuokrHandpickNews.result result = gson.fromJson(cursor.getString(cursor.getColumnIndex(<span class="string">"guokr_news"</span>)), GuokrHandpickNews.result.class);</div><div class="line">                guokrList.add(result);</div><div class="line">                types.add(TYPE_GUOKR_NORMAL);</div><div class="line">            &#125; <span class="keyword">while</span> (cursor.moveToNext());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        types.add(TYPE_DOUBAN_WITH_HEADER);</div><div class="line">        cursor = db.rawQuery(<span class="string">"select * from Douban where bookmark = ?"</span>, <span class="keyword">new</span> String[]&#123;<span class="string">"1"</span>&#125;);</div><div class="line">        <span class="keyword">if</span> (cursor.moveToFirst()) &#123;</div><div class="line">            do &#123;</div><div class="line">                DoubanMomentNews.posts post = gson.fromJson(cursor.getString(cursor.getColumnIndex(<span class="string">"douban_news"</span>)), DoubanMomentNews.posts.class);</div><div class="line">                doubanList.add(post);</div><div class="line">                types.add(TYPE_DOUBAN_NORMAL);</div><div class="line">            &#125; <span class="keyword">while</span> (cursor.moveToNext());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        cursor.close();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">feelLucky</span><span class="params">()</span> </span>&#123;</div><div class="line">        Random random = <span class="keyword">new</span> Random();</div><div class="line">        <span class="keyword">int</span> p = random.nextInt(types.size());</div><div class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (types.get(p) == BookmarksAdapter.TYPE_ZHIHU_NORMAL) &#123;</div><div class="line">                startReading(BeanType.TYPE_ZHIHU, p);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (types.get(p) == BookmarksAdapter.TYPE_GUOKR_NORMAL) &#123;</div><div class="line">                startReading(BeanType.TYPE_GUOKR, p);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (types.get(p) == BookmarksAdapter.TYPE_DOUBAN_NORMAL) &#123;</div><div class="line">                startReading(BeanType.TYPE_DOUBAN, p);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                p = random.nextInt(types.size());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>🤔，用户可以从收藏列表页面查看内容详情，可能在这里，用户取消了收藏，而我们就需要及时地刷新界面数据，否则就会影响用户的体验。</p>
-<h4 id="Day-6-夜间模式"><a href="#Day-6-夜间模式" class="headerlink" title="Day 6,夜间模式"></a>Day 6,夜间模式</h4><p>关于夜间模式的实现，请查看文章<a href="https://marktony.github.io/2016/12/31/%E7%AE%80%E6%B4%81%E4%BC%98%E9%9B%85%E5%9C%B0%E5%AE%9E%E7%8E%B0%E5%A4%9C%E9%97%B4%E6%A8%A1%E5%BC%8F/">简洁优雅地实现夜间模式</a>或者<a href="http://www.jianshu.com/p/dcfcfcbda7ac" target="_blank" rel="external">这里</a>。</p>
+<h4 id="Day-6-夜间模式"><a href="#Day-6-夜间模式" class="headerlink" title="Day 6,夜间模式"></a>Day 6,夜间模式</h4><p>关于夜间模式的实现，请查看文章<a href="https://marktony.github.io/2016/12/31/%E7%AE%80%E6%B4%81%E4%BC%98%E9%9B%85%E5%9C%B0%E5%AE%9E%E7%8E%B0%E5%A4%9C%E9%97%B4%E6%A8%A1%E5%BC%8F/" target="_blank" rel="external">简洁优雅地实现夜间模式</a>或者<a href="http://www.jianshu.com/p/dcfcfcbda7ac" target="_blank" rel="external">这里</a>。</p>
 <h4 id="Day-6-版本适配"><a href="#Day-6-版本适配" class="headerlink" title="Day 6,版本适配"></a>Day 6,版本适配</h4><p>事实上，版本适配的范围非常的广泛。例如，多语言适配，高低Android版本的适配，还有对多屏幕的适配，特殊用户的适配等等。</p>
 <ol>
 <li><p>多语言适配</p>
@@ -601,7 +660,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
 <li><a href="https://www.zhihu.com/people/kirin-momo" target="_blank" rel="external">知乎</a></li>
 <li><a href="http://weibo.com/5313690193/profile?topnav=1&amp;wvr=6" target="_blank" rel="external">微博</a></li>
 <li><a href="https://github.com/marktony" target="_blank" rel="external">GitHub</a></li>
-<li>我的个人博客地址:<a href="https://marktony.github.io/">https://marktony.github.io/</a></li>
+<li>我的个人博客地址:<a href="https://marktony.github.io/" target="_blank" rel="external">https://marktony.github.io/</a></li>
 </ul>
 </li>
 <li><p>Q: 最后有什么想说的？</p>
@@ -615,7 +674,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[使用RenderScript实现高斯模糊(毛玻璃/磨砂)效果]]></title>
-      <url>http://marktony.github.io/2017/01/12/%E4%BD%BF%E7%94%A8RenderScript%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A-%E6%AF%9B%E7%8E%BB%E7%92%83-%E7%A3%A8%E7%A0%82-%E6%95%88%E6%9E%9C/</url>
+      <url>http://tonnyl.github.io/2017/01/12/%E4%BD%BF%E7%94%A8RenderScript%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A-%E6%AF%9B%E7%8E%BB%E7%92%83-%E7%A3%A8%E7%A0%82-%E6%95%88%E6%9E%9C/</url>
       <content type="html"><![CDATA[<p>搞事情，实现Instagram对话框背景模糊效果<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>逛ins的时候，偶然发现，instagram的对话框设计的很有意思，如下图：</p>
 <img src="/2017/01/12/使用RenderScript实现高斯模糊-毛玻璃-磨砂-效果/ins.jpeg" alt="instagram" title="instagram">
@@ -659,7 +718,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[我的2016]]></title>
-      <url>http://marktony.github.io/2017/01/10/%E6%88%91%E7%9A%842016/</url>
+      <url>http://tonnyl.github.io/2017/01/10/%E6%88%91%E7%9A%842016/</url>
       <content type="html"><![CDATA[<p>开源，博客，数码，电影与电视剧。<br><a id="more"></a><br>时间走着走着，我读完了大三第一个学期，距离公元2016年也已经过去了10天，是时候对过去的一年做一个总结了。本来还想着1号的时候写这篇文章的，结果，正式应了那句话：</p>
 <blockquote>
 <p>在让自己失望这件事情上，我从没让自己失望过。</p>
@@ -677,14 +736,14 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
 </ul>
 <img src="/2017/01/10/我的2016/paper_plane.png" alt="Paper Plane" title="Paper Plane">
 <ul>
-<li><a href="https://github.com/marktony/zhuanlan" target="_blank" rel="external">知乎专栏APP及API分析</a>，由于版权问题，APP已经停止维护，API分析部分可以查看<a href="https://github.com/marktony/zhuanlan/wiki" target="_blank" rel="external">wiki</a>或者<a href="https://marktony.github.io/2016/05/14/%E7%9F%A5%E4%B9%8E%E4%B8%93%E6%A0%8FAPI%E5%88%86%E6%9E%90/">我的博客</a></li>
+<li><a href="https://github.com/marktony/zhuanlan" target="_blank" rel="external">知乎专栏APP及API分析</a>，由于版权问题，APP已经停止维护，API分析部分可以查看<a href="https://github.com/marktony/zhuanlan/wiki" target="_blank" rel="external">wiki</a>或者<a href="https://marktony.github.io/2016/05/14/%E7%9F%A5%E4%B9%8E%E4%B8%93%E6%A0%8FAPI%E5%88%86%E6%9E%90/" target="_blank" rel="external">我的博客</a></li>
 <li><a href="https://github.com/marktony/FanfouHandpick" target="_blank" rel="external">饭否精选</a>,使用Kotlin开发的饭否精选客户端。这个项目主要是练手，尝鲜使用Kotlin，现阶段在项目中使用Kotlin的可能性还是蛮小的。</li>
 <li><a href="https://github.com/marktony/Translator" target="_blank" rel="external">简单翻译</a></li>
 <li><a href="https://github.com/marktony/Reader" target="_blank" rel="external">Reader</a>：内容包含了糗事百科，煎蛋，和内涵段子</li>
 </ul>
 <p>所有项目均由我自己完成设计，编码，测试，上线及迭代维护工作。</p>
 <h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h3><ul>
-<li><a href="https://marktony.github.io">Tonny’s Blog</a>，使用GitHub Pages和Hexo搭建的博客，所有文章都首发于此，也是在16年中才搭建完成，之前一直使用的是<a href="https://github.com/A-limon/pacman" target="_blank" rel="external">Pacman</a>主题，年底前换了<a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="external">Material</a>主题，感觉美观了很多(谁让我是Google的粉丝呢)。一共完成了21篇文章。</li>
+<li><a href="https://marktony.github.io" target="_blank" rel="external">Tonny’s Blog</a>，使用GitHub Pages和Hexo搭建的博客，所有文章都首发于此，也是在16年中才搭建完成，之前一直使用的是<a href="https://github.com/A-limon/pacman" target="_blank" rel="external">Pacman</a>主题，年底前换了<a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="external">Material</a>主题，感觉美观了很多(谁让我是Google的粉丝呢)。一共完成了21篇文章。</li>
 </ul>
 <img src="/2017/01/10/我的2016/Tonny%27sBlog.png" alt="Tonny's Blog" title="Tonny's Blog">
 <ul>
@@ -739,7 +798,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[Lambda在Android中的使用]]></title>
-      <url>http://marktony.github.io/2017/01/06/Lambda%E5%9C%A8Android%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      <url>http://tonnyl.github.io/2017/01/06/Lambda%E5%9C%A8Android%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<p>极简主义。<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android支持完整的Java7特性，而升级到Android Nougat(API Level 24)之后，支持了Java8语言的一部分功能：</p>
 <ul>
@@ -777,7 +836,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[提升体验-Chrome Custom Tabs]]></title>
-      <url>http://marktony.github.io/2017/01/05/%E6%8F%90%E5%8D%87%E4%BD%93%E9%AA%8C-Chrome-Custom-Tabs/</url>
+      <url>http://tonnyl.github.io/2017/01/05/%E6%8F%90%E5%8D%87%E4%BD%93%E9%AA%8C-Chrome-Custom-Tabs/</url>
       <content type="html"><![CDATA[<p>使用Chrome Custom Tabs加载网页可以有效的提升用户的体验<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>文章比较长，先放项目地址:<a href="https://github.com/marktony/PaperPlane" target="_blank" rel="external">PaperPlane</a></p>
 <p>俗话说，没图说个那啥，先看实际效果。<br><img src="/2017/01/05/提升体验-Chrome-Custom-Tabs/telegram.gif" alt="telegram" title="telegram"><br><img src="/2017/01/05/提升体验-Chrome-Custom-Tabs/paper_plane.gif" alt="paper plane" title="paper plane"></p>
@@ -926,7 +985,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[简洁优雅地实现夜间模式]]></title>
-      <url>http://marktony.github.io/2016/12/31/%E7%AE%80%E6%B4%81%E4%BC%98%E9%9B%85%E5%9C%B0%E5%AE%9E%E7%8E%B0%E5%A4%9C%E9%97%B4%E6%A8%A1%E5%BC%8F/</url>
+      <url>http://tonnyl.github.io/2016/12/31/%E7%AE%80%E6%B4%81%E4%BC%98%E9%9B%85%E5%9C%B0%E5%AE%9E%E7%8E%B0%E5%A4%9C%E9%97%B4%E6%A8%A1%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>使用官方Support Library实现日间与夜间模式<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android 6.0 Marshmallow 预览版中曾经短暂出现过相关的夜间模式的功能，只是在正式版中被移除了，在Android 7.0 Nougat上，用户们再次经历了「得而复失」的遗憾，在开发者预览版中，夜间模式和暗色模式先是开启，然后有再次被移除。而在正式版中，夜间模式也没有出现。但其实相关的代码一直存在于系统中，只是默认没有被开启。如何开启这项功能，可以参考少数派的这一篇文章，<a href="http://sspai.com/35273" target="_blank" rel="external">帮你找回 Android 7.0 夜间模式的 2 款应用</a>。</p>
 <p>不过，今天要介绍的主要内容并不是关于系统的夜间模式，而是如何给我们开发的APP添加夜间模式的功能。毫不夸张的说，夜间模式现在已经是阅读类App的标配了。事实上，日间模式与夜间模式就是给APP定义并应用两套不同颜色的主题。用户可以自动或者手动的开启。我们先看两个我认为实现地很优雅的例子：知乎和Twitter。</p>
@@ -988,7 +1047,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[适配Android 7.1 Nougat新特性]]></title>
-      <url>http://marktony.github.io/2016/12/29/%E9%80%82%E9%85%8DAndroid-7-1-Nougat%E6%96%B0%E7%89%B9%E6%80%A7/</url>
+      <url>http://tonnyl.github.io/2016/12/29/%E9%80%82%E9%85%8DAndroid-7-1-Nougat%E6%96%B0%E7%89%B9%E6%80%A7/</url>
       <content type="html"><![CDATA[<p>老司机带你吃牛轧糖<br><a id="more"></a></p>
 <h3 id="What’s-new-in-Android-7-1-Nougat"><a href="#What’s-new-in-Android-7-1-Nougat" class="headerlink" title="What’s new in Android 7.1 Nougat?"></a>What’s new in Android 7.1 Nougat?</h3><p>Android 7.1 Nougat 已经推出有一段时间，相信大多数人和我一样，并没有用上最新的系统，但是，总有一群走在时代的前列线上的Geek们，勇于尝鲜，艰苦奋斗，为刷新版本号贡献自己的力量。好吧，实际上就是我还没有用上7.1，有些眼馋了。那么，和开发者息息相关的有哪些新特性呢？</p>
 <img src="/2016/12/29/适配Android-7-1-Nougat新特性/android_nougat.png" alt="Android 7.1 Nougat" title="Android 7.1 Nougat">
@@ -1164,7 +1223,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[JAVA深克隆与浅克隆]]></title>
-      <url>http://marktony.github.io/2016/11/05/JAVA%E6%B7%B1%E5%85%8B%E9%9A%86%E4%B8%8E%E6%B5%85%E5%85%8B%E9%9A%86/</url>
+      <url>http://tonnyl.github.io/2016/11/05/JAVA%E6%B7%B1%E5%85%8B%E9%9A%86%E4%B8%8E%E6%B5%85%E5%85%8B%E9%9A%86/</url>
       <content type="html"><![CDATA[<p>使用克隆可以快速构造一个和已有对象相同的副本</p>
 <a id="more"></a>
 <p>所有的Java类都继承自java.lang.Object,而Object类提供了一个clone方法，可以将一个Java对象复制一份。需要注意的是能够实现克隆的Java类必须实现一个标示接口Cloneable，表示这个Java类支持复制。如果一个类没有实现这个接口但是调用了clone()方法，Java编译器将抛出一个CloneNotSupportedException异常。</p>
@@ -1233,7 +1292,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[macOS安装gcc教程]]></title>
-      <url>http://marktony.github.io/2016/10/31/macOS%E5%AE%89%E8%A3%85gcc%E6%95%99%E7%A8%8B/</url>
+      <url>http://tonnyl.github.io/2016/10/31/macOS%E5%AE%89%E8%A3%85gcc%E6%95%99%E7%A8%8B/</url>
       <content type="html"><![CDATA[<p>简单几步就可以在mac上成功安装gcc<br><a id="more"></a></p>
 <p>网上的教程大多是通过安装Xcode实现安装gcc的，这种方式的花费有点太得不偿失，Xcode占据的空间是在太大，这对于128g用户简直就是噩梦。</p>
 <p>还有就是通过homebrew安装，前提是你电脑上要安装了homebrew。</p>
@@ -1251,7 +1310,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[Android Studio新建Library并上传到JCenter]]></title>
-      <url>http://marktony.github.io/2016/10/21/Android-Studio%E6%96%B0%E5%BB%BALibrary%E5%B9%B6%E4%B8%8A%E4%BC%A0%E5%88%B0JCenter/</url>
+      <url>http://tonnyl.github.io/2016/10/21/Android-Studio%E6%96%B0%E5%BB%BALibrary%E5%B9%B6%E4%B8%8A%E4%BC%A0%E5%88%B0JCenter/</url>
       <content type="html"><![CDATA[<p>简单实用的教程，教你如何一步一步从新建Library到上传至JCenter<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在开发app的过程中，我们经常会遇到需要使用第三方库的情况，例如常用的<a href="https://github.com/square/okhttp" target="_blank" rel="external">Okhttp</a>，只需要添加一行代码到app下到gradle文件中就可以实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.squareup.okhttp3:okhttp:3.4.1&apos;</div></pre></td></tr></table></figure></p>
 <p>这种方式使用的就是squareup上传到JCenter的Library。那么这种方式是如何实现的呢？</p>
@@ -1333,7 +1392,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[重构！将Google MVP应用于已有项目]]></title>
-      <url>http://marktony.github.io/2016/09/27/%E9%87%8D%E6%9E%84%EF%BC%81%E5%B0%86Google-MVP%E5%BA%94%E7%94%A8%E4%BA%8E%E5%B7%B2%E6%9C%89%E9%A1%B9%E7%9B%AE/</url>
+      <url>http://tonnyl.github.io/2016/09/27/%E9%87%8D%E6%9E%84%EF%BC%81%E5%B0%86Google-MVP%E5%BA%94%E7%94%A8%E4%BA%8E%E5%B7%B2%E6%9C%89%E9%A1%B9%E7%9B%AE/</url>
       <content type="html"><![CDATA[<p>将Google官方的Android MVP架构引入到已有的项目中。<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在本次项目重构之前，我的项目采用的是什么架构呢？</p>
 <p>额，没有架构…或者说，不那么标准的MVC，一个页面就是一个Activity或者Fragment，各种数据，网络请求，响应都写在Activity或者Fragment–这两个不怎么标准的Controller中，代码混乱，而且长长长长长长，写代码的时候一时爽，到了维护阶段，那酸爽，不敢相信。采用新的架构迫在眉睫。</p>
@@ -1364,7 +1423,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[Java中的单例模式]]></title>
-      <url>http://marktony.github.io/2016/07/19/Java%E4%B8%AD%E7%9A%84%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
+      <url>http://tonnyl.github.io/2016/07/19/Java%E4%B8%AD%E7%9A%84%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
       <content type="html"><![CDATA[<h3 id="什么是单例模式？"><a href="#什么是单例模式？" class="headerlink" title="什么是单例模式？"></a>什么是单例模式？</h3><a id="more"></a>
 <p>单例模式是一种对象创建模式，用于产生对象的一个具体实例，并且可以确保系统中一个类只能产生唯一的一个实例。</p>
 <p>这样的方式能够带来两大好处：</p>
@@ -1473,7 +1532,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[Get start with Kotlin on Android]]></title>
-      <url>http://marktony.github.io/2016/07/10/Get-start-with-Kotlin-on-Android/</url>
+      <url>http://tonnyl.github.io/2016/07/10/Get-start-with-Kotlin-on-Android/</url>
       <content type="html"><![CDATA[<p>本篇文章主要介绍怎样入门用Kotlin开发Android项目。示例项目地址为：<a href="https://github.com/marktony/FanfouHandpick" target="_blank" rel="external">GitHub:饭否精选</a></p>
 <h3 id="什么是Kotlin？"><a href="#什么是Kotlin？" class="headerlink" title="什么是Kotlin？"></a>什么是Kotlin？</h3><p>Kotlin是由<a href="https://www.jetbrains.com/" target="_blank" rel="external">JetBrains</a>开发，基于JVM的一门新的编程语言。开发过Android的童鞋应该都知道Android Studio，它就是基于Intellij IDEA开发的，而Intellij IDEA正是由JetBrains出品。</p>
 <p>对于Android开发者而言，Kotlin有两个有趣的特点：</p>
@@ -1500,7 +1559,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[Fragment生命周期探索]]></title>
-      <url>http://marktony.github.io/2016/06/13/Fragment%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%8E%A2%E7%B4%A2/</url>
+      <url>http://tonnyl.github.io/2016/06/13/Fragment%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%8E%A2%E7%B4%A2/</url>
       <content type="html"><![CDATA[<p>Fragment和Activity类似，也有自己的生命周期，并且fragment的生命周期和activity的生命周期特别相似。<br><a id="more"></a></p>
 <p>Activity的生命周期由四种状态，运行、暂停、停止、和销毁，类似的，Fragment也有这四种状态，只是在一些细小的地方有所不同。</p>
 <p>Fragment生命周期图(来自Android官网)</p>
@@ -1553,7 +1612,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[GitHub Pages现在支持Https了]]></title>
-      <url>http://marktony.github.io/2016/06/10/GitHub-Pages%E7%8E%B0%E5%9C%A8%E6%94%AF%E6%8C%81Https%E4%BA%86/</url>
+      <url>http://tonnyl.github.io/2016/06/10/GitHub-Pages%E7%8E%B0%E5%9C%A8%E6%94%AF%E6%8C%81Https%E4%BA%86/</url>
       <content type="html"><![CDATA[<p>HTTPS for GitHub Pages<br><a id="more"></a></p>
 <p>数以百万计的人用<a href="https://pages.github.com/" target="_blank" rel="external">GitHub Pages</a>来支持他们的网站，这些网站每天也会有数以百万计的访问量，为了更好的支持这些GitHub Pages站点，也为了在互联网中增加HTTPS的使用范围，GitHub Pages现在官方支持所有   <code>&lt;username&gt;.github.io</code> 站点了。HTTPS提供的加密层，可以防止他人窥探或篡改指向您的Pages站点。</p>
 <p>你现在就可以访问 <code>*.github.io</code>站点，强制你的站点使用HTTPS。如果你使用了HTTPS，任何HTTP请求都会被直接重定向为HTTPS请求。</p>
@@ -1572,7 +1631,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[实现RecyclerView的item的滑动删除]]></title>
-      <url>http://marktony.github.io/2016/05/28/%E5%AE%9E%E7%8E%B0RecyclerView%E7%9A%84item%E7%9A%84%E6%BB%91%E5%8A%A8%E5%88%A0%E9%99%A4/</url>
+      <url>http://tonnyl.github.io/2016/05/28/%E5%AE%9E%E7%8E%B0RecyclerView%E7%9A%84item%E7%9A%84%E6%BB%91%E5%8A%A8%E5%88%A0%E9%99%A4/</url>
       <content type="html"><![CDATA[<p>利用ItemTouchHelper实现recycler view item的侧滑删除<br><a id="more"></a></p>
 <h3 id="关于ItemTouchHelper"><a href="#关于ItemTouchHelper" class="headerlink" title="关于ItemTouchHelper"></a>关于ItemTouchHelper</h3><p>官方文档的解释：</p>
 <blockquote>
@@ -1608,7 +1667,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[关于知乎专栏ID的一些说明]]></title>
-      <url>http://marktony.github.io/2016/05/27/%E5%85%B3%E4%BA%8E%E7%9F%A5%E4%B9%8E%E4%B8%93%E6%A0%8FID%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E/</url>
+      <url>http://tonnyl.github.io/2016/05/27/%E5%85%B3%E4%BA%8E%E7%9F%A5%E4%B9%8E%E4%B8%93%E6%A0%8FID%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E/</url>
       <content type="html"><![CDATA[<p>对什么是知乎专栏ID以及如何在知乎专栏App中添加喜欢的专栏的一些方法。<br><a id="more"></a></p>
 <h3 id="什么是知乎专栏ID？"><a href="#什么是知乎专栏ID？" class="headerlink" title="什么是知乎专栏ID？"></a>什么是知乎专栏ID？</h3><p>知乎专栏id是由若干字符组成，是一个知乎专栏的唯一标识。如 <strong>wooyun</strong> 是知乎用户 <strong>fenggou</strong> 的专栏 <strong>乌云君</strong> 的id。</p>
 <h3 id="怎样获取知乎专栏的ID？"><a href="#怎样获取知乎专栏的ID？" class="headerlink" title="怎样获取知乎专栏的ID？"></a>怎样获取知乎专栏的ID？</h3><ul>
@@ -1638,7 +1697,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[Tips]]></title>
-      <url>http://marktony.github.io/2016/05/19/Tips/</url>
+      <url>http://tonnyl.github.io/2016/05/19/Tips/</url>
       <content type="html"><![CDATA[<p>那些我自己踩过的坑!</p>
 <a id="more"></a>
 <ul>
@@ -1663,7 +1722,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[知乎专栏API分析]]></title>
-      <url>http://marktony.github.io/2016/05/14/%E7%9F%A5%E4%B9%8E%E4%B8%93%E6%A0%8FAPI%E5%88%86%E6%9E%90/</url>
+      <url>http://tonnyl.github.io/2016/05/14/%E7%9F%A5%E4%B9%8E%E4%B8%93%E6%A0%8FAPI%E5%88%86%E6%9E%90/</url>
       <content type="html"><![CDATA[<p>知乎专栏API的简单分析<br><a id="more"></a></p>
 <p>感谢知乎，提供如此出色的平台，更要感谢辛苦的专栏作者们，为我们提供了这么多的干货，最后感谢支持我的人们，谢谢你们！</p>
 <h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>声明：以下所有API均由 <strong>知乎(Zhihu.INC)</strong> 提供，本人通过非正常手段获取。获取与共享的行为有侵犯知乎权益的嫌疑。若被告知停止使用与共享，本人将及时删除整个项目。请您知悉相关情况，遵守知乎的协议。API仅供学习交流使用，请勿用作商业用途。</p>
@@ -1911,7 +1970,7 @@ OK，我们可以测试一下Git是否安装成功。在命令行中输入命令
     
     <entry>
       <title><![CDATA[Java中类成员的初始化]]></title>
-      <url>http://marktony.github.io/2016/05/12/Java%E4%B8%AD%E7%B1%BB%E6%88%90%E5%91%98%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+      <url>http://tonnyl.github.io/2016/05/12/Java%E4%B8%AD%E7%B1%BB%E6%88%90%E5%91%98%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
       <content type="html"><![CDATA[<p>如果一个类的基本成员变量，在没有进行初始化的情况下，那么它的默认值是多少呢？<br><a id="more"></a></p>
 <p>在Java中，类的某个成员变量是基本数据类型，即使没有进行初始化，Java也会确保它获得一个默认值。OK, talk is cheap, show me the code:</p>
 <pre><code>public class InitialTest {
@@ -2023,7 +2082,7 @@ Reference null
     
     <entry>
       <title><![CDATA[Activity的四种启动模式]]></title>
-      <url>http://marktony.github.io/2016/05/11/Activity%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/</url>
+      <url>http://tonnyl.github.io/2016/05/11/Activity%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>浅析Android中Activity的四种启动模式:standard,singleTop,singleTask,singleInstance<br><a id="more"></a></p>
 <p>启动模式一共有上述的四种，可以在AndroidManifest.xml文件中通过给<ctivity>标签指定android:launchMode属性来选择启动模式。</ctivity></p>
 <h3 id="standard"><a href="#standard" class="headerlink" title="standard"></a>standard</h3><p>standard是Activity默认的启动模式，在不进行显示指定的情况下，所有Activity都会自动的使用这种模式。Android使用返回栈来管理Activity,在standard模式下，每当启动一个新的Activity,它就会在返回栈中入栈，并处于栈顶的位置。对于使用standard模式的Activity,系统不会在乎这个Activity是否已经在返回栈中，每次启动都会创建一个新的Activity实例。</p>
@@ -2194,7 +2253,7 @@ ThirdActivity: task id is 403
     
     <entry>
       <title><![CDATA[进程与线程]]></title>
-      <url>http://marktony.github.io/2016/05/02/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</url>
+      <url>http://tonnyl.github.io/2016/05/02/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</url>
       <content type="html"><![CDATA[<h2 id="进程与线程之间的关系"><a href="#进程与线程之间的关系" class="headerlink" title="进程与线程之间的关系"></a>进程与线程之间的关系</h2><a id="more"></a>
 <h4 id="什么是进程？"><a href="#什么是进程？" class="headerlink" title="什么是进程？"></a>什么是进程？</h4><p>进程是具有一定独立功能的程序关于某个数据集合上的一次运行活动，进程是系统进行资源分配和调度的独立单位。进程拥有一个完整的虚拟空间地址，并不依赖线程而独立存在。</p>
 <h4 id="什么是线程？"><a href="#什么是线程？" class="headerlink" title="什么是线程？"></a>什么是线程？</h4><p>线程是进程的一个实体，是cpu调度和分配的基本单位。它是进程更小的能独立运行的基本单位。线程本身并不拥有系统资源，运行是只是暂用一些计数器、寄存器和栈。</p>
@@ -2208,7 +2267,7 @@ ThirdActivity: task id is 403
     
     <entry>
       <title><![CDATA[ANR]]></title>
-      <url>http://marktony.github.io/2016/05/01/ANR/</url>
+      <url>http://tonnyl.github.io/2016/05/01/ANR/</url>
       <content type="html"><![CDATA[<p>浅谈Android开发中的ANR现象<br><a id="more"></a></p>
 <h3 id="什么是ANR"><a href="#什么是ANR" class="headerlink" title="什么是ANR"></a>什么是ANR</h3><p>ANR,Application Not Responding,即程序未响应。发生ANR时，系统会显示一个dialog，提示用户出现了ANR，用户可以选择“等待”，或者是“强制关闭”，结束应用。ANR同崩溃一样，是在开发过程中应该避免的。</p>
 <h3 id="什么会触发ANR："><a href="#什么会触发ANR：" class="headerlink" title="什么会触发ANR："></a>什么会触发ANR：</h3><ul>
@@ -2241,7 +2300,7 @@ ThirdActivity: task id is 403
     
     <entry>
       <title><![CDATA[知乎小报开发总结]]></title>
-      <url>http://marktony.github.io/2016/04/28/zhihudaily/</url>
+      <url>http://tonnyl.github.io/2016/04/28/zhihudaily/</url>
       <content type="html"><![CDATA[<p>总结在开发知乎小报的过程中遇到的问题和相应的解决方法,以及分享开发过程中的一些心得体会<br><a id="more"></a></p>
 <h2 id="知乎小报开发总结"><a href="#知乎小报开发总结" class="headerlink" title="知乎小报开发总结"></a>知乎小报开发总结</h2><p>总结在知乎小报开发的工程中遇到的问题以及相关的解决办法。</p>
 <p>1.Intent导致的ActivityNotFoundException</p>
