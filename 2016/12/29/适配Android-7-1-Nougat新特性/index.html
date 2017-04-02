@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-    <!--
+    <!-- 
         © Material Theme
         https://github.com/viosey/hexo-theme-material
-        Version: 1.2.6 -->
+        Version: 1.3.2 -->
 
     <!-- Title -->
     
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Tonny">
     <meta name="description" content="null">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,Android">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -50,6 +50,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="适配Android 7.1 Nougat新特性 | Tonny&#39;s Blog">
     <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="Android"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -59,82 +60,88 @@
         
     <![endif]-->
 
-    <!-- Import CSS -->
-    <link rel="stylesheet" href="/css/material.min.css">
-    <link rel="stylesheet" href="/css/style.min.css">
-    <!-- Config CSS -->
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="https://materialcdn.nfz.moe/hexo/1.3.2/css/material.min.css">
+        <link rel="stylesheet" href="https://materialcdn.nfz.moe/hexo/1.3.2/css/style.min.css">
+        <!-- Config CSS -->
 
 
 <!-- Other Styles -->
 <style>
-    body, html {
-        font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    }
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
 
-    a {
-        color: #00838F;
-    }
+  a {
+    color: #00838F;
+  }
 
-    .mdl-card__media,
-    #search-label,
-    #search-form-label:after,
-    #scheme-Paradox .hot_tags-count,
-    #scheme-Paradox .sidebar_archives-count,
-    #scheme-Paradox .sidebar-colored .sidebar-header,
-    #scheme-Paradox .sidebar-colored .sidebar-badge{
-        background-color: #0097A7 !important;
-    }
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
 
-    /* Sidebar User Drop Down Menu Text Color */
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-        color: #0097A7 !important;
-    }
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
 
-    #post_entry-right-info,
-    .sidebar-colored .sidebar-nav li:hover > a,
-    .sidebar-colored .sidebar-nav li:hover > a i,
-    .sidebar-colored .sidebar-nav li > a:hover,
-    .sidebar-colored .sidebar-nav li > a:hover i,
-    .sidebar-colored .sidebar-nav li > a:focus i,
-    .sidebar-colored .sidebar-nav > .open > a,
-    .sidebar-colored .sidebar-nav > .open > a:hover,
-    .sidebar-colored .sidebar-nav > .open > a:focus,
-    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-        color: #0097A7 !important;
-    }
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
 
-    .toTop {
-        background: #757575 !important;
-    }
+  .toTop {
+    background: #757575 !important;
+  }
 
-    .material-layout .material-post>.material-nav,
-    .material-layout .material-index>.material-nav,
-    .material-nav a {
-        color: #757575;
-    }
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
 
-    #scheme-Paradox .MD-burger-layer {
-        background-color: #757575;
-    }
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
 
-    #scheme-Paradox #post-toc-trigger-btn {
-        color: #757575;
-    }
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
 
-    .post-toc a:hover {
-        color: #00838F;
-        text-decoration: underline;
-    }
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
 </style>
 
 
 <!-- Theme Background Related-->
 
     <style>
-        body{
-            background-image: url(https://source.unsplash.com/daily);
-        }
+      body {
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
+        background-color: #fff;
+      }
     </style>
 
 
@@ -143,34 +150,48 @@
 <!-- Fade Effect -->
 
     <style>
-        .fade {
-            transition: all 800ms linear;
-            -webkit-transform: translate3d(0,0,0);
-            -moz-transform: translate3d(0,0,0);
-            -ms-transform: translate3d(0,0,0);
-            -o-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0);
-            opacity: 1;
-        }
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
 
-        .fade.out{
-            opacity: 0;
-        }
+      .fade.out{
+        opacity: 0;
+      }
     </style>
 
 
-    <script src="/js/jquery.min.js"></script>
+        <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/jquery.min.js"></script>
+        <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/queue.js"></script>
+    
 
-    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
-
-    <!-- UC Browser Compatible-->
+    <!-- UC Browser Compatible -->
     <script>
         var agent = navigator.userAgent.toLowerCase();
         if(agent.indexOf('ucbrowser')>0) {
-            document.write('<link rel="stylesheet" href="/css/uc.css">');
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
             alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
         }
     </script>
+
+    
+
+    
+
+    <!-- Bing Background -->
+    
+        <script type="text/javascript">
+            queue.offer(function(){
+                $('body').attr('data-original', 'https://api.i-meto.com/bing?new');
+                $('body.lazy').lazyload();
+            });
+        </script>
+    
 
     <!-- Custom Head -->
     
@@ -178,7 +199,7 @@
 
 
     
-        <body id="scheme-Paradox">
+        <body id="scheme-Paradox" class="lazy">
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -394,7 +415,7 @@
                 
 
                 <!-- Post Content -->
-                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>老司机带你吃牛轧糖<br><a id="more"></a></p>
 <h3 id="What’s-new-in-Android-7-1-Nougat"><a href="#What’s-new-in-Android-7-1-Nougat" class="headerlink" title="What’s new in Android 7.1 Nougat?"></a>What’s new in Android 7.1 Nougat?</h3><p>Android 7.1 Nougat 已经推出有一段时间，相信大多数人和我一样，并没有用上最新的系统，但是，总有一群走在时代的前列线上的Geek们，勇于尝鲜，艰苦奋斗，为刷新版本号贡献自己的力量。好吧，实际上就是我还没有用上7.1，有些眼馋了。那么，和开发者息息相关的有哪些新特性呢？</p>
@@ -444,7 +465,7 @@
 </li>
 </ul>
 <p>到这里，最简单的shortcut就添加成功了。运行包含上面的文件的项目，点击shortcut就可以直接进入 <strong>SearchActivity</strong>，当按下back键时，直接就退出了应用。如果希望不退出应用，而是进入 <strong>MainActivity</strong> 时，应该怎么办呢？不用着急，在shortcut继续添加intent就可以了。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">shortcuts</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">	</div><div class="line">    <span class="tag">&lt;<span class="name">shortcut</span></span></div><div class="line">        <span class="attr">android:enabled</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_search_circle"</span></div><div class="line">        <span class="attr">android:shortcutId</span>=<span class="string">"search_bookmarks"</span></div><div class="line">        <span class="attr">android:shortcutShortLabel</span>=<span class="string">"@string/search_bookmarks"</span></div><div class="line">        <span class="attr">android:shortcutLongLabel</span>=<span class="string">"@string/search_bookmarks"</span>&gt;</div><div class="line">	</div><div class="line">		<span class="tag">&lt;<span class="name">intent</span></span></div><div class="line">    			<span class="attr">android:action</span>=<span class="string">"android.intent.action.MAIN"</span></div><div class="line">    			<span class="attr">android:targetClass</span>=<span class="string">"com.marktony.zhihudaily.homepage.MainActivity"</span></div><div class="line">		    <span class="attr">android:targetPackage</span>=<span class="string">"com.marktony.zhihudaily"</span> /&gt;</div><div class="line">	</div><div class="line">        <span class="tag">&lt;<span class="name">intent</span></span></div><div class="line">            <span class="attr">android:action</span>=<span class="string">"android.intent.action.VIEW"</span></div><div class="line">            <span class="attr">android:targetPackage</span>=<span class="string">"com.marktony.zhihudaily"</span></div><div class="line">            <span class="attr">android:targetClass</span>=<span class="string">"com.marktony.zhihudaily.search.SearchActivity"</span> /&gt;</div><div class="line">	</div><div class="line">        <span class="tag">&lt;<span class="name">categories</span> <span class="attr">android:name</span>=<span class="string">"android.shortcut.conversation"</span> /&gt;</span></div><div class="line">	</div><div class="line">    <span class="tag">&lt;/<span class="name">shortcut</span>&gt;</span></div><div class="line">	</div><div class="line">  	<span class="comment">&lt;!--在这里添加更多的shortcut--&gt;</span></div><div class="line">	</div><div class="line"> <span class="tag">&lt;/<span class="name">shortcuts</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">shortcuts</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">shortcut</span></span></div><div class="line">        <span class="attr">android:enabled</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_search_circle"</span></div><div class="line">        <span class="attr">android:shortcutId</span>=<span class="string">"search_bookmarks"</span></div><div class="line">        <span class="attr">android:shortcutShortLabel</span>=<span class="string">"@string/search_bookmarks"</span></div><div class="line">        <span class="attr">android:shortcutLongLabel</span>=<span class="string">"@string/search_bookmarks"</span>&gt;</div><div class="line"></div><div class="line">		<span class="tag">&lt;<span class="name">intent</span></span></div><div class="line">    			<span class="attr">android:action</span>=<span class="string">"android.intent.action.MAIN"</span></div><div class="line">    			<span class="attr">android:targetClass</span>=<span class="string">"com.marktony.zhihudaily.homepage.MainActivity"</span></div><div class="line">		    <span class="attr">android:targetPackage</span>=<span class="string">"com.marktony.zhihudaily"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">intent</span></span></div><div class="line">            <span class="attr">android:action</span>=<span class="string">"android.intent.action.VIEW"</span></div><div class="line">            <span class="attr">android:targetPackage</span>=<span class="string">"com.marktony.zhihudaily"</span></div><div class="line">            <span class="attr">android:targetClass</span>=<span class="string">"com.marktony.zhihudaily.search.SearchActivity"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">categories</span> <span class="attr">android:name</span>=<span class="string">"android.shortcut.conversation"</span> /&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">shortcut</span>&gt;</span></div><div class="line"></div><div class="line">  	<span class="comment">&lt;!--在这里添加更多的shortcut--&gt;</span></div><div class="line"></div><div class="line"> <span class="tag">&lt;/<span class="name">shortcuts</span>&gt;</span></div></pre></td></tr></table></figure>
 <h4 id="Using-Dynamic-Shortcuts"><a href="#Using-Dynamic-Shortcuts" class="headerlink" title="Using Dynamic Shortcuts"></a>Using Dynamic Shortcuts</h4><p>动态快捷方式应该和应用内的特定的、上下文敏感的action链接。这些action应该可以在用户的几次使用之间、甚至是在应用运行过程中被改变。好的候选action包括打电话给特定的人、导航至特定的地方、或者展示当前游戏的分数。</p>
 <p><a href="https://developer.android.com/reference/android/content/pm/ShortcutManager.html" target="_blank" rel="external">ShortcutManager</a> API允许我们在动态快捷方式上完成下面的操作：</p>
 <ul>
@@ -456,7 +477,7 @@
 </li>
 </ul>
 <p>下面是在MainActivity的onCreate()中创建动态快捷方式的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line"></div><div class="line">    ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);</div><div class="line"></div><div class="line">    ShortcutInfo webShortcut = <span class="keyword">new</span> ShortcutInfo.Builder(<span class="keyword">this</span>, <span class="string">"shortcut_web"</span>)</div><div class="line">            .setShortLabel(<span class="string">"github"</span>)</div><div class="line">            .setLongLabel(<span class="string">"Open Tonny's github web site"</span>)</div><div class="line">            .setIcon(Icon.createWithResource(<span class="keyword">this</span>, R.drawable.ic_dynamic_shortcut))</div><div class="line">            .setIntent(<span class="keyword">new</span> Intent(Intent.ACTION_VIEW, Uri.parse(<span class="string">"https://marktony.github.io"</span>)))</div><div class="line">            .build();</div><div class="line"></div><div class="line">    shortcutManager.setDynamicShortcuts(Collections.singletonList(webShortcut));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line"></div><div class="line">    ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);</div><div class="line"></div><div class="line">    ShortcutInfo webShortcut = <span class="keyword">new</span> ShortcutInfo.Builder(<span class="keyword">this</span>, <span class="string">"shortcut_web"</span>)</div><div class="line">            .setShortLabel(<span class="string">"github"</span>)</div><div class="line">            .setLongLabel(<span class="string">"Open Tonny's github web site"</span>)</div><div class="line">            .setIcon(Icon.createWithResource(<span class="keyword">this</span>, R.drawable.ic_dynamic_shortcut))</div><div class="line">            .setIntent(<span class="keyword">new</span> Intent(Intent.ACTION_VIEW, Uri.parse(<span class="string">"https://TonnyL.github.io"</span>)))</div><div class="line">            .build();</div><div class="line"></div><div class="line">    shortcutManager.setDynamicShortcuts(Collections.singletonList(webShortcut));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>也可以为动态快捷方式创建返回栈。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line"></div><div class="line">    ShortcutInfo dynamicShortcut = <span class="keyword">new</span> ShortcutInfo.Builder(<span class="keyword">this</span>, <span class="string">"shortcut_dynamic"</span>)</div><div class="line">            .setShortLabel(<span class="string">"Dynamic"</span>)</div><div class="line">            .setLongLabel(<span class="string">"Open dynamic shortcut"</span>)</div><div class="line">            .setIcon(Icon.createWithResource(<span class="keyword">this</span>, R.drawable.ic_dynamic_shortcut_2))</div><div class="line">            .setIntents(</div><div class="line">                    <span class="keyword">new</span> Intent[]&#123;</div><div class="line">                            <span class="keyword">new</span> Intent(Intent.ACTION_MAIN, Uri.EMPTY, <span class="keyword">this</span>, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK),</div><div class="line">                            <span class="keyword">new</span> Intent(DynamicShortcutActivity.ACTION)</div><div class="line">                    &#125;)</div><div class="line">            .build();</div><div class="line"></div><div class="line">    shortcutManager.setDynamicShortcuts(Arrays.asList(webShortcut, dynamicShortcut));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>创建一个新的空的Activity，名字叫做DynamicShortcutActivity，在manifest文件中注册。</p>
@@ -565,7 +586,7 @@
 <p>为了测试IME，确保我们的设备或者模拟器拥有接收rich content的的应用。我们可以在Android 7.1或者更高的系统中使用Google Messenger应用或者安装<a href="https://developer.android.com/samples/CommitContentSampleApp/index.html" target="_blank" rel="external">CommitContent App Sample</a>。</p>
 <p>获取完整的示例代码，可以访问<a href="https://developer.android.com/samples/CommitContentSampleIME/index.html" target="_blank" rel="external">CommitContent IME Sample</a>。</p>
 <h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Google在刷新版本号的路上简直是在策马奔腾了，嘚儿驾。我们也能够看到Google的努力，Android也在变的越来越好，加油吧，小机器人。</p>
-<p>本次Shortcuts部分的代码可以在我的GitHub仓库<a href="https://github.com/marktony/ZhiHuDaily" target="_blank" rel="external">ZhiHuDaily</a>中看到。欢迎star哟。</p>
+<p>本次Shortcuts部分的代码可以在我的GitHub仓库<a href="https://github.com/TonnyL/ZhiHuDaily" target="_blank" rel="external">ZhiHuDaily</a>中看到。欢迎star哟。</p>
 
     
 
@@ -594,12 +615,16 @@
 <div id="comments">
     <!-- 多说评论框 start -->
     <div class="ds-thread"
-        data-thread-key=""
+        data-thread-key="2016/12/29/适配Android-7-1-Nougat新特性/"
         data-url="http://tonnyl.github.io/2016/12/29/适配Android-7-1-Nougat新特性/"
         data-title="适配Android 7.1 Nougat新特性">
     </div>
     <!-- 多说评论框 end -->
 </div>
+
+
+
+
 
 
 
@@ -683,7 +708,9 @@
             
                 <li>
                     <a href="mailto:marktonymengyi@gmail.com" target="_blank" title="Email Me">
-                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
                         Email Me
                     </a>
                 </li>
@@ -692,41 +719,43 @@
     </li>
 
     <!-- Homepage -->
-    <li id="sidebar-first-li">
-        <a href="/" target="_self">
-            <i class="material-icons sidebar-material-icons">home</i>
-            Home
-        </a>
-    </li>
-
-    <!-- I'm Feeling Lucky -->
-    <!--
-    <li class="dropdown">
-        <a href="" target="_self">
-            <i class="material-icons sidebar-material-icons">explore</i>
-             sidebar.imlucky
-        </a>
-    </li>
-    -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                Home
+            </a>
+        </li>
+        
+    
 
     <!-- Archives  -->
-    <li class="dropdown">
-        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-            <i class="material-icons sidebar-material-icons">inbox</i>
-             Archives
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    Archives
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/03/">March 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
-        </ul>
-    </li>
+                <a class="sidebar_archives-link" href="/archives/2017/03/">March 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Categories  -->
     
         <li class="dropdown">
             <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
                 Categories
                 <b class="caret"></b>
             </a>
@@ -735,14 +764,13 @@
                 <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/categories/GitHub/">GitHub<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/涨姿势/">涨姿势<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/计算机基础/">计算机基础<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/闲谈/">闲谈<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
+        
+            <li class="divider"></li>
+        
     
 
-    <!-- Divider -->
-    <li class="divider"></li>
-
-
     <!-- Pages  -->
-  	
+    
         <li>
             <a href="/about" title="About">
                 
@@ -751,20 +779,25 @@
                 About
             </a>
         </li>
-  	
+        
+            <li class="divider"></li>
+        
+    
 
-    <!-- Article Numebr  -->
-    <li>
-        <a href="/archives">
-            Number of articles
-            <span class="sidebar-badge">25</span>
-        </a>
-    </li>
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                Number of articles
+                <span class="sidebar-badge">25</span>
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
 </ul>
 
-
-        <!-- Sidebar Divider -->
-        <div class="sidebar-divider"></div>
 
         <!-- Sidebar Footer -->
         <!--
@@ -777,46 +810,60 @@ It will not impact the appearance and can give developers a lot of support :)
 它不会影响美观并可以给开发者很大的支持和动力。 :)
 -->
 
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
 <!-- Theme Material -->
-<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-        Theme - Material
-        <span class="sidebar-badge badge-circle">i</span>
-    </div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            Theme - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
 
 <!-- Help & Support -->
 <!--
-<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-    sidebar.help
-    <span class="mdl-button__ripple-container">
-      <span class="mdl-ripple"></span>
-    </span>
-  </div>
-</a>
+
+    <a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.help
+        <span class="mdl-button__ripple-container">
+          <span class="mdl-ripple"></span>
+        </span>
+      </div>
+    </a>
+
 -->
 
 <!-- Feedback -->
 <!--
-<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.feedback
-                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.feedback
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
 -->
 
-<!-- Abount Theme -->
+<!-- About Theme -->
 <!--
-<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.about_theme
-        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>-->
+
+    <a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+             sidebar.about_theme
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
+-->
 
     </div>
 
-    <!-- Sidebar Sponsor -->
+    <!-- Sidebar Image -->
     
 
 </aside>
@@ -840,12 +887,6 @@ It will not impact the appearance and can give developers a lot of support :)
         <div class="mdl-mini-footer--left-section sns-list">
     <!-- Twitter -->
     
-        <a href="https://twitter.com/twitter" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
-                <span class="visuallyhidden">Twitter</span>
-            </button><!--
-     --></a>
-    
 
     <!-- Facebook -->
     
@@ -853,7 +894,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Google + -->
     
         <a href="https://plus.google.com/101922840132193208151" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
                 <span class="visuallyhidden">Google Plus</span>
             </button><!--
      --></a>
@@ -862,7 +903,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Weibo -->
     
         <a href="http://weibo.com/5313690193/profile?topnav=1&amp;wvr=6" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
                 <span class="visuallyhidden">Weibo</span>
             </button><!--
      --></a>
@@ -871,7 +912,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Instagram -->
     
         <a href="https://www.instagram.com/tonny_lztl/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
                 <span class="visuallyhidden">Instagram</span>
             </button><!--
      --></a>
@@ -882,8 +923,8 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
-        <a href="https://github.com/marktony" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <a href="https://github.com/TonnyL" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
                 <span class="visuallyhidden">Github</span>
             </button><!--
      --></a>
@@ -895,7 +936,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Zhihu -->
     
         <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.svg);">
                 <span class="visuallyhidden">Zhihu</span>
             </button><!--
      --></a>
@@ -907,7 +948,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Telegram -->
     
         <a href="https://t.me/TonnyLZ" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.svg);">
                 <span class="visuallyhidden">Telegram</span>
             </button><!--
      --></a>
@@ -946,16 +987,20 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
                     <!-- Import File -->
-<script src="/js/highlight.min.js"></script>
-<script src="/js/js.min.js"></script>
-<script src="/js/nprogress.js"></script>
+
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/lazyload.min.js"></script>
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/js.min.js"></script>
+
+
+
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/nprogress.js"></script>
+
 
 <script type="text/javascript">
     NProgress.configure({
         showSpinner: true
     });
     NProgress.start();
-
     $('#nprogress .bar').css({
         'background': '#FF4081'
     });
@@ -966,7 +1011,6 @@ It will not impact the appearance and can give developers a lot of support :)
         'border-top-color': '#FF4081',
         'border-left-color': '#FF4081'
     });
-
     setTimeout(function() {
         NProgress.done();
         $('.fade').removeClass('out');
@@ -974,8 +1018,6 @@ It will not impact the appearance and can give developers a lot of support :)
 </script>
 
 
-
-    <script src="/js/smoothscroll.js"></script>
 
 
 
@@ -988,20 +1030,23 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- 多说公共 js 代码 start -->
     <script type="text/javascript">
-        var duoshuoQuery = {
-            short_name: 'tonnysblog'
-        };
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = 'https://static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-             || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
+        queue.offer(function(){
+            var duoshuoQuery = {
+                short_name: 'tonnysblog'
+            };
+            (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';
+                ds.async = true;
+                ds.src = 'https://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        });
     </script>
     <!-- 多说公共 js 代码 end -->
+
 
 
 
@@ -1032,7 +1077,7 @@ It will not impact the appearance and can give developers a lot of support :)
                 $input.addEventListener('input', function() {
                     var str='<ul class=\"search-result-list\">';
                     var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                    $resultContent.innerHTML = "";
+                    $resultContent.innerHTML = '';
                     if (this.value.trim().length <= 0) {
                         return;
                     }
@@ -1041,13 +1086,13 @@ It will not impact the appearance and can give developers a lot of support :)
                         var isMatch = true;
                         var content_index = [];
                         var data_title = data.title.trim().toLowerCase();
-                        var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g,'').toLowerCase();
                         var data_url = data.url;
                         var index_title = -1;
                         var index_content = -1;
                         var first_occur = -1;
                         // only match artiles with not empty titles and contents
-                        if(data_title != '' && data_content != '') {
+                        if(data_title !== '' && data_content !== '') {
                             keywords.forEach(function(keyword, i) {
                                 index_title = data_title.indexOf(keyword);
                                 index_content = data_content.indexOf(keyword);
@@ -1086,7 +1131,7 @@ It will not impact the appearance and can give developers a lot of support :)
                                     var regS = new RegExp(keyword, 'gi');
                                     match_content = match_content.replace(regS, '<em class="search-keyword">'+keyword+'</em>');
                                 })
-                                str += '<p class="search-result">' + match_content +'...</p>' +'</a>';
+                                str += '<p class="search-result">' + match_content + '...</p>' +'</a>';
                             }
                         }
                     });

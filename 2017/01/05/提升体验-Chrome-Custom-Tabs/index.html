@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-    <!--
+    <!-- 
         © Material Theme
         https://github.com/viosey/hexo-theme-material
-        Version: 1.2.6 -->
+        Version: 1.3.2 -->
 
     <!-- Title -->
     
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Tonny">
     <meta name="description" content="null">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,Android">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -50,6 +50,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="提升体验-Chrome Custom Tabs | Tonny&#39;s Blog">
     <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="Android"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -59,82 +60,88 @@
         
     <![endif]-->
 
-    <!-- Import CSS -->
-    <link rel="stylesheet" href="/css/material.min.css">
-    <link rel="stylesheet" href="/css/style.min.css">
-    <!-- Config CSS -->
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="https://materialcdn.nfz.moe/hexo/1.3.2/css/material.min.css">
+        <link rel="stylesheet" href="https://materialcdn.nfz.moe/hexo/1.3.2/css/style.min.css">
+        <!-- Config CSS -->
 
 
 <!-- Other Styles -->
 <style>
-    body, html {
-        font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    }
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
 
-    a {
-        color: #00838F;
-    }
+  a {
+    color: #00838F;
+  }
 
-    .mdl-card__media,
-    #search-label,
-    #search-form-label:after,
-    #scheme-Paradox .hot_tags-count,
-    #scheme-Paradox .sidebar_archives-count,
-    #scheme-Paradox .sidebar-colored .sidebar-header,
-    #scheme-Paradox .sidebar-colored .sidebar-badge{
-        background-color: #0097A7 !important;
-    }
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
 
-    /* Sidebar User Drop Down Menu Text Color */
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-        color: #0097A7 !important;
-    }
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
 
-    #post_entry-right-info,
-    .sidebar-colored .sidebar-nav li:hover > a,
-    .sidebar-colored .sidebar-nav li:hover > a i,
-    .sidebar-colored .sidebar-nav li > a:hover,
-    .sidebar-colored .sidebar-nav li > a:hover i,
-    .sidebar-colored .sidebar-nav li > a:focus i,
-    .sidebar-colored .sidebar-nav > .open > a,
-    .sidebar-colored .sidebar-nav > .open > a:hover,
-    .sidebar-colored .sidebar-nav > .open > a:focus,
-    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-        color: #0097A7 !important;
-    }
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
 
-    .toTop {
-        background: #757575 !important;
-    }
+  .toTop {
+    background: #757575 !important;
+  }
 
-    .material-layout .material-post>.material-nav,
-    .material-layout .material-index>.material-nav,
-    .material-nav a {
-        color: #757575;
-    }
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
 
-    #scheme-Paradox .MD-burger-layer {
-        background-color: #757575;
-    }
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
 
-    #scheme-Paradox #post-toc-trigger-btn {
-        color: #757575;
-    }
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
 
-    .post-toc a:hover {
-        color: #00838F;
-        text-decoration: underline;
-    }
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
 </style>
 
 
 <!-- Theme Background Related-->
 
     <style>
-        body{
-            background-image: url(https://source.unsplash.com/daily);
-        }
+      body {
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
+        background-color: #fff;
+      }
     </style>
 
 
@@ -143,34 +150,48 @@
 <!-- Fade Effect -->
 
     <style>
-        .fade {
-            transition: all 800ms linear;
-            -webkit-transform: translate3d(0,0,0);
-            -moz-transform: translate3d(0,0,0);
-            -ms-transform: translate3d(0,0,0);
-            -o-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0);
-            opacity: 1;
-        }
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
 
-        .fade.out{
-            opacity: 0;
-        }
+      .fade.out{
+        opacity: 0;
+      }
     </style>
 
 
-    <script src="/js/jquery.min.js"></script>
+        <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/jquery.min.js"></script>
+        <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/queue.js"></script>
+    
 
-    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
-
-    <!-- UC Browser Compatible-->
+    <!-- UC Browser Compatible -->
     <script>
         var agent = navigator.userAgent.toLowerCase();
         if(agent.indexOf('ucbrowser')>0) {
-            document.write('<link rel="stylesheet" href="/css/uc.css">');
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
             alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
         }
     </script>
+
+    
+
+    
+
+    <!-- Bing Background -->
+    
+        <script type="text/javascript">
+            queue.offer(function(){
+                $('body').attr('data-original', 'https://api.i-meto.com/bing?new');
+                $('body.lazy').lazyload();
+            });
+        </script>
+    
 
     <!-- Custom Head -->
     
@@ -178,7 +199,7 @@
 
 
     
-        <body id="scheme-Paradox">
+        <body id="scheme-Paradox" class="lazy">
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -386,10 +407,10 @@
                 
 
                 <!-- Post Content -->
-                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>使用Chrome Custom Tabs加载网页可以有效的提升用户的体验<br><a id="more"></a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>文章比较长，先放项目地址:<a href="https://github.com/marktony/PaperPlane" target="_blank" rel="external">PaperPlane</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>文章比较长，先放项目地址:<a href="https://github.com/TonnyL/PaperPlane" target="_blank" rel="external">PaperPlane</a></p>
 <p>俗话说，没图说个那啥，先看实际效果。<br><img src="/2017/01/05/提升体验-Chrome-Custom-Tabs/telegram.gif" alt="telegram" title="telegram"><br><img src="/2017/01/05/提升体验-Chrome-Custom-Tabs/paper_plane.gif" alt="paper plane" title="paper plane"></p>
 <h3 id="什么是Custom-Tabs"><a href="#什么是Custom-Tabs" class="headerlink" title="什么是Custom Tabs?"></a>什么是Custom Tabs?</h3><p>所有的APP开发者都面临这样一个选择，当用户点击一个URL时，是应该用浏览器打开还是应该用应用内置的WebView打开呢？</p>
 <p>两个选项都面临着一些问题。通过浏览器打开是一个非常重的上下文切换，并且是无法定制的。而WebView不能和浏览器共享数据并且需要需要手动去处理更多的场景。</p>
@@ -435,7 +456,7 @@
 <li>使页面加载更快速，保持应用激活</li>
 </ul>
 <p>UI的定制是通过使用<a href="http://developer.android.com/reference/android/support/customtabs/CustomTabsIntent.html" target="_blank" rel="external"> CustomTabsIntent </a>和<a href="http://developer.android.com/reference/android/support/customtabs/CustomTabsIntent.Builder.html" target="_blank" rel="external"> CustomTabsIntent.Builder</a>类完成的；而速度的提升则是通过使用<a href="http://developer.android.com/reference/android/support/customtabs/CustomTabsClient.html" target="_blank" rel="external"> CustomTabsClient </a>链接Custom Tabs服务，预热Chrome和让Chrome知晓将要打开的URL实现的。</p>
-<h4 id="打开一个Chrome-Custom-Tab"><a href="#打开一个Chrome-Custom-Tab" class="headerlink" title="打开一个Chrome Custom Tab"></a>打开一个Chrome Custom Tab</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用CustomTabsIntent.Builder配置CustomTabsIntent</span></div><div class="line"><span class="comment">// 准备完成后，调用CustomTabsIntent.Builder.build()方法创建一个CustomTabsIntent</span></div><div class="line"><span class="comment">// 并通过CustomTabsIntent.launchUrl()方法加载希望加载的url</span></div><div class="line"></div><div class="line">String url = ¨https:<span class="comment">//github.com/marktony¨;</span></div><div class="line">CustomTabsIntent.Builder builder = <span class="keyword">new</span> CustomTabsIntent.Builder();</div><div class="line">CustomTabsIntent customTabsIntent = builder.build();</div><div class="line">customTabsIntent.launchUrl(<span class="keyword">this</span>, Uri.parse(url));</div></pre></td></tr></table></figure>
+<h4 id="打开一个Chrome-Custom-Tab"><a href="#打开一个Chrome-Custom-Tab" class="headerlink" title="打开一个Chrome Custom Tab"></a>打开一个Chrome Custom Tab</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用CustomTabsIntent.Builder配置CustomTabsIntent</span></div><div class="line"><span class="comment">// 准备完成后，调用CustomTabsIntent.Builder.build()方法创建一个CustomTabsIntent</span></div><div class="line"><span class="comment">// 并通过CustomTabsIntent.launchUrl()方法加载希望加载的url</span></div><div class="line"></div><div class="line">String url = ¨https:<span class="comment">//github.com/TonnyL¨;</span></div><div class="line">CustomTabsIntent.Builder builder = <span class="keyword">new</span> CustomTabsIntent.Builder();</div><div class="line">CustomTabsIntent customTabsIntent = builder.build();</div><div class="line">customTabsIntent.launchUrl(<span class="keyword">this</span>, Uri.parse(url));</div></pre></td></tr></table></figure>
 <h4 id="配置地址栏的颜色"><a href="#配置地址栏的颜色" class="headerlink" title="配置地址栏的颜色"></a>配置地址栏的颜色</h4><p>Chrome Custom Tabs一个很重要的功能就是我们能够改变地址栏的颜色，使之和我们应用的颜色协调。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 改变toolbar的背景色。colorInt就是想要指定的int值</span></div><div class="line"></div><div class="line">builder.setToolbarColor(colorInt);</div></pre></td></tr></table></figure>
 <h4 id="配置定制化的action-button"><a href="#配置定制化的action-button" class="headerlink" title="配置定制化的action button"></a>配置定制化的action button</h4><p>作为应用的开发者，我们对呈现在用户眼前的Chrome Custom Tab内的Action Button拥有完全的控制权。</p>
@@ -484,7 +505,7 @@
 <h4 id="如果用户没有安装最新版本的Chrome，会发生什么呢？"><a href="#如果用户没有安装最新版本的Chrome，会发生什么呢？" class="headerlink" title="如果用户没有安装最新版本的Chrome，会发生什么呢？"></a>如果用户没有安装最新版本的Chrome，会发生什么呢？</h4><p>Custom Tabs通过带有key Extras的 ACTION_VIEW Intent来定制UI。这就意味着将要打开的页面会通过系统浏览器或者用户默认浏览器打开。</p>
 <p>如果用户已经安装了Chrome并且是默认浏览器，它会自动的获取EXTRAS的值并提供一个定制化的UI。其他的浏览器使用Intent extras提供相同的定制UI也是有可能的。</p>
 <h4 id="怎样检测Chrome是否支持Chrome-Custom-Tabs"><a href="#怎样检测Chrome是否支持Chrome-Custom-Tabs" class="headerlink" title="怎样检测Chrome是否支持Chrome Custom Tabs?"></a>怎样检测Chrome是否支持Chrome Custom Tabs?</h4><p>所有支持Chrome Custom Tabs的Chrome浏览器都暴露了一个service。为了检测是否支持Chrome Custom Tabs，可以尝试着绑定service，如果成功的话，那么Customs Tabs可以成功的使用。</p>
-<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><p>启用Chrome Custom Tabs后,我们看到了各种不同质量界别的实现效果。这里介绍一组实现优秀集成的最佳实践。 </p>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><p>启用Chrome Custom Tabs后,我们看到了各种不同质量界别的实现效果。这里介绍一组实现优秀集成的最佳实践。</p>
 <h4 id="连接Custome-Tabs-Service并发起预热"><a href="#连接Custome-Tabs-Service并发起预热" class="headerlink" title="连接Custome Tabs Service并发起预热"></a>连接Custome Tabs Service并发起预热</h4><p>连接到Custom Tabs Service并预加载Chrome之后，通过Custom Tabs打开链接 <strong>最多可以节省700ms</strong> 。</p>
 <p>在我们打算启用Custom Tabs的Activity的 <a href="http://developer.android.com/reference/android/app/Activity.html#onStart(" target="_blank" rel="external">onStart()</a>) 方法中连接 Custom Tabs service。连接成功后，调用<a href="http://developer.android.com/reference/android/support/customtabs/CustomTabsClient.html#warmup%28long%29" target="_blank" rel="external">warmup()</a>方法。</p>
 <p>Custom Tabs作为一个非常低优先级的进程，这也就意味着 <strong>它不会对我们的应用不会有任何的负面的影响</strong>，但是当加载链接时，会获得非常好的启动性能。</p>
@@ -494,14 +515,14 @@
 <h4 id="当Custom-Tabs没有安装时，提供备选方案"><a href="#当Custom-Tabs没有安装时，提供备选方案" class="headerlink" title="当Custom Tabs没有安装时，提供备选方案"></a>当Custom Tabs没有安装时，提供备选方案</h4><p>尽管Custom Tabs对于大多数用户都是适用的，仍然有一些场景不适用，例如设备上没有安装支持Custom Tabs的浏览器或者是设备上的浏览器版本不支持Custom Tabs。</p>
 <p><strong>确保提供了备选方案以提供好的应用体验</strong>。打开默认浏览器或者引入WebView都是不错的选择。</p>
 <h4 id="将我们的应用作为referrer-引荐来源"><a href="#将我们的应用作为referrer-引荐来源" class="headerlink" title="将我们的应用作为referrer(引荐来源)"></a>将我们的应用作为referrer(引荐来源)</h4><p>通常，对于网站而言，追用访问的来源非常地重要。当加载了Custom Tabs时，通过设置referrer，让他们知晓我们正在给他们提高访问量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">intent.putExtra(Intent.EXTRA_REFERRER, </div><div class="line">        Uri.parse(Intent.URI_ANDROID_APP_SCHEME + <span class="string">"//"</span> + context.getPackageName()));</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">intent.putExtra(Intent.EXTRA_REFERRER,</div><div class="line">        Uri.parse(Intent.URI_ANDROID_APP_SCHEME + <span class="string">"//"</span> + context.getPackageName()));</div></pre></td></tr></table></figure>
 <h4 id="添加定制动画"><a href="#添加定制动画" class="headerlink" title="添加定制动画"></a>添加定制动画</h4><p>定制的动画能够使我们的应用切换到网页内容时更加地顺畅。 确保进场动画和出厂动画是反向的，这样能够帮助用户理解跳转的关系。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置定制的进入/退出动画</span></div><div class="line"> CustomTabsIntent.Builder intentBuilder = <span class="keyword">new</span> CustomTabsIntent.Builder();</div><div class="line"> intentBuilder.setStartAnimations(<span class="keyword">this</span>, R.anim.slide_in_right, R.anim.slide_out_left);</div><div class="line"> intentBuilder.setExitAnimations(<span class="keyword">this</span>, android.R.anim.slide_in_left,</div><div class="line">     android.R.anim.slide_out_right);</div><div class="line"></div><div class="line"> <span class="comment">//打开Custom Tab        </span></div><div class="line"> intentBuilder.build().launchUrl(context, Uri.parse(<span class="string">"https://github.com/marktony"</span>));</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置定制的进入/退出动画</span></div><div class="line"> CustomTabsIntent.Builder intentBuilder = <span class="keyword">new</span> CustomTabsIntent.Builder();</div><div class="line"> intentBuilder.setStartAnimations(<span class="keyword">this</span>, R.anim.slide_in_right, R.anim.slide_out_left);</div><div class="line"> intentBuilder.setExitAnimations(<span class="keyword">this</span>, android.R.anim.slide_in_left,</div><div class="line">     android.R.anim.slide_out_right);</div><div class="line"></div><div class="line"> <span class="comment">//打开Custom Tab        </span></div><div class="line"> intentBuilder.build().launchUrl(context, Uri.parse(<span class="string">"https://github.com/TonnyL"</span>));</div></pre></td></tr></table></figure>
 <h4 id="为Action-Button选择一个icon"><a href="#为Action-Button选择一个icon" class="headerlink" title="为Action Button选择一个icon"></a>为Action Button选择一个icon</h4><p>添加一个Action Button能够使用户更加理解APP的功能。但是，如果没有好的icon代表Action Button将要执行的操作，有必要创建一个带操作文字描述的位图。</p>
 <p>牢记位图的最大尺寸为高度24dp，宽度48dp。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">  String shareLabel = getString(R.string.label_action_share);</div><div class="line">  Bitmap icon = BitmapFactory.decodeResource(getResources(),</div><div class="line">          android.R.drawable.ic_menu_share);</div><div class="line"></div><div class="line">  <span class="comment">// 为我们的BroadCastReceiver创建一个PendingIntent</span></div><div class="line">  Intent actionIntent = <span class="keyword">new</span> Intent(</div><div class="line">          <span class="keyword">this</span>.getApplicationContext(), ShareBroadcastReceiver.class);</div><div class="line">  PendingIntent pendingIntent = </div><div class="line">          PendingIntent.getBroadcast(getApplicationContext(), <span class="number">0</span>, actionIntent, <span class="number">0</span>);	        </div><div class="line"></div><div class="line"><span class="comment">// 设置pendingIntent作为按钮被点击后将要执行的操作    </span></div><div class="line">  intentBuilder.setActionButton(icon, shareLabel, pendingIntent);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">  String shareLabel = getString(R.string.label_action_share);</div><div class="line">  Bitmap icon = BitmapFactory.decodeResource(getResources(),</div><div class="line">          android.R.drawable.ic_menu_share);</div><div class="line"></div><div class="line">  <span class="comment">// 为我们的BroadCastReceiver创建一个PendingIntent</span></div><div class="line">  Intent actionIntent = <span class="keyword">new</span> Intent(</div><div class="line">          <span class="keyword">this</span>.getApplicationContext(), ShareBroadcastReceiver.class);</div><div class="line">  PendingIntent pendingIntent =</div><div class="line">          PendingIntent.getBroadcast(getApplicationContext(), <span class="number">0</span>, actionIntent, <span class="number">0</span>);	        </div><div class="line"></div><div class="line"><span class="comment">// 设置pendingIntent作为按钮被点击后将要执行的操作    </span></div><div class="line">  intentBuilder.setActionButton(icon, shareLabel, pendingIntent);</div></pre></td></tr></table></figure>
 <h4 id="为其他浏览器做准备"><a href="#为其他浏览器做准备" class="headerlink" title="为其他浏览器做准备"></a>为其他浏览器做准备</h4><p>牢记用户安装的浏览器中，支持Custom Tabs的数量可能不止一个。如果有不止一个浏览器支持Custom Tabs，并且没有任何一个浏览器被设置为偏好浏览器，需要询问用户如何打开链接</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 返回支持Custom Tabs的应用的包名</div><div class="line"> */	</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList <span class="title">getCustomTabsPackages</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    PackageManager pm = context.getPackageManager();</div><div class="line">    <span class="comment">// Get default VIEW intent handler.</span></div><div class="line">    Intent activityIntent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW, Uri.parse(<span class="string">"http://www.example.com"</span>));</div><div class="line"></div><div class="line">    <span class="comment">// 获取所有能够处理VIEW intents的应用</span></div><div class="line">    List resolvedActivityList = pm.queryIntentActivities(activityIntent, <span class="number">0</span>);</div><div class="line">    ArrayList packagesSupportingCustomTabs = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">for</span> (ResolveInfo info : resolvedActivityList) &#123;</div><div class="line">        Intent serviceIntent = <span class="keyword">new</span> Intent();</div><div class="line">        serviceIntent.setAction(ACTION_CUSTOM_TABS_CONNECTION);</div><div class="line">        serviceIntent.setPackage(info.activityInfo.packageName);</div><div class="line">        <span class="comment">// Check if this package also resolves the Custom Tabs service.</span></div><div class="line">        <span class="keyword">if</span> (pm.resolveService(serviceIntent, <span class="number">0</span>) != <span class="keyword">null</span>) &#123;</div><div class="line">            packagesSupportingCustomTabs.add(info);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> packagesSupportingCustomTabs;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 返回支持Custom Tabs的应用的包名</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList <span class="title">getCustomTabsPackages</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    PackageManager pm = context.getPackageManager();</div><div class="line">    <span class="comment">// Get default VIEW intent handler.</span></div><div class="line">    Intent activityIntent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW, Uri.parse(<span class="string">"http://www.example.com"</span>));</div><div class="line"></div><div class="line">    <span class="comment">// 获取所有能够处理VIEW intents的应用</span></div><div class="line">    List resolvedActivityList = pm.queryIntentActivities(activityIntent, <span class="number">0</span>);</div><div class="line">    ArrayList packagesSupportingCustomTabs = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">for</span> (ResolveInfo info : resolvedActivityList) &#123;</div><div class="line">        Intent serviceIntent = <span class="keyword">new</span> Intent();</div><div class="line">        serviceIntent.setAction(ACTION_CUSTOM_TABS_CONNECTION);</div><div class="line">        serviceIntent.setPackage(info.activityInfo.packageName);</div><div class="line">        <span class="comment">// Check if this package also resolves the Custom Tabs service.</span></div><div class="line">        <span class="keyword">if</span> (pm.resolveService(serviceIntent, <span class="number">0</span>) != <span class="keyword">null</span>) &#123;</div><div class="line">            packagesSupportingCustomTabs.add(info);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> packagesSupportingCustomTabs;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="允许用户不使用Custom-Tabs"><a href="#允许用户不使用Custom-Tabs" class="headerlink" title="允许用户不使用Custom Tabs"></a>允许用户不使用Custom Tabs</h4><p>为应用添加一个设置选项，允许用户通过默认浏览器而不是Custom Tab打开链接。如果我们的应用在添加Custom Tabs之前，都是通过默认浏览器打开链接显得尤为重要。</p>
 <h4 id="尽量让Native应用处理URL"><a href="#尽量让Native应用处理URL" class="headerlink" title="尽量让Native应用处理URL"></a>尽量让Native应用处理URL</h4><p>Native应用可以处理一些url。如果用户安装了Twitter APP，在点击tweet内的链接时，她更加希望Twitter应用能够处理这些链接。</p>
 <p>在应用内打开链接之前，检查手机里有没有其他APP能够处理这些url。</p>
@@ -519,7 +540,7 @@
 <p>如果不能避免延迟，确保我们的应用对可能的情况做好准备，当用户点击相同的链接多次时，不要多次打开CustomTab。</p>
 <h3 id="低版本API"><a href="#低版本API" class="headerlink" title="低版本API"></a>低版本API</h3><p>尽管整合Custom Tabs的推荐方式是使用Custom Tabs Support Library，低API版本的系统也是可以使用的。</p>
 <p>完整的Support Library的导入方法可以参见<a href="https://github.com/GoogleChrome/custom-tabs-client/tree/master/customtabs" target="_blank" rel="external">GitHub</a>,并可以做为一个起点。连接service的<a href="http://developer.android.com/guide/components/aidl.html" target="_blank" rel="external">AIDL文件</a>也被包含在其中，Chromium仓库中也包含了这些文件，而这些文件在Android Studio中是不能直接被使用的。</p>
-<h4 id="在低版本API中使用Custom-Tabs的基本方法"><a href="#在低版本API中使用Custom-Tabs的基本方法" class="headerlink" title="在低版本API中使用Custom Tabs的基本方法"></a>在低版本API中使用Custom Tabs的基本方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">String url = ¨https:<span class="comment">//github.com/marktony¨;</span></div><div class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW, Uri.parse(url)); </div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String EXTRA_CUSTOM_TABS_SESSION = <span class="string">"android.support.customtabs.extra.SESSION"</span>;</div><div class="line">Bundle extras = <span class="keyword">new</span> Bundle;</div><div class="line">extras.putBinder(EXTRA_CUSTOM_TABS_SESSION, </div><div class="line">   sessionICustomTabsCallback.asBinder() <span class="comment">/* 不需要session时设置为null */</span>);</div><div class="line">intent.putExtras(extras);</div></pre></td></tr></table></figure>
+<h4 id="在低版本API中使用Custom-Tabs的基本方法"><a href="#在低版本API中使用Custom-Tabs的基本方法" class="headerlink" title="在低版本API中使用Custom Tabs的基本方法"></a>在低版本API中使用Custom Tabs的基本方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">String url = ¨https:<span class="comment">//github.com/TonnyL¨;</span></div><div class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW, Uri.parse(url));</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String EXTRA_CUSTOM_TABS_SESSION = <span class="string">"android.support.customtabs.extra.SESSION"</span>;</div><div class="line">Bundle extras = <span class="keyword">new</span> Bundle;</div><div class="line">extras.putBinder(EXTRA_CUSTOM_TABS_SESSION,</div><div class="line">   sessionICustomTabsCallback.asBinder() <span class="comment">/* 不需要session时设置为null */</span>);</div><div class="line">intent.putExtras(extras);</div></pre></td></tr></table></figure>
 <h4 id="定制UI"><a href="#定制UI" class="headerlink" title="定制UI"></a>定制UI</h4><p>UI定制是通过向ACTION_VIEW Intent添加Extras实现的。用于定制UI的完整的extras keys的列表可以在<a href="http://developer.android.com/reference/android/support/customtabs/CustomTabsIntent.html" target="_blank" rel="external"> CustomTabsIntent docs </a>找到。下面是添加自定义的toolbar的颜色的示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String EXTRA_CUSTOM_TABS_TOOLBAR_COLOR = <span class="string">"android.support.customtabs.extra.TOOLBAR_COLOR"</span>;</div><div class="line">intent.putExtra(EXTRA_CUSTOM_TABS_TOOLBAR_COLOR, colorInt);</div></pre></td></tr></table></figure>
 <h4 id="连接Custom-Tabs-Service"><a href="#连接Custom-Tabs-Service" class="headerlink" title="连接Custom Tabs Service"></a>连接Custom Tabs Service</h4><p>Custom Tabs service和其他Android Service的使用方法相同。接口通过AIDL创建并且代理service类也会自动创建。</p>
@@ -527,7 +548,7 @@
 <h3 id="一些有用的网址"><a href="#一些有用的网址" class="headerlink" title="一些有用的网址"></a>一些有用的网址</h3><ul>
 <li><a href="https://github.com/GoogleChrome/custom-tabs-client" target="_blank" rel="external">Github Demo</a></li>
 <li><a href="http://stackoverflow.com/questions/tagged/chrome-custom-tabs" target="_blank" rel="external">Chrome Custom Tabs on StackOverflow</a></li>
-<li>我的项目地址:<a href="https://github.com/marktony/PaperPlane" target="_blank" rel="external">PaperPlane</a></li>
+<li>我的项目地址:<a href="https://github.com/TonnyL/PaperPlane" target="_blank" rel="external">PaperPlane</a></li>
 </ul>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如果我们的应用是面向国外用户的，那理所当然的，应该加入Chrome Custom Tabs的支持，这在很大程度上能够提升用户的体验。如果我们的应用只是面向国内用户，我的建议还是应该加上这项功能，毕竟，还是有部分用户安装了Chrome浏览器，当用户浏览到Custom Tab页面，应该也会像我一样，感觉到眼前一亮吧。</p>
 <p>文章比较长，感谢阅读。</p>
@@ -559,12 +580,16 @@
 <div id="comments">
     <!-- 多说评论框 start -->
     <div class="ds-thread"
-        data-thread-key=""
+        data-thread-key="2017/01/05/提升体验-Chrome-Custom-Tabs/"
         data-url="http://tonnyl.github.io/2017/01/05/提升体验-Chrome-Custom-Tabs/"
         data-title="提升体验-Chrome Custom Tabs">
     </div>
     <!-- 多说评论框 end -->
 </div>
+
+
+
+
 
 
 
@@ -648,7 +673,9 @@
             
                 <li>
                     <a href="mailto:marktonymengyi@gmail.com" target="_blank" title="Email Me">
-                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
                         Email Me
                     </a>
                 </li>
@@ -657,41 +684,43 @@
     </li>
 
     <!-- Homepage -->
-    <li id="sidebar-first-li">
-        <a href="/" target="_self">
-            <i class="material-icons sidebar-material-icons">home</i>
-            Home
-        </a>
-    </li>
-
-    <!-- I'm Feeling Lucky -->
-    <!--
-    <li class="dropdown">
-        <a href="" target="_self">
-            <i class="material-icons sidebar-material-icons">explore</i>
-             sidebar.imlucky
-        </a>
-    </li>
-    -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                Home
+            </a>
+        </li>
+        
+    
 
     <!-- Archives  -->
-    <li class="dropdown">
-        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-            <i class="material-icons sidebar-material-icons">inbox</i>
-             Archives
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    Archives
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/03/">March 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
-        </ul>
-    </li>
+                <a class="sidebar_archives-link" href="/archives/2017/03/">March 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Categories  -->
     
         <li class="dropdown">
             <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
                 Categories
                 <b class="caret"></b>
             </a>
@@ -700,14 +729,13 @@
                 <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/categories/GitHub/">GitHub<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/涨姿势/">涨姿势<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/计算机基础/">计算机基础<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/闲谈/">闲谈<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
+        
+            <li class="divider"></li>
+        
     
 
-    <!-- Divider -->
-    <li class="divider"></li>
-
-
     <!-- Pages  -->
-  	
+    
         <li>
             <a href="/about" title="About">
                 
@@ -716,20 +744,25 @@
                 About
             </a>
         </li>
-  	
+        
+            <li class="divider"></li>
+        
+    
 
-    <!-- Article Numebr  -->
-    <li>
-        <a href="/archives">
-            Number of articles
-            <span class="sidebar-badge">25</span>
-        </a>
-    </li>
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                Number of articles
+                <span class="sidebar-badge">25</span>
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
 </ul>
 
-
-        <!-- Sidebar Divider -->
-        <div class="sidebar-divider"></div>
 
         <!-- Sidebar Footer -->
         <!--
@@ -742,46 +775,60 @@ It will not impact the appearance and can give developers a lot of support :)
 它不会影响美观并可以给开发者很大的支持和动力。 :)
 -->
 
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
 <!-- Theme Material -->
-<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-        Theme - Material
-        <span class="sidebar-badge badge-circle">i</span>
-    </div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            Theme - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
 
 <!-- Help & Support -->
 <!--
-<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-    sidebar.help
-    <span class="mdl-button__ripple-container">
-      <span class="mdl-ripple"></span>
-    </span>
-  </div>
-</a>
+
+    <a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.help
+        <span class="mdl-button__ripple-container">
+          <span class="mdl-ripple"></span>
+        </span>
+      </div>
+    </a>
+
 -->
 
 <!-- Feedback -->
 <!--
-<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.feedback
-                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.feedback
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
 -->
 
-<!-- Abount Theme -->
+<!-- About Theme -->
 <!--
-<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.about_theme
-        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>-->
+
+    <a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+             sidebar.about_theme
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
+-->
 
     </div>
 
-    <!-- Sidebar Sponsor -->
+    <!-- Sidebar Image -->
     
 
 </aside>
@@ -805,12 +852,6 @@ It will not impact the appearance and can give developers a lot of support :)
         <div class="mdl-mini-footer--left-section sns-list">
     <!-- Twitter -->
     
-        <a href="https://twitter.com/twitter" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
-                <span class="visuallyhidden">Twitter</span>
-            </button><!--
-     --></a>
-    
 
     <!-- Facebook -->
     
@@ -818,7 +859,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Google + -->
     
         <a href="https://plus.google.com/101922840132193208151" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
                 <span class="visuallyhidden">Google Plus</span>
             </button><!--
      --></a>
@@ -827,7 +868,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Weibo -->
     
         <a href="http://weibo.com/5313690193/profile?topnav=1&amp;wvr=6" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
                 <span class="visuallyhidden">Weibo</span>
             </button><!--
      --></a>
@@ -836,7 +877,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Instagram -->
     
         <a href="https://www.instagram.com/tonny_lztl/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
                 <span class="visuallyhidden">Instagram</span>
             </button><!--
      --></a>
@@ -847,8 +888,8 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
-        <a href="https://github.com/marktony" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <a href="https://github.com/TonnyL" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
                 <span class="visuallyhidden">Github</span>
             </button><!--
      --></a>
@@ -860,7 +901,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Zhihu -->
     
         <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.svg);">
                 <span class="visuallyhidden">Zhihu</span>
             </button><!--
      --></a>
@@ -872,7 +913,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Telegram -->
     
         <a href="https://t.me/TonnyLZ" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.svg);">
                 <span class="visuallyhidden">Telegram</span>
             </button><!--
      --></a>
@@ -911,16 +952,20 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
                     <!-- Import File -->
-<script src="/js/highlight.min.js"></script>
-<script src="/js/js.min.js"></script>
-<script src="/js/nprogress.js"></script>
+
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/lazyload.min.js"></script>
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/js.min.js"></script>
+
+
+
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/nprogress.js"></script>
+
 
 <script type="text/javascript">
     NProgress.configure({
         showSpinner: true
     });
     NProgress.start();
-
     $('#nprogress .bar').css({
         'background': '#FF4081'
     });
@@ -931,7 +976,6 @@ It will not impact the appearance and can give developers a lot of support :)
         'border-top-color': '#FF4081',
         'border-left-color': '#FF4081'
     });
-
     setTimeout(function() {
         NProgress.done();
         $('.fade').removeClass('out');
@@ -939,8 +983,6 @@ It will not impact the appearance and can give developers a lot of support :)
 </script>
 
 
-
-    <script src="/js/smoothscroll.js"></script>
 
 
 
@@ -953,20 +995,23 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- 多说公共 js 代码 start -->
     <script type="text/javascript">
-        var duoshuoQuery = {
-            short_name: 'tonnysblog'
-        };
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = 'https://static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-             || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
+        queue.offer(function(){
+            var duoshuoQuery = {
+                short_name: 'tonnysblog'
+            };
+            (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';
+                ds.async = true;
+                ds.src = 'https://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        });
     </script>
     <!-- 多说公共 js 代码 end -->
+
 
 
 
@@ -997,7 +1042,7 @@ It will not impact the appearance and can give developers a lot of support :)
                 $input.addEventListener('input', function() {
                     var str='<ul class=\"search-result-list\">';
                     var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                    $resultContent.innerHTML = "";
+                    $resultContent.innerHTML = '';
                     if (this.value.trim().length <= 0) {
                         return;
                     }
@@ -1006,13 +1051,13 @@ It will not impact the appearance and can give developers a lot of support :)
                         var isMatch = true;
                         var content_index = [];
                         var data_title = data.title.trim().toLowerCase();
-                        var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g,'').toLowerCase();
                         var data_url = data.url;
                         var index_title = -1;
                         var index_content = -1;
                         var first_occur = -1;
                         // only match artiles with not empty titles and contents
-                        if(data_title != '' && data_content != '') {
+                        if(data_title !== '' && data_content !== '') {
                             keywords.forEach(function(keyword, i) {
                                 index_title = data_title.indexOf(keyword);
                                 index_content = data_content.indexOf(keyword);
@@ -1051,7 +1096,7 @@ It will not impact the appearance and can give developers a lot of support :)
                                     var regS = new RegExp(keyword, 'gi');
                                     match_content = match_content.replace(regS, '<em class="search-keyword">'+keyword+'</em>');
                                 })
-                                str += '<p class="search-result">' + match_content +'...</p>' +'</a>';
+                                str += '<p class="search-result">' + match_content + '...</p>' +'</a>';
                             }
                         }
                     });

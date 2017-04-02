@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-    <!--
+    <!-- 
         © Material Theme
         https://github.com/viosey/hexo-theme-material
-        Version: 1.2.6 -->
+        Version: 1.3.2 -->
 
     <!-- Title -->
     
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Tonny">
     <meta name="description" content="null">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,Android">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -50,6 +50,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="简洁优雅地实现夜间模式 | Tonny&#39;s Blog">
     <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="Android"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -59,82 +60,88 @@
         
     <![endif]-->
 
-    <!-- Import CSS -->
-    <link rel="stylesheet" href="/css/material.min.css">
-    <link rel="stylesheet" href="/css/style.min.css">
-    <!-- Config CSS -->
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="https://materialcdn.nfz.moe/hexo/1.3.2/css/material.min.css">
+        <link rel="stylesheet" href="https://materialcdn.nfz.moe/hexo/1.3.2/css/style.min.css">
+        <!-- Config CSS -->
 
 
 <!-- Other Styles -->
 <style>
-    body, html {
-        font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    }
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
 
-    a {
-        color: #00838F;
-    }
+  a {
+    color: #00838F;
+  }
 
-    .mdl-card__media,
-    #search-label,
-    #search-form-label:after,
-    #scheme-Paradox .hot_tags-count,
-    #scheme-Paradox .sidebar_archives-count,
-    #scheme-Paradox .sidebar-colored .sidebar-header,
-    #scheme-Paradox .sidebar-colored .sidebar-badge{
-        background-color: #0097A7 !important;
-    }
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
 
-    /* Sidebar User Drop Down Menu Text Color */
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-        color: #0097A7 !important;
-    }
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
 
-    #post_entry-right-info,
-    .sidebar-colored .sidebar-nav li:hover > a,
-    .sidebar-colored .sidebar-nav li:hover > a i,
-    .sidebar-colored .sidebar-nav li > a:hover,
-    .sidebar-colored .sidebar-nav li > a:hover i,
-    .sidebar-colored .sidebar-nav li > a:focus i,
-    .sidebar-colored .sidebar-nav > .open > a,
-    .sidebar-colored .sidebar-nav > .open > a:hover,
-    .sidebar-colored .sidebar-nav > .open > a:focus,
-    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-        color: #0097A7 !important;
-    }
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
 
-    .toTop {
-        background: #757575 !important;
-    }
+  .toTop {
+    background: #757575 !important;
+  }
 
-    .material-layout .material-post>.material-nav,
-    .material-layout .material-index>.material-nav,
-    .material-nav a {
-        color: #757575;
-    }
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
 
-    #scheme-Paradox .MD-burger-layer {
-        background-color: #757575;
-    }
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
 
-    #scheme-Paradox #post-toc-trigger-btn {
-        color: #757575;
-    }
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
 
-    .post-toc a:hover {
-        color: #00838F;
-        text-decoration: underline;
-    }
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
 </style>
 
 
 <!-- Theme Background Related-->
 
     <style>
-        body{
-            background-image: url(https://source.unsplash.com/daily);
-        }
+      body {
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
+        background-color: #fff;
+      }
     </style>
 
 
@@ -143,34 +150,48 @@
 <!-- Fade Effect -->
 
     <style>
-        .fade {
-            transition: all 800ms linear;
-            -webkit-transform: translate3d(0,0,0);
-            -moz-transform: translate3d(0,0,0);
-            -ms-transform: translate3d(0,0,0);
-            -o-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0);
-            opacity: 1;
-        }
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
 
-        .fade.out{
-            opacity: 0;
-        }
+      .fade.out{
+        opacity: 0;
+      }
     </style>
 
 
-    <script src="/js/jquery.min.js"></script>
+        <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/jquery.min.js"></script>
+        <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/queue.js"></script>
+    
 
-    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
-
-    <!-- UC Browser Compatible-->
+    <!-- UC Browser Compatible -->
     <script>
         var agent = navigator.userAgent.toLowerCase();
         if(agent.indexOf('ucbrowser')>0) {
-            document.write('<link rel="stylesheet" href="/css/uc.css">');
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
             alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
         }
     </script>
+
+    
+
+    
+
+    <!-- Bing Background -->
+    
+        <script type="text/javascript">
+            queue.offer(function(){
+                $('body').attr('data-original', 'https://api.i-meto.com/bing?new');
+                $('body.lazy').lazyload();
+            });
+        </script>
+    
 
     <!-- Custom Head -->
     
@@ -178,7 +199,7 @@
 
 
     
-        <body id="scheme-Paradox">
+        <body id="scheme-Paradox" class="lazy">
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -386,7 +407,7 @@
                 
 
                 <!-- Post Content -->
-                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>使用官方Support Library实现日间与夜间模式<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android 6.0 Marshmallow 预览版中曾经短暂出现过相关的夜间模式的功能，只是在正式版中被移除了，在Android 7.0 Nougat上，用户们再次经历了「得而复失」的遗憾，在开发者预览版中，夜间模式和暗色模式先是开启，然后有再次被移除。而在正式版中，夜间模式也没有出现。但其实相关的代码一直存在于系统中，只是默认没有被开启。如何开启这项功能，可以参考少数派的这一篇文章，<a href="http://sspai.com/35273" target="_blank" rel="external">帮你找回 Android 7.0 夜间模式的 2 款应用</a>。</p>
@@ -397,18 +418,18 @@
 <p>由于Support Library在23.2.0的版本中才添加了Theme.AppCompat.DayNight主题，所以依赖的版本必须是高于23.2.0的，并且，这个特性支持的最低SDK版本为14，所以，需要兼容Android 4.0的设备，是不能使用这个特性的，在API Level 14以下的设备会默认使用亮色主题。不过现在4.0以下的设备应该比较少了吧，毕竟微信的minSdkVersion都设置为14了。</p>
 <h3 id="准备资源"><a href="#准备资源" class="headerlink" title="准备资源"></a>准备资源</h3><ol>
 <li><p>让我们自己的主题继承并应用DayNight主题。</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppTheme"</span> <span class="attr">parent</span>=<span class="string">"Theme.AppCompat.DayNight.DarkActionBar"</span>&gt;</span><span class="xml"></span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>@color/colorPrimaryDark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--customize your theme here--&gt;</span></div><div class="line">        </div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppTheme"</span> <span class="attr">parent</span>=<span class="string">"Theme.AppCompat.DayNight.DarkActionBar"</span>&gt;</span><span class="xml"></span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>@color/colorPrimaryDark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--customize your theme here--&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>新建夜间模式资源文件夹:在<code>res</code>目录下新建<code>values-night</code>文件夹，然后在此目录下新建<code>colors.xml</code>文件在夜间模式下的应用的资源。当然也可以根据需要新建<code>drawable-night</code>,<code>layout-night</code>等后缀为<code>-night</code>的夜间资源文件夹。<br>我的<code>values</code>和<code>values-night</code>目录下的<code>colors.xml</code>的内容如下:</p>
  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="comment">&lt;!--values-colors.xml--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>#009688<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>#00796B<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>#009688<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"textColorPrimary"</span>&gt;</span>#616161<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"viewBackground"</span>&gt;</span>@android:color/white<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="comment">&lt;!--values-night-colors.xml&gt;</span></div><div class="line">&lt;resources&gt;</div><div class="line">    &lt;color name="colorPrimary"&gt;#35464e&lt;/color&gt;</div><div class="line">    &lt;color name="colorPrimaryDark"&gt;#212a2f&lt;/color&gt;</div><div class="line">    &lt;color name="colorAccent"&gt;#212a2f&lt;/color&gt;</div><div class="line">    &lt;color name="textColorPrimary"&gt;#616161&lt;/color&gt;</div><div class="line">    &lt;color name="viewBackground"&gt;#212a2f&lt;/color&gt;</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
 </li>
 <li><p>使Activity继承自AppCompatActivity。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="comment">// code here</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    	</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">// code here</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><h4 id="静态应用"><a href="#静态应用" class="headerlink" title="静态应用"></a>静态应用</h4><p>在Application的继承类下设置初始主题。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line">        </div><div class="line">		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">		<span class="comment">// other code here</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line"></div><div class="line">		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">		<span class="comment">// other code here</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里<code>AppCompatDelegate.setDefaultNightMode()</code>方法可以接受的参数值有4个：</p>
 <ul>
 <li>MODE_NIGHT_NO. Always use the day (light) theme(一直应用日间(light)主题).</li>
@@ -417,7 +438,7 @@
 <li>MODE_NIGHT_FOLLOW_SYSTEM(默认选项). This setting follows the system’s setting, which is essentially MODE_NIGHT_NO(跟随系统，通常为MODE_NIGHT_NO).</li>
 </ul>
 <p>我们可以在任何时候调用这个方法，因为这个方法是静态的。但是这个值并不是一直存在的，每次在开启进程时需要重新设置。在上面的代码中，我是在<code>onCreate()</code>方法中设置的，网上也有大神建议在Activity或者Application的<strong>static</strong>代码块中设置。如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">	    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line">        </div><div class="line">		<span class="comment">// other code here</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">	    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line"></div><div class="line">		<span class="comment">// other code here</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="动态应用"><a href="#动态应用" class="headerlink" title="动态应用"></a>动态应用</h4><p>虽然上面的静态应用的设置非常简单，但是这种方式的应用场景还是太少了。我们更多的还是需要动态的根据需要动态的切换。</p>
 <ol>
 <li><p>检测当前主题模式</p>
@@ -426,11 +447,11 @@
 <li><p>设置主题</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(mode == Configuration.UI_MODE_NIGHT_YES) &#123;</div><div class="line">	AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(mode == Configuration.UI_MODE_NIGHT_NO) &#123;</div><div class="line">	AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="comment">// blah blah</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">recreate();</div></pre></td></tr></table></figure>
 <p> 在调用<code>recreate()</code>方法之前，还可以创建一些动画进行过渡。而且，众所周知，调用<code>recreate()</code>需要对一些数据进行保存，例如fragment，CheckBox,RadioBox等。如下所示:</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       	<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">   	</div><div class="line">   	 	<span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">   	 		FragmentManager manager = getChildFragmentManager();</div><div class="line">			doubanMomentFragment = (DoubanMomentFragment) manager.getFragment(savedInstanceState, <span class="string">"douban"</span>);</div><div class="line">   	 	&#125; <span class="keyword">else</span> &#123;</div><div class="line">   	 		doubanMomentFragment = DoubanMomentFragment.newInstance();</div><div class="line">   	 	&#125;</div><div class="line">   	&#125;</div><div class="line">   	</div><div class="line">   	<span class="meta">@Override</span></div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">      	 <span class="keyword">super</span>.onSaveInstanceState(outState);</div><div class="line">      	 FragmentManager manager = getChildFragmentManager();</div><div class="line">      	 manager.putFragment(outState, <span class="string">"douban"</span>, doubanMomentFragment);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       	<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line"></div><div class="line">   	 	<span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">   	 		FragmentManager manager = getChildFragmentManager();</div><div class="line">			doubanMomentFragment = (DoubanMomentFragment) manager.getFragment(savedInstanceState, <span class="string">"douban"</span>);</div><div class="line">   	 	&#125; <span class="keyword">else</span> &#123;</div><div class="line">   	 		doubanMomentFragment = DoubanMomentFragment.newInstance();</div><div class="line">   	 	&#125;</div><div class="line">   	&#125;</div><div class="line"></div><div class="line">   	<span class="meta">@Override</span></div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">      	 <span class="keyword">super</span>.onSaveInstanceState(outState);</div><div class="line">      	 FragmentManager manager = getChildFragmentManager();</div><div class="line">      	 manager.putFragment(outState, <span class="string">"douban"</span>, doubanMomentFragment);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 我们也可以把主题的值存储到SharedPreference中，已便于应用在下一次启动时自动应用主题。</p>
 </li>
 </ol>
-<pre><code>我们也可以把主题的值存储到SharedPreference中，已便于应用在下一次启动时自动应用主题。
-</code></pre><h4 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h4><ul>
+<h4 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h4><ul>
 <li><p>Q:系统默认的颜色不合我的口味怎么办？</p>
 <p>A:使用主题属性,例如:<code>textColor:?android:attr/textColorPrimary</code>,<code>color:?attr/colorControlNormal</code>等。</p>
 </li>
@@ -441,8 +462,8 @@
 <p>A:因为使用<code>MODE_NIGHT_AUTO</code>需要请求坐标权限，获取系统的位置。你肯定会说了，这尼玛不是坑爹吗？如果程序已经授予了坐标权限(location permission)(如果你的target SDK为23或者更高，需要考虑运行时权限)，AppCompat会试着去获取上次保存的坐标，根据坐标来计算日出与日落的时间。如果程序没有位置权限或者LocationManager没有存储上次坐标的信息呢？系统或默认设置为早上6点钟为日出，下午10点为日落。用户调整系统时间，当前的主题也会随之改变。如果我们不希望用户在设定主题后，主题还会随着时间改变,<code>MODE_NIGHT_AUTO</code>就不适用了。</p>
 </li>
 </ul>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本项目代码<a href="https://github.com/marktony/PaperPlane" target="_blank" rel="external">PaperPlane</a> .<br>运行效果</p>
-<img src="/2016/12/31/简洁优雅地实现夜间模式/paper_plane.gif" alt="Paper Plane" title="Paper Plane"> 
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本项目代码<a href="https://github.com/TonnyL/PaperPlane" target="_blank" rel="external">PaperPlane</a> .<br>运行效果</p>
+<img src="/2016/12/31/简洁优雅地实现夜间模式/paper_plane.gif" alt="Paper Plane" title="Paper Plane">
 <p>在Android 6.0及以下的设备上，本项目运行时会有切换的过渡动画效果，但是不支持Android 7.0及以上的设备。</p>
 
     
@@ -472,12 +493,16 @@
 <div id="comments">
     <!-- 多说评论框 start -->
     <div class="ds-thread"
-        data-thread-key=""
+        data-thread-key="2016/12/31/简洁优雅地实现夜间模式/"
         data-url="http://tonnyl.github.io/2016/12/31/简洁优雅地实现夜间模式/"
         data-title="简洁优雅地实现夜间模式">
     </div>
     <!-- 多说评论框 end -->
 </div>
+
+
+
+
 
 
 
@@ -561,7 +586,9 @@
             
                 <li>
                     <a href="mailto:marktonymengyi@gmail.com" target="_blank" title="Email Me">
-                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
                         Email Me
                     </a>
                 </li>
@@ -570,41 +597,43 @@
     </li>
 
     <!-- Homepage -->
-    <li id="sidebar-first-li">
-        <a href="/" target="_self">
-            <i class="material-icons sidebar-material-icons">home</i>
-            Home
-        </a>
-    </li>
-
-    <!-- I'm Feeling Lucky -->
-    <!--
-    <li class="dropdown">
-        <a href="" target="_self">
-            <i class="material-icons sidebar-material-icons">explore</i>
-             sidebar.imlucky
-        </a>
-    </li>
-    -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                Home
+            </a>
+        </li>
+        
+    
 
     <!-- Archives  -->
-    <li class="dropdown">
-        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-            <i class="material-icons sidebar-material-icons">inbox</i>
-             Archives
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    Archives
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/03/">March 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
-        </ul>
-    </li>
+                <a class="sidebar_archives-link" href="/archives/2017/03/">March 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Categories  -->
     
         <li class="dropdown">
             <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
                 Categories
                 <b class="caret"></b>
             </a>
@@ -613,14 +642,13 @@
                 <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/categories/GitHub/">GitHub<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/涨姿势/">涨姿势<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/计算机基础/">计算机基础<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/闲谈/">闲谈<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
+        
+            <li class="divider"></li>
+        
     
 
-    <!-- Divider -->
-    <li class="divider"></li>
-
-
     <!-- Pages  -->
-  	
+    
         <li>
             <a href="/about" title="About">
                 
@@ -629,20 +657,25 @@
                 About
             </a>
         </li>
-  	
+        
+            <li class="divider"></li>
+        
+    
 
-    <!-- Article Numebr  -->
-    <li>
-        <a href="/archives">
-            Number of articles
-            <span class="sidebar-badge">25</span>
-        </a>
-    </li>
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                Number of articles
+                <span class="sidebar-badge">25</span>
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
 </ul>
 
-
-        <!-- Sidebar Divider -->
-        <div class="sidebar-divider"></div>
 
         <!-- Sidebar Footer -->
         <!--
@@ -655,46 +688,60 @@ It will not impact the appearance and can give developers a lot of support :)
 它不会影响美观并可以给开发者很大的支持和动力。 :)
 -->
 
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
 <!-- Theme Material -->
-<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-        Theme - Material
-        <span class="sidebar-badge badge-circle">i</span>
-    </div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            Theme - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
 
 <!-- Help & Support -->
 <!--
-<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-    sidebar.help
-    <span class="mdl-button__ripple-container">
-      <span class="mdl-ripple"></span>
-    </span>
-  </div>
-</a>
+
+    <a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.help
+        <span class="mdl-button__ripple-container">
+          <span class="mdl-ripple"></span>
+        </span>
+      </div>
+    </a>
+
 -->
 
 <!-- Feedback -->
 <!--
-<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.feedback
-                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.feedback
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
 -->
 
-<!-- Abount Theme -->
+<!-- About Theme -->
 <!--
-<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.about_theme
-        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>-->
+
+    <a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+             sidebar.about_theme
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
+-->
 
     </div>
 
-    <!-- Sidebar Sponsor -->
+    <!-- Sidebar Image -->
     
 
 </aside>
@@ -718,12 +765,6 @@ It will not impact the appearance and can give developers a lot of support :)
         <div class="mdl-mini-footer--left-section sns-list">
     <!-- Twitter -->
     
-        <a href="https://twitter.com/twitter" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
-                <span class="visuallyhidden">Twitter</span>
-            </button><!--
-     --></a>
-    
 
     <!-- Facebook -->
     
@@ -731,7 +772,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Google + -->
     
         <a href="https://plus.google.com/101922840132193208151" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
                 <span class="visuallyhidden">Google Plus</span>
             </button><!--
      --></a>
@@ -740,7 +781,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Weibo -->
     
         <a href="http://weibo.com/5313690193/profile?topnav=1&amp;wvr=6" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
                 <span class="visuallyhidden">Weibo</span>
             </button><!--
      --></a>
@@ -749,7 +790,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Instagram -->
     
         <a href="https://www.instagram.com/tonny_lztl/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
                 <span class="visuallyhidden">Instagram</span>
             </button><!--
      --></a>
@@ -760,8 +801,8 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
-        <a href="https://github.com/marktony" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <a href="https://github.com/TonnyL" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
                 <span class="visuallyhidden">Github</span>
             </button><!--
      --></a>
@@ -773,7 +814,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Zhihu -->
     
         <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.svg);">
                 <span class="visuallyhidden">Zhihu</span>
             </button><!--
      --></a>
@@ -785,7 +826,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Telegram -->
     
         <a href="https://t.me/TonnyLZ" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.svg);">
                 <span class="visuallyhidden">Telegram</span>
             </button><!--
      --></a>
@@ -824,16 +865,20 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
                     <!-- Import File -->
-<script src="/js/highlight.min.js"></script>
-<script src="/js/js.min.js"></script>
-<script src="/js/nprogress.js"></script>
+
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/lazyload.min.js"></script>
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/js.min.js"></script>
+
+
+
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/nprogress.js"></script>
+
 
 <script type="text/javascript">
     NProgress.configure({
         showSpinner: true
     });
     NProgress.start();
-
     $('#nprogress .bar').css({
         'background': '#FF4081'
     });
@@ -844,7 +889,6 @@ It will not impact the appearance and can give developers a lot of support :)
         'border-top-color': '#FF4081',
         'border-left-color': '#FF4081'
     });
-
     setTimeout(function() {
         NProgress.done();
         $('.fade').removeClass('out');
@@ -852,8 +896,6 @@ It will not impact the appearance and can give developers a lot of support :)
 </script>
 
 
-
-    <script src="/js/smoothscroll.js"></script>
 
 
 
@@ -866,20 +908,23 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- 多说公共 js 代码 start -->
     <script type="text/javascript">
-        var duoshuoQuery = {
-            short_name: 'tonnysblog'
-        };
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = 'https://static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-             || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
+        queue.offer(function(){
+            var duoshuoQuery = {
+                short_name: 'tonnysblog'
+            };
+            (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';
+                ds.async = true;
+                ds.src = 'https://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        });
     </script>
     <!-- 多说公共 js 代码 end -->
+
 
 
 
@@ -910,7 +955,7 @@ It will not impact the appearance and can give developers a lot of support :)
                 $input.addEventListener('input', function() {
                     var str='<ul class=\"search-result-list\">';
                     var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                    $resultContent.innerHTML = "";
+                    $resultContent.innerHTML = '';
                     if (this.value.trim().length <= 0) {
                         return;
                     }
@@ -919,13 +964,13 @@ It will not impact the appearance and can give developers a lot of support :)
                         var isMatch = true;
                         var content_index = [];
                         var data_title = data.title.trim().toLowerCase();
-                        var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g,'').toLowerCase();
                         var data_url = data.url;
                         var index_title = -1;
                         var index_content = -1;
                         var first_occur = -1;
                         // only match artiles with not empty titles and contents
-                        if(data_title != '' && data_content != '') {
+                        if(data_title !== '' && data_content !== '') {
                             keywords.forEach(function(keyword, i) {
                                 index_title = data_title.indexOf(keyword);
                                 index_content = data_content.indexOf(keyword);
@@ -964,7 +1009,7 @@ It will not impact the appearance and can give developers a lot of support :)
                                     var regS = new RegExp(keyword, 'gi');
                                     match_content = match_content.replace(regS, '<em class="search-keyword">'+keyword+'</em>');
                                 })
-                                str += '<p class="search-result">' + match_content +'...</p>' +'</a>';
+                                str += '<p class="search-result">' + match_content + '...</p>' +'</a>';
                             }
                         }
                     });

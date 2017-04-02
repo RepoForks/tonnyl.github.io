@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-    <!--
+    <!-- 
         © Material Theme
         https://github.com/viosey/hexo-theme-material
-        Version: 1.2.6 -->
+        Version: 1.3.2 -->
 
     <!-- Title -->
     
@@ -50,6 +50,7 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Archives: 2016/10 | Tonny&#39;s Blog">
     <meta property="og:description" content="null">
+    
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -59,82 +60,88 @@
         
     <![endif]-->
 
-    <!-- Import CSS -->
-    <link rel="stylesheet" href="/css/material.min.css">
-    <link rel="stylesheet" href="/css/style.min.css">
-    <!-- Config CSS -->
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="https://materialcdn.nfz.moe/hexo/1.3.2/css/material.min.css">
+        <link rel="stylesheet" href="https://materialcdn.nfz.moe/hexo/1.3.2/css/style.min.css">
+        <!-- Config CSS -->
 
 
 <!-- Other Styles -->
 <style>
-    body, html {
-        font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    }
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
 
-    a {
-        color: #00838F;
-    }
+  a {
+    color: #00838F;
+  }
 
-    .mdl-card__media,
-    #search-label,
-    #search-form-label:after,
-    #scheme-Paradox .hot_tags-count,
-    #scheme-Paradox .sidebar_archives-count,
-    #scheme-Paradox .sidebar-colored .sidebar-header,
-    #scheme-Paradox .sidebar-colored .sidebar-badge{
-        background-color: #0097A7 !important;
-    }
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
 
-    /* Sidebar User Drop Down Menu Text Color */
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-        color: #0097A7 !important;
-    }
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
 
-    #post_entry-right-info,
-    .sidebar-colored .sidebar-nav li:hover > a,
-    .sidebar-colored .sidebar-nav li:hover > a i,
-    .sidebar-colored .sidebar-nav li > a:hover,
-    .sidebar-colored .sidebar-nav li > a:hover i,
-    .sidebar-colored .sidebar-nav li > a:focus i,
-    .sidebar-colored .sidebar-nav > .open > a,
-    .sidebar-colored .sidebar-nav > .open > a:hover,
-    .sidebar-colored .sidebar-nav > .open > a:focus,
-    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-        color: #0097A7 !important;
-    }
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
 
-    .toTop {
-        background: #757575 !important;
-    }
+  .toTop {
+    background: #757575 !important;
+  }
 
-    .material-layout .material-post>.material-nav,
-    .material-layout .material-index>.material-nav,
-    .material-nav a {
-        color: #757575;
-    }
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
 
-    #scheme-Paradox .MD-burger-layer {
-        background-color: #757575;
-    }
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
 
-    #scheme-Paradox #post-toc-trigger-btn {
-        color: #757575;
-    }
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
 
-    .post-toc a:hover {
-        color: #00838F;
-        text-decoration: underline;
-    }
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
 </style>
 
 
 <!-- Theme Background Related-->
 
     <style>
-        body{
-            background-image: url(https://source.unsplash.com/daily);
-        }
+      body {
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
+        background-color: #fff;
+      }
     </style>
 
 
@@ -143,34 +150,48 @@
 <!-- Fade Effect -->
 
     <style>
-        .fade {
-            transition: all 800ms linear;
-            -webkit-transform: translate3d(0,0,0);
-            -moz-transform: translate3d(0,0,0);
-            -ms-transform: translate3d(0,0,0);
-            -o-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0);
-            opacity: 1;
-        }
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
 
-        .fade.out{
-            opacity: 0;
-        }
+      .fade.out{
+        opacity: 0;
+      }
     </style>
 
 
-    <script src="/js/jquery.min.js"></script>
+        <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/jquery.min.js"></script>
+        <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/queue.js"></script>
+    
 
-    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
-
-    <!-- UC Browser Compatible-->
+    <!-- UC Browser Compatible -->
     <script>
         var agent = navigator.userAgent.toLowerCase();
         if(agent.indexOf('ucbrowser')>0) {
-            document.write('<link rel="stylesheet" href="/css/uc.css">');
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
             alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
         }
     </script>
+
+    
+
+    
+
+    <!-- Bing Background -->
+    
+        <script type="text/javascript">
+            queue.offer(function(){
+                $('body').attr('data-original', 'https://api.i-meto.com/bing?new');
+                $('body.lazy').lazyload();
+            });
+        </script>
+    
 
     <!-- Custom Head -->
     
@@ -178,7 +199,7 @@
 
 
     
-        <body id="scheme-Paradox">
+        <body id="scheme-Paradox" class="lazy">
             <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
@@ -200,10 +221,15 @@
     
     <div class="locate-thumbnail-symbol"></div>
 
+    <!-- Pin on top -->
+    
+
+    <!-- Normal Post -->
     
         
+        
             <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
+            <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
     <!-- Post Thumbnail -->
     
         
@@ -248,8 +274,10 @@
                 <!-- Comment Number -->
                 &nbsp;|&nbsp;
                 <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="" data-count-type="comments"></span>
+                        <span class="ds-thread-count" data-thread-key="2016/10/31/macOS安装gcc教程/" data-count-type="comments"></span>
                 </span>
+            
+
             
 
             <!-- Post Views -->
@@ -261,10 +289,12 @@
 
         
         
+        
     
         
+        
             <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
+            <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
     <!-- Post Thumbnail -->
     
         
@@ -309,8 +339,10 @@
                 <!-- Comment Number -->
                 &nbsp;|&nbsp;
                 <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="" data-count-type="comments"></span>
+                        <span class="ds-thread-count" data-thread-key="2016/10/21/Android-Studio新建Library并上传到JCenter/" data-count-type="comments"></span>
                 </span>
+            
+
             
 
             <!-- Post Views -->
@@ -320,6 +352,7 @@
     </div>
 </div>
 
+        
         
         
     
@@ -387,7 +420,9 @@
             
                 <li>
                     <a href="mailto:marktonymengyi@gmail.com" target="_blank" title="Email Me">
-                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
                         Email Me
                     </a>
                 </li>
@@ -396,41 +431,43 @@
     </li>
 
     <!-- Homepage -->
-    <li id="sidebar-first-li">
-        <a href="/" target="_self">
-            <i class="material-icons sidebar-material-icons">home</i>
-            Home
-        </a>
-    </li>
-
-    <!-- I'm Feeling Lucky -->
-    <!--
-    <li class="dropdown">
-        <a href="" target="_self">
-            <i class="material-icons sidebar-material-icons">explore</i>
-             sidebar.imlucky
-        </a>
-    </li>
-    -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                Home
+            </a>
+        </li>
+        
+    
 
     <!-- Archives  -->
-    <li class="dropdown">
-        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-            <i class="material-icons sidebar-material-icons">inbox</i>
-             Archives
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    Archives
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/03/">March 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
-        </ul>
-    </li>
+                <a class="sidebar_archives-link" href="/archives/2017/03/">March 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">February 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">January 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">December 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">November 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">October 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">September 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">July 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">June 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">May 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">April 2016<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
 
     <!-- Categories  -->
     
         <li class="dropdown">
             <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
                 Categories
                 <b class="caret"></b>
             </a>
@@ -439,14 +476,13 @@
                 <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/categories/GitHub/">GitHub<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/涨姿势/">涨姿势<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/计算机基础/">计算机基础<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/闲谈/">闲谈<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
+        
+            <li class="divider"></li>
+        
     
 
-    <!-- Divider -->
-    <li class="divider"></li>
-
-
     <!-- Pages  -->
-  	
+    
         <li>
             <a href="/about" title="About">
                 
@@ -455,20 +491,25 @@
                 About
             </a>
         </li>
-  	
+        
+            <li class="divider"></li>
+        
+    
 
-    <!-- Article Numebr  -->
-    <li>
-        <a href="/archives">
-            Number of articles
-            <span class="sidebar-badge">25</span>
-        </a>
-    </li>
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                Number of articles
+                <span class="sidebar-badge">25</span>
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
 </ul>
 
-
-        <!-- Sidebar Divider -->
-        <div class="sidebar-divider"></div>
 
         <!-- Sidebar Footer -->
         <!--
@@ -481,46 +522,60 @@ It will not impact the appearance and can give developers a lot of support :)
 它不会影响美观并可以给开发者很大的支持和动力。 :)
 -->
 
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
 <!-- Theme Material -->
-<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-        Theme - Material
-        <span class="sidebar-badge badge-circle">i</span>
-    </div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            Theme - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
 
 <!-- Help & Support -->
 <!--
-<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-    sidebar.help
-    <span class="mdl-button__ripple-container">
-      <span class="mdl-ripple"></span>
-    </span>
-  </div>
-</a>
+
+    <a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.help
+        <span class="mdl-button__ripple-container">
+          <span class="mdl-ripple"></span>
+        </span>
+      </div>
+    </a>
+
 -->
 
 <!-- Feedback -->
 <!--
-<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.feedback
-                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>
+
+    <a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+        sidebar.feedback
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
 -->
 
-<!-- Abount Theme -->
+<!-- About Theme -->
 <!--
-<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
-    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-         sidebar.about_theme
-        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
-</a>-->
+
+    <a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+             sidebar.about_theme
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
+-->
 
     </div>
 
-    <!-- Sidebar Sponsor -->
+    <!-- Sidebar Image -->
     
 
 </aside>
@@ -544,12 +599,6 @@ It will not impact the appearance and can give developers a lot of support :)
         <div class="mdl-mini-footer--left-section sns-list">
     <!-- Twitter -->
     
-        <a href="https://twitter.com/twitter" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
-                <span class="visuallyhidden">Twitter</span>
-            </button><!--
-     --></a>
-    
 
     <!-- Facebook -->
     
@@ -557,7 +606,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Google + -->
     
         <a href="https://plus.google.com/101922840132193208151" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
                 <span class="visuallyhidden">Google Plus</span>
             </button><!--
      --></a>
@@ -566,7 +615,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Weibo -->
     
         <a href="http://weibo.com/5313690193/profile?topnav=1&amp;wvr=6" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
                 <span class="visuallyhidden">Weibo</span>
             </button><!--
      --></a>
@@ -575,7 +624,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Instagram -->
     
         <a href="https://www.instagram.com/tonny_lztl/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
                 <span class="visuallyhidden">Instagram</span>
             </button><!--
      --></a>
@@ -586,8 +635,8 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
-        <a href="https://github.com/marktony" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <a href="https://github.com/TonnyL" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
                 <span class="visuallyhidden">Github</span>
             </button><!--
      --></a>
@@ -599,7 +648,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Zhihu -->
     
         <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.svg);">
                 <span class="visuallyhidden">Zhihu</span>
             </button><!--
      --></a>
@@ -611,7 +660,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Telegram -->
     
         <a href="https://t.me/TonnyLZ" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.png);">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-telegram.svg);">
                 <span class="visuallyhidden">Telegram</span>
             </button><!--
      --></a>
@@ -650,16 +699,20 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
                     <!-- Import File -->
-<script src="/js/highlight.min.js"></script>
-<script src="/js/js.min.js"></script>
-<script src="/js/nprogress.js"></script>
+
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/lazyload.min.js"></script>
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/js.min.js"></script>
+
+
+
+    <script src="https://materialcdn.nfz.moe/hexo/1.3.2/js/nprogress.js"></script>
+
 
 <script type="text/javascript">
     NProgress.configure({
         showSpinner: true
     });
     NProgress.start();
-
     $('#nprogress .bar').css({
         'background': '#FF4081'
     });
@@ -670,7 +723,6 @@ It will not impact the appearance and can give developers a lot of support :)
         'border-top-color': '#FF4081',
         'border-left-color': '#FF4081'
     });
-
     setTimeout(function() {
         NProgress.done();
         $('.fade').removeClass('out');
@@ -678,8 +730,6 @@ It will not impact the appearance and can give developers a lot of support :)
 </script>
 
 
-
-    <script src="/js/smoothscroll.js"></script>
 
 
 
@@ -692,20 +742,23 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- 多说公共 js 代码 start -->
     <script type="text/javascript">
-        var duoshuoQuery = {
-            short_name: 'tonnysblog'
-        };
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = 'https://static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-             || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
+        queue.offer(function(){
+            var duoshuoQuery = {
+                short_name: 'tonnysblog'
+            };
+            (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';
+                ds.async = true;
+                ds.src = 'https://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        });
     </script>
     <!-- 多说公共 js 代码 end -->
+
 
 
 
@@ -736,7 +789,7 @@ It will not impact the appearance and can give developers a lot of support :)
                 $input.addEventListener('input', function() {
                     var str='<ul class=\"search-result-list\">';
                     var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                    $resultContent.innerHTML = "";
+                    $resultContent.innerHTML = '';
                     if (this.value.trim().length <= 0) {
                         return;
                     }
@@ -745,13 +798,13 @@ It will not impact the appearance and can give developers a lot of support :)
                         var isMatch = true;
                         var content_index = [];
                         var data_title = data.title.trim().toLowerCase();
-                        var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g,'').toLowerCase();
                         var data_url = data.url;
                         var index_title = -1;
                         var index_content = -1;
                         var first_occur = -1;
                         // only match artiles with not empty titles and contents
-                        if(data_title != '' && data_content != '') {
+                        if(data_title !== '' && data_content !== '') {
                             keywords.forEach(function(keyword, i) {
                                 index_title = data_title.indexOf(keyword);
                                 index_content = data_content.indexOf(keyword);
@@ -790,7 +843,7 @@ It will not impact the appearance and can give developers a lot of support :)
                                     var regS = new RegExp(keyword, 'gi');
                                     match_content = match_content.replace(regS, '<em class="search-keyword">'+keyword+'</em>');
                                 })
-                                str += '<p class="search-result">' + match_content +'...</p>' +'</a>';
+                                str += '<p class="search-result">' + match_content + '...</p>' +'</a>';
                             }
                         }
                     });
