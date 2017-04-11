@@ -421,20 +421,75 @@
 <a id="more"></a>
 <ul>
 <li><p>SwipeRefreshLayout setRefreshing()方法失败<br>解决方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">swipeRefreshLayout.post(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        swipeRefreshLayout.setRefreshing(<span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<pre><code class="java">swipeRefreshLayout.post(new Runnable() {
+  @Override
+  public void run() {
+      swipeRefreshLayout.setRefreshing(true);
+  }
+});
+</code></pre>
 </li>
 <li><p>Recyclerview与SwipeRefreshLayout滑动事件冲突<br>界面中同时有这两种view时，滑动时间便冲突了。知乎android客户端设置界面在无网络连接时，也存在同样的滑动事件冲突的问题，但是它的布局应该是SwipeRefreshLayout和ScrollView冲突。<br>解决方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">recyclerView.setOnScrollListener(<span class="keyword">new</span> RecyclerView.OnScrollListener() &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScrolled</span><span class="params">(RecyclerView recyclerView, <span class="keyword">int</span> dx, <span class="keyword">int</span> dy)</span> </span>&#123;</div><div class="line">               <span class="keyword">super</span>.onScrolled(recyclerView, dx, dy);</div><div class="line"></div><div class="line">               <span class="comment">// 确保只有当RecyclerView的item滑动到最上面的一个时RefreshLayout才能下拉</span></div><div class="line">               refreshLayout.setEnabled(linearLayoutManager.findFirstVisibleItemPosition() == <span class="number">0</span>);</div><div class="line">           &#125;</div><div class="line">       &#125;);</div></pre></td></tr></table></figure>
+<pre><code class="java">recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+          @Override
+          public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+              super.onScrolled(recyclerView, dx, dy);
+
+              // 确保只有当RecyclerView的item滑动到最上面的一个时RefreshLayout才能下拉
+              refreshLayout.setEnabled(linearLayoutManager.findFirstVisibleItemPosition() == 0);
+          }
+      });
+</code></pre>
 </li>
 <li><p>应用退出时网络请求未完成导致失去context<br>这么说可能不是特别清楚，具体的描述应该是：当网络请求仍在进行时，退出应用，这是失去context，某些适配器没有适配完成，导致应用直接崩溃。<br>在知乎专栏的过程中，fragment中的内容全部为recyclerview，而且全部是在网络请求下完成的。第一版的时候我遇到的问题就是上述描述的这样，在网络请求没有完全完成时，退出应用，recyclerview的适配还没有完成，之后直接导致set text on a null object。<br>我的解决方法是：给所有volley网络请求设置TAG，然后在fragment的onStop()方法中取消请求。<br>示例代码:</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> RequestQueue queue;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String	 TAG = <span class="string">"TAG"</span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		queue = Volley.newRequestQueue(getActivity().getApplicationContext());</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Nullable</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        View view = inflater.inflate(R.layout.my_fragment,container,<span class="keyword">false</span>);</div><div class="line"></div><div class="line">        JsonObjectRequest request = <span class="keyword">new</span> JsonObjectRequest(Request.Method.GET, <span class="string">"my url"</span>, <span class="keyword">new</span> Response.Listener&lt;JSONObject&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(JSONObject jsonObject)</span> </span>&#123;</div><div class="line">                <span class="comment">// code</span></div><div class="line">        &#125;, <span class="keyword">new</span> Response.ErrorListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onErrorResponse</span><span class="params">(VolleyError volleyError)</span> </span>&#123;</div><div class="line">               <span class="comment">// code</span></div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        request.setTag(TAG);</div><div class="line">        queue.add(request);</div><div class="line"></div><div class="line">         <span class="meta">@Override</span></div><div class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onStop();</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (queue != <span class="keyword">null</span>)&#123;</div><div class="line">            queue.cancelAll(TAG);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java">public class MyFragment extends Fragment{
+
+    private RequestQueue queue;
+    private static final String     TAG = &quot;TAG&quot;;
+
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.my_fragment,container,false);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, &quot;my url&quot;, new Response.Listener&lt;JSONObject&gt;() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                // code
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+               // code
+            }
+        });
+
+        request.setTag(TAG);
+        queue.add(request);
+
+         @Override
+        public void onStop() {
+        super.onStop();
+
+        if (queue != null){
+            queue.cancelAll(TAG);
+        }
+    }
+}
+</code></pre>
 <ul>
-<li>去除字符串中的html部分<br>在Android中通过一行代码即可搞定。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">newString = android.text.Html.fromHtml(oldString).toString();</div></pre></td></tr></table></figure>
+<li>去除字符串中的html部分<br>在Android中通过一行代码即可搞定。<pre><code class="java">newString = android.text.Html.fromHtml(oldString).toString();
+</code></pre>
+在java中的解决方法是：<pre><code class="java">String newString = Jsoup.parse(html).text();
+</code></pre>
 </li>
 </ul>
-<p>在java中的解决方法是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String newString = Jsoup.parse(html).text();</div></pre></td></tr></table></figure></p>
 <p>more…</p>
 
     

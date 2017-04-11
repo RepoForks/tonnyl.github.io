@@ -423,23 +423,73 @@
 <p><a href="https://developer.android.com/tools/building/building-studio.html#instant-run" target="_blank" rel="external">Instant Run</a>目前不能应用于Jack</p>
 </blockquote>
 <p>在<code>app</code>目录下<code>build.gradle</code>文件下添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  defaultConfig &#123;</div><div class="line">    ...</div><div class="line">    jackOptions &#123;</div><div class="line">      enabled true</div><div class="line">    &#125;</div><div class="line">    // 在更老的版本中，使用</div><div class="line">    // useJack true</div><div class="line">    // 可以达到同样的效果</div><div class="line">  &#125;</div><div class="line">  compileOptions &#123;</div><div class="line">    sourceCompatibility JavaVersion.VERSION_1_8</div><div class="line">    targetCompatibility JavaVersion.VERSION_1_8</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>Lambda的语法格式如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(arg1, arg2...) -&gt; &#123; body &#125;</div><div class="line"></div><div class="line">(type1 arg1, type2 arg2...) -&gt; &#123; body &#125;</div></pre></td></tr></table></figure>
+<pre><code>android {
+  ...
+  defaultConfig {
+    ...
+    jackOptions {
+      enabled true
+    }
+    // 在更老的版本中，使用
+    // useJack true
+    // 可以达到同样的效果
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+}
+</code></pre><h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>Lambda的语法格式如下:</p>
+<pre><code class="java">(arg1, arg2...) -&gt; { body }
+
+(type1 arg1, type2 arg2...) -&gt; { body }
+</code></pre>
 <p>在未使用Lambda表达式之前，我们设置监听器的代码是这样的:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fab.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="comment">// blah, blah</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<pre><code class="java">fab.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        // blah, blah
+    }
+});
+</code></pre>
 <p>而使用Lambda表达式，代码是这样的:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fab.setOnClickListener(v -&gt; &#123;</div><div class="line">	<span class="comment">// blah, blah            </span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<pre><code class="java">fab.setOnClickListener(v -&gt; {
+    // blah, blah            
+});
+</code></pre>
 <p>是不是更简洁了呢？</p>
 <p>我们查看一下<code>OnClickListener</code>的源码，发现这个接口中只有一个待实现的方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Interface definition for a callback to be invoked when a view is clicked.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnClickListener</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Called when a view has been clicked.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> v The view that was clicked.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java">/**
+ * Interface definition for a callback to be invoked when a view is clicked.
+ */
+public interface OnClickListener {
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    void onClick(View v);
+}
+</code></pre>
 <p>像这种只有一个待实现方法的接口，都可以使用Lambda表达式进行简化。当然，我们也可以自定义接口，然后用Lambda表达式进行实现。</p>
 <h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>有时会遇到这样的情况，Lambda表达式什么都没有做，仅仅是调用了已经存在的方法。这种情况下，代码就能进一步精简了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">fab.setOnClickListener( view2 -&gt; showSnackBar(view2));</div><div class="line"></div><div class="line">private void showSnackBar(View view) &#123;</div><div class="line">        Snackbar.make(view, &quot;blah, blah&quot;, Snackbar.LENGTH_SHORT).show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>使用方法引用之后：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fab.setOnClickListener(this::showSnackBar);</div></pre></td></tr></table></figure>
-<h3 id="上下文推断"><a href="#上下文推断" class="headerlink" title="上下文推断"></a>上下文推断</h3><p>下面来实现一些例子来了解Lambda的上下文推断。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TestOp</span> </span>&#123;</div><div class="line">   <span class="function">String <span class="title">operate</span> <span class="params">(String s, <span class="keyword">int</span> i)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 使用Lambda表达式进行实现</span></div><div class="line"><span class="comment">// 通过上下文，lambda表达式可以推断出s为String类型，而i为int类型</span></div><div class="line"><span class="comment">// 返回值为String</span></div><div class="line">TestOp myOp = (s,i) -&gt; s + i;</div></pre></td></tr></table></figure>
+<pre><code>fab.setOnClickListener( view2 -&gt; showSnackBar(view2));
+
+private void showSnackBar(View view) {
+        Snackbar.make(view, &quot;blah, blah&quot;, Snackbar.LENGTH_SHORT).show();
+}
+</code></pre><p>使用方法引用之后：</p>
+<pre><code>fab.setOnClickListener(this::showSnackBar);
+</code></pre><h3 id="上下文推断"><a href="#上下文推断" class="headerlink" title="上下文推断"></a>上下文推断</h3><p>下面来实现一些例子来了解Lambda的上下文推断。</p>
+<pre><code class="java">public interface TestOp {
+   String operate (String s, int i);
+}
+
+// 使用Lambda表达式进行实现
+// 通过上下文，lambda表达式可以推断出s为String类型，而i为int类型
+// 返回值为String
+TestOp myOp = (s,i) -&gt; s + i;
+</code></pre>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Lambda表达式使用还是很方便的，能够减少编写和维护的代码数量。但是，这种极简主义的写法也并不是所有人都能接受的。对于我而言，技多不压身，学习一下，提高姿势还是挺有必要的。</p>
 
     

@@ -414,22 +414,67 @@
 <p>不过，今天要介绍的主要内容并不是关于系统的夜间模式，而是如何给我们开发的APP添加夜间模式的功能。毫不夸张的说，夜间模式现在已经是阅读类App的标配了。事实上，日间模式与夜间模式就是给APP定义并应用两套不同颜色的主题。用户可以自动或者手动的开启。我们先看两个我认为实现地很优雅的例子：知乎和Twitter。</p>
 <img src="/2016/12/31/简洁优雅地实现夜间模式/zhihu_twitter_nightmode.gif" alt="zhihu_twitter_nightmode" title="zhihu_twitter_nightmode">
 <p>这两个APP在切换的工程中，并没有出现闪现黑屏的情况，切换也比较顺滑。我们的目标就是利用Support Library实现同样的效果。</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.android.support:appcompat-v7:25.1.0&apos;</div></pre></td></tr></table></figure>
-<p>由于Support Library在23.2.0的版本中才添加了Theme.AppCompat.DayNight主题，所以依赖的版本必须是高于23.2.0的，并且，这个特性支持的最低SDK版本为14，所以，需要兼容Android 4.0的设备，是不能使用这个特性的，在API Level 14以下的设备会默认使用亮色主题。不过现在4.0以下的设备应该比较少了吧，毕竟微信的minSdkVersion都设置为14了。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre><code>compile &#39;com.android.support:appcompat-v7:25.1.0&#39;
+</code></pre><p>由于Support Library在23.2.0的版本中才添加了Theme.AppCompat.DayNight主题，所以依赖的版本必须是高于23.2.0的，并且，这个特性支持的最低SDK版本为14，所以，需要兼容Android 4.0的设备，是不能使用这个特性的，在API Level 14以下的设备会默认使用亮色主题。不过现在4.0以下的设备应该比较少了吧，毕竟微信的minSdkVersion都设置为14了。</p>
 <h3 id="准备资源"><a href="#准备资源" class="headerlink" title="准备资源"></a>准备资源</h3><ol>
 <li><p>让我们自己的主题继承并应用DayNight主题。</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppTheme"</span> <span class="attr">parent</span>=<span class="string">"Theme.AppCompat.DayNight.DarkActionBar"</span>&gt;</span><span class="xml"></span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>@color/colorPrimaryDark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--customize your theme here--&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<pre><code class="xml"> &lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat.DayNight.DarkActionBar&quot;&gt;
+
+         &lt;item name=&quot;colorPrimary&quot;&gt;@color/colorPrimary&lt;/item&gt;
+         &lt;item name=&quot;colorPrimaryDark&quot;&gt;@color/colorPrimaryDark&lt;/item&gt;
+         &lt;item name=&quot;colorAccent&quot;&gt;@color/colorAccent&lt;/item&gt;
+         &lt;!--customize your theme here--&gt;
+
+ &lt;/style&gt;
+</code></pre>
 </li>
 <li><p>新建夜间模式资源文件夹:在<code>res</code>目录下新建<code>values-night</code>文件夹，然后在此目录下新建<code>colors.xml</code>文件在夜间模式下的应用的资源。当然也可以根据需要新建<code>drawable-night</code>,<code>layout-night</code>等后缀为<code>-night</code>的夜间资源文件夹。<br>我的<code>values</code>和<code>values-night</code>目录下的<code>colors.xml</code>的内容如下:</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="comment">&lt;!--values-colors.xml--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>#009688<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>#00796B<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>#009688<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"textColorPrimary"</span>&gt;</span>#616161<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"viewBackground"</span>&gt;</span>@android:color/white<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="comment">&lt;!--values-night-colors.xml&gt;</span></div><div class="line">&lt;resources&gt;</div><div class="line">    &lt;color name="colorPrimary"&gt;#35464e&lt;/color&gt;</div><div class="line">    &lt;color name="colorPrimaryDark"&gt;#212a2f&lt;/color&gt;</div><div class="line">    &lt;color name="colorAccent"&gt;#212a2f&lt;/color&gt;</div><div class="line">    &lt;color name="textColorPrimary"&gt;#616161&lt;/color&gt;</div><div class="line">    &lt;color name="viewBackground"&gt;#212a2f&lt;/color&gt;</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
+<pre><code class="xml"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+ &lt;!--values-colors.xml--&gt;
+ &lt;resources&gt;
+     &lt;color name=&quot;colorPrimary&quot;&gt;#009688&lt;/color&gt;
+     &lt;color name=&quot;colorPrimaryDark&quot;&gt;#00796B&lt;/color&gt;
+     &lt;color name=&quot;colorAccent&quot;&gt;#009688&lt;/color&gt;
+     &lt;color name=&quot;textColorPrimary&quot;&gt;#616161&lt;/color&gt;
+     &lt;color name=&quot;viewBackground&quot;&gt;@android:color/white&lt;/color&gt;
+ &lt;/resources&gt;
+</code></pre>
+<pre><code class="xml"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+ &lt;!--values-night-colors.xml&gt;
+ &lt;resources&gt;
+     &lt;color name=&quot;colorPrimary&quot;&gt;#35464e&lt;/color&gt;
+     &lt;color name=&quot;colorPrimaryDark&quot;&gt;#212a2f&lt;/color&gt;
+     &lt;color name=&quot;colorAccent&quot;&gt;#212a2f&lt;/color&gt;
+     &lt;color name=&quot;textColorPrimary&quot;&gt;#616161&lt;/color&gt;
+     &lt;color name=&quot;viewBackground&quot;&gt;#212a2f&lt;/color&gt;
+ &lt;/resources&gt;
+</code></pre>
 </li>
 <li><p>使Activity继承自AppCompatActivity。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">// code here</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java"> public class MainActivity extends AppCompatActivity {
+
+     // code here
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+
+     }
+
+ }
+</code></pre>
 </li>
 </ol>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><h4 id="静态应用"><a href="#静态应用" class="headerlink" title="静态应用"></a>静态应用</h4><p>在Application的继承类下设置初始主题。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line"></div><div class="line">		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">		<span class="comment">// other code here</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java">public class App extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        // other code here
+
+}
+</code></pre>
 <p>这里<code>AppCompatDelegate.setDefaultNightMode()</code>方法可以接受的参数值有4个：</p>
 <ul>
 <li>MODE_NIGHT_NO. Always use the day (light) theme(一直应用日间(light)主题).</li>
@@ -438,16 +483,59 @@
 <li>MODE_NIGHT_FOLLOW_SYSTEM(默认选项). This setting follows the system’s setting, which is essentially MODE_NIGHT_NO(跟随系统，通常为MODE_NIGHT_NO).</li>
 </ul>
 <p>我们可以在任何时候调用这个方法，因为这个方法是静态的。但是这个值并不是一直存在的，每次在开启进程时需要重新设置。在上面的代码中，我是在<code>onCreate()</code>方法中设置的，网上也有大神建议在Activity或者Application的<strong>static</strong>代码块中设置。如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">static</span> &#123;</div><div class="line">	    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line"></div><div class="line">		<span class="comment">// other code here</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java">public class App extends Application {
+
+    static {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        // other code here
+
+}
+</code></pre>
 <h4 id="动态应用"><a href="#动态应用" class="headerlink" title="动态应用"></a>动态应用</h4><p>虽然上面的静态应用的设置非常简单，但是这种方式的应用场景还是太少了。我们更多的还是需要动态的根据需要动态的切换。</p>
 <ol>
 <li><p>检测当前主题模式</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> mode = getResources().getConfiguration().uiMode &amp; Configuration.UI_MODE_NIGHT_MASK;</div></pre></td></tr></table></figure>
+<pre><code class="java"> int mode = getResources().getConfiguration().uiMode &amp; Configuration.UI_MODE_NIGHT_MASK;
+</code></pre>
 </li>
 <li><p>设置主题</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(mode == Configuration.UI_MODE_NIGHT_YES) &#123;</div><div class="line">	AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(mode == Configuration.UI_MODE_NIGHT_NO) &#123;</div><div class="line">	AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="comment">// blah blah</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">recreate();</div></pre></td></tr></table></figure>
+<pre><code class="java"> if(mode == Configuration.UI_MODE_NIGHT_YES) {
+     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+ } else if(mode == Configuration.UI_MODE_NIGHT_NO) {
+     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+ } else {
+     // blah blah
+ }
+
+ recreate();
+</code></pre>
 <p> 在调用<code>recreate()</code>方法之前，还可以创建一些动画进行过渡。而且，众所周知，调用<code>recreate()</code>需要对一些数据进行保存，例如fragment，CheckBox,RadioBox等。如下所示:</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       	<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line"></div><div class="line">   	 	<span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">   	 		FragmentManager manager = getChildFragmentManager();</div><div class="line">			doubanMomentFragment = (DoubanMomentFragment) manager.getFragment(savedInstanceState, <span class="string">"douban"</span>);</div><div class="line">   	 	&#125; <span class="keyword">else</span> &#123;</div><div class="line">   	 		doubanMomentFragment = DoubanMomentFragment.newInstance();</div><div class="line">   	 	&#125;</div><div class="line">   	&#125;</div><div class="line"></div><div class="line">   	<span class="meta">@Override</span></div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">      	 <span class="keyword">super</span>.onSaveInstanceState(outState);</div><div class="line">      	 FragmentManager manager = getChildFragmentManager();</div><div class="line">      	 manager.putFragment(outState, <span class="string">"douban"</span>, doubanMomentFragment);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java"> public class MainFragment extends Fragment {
+
+     @Override
+     public void onCreate(@Nullable Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+
+          if (savedInstanceState != null) {
+              FragmentManager manager = getChildFragmentManager();
+             doubanMomentFragment = (DoubanMomentFragment) manager.getFragment(savedInstanceState, &quot;douban&quot;);
+          } else {
+              doubanMomentFragment = DoubanMomentFragment.newInstance();
+          }
+     }
+
+     @Override
+     public void onSaveInstanceState(Bundle outState) {
+         super.onSaveInstanceState(outState);
+         FragmentManager manager = getChildFragmentManager();
+         manager.putFragment(outState, &quot;douban&quot;, doubanMomentFragment);
+ }
+</code></pre>
 <p> 我们也可以把主题的值存储到SharedPreference中，已便于应用在下一次启动时自动应用主题。</p>
 </li>
 </ol>

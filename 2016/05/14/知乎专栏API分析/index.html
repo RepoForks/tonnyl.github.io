@@ -426,10 +426,72 @@
 <li>http method均为GET</li>
 <li>JSON ARRAY 中的数据，只选取了具有代表性的部分进行展示</li>
 </ul>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><h4 id="获取指定专栏的信息"><a href="#获取指定专栏的信息" class="headerlink" title="获取指定专栏的信息"></a>获取指定专栏的信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/columns/专栏名</div></pre></td></tr></table></figure>
-<p>例如获取知乎小管家的专栏信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/columns/zhihuadmin</div></pre></td></tr></table></figure></p>
-<p>得到的信息为：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"followersCount"</span>: <span class="number">7883</span>,</div><div class="line">  <span class="attr">"creator"</span>:</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"profileUrl"</span>: <span class="string">"https://www.zhihu.com/people/zhihuadmin"</span>,</div><div class="line">      <span class="attr">"bio"</span>: <span class="string">"欢迎反馈问题和建议！"</span>,</div><div class="line">      <span class="attr">"hash"</span>: <span class="string">"3d198a56310c02c4a83efb9f4a4c027e"</span>,</div><div class="line">      <span class="attr">"uid"</span>: <span class="number">53253479858176</span>,</div><div class="line">      <span class="attr">"isOrg"</span>: <span class="literal">false</span>,</div><div class="line">      <span class="attr">"description"</span>: <span class="string">""</span>,</div><div class="line">      <span class="attr">"slug"</span>: <span class="string">"zhihuadmin"</span>,</div><div class="line">      <span class="attr">"avatar"</span>:</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"id"</span>: <span class="string">"34bf96bf5584ac4b5264bd7ed4fdbc5a"</span>,</div><div class="line">          <span class="attr">"template"</span>: <span class="string">"https://pic3.zhimg.com/&#123;id&#125;_&#123;size&#125;.jpg"</span></div><div class="line">        &#125;,</div><div class="line">      <span class="attr">"name"</span>: <span class="string">"知乎小管家"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"topics"</span>:</div><div class="line">      [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"url"</span>: <span class="string">"https://www.zhihu.com/topic/19552112"</span>,</div><div class="line">          <span class="attr">"id"</span>: <span class="string">"19552112"</span>,</div><div class="line">          <span class="attr">"name"</span>: <span class="string">"知乎建议反馈"</span></div><div class="line">        &#125;,</div><div class="line">      ],</div><div class="line">    <span class="attr">"activateState"</span>: <span class="string">"activated"</span>,</div><div class="line">    <span class="attr">"href"</span>: <span class="string">"/api/columns/zhihuadmin"</span>,</div><div class="line">    <span class="attr">"acceptSubmission"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"firstTime"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"postTopics"</span>:</div><div class="line">      [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"postsCount"</span>: <span class="number">4</span>,</div><div class="line">          <span class="attr">"id"</span>: <span class="number">2</span>,</div><div class="line">          <span class="attr">"name"</span>: <span class="string">"知乎"</span></div><div class="line">        &#125;,</div><div class="line">      ],</div><div class="line">    <span class="attr">"pendingName"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"avatar"</span>:</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="string">"5a1ec50171767c4fc856f430e46297db"</span>,</div><div class="line">        <span class="attr">"template"</span>: <span class="string">"https://pic4.zhimg.com/&#123;id&#125;_&#123;size&#125;.jpg"</span></div><div class="line">      &#125;,</div><div class="line">    <span class="attr">"canManage"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"description"</span>: <span class="string">"知乎社区管理团队官方专栏，不定期更新社区管理工作相关的最新消息。"</span>,  </div><div class="line">    <span class="attr">"pendingTopics"</span>: [],</div><div class="line">    <span class="attr">"nameCanEditUntil"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"reason"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"banUntil"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"slug"</span>: <span class="string">"zhihuadmin"</span>,</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"知乎小管家说"</span>,</div><div class="line">    <span class="attr">"url"</span>: <span class="string">"/zhihuadmin"</span>,</div><div class="line">    <span class="attr">"intro"</span>: <span class="string">"知乎社区管理团队官方专栏，不定期更新社区管理工作…"</span>,  </div><div class="line">    <span class="attr">"topicsCanEditUntil"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"activateAuthorRequested"</span>: <span class="string">"none"</span>,</div><div class="line">    <span class="attr">"commentPermission"</span>: <span class="string">"anyone"</span>,</div><div class="line">    <span class="attr">"following"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"postsCount"</span>: <span class="number">19</span>,  </div><div class="line">    <span class="attr">"canPost"</span>: <span class="literal">false</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><h4 id="获取指定专栏的信息"><a href="#获取指定专栏的信息" class="headerlink" title="获取指定专栏的信息"></a>获取指定专栏的信息</h4><pre><code>https://zhuanlan.zhihu.com/api/columns/专栏名
+</code></pre><p>例如获取知乎小管家的专栏信息</p>
+<pre><code>https://zhuanlan.zhihu.com/api/columns/zhihuadmin
+</code></pre><p>得到的信息为：</p>
+<pre><code class="json">{
+  &quot;followersCount&quot;: 7883,
+  &quot;creator&quot;:
+    {
+      &quot;profileUrl&quot;: &quot;https://www.zhihu.com/people/zhihuadmin&quot;,
+      &quot;bio&quot;: &quot;欢迎反馈问题和建议！&quot;,
+      &quot;hash&quot;: &quot;3d198a56310c02c4a83efb9f4a4c027e&quot;,
+      &quot;uid&quot;: 53253479858176,
+      &quot;isOrg&quot;: false,
+      &quot;description&quot;: &quot;&quot;,
+      &quot;slug&quot;: &quot;zhihuadmin&quot;,
+      &quot;avatar&quot;:
+        {
+          &quot;id&quot;: &quot;34bf96bf5584ac4b5264bd7ed4fdbc5a&quot;,
+          &quot;template&quot;: &quot;https://pic3.zhimg.com/{id}_{size}.jpg&quot;
+        },
+      &quot;name&quot;: &quot;知乎小管家&quot;
+    },
+    &quot;topics&quot;:
+      [
+        {
+          &quot;url&quot;: &quot;https://www.zhihu.com/topic/19552112&quot;,
+          &quot;id&quot;: &quot;19552112&quot;,
+          &quot;name&quot;: &quot;知乎建议反馈&quot;
+        },
+      ],
+    &quot;activateState&quot;: &quot;activated&quot;,
+    &quot;href&quot;: &quot;/api/columns/zhihuadmin&quot;,
+    &quot;acceptSubmission&quot;: true,
+    &quot;firstTime&quot;: false,
+    &quot;postTopics&quot;:
+      [
+        {
+          &quot;postsCount&quot;: 4,
+          &quot;id&quot;: 2,
+          &quot;name&quot;: &quot;知乎&quot;
+        },
+      ],
+    &quot;pendingName&quot;: &quot;&quot;,
+    &quot;avatar&quot;:
+      {
+        &quot;id&quot;: &quot;5a1ec50171767c4fc856f430e46297db&quot;,
+        &quot;template&quot;: &quot;https://pic4.zhimg.com/{id}_{size}.jpg&quot;
+      },
+    &quot;canManage&quot;: false,
+    &quot;description&quot;: &quot;知乎社区管理团队官方专栏，不定期更新社区管理工作相关的最新消息。&quot;,  
+    &quot;pendingTopics&quot;: [],
+    &quot;nameCanEditUntil&quot;: 0,
+    &quot;reason&quot;: &quot;&quot;,
+    &quot;banUntil&quot;: 0,
+    &quot;slug&quot;: &quot;zhihuadmin&quot;,
+    &quot;name&quot;: &quot;知乎小管家说&quot;,
+    &quot;url&quot;: &quot;/zhihuadmin&quot;,
+    &quot;intro&quot;: &quot;知乎社区管理团队官方专栏，不定期更新社区管理工作…&quot;,  
+    &quot;topicsCanEditUntil&quot;: 0,
+    &quot;activateAuthorRequested&quot;: &quot;none&quot;,
+    &quot;commentPermission&quot;: &quot;anyone&quot;,
+    &quot;following&quot;: false,
+    &quot;postsCount&quot;: 19,  
+    &quot;canPost&quot;: false
+  }
+</code></pre>
 <ul>
 <li>followersCount: 关注该专栏的人数</li>
 <li>creator: 该专栏的创建者信息<ul>
@@ -486,10 +548,63 @@
 <li>postsCount: 专栏文章数</li>
 <li>canPost: 当前帐号是否有发表文章的权限</li>
 </ul>
-<p>在获取图片url时，可以根据需要选择不同的尺寸。如下所示，图片质量依次增加。也可以不添加尺寸参数，默认获取最大类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_s.jpg</div><div class="line">https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_m.jpg</div><div class="line">https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_l.jpg</div><div class="line">https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_b.jpg</div><div class="line">https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_r.jpg</div></pre></td></tr></table></figure></p>
-<h4 id="获取指定专栏的文章列表"><a href="#获取指定专栏的文章列表" class="headerlink" title="获取指定专栏的文章列表"></a>获取指定专栏的文章列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/columns/专栏名/posts?limit=数量&amp;offset=从哪里开始</div></pre></td></tr></table></figure>
-<p>例如，获取知乎小管家的最新的10篇文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/columns/zhihuadmin/posts?limit=10&amp;offset=0</div></pre></td></tr></table></figure></p>
-<p>其中，limit为获取的数量限制，offset为偏移量，即从哪里开始获取。<br>默认数据为limit=10，offset=0，当然你也可以根据需要定义二者的值。<br>获得的数据为:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  &#123;  </div><div class="line">    <span class="attr">"isTitleImageFullScreen"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"rating"</span>: <span class="string">"none"</span>,</div><div class="line">    <span class="attr">"sourceUrl"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"publishedTime"</span>: <span class="string">"2016-10-13T14:00:49+08:00"</span>,</div><div class="line">    <span class="attr">"links"</span>:</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"comments"</span>: <span class="string">"/api/posts/22921645/comments"</span></div><div class="line">      &#125;,</div><div class="line">    <span class="attr">"author"</span>:</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"profileUrl"</span>: <span class="string">"https://www.zhihu.com/people/zhihuadmin"</span>,</div><div class="line">        <span class="attr">"bio"</span>: <span class="string">"欢迎反馈问题和建议！"</span>,</div><div class="line">        <span class="attr">"hash"</span>: <span class="string">"3d198a56310c02c4a83efb9f4a4c027e"</span>,</div><div class="line">        <span class="attr">"uid"</span>: <span class="number">53253479858176</span>,</div><div class="line">        <span class="attr">"isOrg"</span>: <span class="literal">false</span>,</div><div class="line">        <span class="attr">"description"</span>: <span class="string">""</span>,  </div><div class="line">        <span class="attr">"slug"</span>: <span class="string">"zhihuadmin"</span>,</div><div class="line">        <span class="attr">"avatar"</span>:</div><div class="line">          &#123;</div><div class="line">            <span class="attr">"id"</span>: <span class="string">"34bf96bf5584ac4b5264bd7ed4fdbc5a"</span>,</div><div class="line">            <span class="attr">"template"</span>: <span class="string">"https://pic3.zhimg.com/&#123;id&#125;_&#123;size&#125;.jpg"</span></div><div class="line">          &#125;,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"知乎小管家"</span></div><div class="line">      &#125;,</div><div class="line">    <span class="attr">"url"</span>: <span class="string">"/p/22921645"</span>,</div><div class="line">    <span class="attr">"title"</span>: <span class="string">"新版社区管理规定于 2016 年 10 月 13 日正式运行"</span>,</div><div class="line">    <span class="attr">"titleImage"</span>: <span class="string">"https://pic2.zhimg.com/v2-517f47cc5269b57f26ea4a25f29d8505_r.jpg"</span>,</div><div class="line">    <span class="attr">"summary"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"content"</span>: <span class="string">"&lt;p&gt;2016 年 9 月 13 日小管家发布了新版社区管理规定，明确了「恶意行为」的定义和违规类型，同时增加了「发布垃圾广告信息」的 3 种违规类型。在完成了为期 1 个月的试运行后&lt;b&gt;，&lt;/b&gt;&lt;b&gt;&lt;a href=\"https://www.zhihu.com/question/19790711/answer/36685915\" class=\"\" data-editable=\"true\" data-title=\"\u65b0\u7248\u793e\u533a\u7ba1\u7406\u89c4\u5b9a\"&gt;\u65b0\u7248\u793e\u533a\u7ba1\u7406\u89c4\u5b9a&lt;/a&gt;"</span>,</div><div class="line">    <span class="attr">"state"</span>: <span class="string">"published"</span>,</div><div class="line">    <span class="attr">"href"</span>: <span class="string">"/api/posts/22921645"</span>,</div><div class="line">    <span class="attr">"meta"</span>:</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"previous"</span>: <span class="literal">null</span>,</div><div class="line">        <span class="attr">"next"</span>: <span class="literal">null</span></div><div class="line">      &#125;,</div><div class="line">    <span class="attr">"commentPermission"</span>: <span class="string">"anyone"</span>,</div><div class="line">    <span class="attr">"snapshotUrl"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"canComment"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"slug"</span>: <span class="number">22921645</span>,</div><div class="line">    <span class="attr">"commentsCount"</span>: <span class="number">76</span>,</div><div class="line">    <span class="attr">"likesCount"</span>: <span class="number">436</span></div><div class="line">  &#125;,</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>在获取图片url时，可以根据需要选择不同的尺寸。如下所示，图片质量依次增加。也可以不添加尺寸参数，默认获取最大类型。</p>
+<pre><code>https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_s.jpg
+https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_m.jpg
+https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_l.jpg
+https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_b.jpg
+https://pic3.zhimg.com/34bf96bf5584ac4b5264bd7ed4fdbc5a_r.jpg
+</code></pre><h4 id="获取指定专栏的文章列表"><a href="#获取指定专栏的文章列表" class="headerlink" title="获取指定专栏的文章列表"></a>获取指定专栏的文章列表</h4><pre><code>https://zhuanlan.zhihu.com/api/columns/专栏名/posts?limit=数量&amp;offset=从哪里开始
+</code></pre><p>例如，获取知乎小管家的最新的10篇文章</p>
+<pre><code>https://zhuanlan.zhihu.com/api/columns/zhihuadmin/posts?limit=10&amp;offset=0
+</code></pre><p>其中，limit为获取的数量限制，offset为偏移量，即从哪里开始获取。<br>默认数据为limit=10，offset=0，当然你也可以根据需要定义二者的值。<br>获得的数据为:</p>
+<pre><code class="JSON">[
+  {  
+    &quot;isTitleImageFullScreen&quot;: false,
+    &quot;rating&quot;: &quot;none&quot;,
+    &quot;sourceUrl&quot;: &quot;&quot;,
+    &quot;publishedTime&quot;: &quot;2016-10-13T14:00:49+08:00&quot;,
+    &quot;links&quot;:
+      {
+        &quot;comments&quot;: &quot;/api/posts/22921645/comments&quot;
+      },
+    &quot;author&quot;:
+      {
+        &quot;profileUrl&quot;: &quot;https://www.zhihu.com/people/zhihuadmin&quot;,
+        &quot;bio&quot;: &quot;欢迎反馈问题和建议！&quot;,
+        &quot;hash&quot;: &quot;3d198a56310c02c4a83efb9f4a4c027e&quot;,
+        &quot;uid&quot;: 53253479858176,
+        &quot;isOrg&quot;: false,
+        &quot;description&quot;: &quot;&quot;,  
+        &quot;slug&quot;: &quot;zhihuadmin&quot;,
+        &quot;avatar&quot;:
+          {
+            &quot;id&quot;: &quot;34bf96bf5584ac4b5264bd7ed4fdbc5a&quot;,
+            &quot;template&quot;: &quot;https://pic3.zhimg.com/{id}_{size}.jpg&quot;
+          },
+        &quot;name&quot;: &quot;知乎小管家&quot;
+      },
+    &quot;url&quot;: &quot;/p/22921645&quot;,
+    &quot;title&quot;: &quot;新版社区管理规定于 2016 年 10 月 13 日正式运行&quot;,
+    &quot;titleImage&quot;: &quot;https://pic2.zhimg.com/v2-517f47cc5269b57f26ea4a25f29d8505_r.jpg&quot;,
+    &quot;summary&quot;: &quot;&quot;,
+    &quot;content&quot;: &quot;&lt;p&gt;2016 年 9 月 13 日小管家发布了新版社区管理规定，明确了「恶意行为」的定义和违规类型，同时增加了「发布垃圾广告信息」的 3 种违规类型。在完成了为期 1 个月的试运行后&lt;b&gt;，&lt;/b&gt;&lt;b&gt;&lt;a href=\&quot;https://www.zhihu.com/question/19790711/answer/36685915\&quot; class=\&quot;\&quot; data-editable=\&quot;true\&quot; data-title=\&quot;\u65b0\u7248\u793e\u533a\u7ba1\u7406\u89c4\u5b9a\&quot;&gt;\u65b0\u7248\u793e\u533a\u7ba1\u7406\u89c4\u5b9a&lt;/a&gt;&quot;,
+    &quot;state&quot;: &quot;published&quot;,
+    &quot;href&quot;: &quot;/api/posts/22921645&quot;,
+    &quot;meta&quot;:
+      {
+        &quot;previous&quot;: null,
+        &quot;next&quot;: null
+      },
+    &quot;commentPermission&quot;: &quot;anyone&quot;,
+    &quot;snapshotUrl&quot;: &quot;&quot;,
+    &quot;canComment&quot;: false,
+    &quot;slug&quot;: 22921645,
+    &quot;commentsCount&quot;: 76,
+    &quot;likesCount&quot;: 436
+  },
+]
+</code></pre>
 <ul>
 <li>isTitleImageFullScreen: 文章标题大图是否全屏</li>
 <li>rating: ???评级</li>
@@ -523,9 +638,164 @@
 <li>state: 文章状态(是否发表)</li>
 <li>href: api请求地址</li>
 </ul>
-<h4 id="获取特定的文章信息"><a href="#获取特定的文章信息" class="headerlink" title="获取特定的文章信息"></a>获取特定的文章信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/posts/SLUG</div></pre></td></tr></table></figure>
-<p>例如，获取知乎小管家的最新一篇文章，通过已经获得的信息，有两种方法组合url进行获取，一是通过href值，另一种就是slug值，当然，这两种方式殊途同归。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/posts/22921645</div></pre></td></tr></table></figure></p>
-<p>获取到的信息为:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"isTitleImageFullScreen"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">"rating"</span>: <span class="string">"none"</span>,</div><div class="line">  <span class="attr">"titleImage"</span>: <span class="string">"https://pic2.zhimg.com/v2-cab0719fdec0816c475d7b70e016cbb1_r.jpg"</span>,</div><div class="line">  <span class="attr">"links"</span>:</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"comments"</span>: <span class="string">"/api/posts/22591792/comments"</span></div><div class="line">    &#125;,</div><div class="line">  <span class="attr">"reviewers"</span>: [],</div><div class="line">  <span class="attr">"topics"</span>:</div><div class="line">    [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"url"</span>: <span class="string">"https://www.zhihu.com/topic/19550887"</span>,</div><div class="line">        <span class="attr">"id"</span>: <span class="string">"19550887"</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"知乎社区"</span></div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">  <span class="attr">"titleImageSize"</span>:</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"width"</span>: <span class="number">0</span>,</div><div class="line">      <span class="attr">"height"</span>: <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">  <span class="attr">"href"</span>: <span class="string">"/api/posts/22591792"</span>,</div><div class="line">  <span class="attr">"excerptTitle"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"author"</span>:</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"profileUrl"</span>: <span class="string">"https://www.zhihu.com/people/zhihuadmin"</span>,</div><div class="line">      <span class="attr">"bio"</span>: <span class="string">"欢迎反馈问题和建议！"</span>,</div><div class="line">      <span class="attr">"hash"</span>: <span class="string">"3d198a56310c02c4a83efb9f4a4c027e"</span>,</div><div class="line">      <span class="attr">"uid"</span>: <span class="number">53253479858176</span>,</div><div class="line">      <span class="attr">"isOrg"</span>: <span class="literal">false</span>,</div><div class="line">      <span class="attr">"description"</span>: <span class="string">""</span>,</div><div class="line">      <span class="attr">"badge"</span>:</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"identity"</span>:</div><div class="line">            &#123;</div><div class="line">              <span class="attr">"description"</span>: <span class="string">"知乎官方帐号"</span></div><div class="line">            &#125;,</div><div class="line">          <span class="attr">"best_answerer"</span>: <span class="literal">null</span></div><div class="line">        &#125;,</div><div class="line">      <span class="attr">"slug"</span>: <span class="string">"zhihuadmin"</span>,</div><div class="line">      <span class="attr">"avatar"</span>:</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"id"</span>: <span class="string">"34bf96bf5584ac4b5264bd7ed4fdbc5a"</span>,</div><div class="line">          <span class="attr">"template"</span>: <span class="string">"https://pic3.zhimg.com/&#123;id&#125;_&#123;size&#125;.jpg"</span></div><div class="line">        &#125;,</div><div class="line">      <span class="attr">"name"</span>: <span class="string">"知乎小管家"</span></div><div class="line">    &#125;,</div><div class="line">  <span class="attr">"column"</span>:</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"slug"</span>: <span class="string">"zhihuadmin"</span>,</div><div class="line">      <span class="attr">"name"</span>: <span class="string">"知乎小管家说"</span></div><div class="line">    &#125;,</div><div class="line">  <span class="attr">"tipjarState"</span>: <span class="string">"inactivated"</span>,</div><div class="line">  <span class="attr">"content"</span>: <span class="string">"&lt;p&gt;今天，小管家和大家分享一下站内「不规范转载」行为的处理情况。&lt;/p&gt;&lt;br&gt;"</span>,</div><div class="line">  <span class="attr">"state"</span>: <span class="string">"published"</span>,</div><div class="line">  <span class="attr">"sourceUrl"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"pageCommentsCount"</span>: <span class="number">34</span>,</div><div class="line">  <span class="attr">"canComment"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="attr">"snapshotUrl"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"slug"</span>: <span class="number">22591792</span>,</div><div class="line">  <span class="attr">"publishedTime"</span>: <span class="string">"2016-09-23T17:33:56+08:00"</span>,</div><div class="line">  <span class="attr">"url"</span>: <span class="string">"/p/22591792"</span>,</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"知乎小管家工作笔记：不规范转载？不可以！"</span>,</div><div class="line">  <span class="attr">"lastestLikers"</span>:</div><div class="line">    [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"profileUrl"</span>: <span class="string">"https://www.zhihu.com/people/su-shu-95-98"</span>,</div><div class="line">        <span class="attr">"bio"</span>: <span class="string">"一个无法用一句话描述的人"</span>,</div><div class="line">        <span class="attr">"hash"</span>: <span class="string">"a6975d974fb22609a31dbbdec6f375e3"</span>,</div><div class="line">        <span class="attr">"uid"</span>: <span class="number">657690756534505472</span>,</div><div class="line">        <span class="attr">"isOrg"</span>: <span class="literal">false</span>,</div><div class="line">        <span class="attr">"description"</span>: <span class="string">"你说什么都对。"</span>,</div><div class="line">        <span class="attr">"slug"</span>: <span class="string">"su-shu-95-98"</span>,</div><div class="line">        <span class="attr">"avatar"</span>:</div><div class="line">          &#123;</div><div class="line">            <span class="attr">"id"</span>: <span class="string">"888129f4afd91083c0cfd156e6889438"</span>,</div><div class="line">            <span class="attr">"template"</span>: <span class="string">"https://pic1.zhimg.com/&#123;id&#125;_&#123;size&#125;.jpg"</span></div><div class="line">          &#125;,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"苏舒"</span></div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">  <span class="attr">"summary"</span>: <span class="string">"&lt;img src=\"https://pic1.zhimg.com/v2-4f2228e8f8292ec30c373488afa2bd48_200x112.jpg\" data-rawwidth=\"920\" data-rawheight=\"638\" class=\"origin_image inline-img zh-lightbox-thumb\" data-original=\"https://pic1.zhimg.com/v2-4f2228e8f8292ec30c373488afa2bd48_r.jpg\"&gt;今天，小管家和大家分享一下站内「不规范转载」行为的处理情况。 年初我们发布了..."</span>,</div><div class="line">  <span class="attr">"reviewingCommentsCount"</span>: <span class="number">0</span>,</div><div class="line">  <span class="attr">"meta"</span>:</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"previous"</span>:</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"isTitleImageFullScreen"</span>: <span class="literal">false</span>,</div><div class="line">          <span class="attr">"rating"</span>: <span class="string">"none"</span>,</div><div class="line">          <span class="attr">"titleImage"</span>: <span class="string">"https://pic2.zhimg.com/517f47cc5269b57f26ea4a25f29d8505_r.jpg"</span>,</div><div class="line">          <span class="attr">"links"</span>:</div><div class="line">            &#123;</div><div class="line">              <span class="attr">"comments"</span>: <span class="string">"/api/posts/22434253/comments"</span></div><div class="line">            &#125;,</div><div class="line">          <span class="attr">"topics"</span>:</div><div class="line">            [</div><div class="line">              &#123;</div><div class="line">                <span class="attr">"url"</span>: <span class="string">"https://www.zhihu.com/topic/19550887"</span>,</div><div class="line">                <span class="attr">"id"</span>: <span class="string">"19550887"</span>,</div><div class="line">                <span class="attr">"name"</span>: <span class="string">"知乎社区"</span></div><div class="line">              &#125;,            </div><div class="line">            ],</div><div class="line">          <span class="attr">"href"</span>: <span class="string">"/api/posts/22434253"</span>,</div><div class="line">          <span class="attr">"excerptTitle"</span>: <span class="string">""</span>,</div><div class="line">          <span class="attr">"author"</span>:</div><div class="line">            &#123;</div><div class="line">              <span class="attr">"profileUrl"</span>: <span class="string">"https://www.zhihu.com/people/zhihuadmin"</span>,</div><div class="line">              <span class="attr">"bio"</span>: <span class="string">"欢迎反馈问题和建议！"</span>,</div><div class="line">              <span class="attr">"hash"</span>: <span class="string">"3d198a56310c02c4a83efb9f4a4c027e"</span>,</div><div class="line">              <span class="attr">"uid"</span>: <span class="number">53253479858176</span>,</div><div class="line">              <span class="attr">"isOrg"</span>: <span class="literal">false</span>,</div><div class="line">              <span class="attr">"description"</span>: <span class="string">""</span>,</div><div class="line">              <span class="attr">"slug"</span>: <span class="string">"zhihuadmin"</span>,</div><div class="line">              <span class="attr">"avatar"</span>:</div><div class="line">                &#123;</div><div class="line">                  <span class="attr">"id"</span>: <span class="string">"34bf96bf5584ac4b5264bd7ed4fdbc5a"</span>,</div><div class="line">                  <span class="attr">"template"</span>: <span class="string">"https://pic3.zhimg.com/&#123;id&#125;_&#123;size&#125;.jpg"</span></div><div class="line">                &#125;,</div><div class="line">              <span class="attr">"name"</span>: <span class="string">"知乎小管家"</span></div><div class="line">            &#125;,</div><div class="line">          <span class="attr">"column"</span>:</div><div class="line">            &#123;</div><div class="line">              <span class="attr">"slug"</span>: <span class="string">"zhihuadmin"</span>,</div><div class="line">              <span class="attr">"name"</span>: <span class="string">"知乎小管家说"</span></div><div class="line">            &#125;,</div><div class="line">          <span class="attr">"content"</span>: <span class="string">"题下发布相同回答；&lt;/p&gt;&lt;img src=\"https://pic2.zhimg.com/a86dbedbeb67a26b33252ee4e8e886a9_b.png\" data-rawwidth=\"469\" data-rawheight=\"348\" class=\"origin_image zh-lightbox-thumb\" width=\"469\" data-original=\"https://pic2.zhimg.com/a86dbedbeb67a26b33252ee4e8e886a9_r.png\"&gt;&lt;br&gt;"</span>,</div><div class="line">          <span class="attr">"state"</span>: <span class="string">"published"</span>,</div><div class="line">          <span class="attr">"sourceUrl"</span>: <span class="string">""</span>,</div><div class="line">          <span class="attr">"pageCommentsCount"</span>: <span class="number">0</span>,</div><div class="line">          <span class="attr">"canComment"</span>: <span class="literal">true</span>,</div><div class="line">          <span class="attr">"snapshotUrl"</span>: <span class="string">""</span>,</div><div class="line">          <span class="attr">"slug"</span>: <span class="number">22434253</span>,</div><div class="line">          <span class="attr">"publishedTime"</span>: <span class="string">"2016-09-13T17:34:29+08:00"</span>,</div><div class="line">          <span class="attr">"url"</span>: <span class="string">"/p/22434253"</span>,</div><div class="line">          <span class="attr">"title"</span>: <span class="string">"新版社区管理规范于今日试运行"</span>,</div><div class="line">          <span class="attr">"summary"</span>: <span class="string">"社区管理规范是知友共识的总结，也是社区健康发展的基石。近期，我们不断收到知友们反馈新的扰乱社区秩序的行为，如集赞爆照、点赞抽奖、评论区发布乱码、刷赞刷粉、恶意营销、回答隐藏淘宝链接..."</span>,</div><div class="line">          <span class="attr">"reviewingCommentsCount"</span>: <span class="number">0</span>,</div><div class="line">          <span class="attr">"meta"</span>:</div><div class="line">            &#123;</div><div class="line">              <span class="attr">"previous"</span>: <span class="literal">null</span>,</div><div class="line">              <span class="attr">"next"</span>: <span class="literal">null</span></div><div class="line">            &#125;,</div><div class="line">          <span class="attr">"commentPermission"</span>: <span class="string">"anyone"</span>,</div><div class="line">          <span class="attr">"commentsCount"</span>: <span class="number">0</span>,</div><div class="line">          <span class="attr">"likesCount"</span>: <span class="number">0</span></div><div class="line">        &#125;,</div><div class="line">      <span class="attr">"next"</span>: <span class="literal">null</span></div><div class="line">    &#125;,</div><div class="line">  <span class="attr">"commentPermission"</span>: <span class="string">"anyone"</span>,</div><div class="line">  <span class="attr">"commentsCount"</span>: <span class="number">34</span>,</div><div class="line">  <span class="attr">"likesCount"</span>: <span class="number">241</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="获取特定的文章信息"><a href="#获取特定的文章信息" class="headerlink" title="获取特定的文章信息"></a>获取特定的文章信息</h4><pre><code>https://zhuanlan.zhihu.com/api/posts/SLUG
+</code></pre><p>例如，获取知乎小管家的最新一篇文章，通过已经获得的信息，有两种方法组合url进行获取，一是通过href值，另一种就是slug值，当然，这两种方式殊途同归。</p>
+<pre><code>https://zhuanlan.zhihu.com/api/posts/22921645
+</code></pre><p>获取到的信息为:</p>
+<pre><code class="JSON">{
+  &quot;isTitleImageFullScreen&quot;: false,
+  &quot;rating&quot;: &quot;none&quot;,
+  &quot;titleImage&quot;: &quot;https://pic2.zhimg.com/v2-cab0719fdec0816c475d7b70e016cbb1_r.jpg&quot;,
+  &quot;links&quot;:
+    {
+      &quot;comments&quot;: &quot;/api/posts/22591792/comments&quot;
+    },
+  &quot;reviewers&quot;: [],
+  &quot;topics&quot;:
+    [
+      {
+        &quot;url&quot;: &quot;https://www.zhihu.com/topic/19550887&quot;,
+        &quot;id&quot;: &quot;19550887&quot;,
+        &quot;name&quot;: &quot;知乎社区&quot;
+      },
+    ],
+  &quot;titleImageSize&quot;:
+    {
+      &quot;width&quot;: 0,
+      &quot;height&quot;: 0
+    },
+  &quot;href&quot;: &quot;/api/posts/22591792&quot;,
+  &quot;excerptTitle&quot;: &quot;&quot;,
+  &quot;author&quot;:
+    {
+      &quot;profileUrl&quot;: &quot;https://www.zhihu.com/people/zhihuadmin&quot;,
+      &quot;bio&quot;: &quot;欢迎反馈问题和建议！&quot;,
+      &quot;hash&quot;: &quot;3d198a56310c02c4a83efb9f4a4c027e&quot;,
+      &quot;uid&quot;: 53253479858176,
+      &quot;isOrg&quot;: false,
+      &quot;description&quot;: &quot;&quot;,
+      &quot;badge&quot;:
+        {
+          &quot;identity&quot;:
+            {
+              &quot;description&quot;: &quot;知乎官方帐号&quot;
+            },
+          &quot;best_answerer&quot;: null
+        },
+      &quot;slug&quot;: &quot;zhihuadmin&quot;,
+      &quot;avatar&quot;:
+        {
+          &quot;id&quot;: &quot;34bf96bf5584ac4b5264bd7ed4fdbc5a&quot;,
+          &quot;template&quot;: &quot;https://pic3.zhimg.com/{id}_{size}.jpg&quot;
+        },
+      &quot;name&quot;: &quot;知乎小管家&quot;
+    },
+  &quot;column&quot;:
+    {
+      &quot;slug&quot;: &quot;zhihuadmin&quot;,
+      &quot;name&quot;: &quot;知乎小管家说&quot;
+    },
+  &quot;tipjarState&quot;: &quot;inactivated&quot;,
+  &quot;content&quot;: &quot;&lt;p&gt;今天，小管家和大家分享一下站内「不规范转载」行为的处理情况。&lt;/p&gt;&lt;br&gt;&quot;,
+  &quot;state&quot;: &quot;published&quot;,
+  &quot;sourceUrl&quot;: &quot;&quot;,
+  &quot;pageCommentsCount&quot;: 34,
+  &quot;canComment&quot;: true,
+  &quot;snapshotUrl&quot;: &quot;&quot;,
+  &quot;slug&quot;: 22591792,
+  &quot;publishedTime&quot;: &quot;2016-09-23T17:33:56+08:00&quot;,
+  &quot;url&quot;: &quot;/p/22591792&quot;,
+  &quot;title&quot;: &quot;知乎小管家工作笔记：不规范转载？不可以！&quot;,
+  &quot;lastestLikers&quot;:
+    [
+      {
+        &quot;profileUrl&quot;: &quot;https://www.zhihu.com/people/su-shu-95-98&quot;,
+        &quot;bio&quot;: &quot;一个无法用一句话描述的人&quot;,
+        &quot;hash&quot;: &quot;a6975d974fb22609a31dbbdec6f375e3&quot;,
+        &quot;uid&quot;: 657690756534505472,
+        &quot;isOrg&quot;: false,
+        &quot;description&quot;: &quot;你说什么都对。&quot;,
+        &quot;slug&quot;: &quot;su-shu-95-98&quot;,
+        &quot;avatar&quot;:
+          {
+            &quot;id&quot;: &quot;888129f4afd91083c0cfd156e6889438&quot;,
+            &quot;template&quot;: &quot;https://pic1.zhimg.com/{id}_{size}.jpg&quot;
+          },
+        &quot;name&quot;: &quot;苏舒&quot;
+      },
+    ],
+  &quot;summary&quot;: &quot;&lt;img src=\&quot;https://pic1.zhimg.com/v2-4f2228e8f8292ec30c373488afa2bd48_200x112.jpg\&quot; data-rawwidth=\&quot;920\&quot; data-rawheight=\&quot;638\&quot; class=\&quot;origin_image inline-img zh-lightbox-thumb\&quot; data-original=\&quot;https://pic1.zhimg.com/v2-4f2228e8f8292ec30c373488afa2bd48_r.jpg\&quot;&gt;今天，小管家和大家分享一下站内「不规范转载」行为的处理情况。 年初我们发布了...&quot;,
+  &quot;reviewingCommentsCount&quot;: 0,
+  &quot;meta&quot;:
+    {
+      &quot;previous&quot;:
+        {
+          &quot;isTitleImageFullScreen&quot;: false,
+          &quot;rating&quot;: &quot;none&quot;,
+          &quot;titleImage&quot;: &quot;https://pic2.zhimg.com/517f47cc5269b57f26ea4a25f29d8505_r.jpg&quot;,
+          &quot;links&quot;:
+            {
+              &quot;comments&quot;: &quot;/api/posts/22434253/comments&quot;
+            },
+          &quot;topics&quot;:
+            [
+              {
+                &quot;url&quot;: &quot;https://www.zhihu.com/topic/19550887&quot;,
+                &quot;id&quot;: &quot;19550887&quot;,
+                &quot;name&quot;: &quot;知乎社区&quot;
+              },            
+            ],
+          &quot;href&quot;: &quot;/api/posts/22434253&quot;,
+          &quot;excerptTitle&quot;: &quot;&quot;,
+          &quot;author&quot;:
+            {
+              &quot;profileUrl&quot;: &quot;https://www.zhihu.com/people/zhihuadmin&quot;,
+              &quot;bio&quot;: &quot;欢迎反馈问题和建议！&quot;,
+              &quot;hash&quot;: &quot;3d198a56310c02c4a83efb9f4a4c027e&quot;,
+              &quot;uid&quot;: 53253479858176,
+              &quot;isOrg&quot;: false,
+              &quot;description&quot;: &quot;&quot;,
+              &quot;slug&quot;: &quot;zhihuadmin&quot;,
+              &quot;avatar&quot;:
+                {
+                  &quot;id&quot;: &quot;34bf96bf5584ac4b5264bd7ed4fdbc5a&quot;,
+                  &quot;template&quot;: &quot;https://pic3.zhimg.com/{id}_{size}.jpg&quot;
+                },
+              &quot;name&quot;: &quot;知乎小管家&quot;
+            },
+          &quot;column&quot;:
+            {
+              &quot;slug&quot;: &quot;zhihuadmin&quot;,
+              &quot;name&quot;: &quot;知乎小管家说&quot;
+            },
+          &quot;content&quot;: &quot;题下发布相同回答；&lt;/p&gt;&lt;img src=\&quot;https://pic2.zhimg.com/a86dbedbeb67a26b33252ee4e8e886a9_b.png\&quot; data-rawwidth=\&quot;469\&quot; data-rawheight=\&quot;348\&quot; class=\&quot;origin_image zh-lightbox-thumb\&quot; width=\&quot;469\&quot; data-original=\&quot;https://pic2.zhimg.com/a86dbedbeb67a26b33252ee4e8e886a9_r.png\&quot;&gt;&lt;br&gt;&quot;,
+          &quot;state&quot;: &quot;published&quot;,
+          &quot;sourceUrl&quot;: &quot;&quot;,
+          &quot;pageCommentsCount&quot;: 0,
+          &quot;canComment&quot;: true,
+          &quot;snapshotUrl&quot;: &quot;&quot;,
+          &quot;slug&quot;: 22434253,
+          &quot;publishedTime&quot;: &quot;2016-09-13T17:34:29+08:00&quot;,
+          &quot;url&quot;: &quot;/p/22434253&quot;,
+          &quot;title&quot;: &quot;新版社区管理规范于今日试运行&quot;,
+          &quot;summary&quot;: &quot;社区管理规范是知友共识的总结，也是社区健康发展的基石。近期，我们不断收到知友们反馈新的扰乱社区秩序的行为，如集赞爆照、点赞抽奖、评论区发布乱码、刷赞刷粉、恶意营销、回答隐藏淘宝链接...&quot;,
+          &quot;reviewingCommentsCount&quot;: 0,
+          &quot;meta&quot;:
+            {
+              &quot;previous&quot;: null,
+              &quot;next&quot;: null
+            },
+          &quot;commentPermission&quot;: &quot;anyone&quot;,
+          &quot;commentsCount&quot;: 0,
+          &quot;likesCount&quot;: 0
+        },
+      &quot;next&quot;: null
+    },
+  &quot;commentPermission&quot;: &quot;anyone&quot;,
+  &quot;commentsCount&quot;: 34,
+  &quot;likesCount&quot;: 241
+}
+</code></pre>
 <ul>
 <li>isTitleImageFullScreen: 文章标题大图是否全屏</li>
 <li>rating: ???评级</li>
@@ -615,7 +885,17 @@
 <li>commentsCount: 评论数量</li>
 <li>likesCount: 赞的数量</li>
 </ul>
-<p>在认证信息中，目前只发现有两种类型，identity官方帐号和best_answerer优秀回答者，由于知乎小管家只是官方帐号，并不是优秀回答者，这里选取优秀回答者<a href="https://www.zhihu.com/people/aton" target="_blank" rel="external">苏莉安</a>的信息进行分析。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">"badge":</div><div class="line">  &#123;</div><div class="line">    "identity": null,</div><div class="line">    "best_answerer":</div><div class="line">      &#123;</div><div class="line">        "topics": [],</div><div class="line">        "description": "优秀回答者"</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>在认证信息中，目前只发现有两种类型，identity官方帐号和best_answerer优秀回答者，由于知乎小管家只是官方帐号，并不是优秀回答者，这里选取优秀回答者<a href="https://www.zhihu.com/people/aton" target="_blank" rel="external">苏莉安</a>的信息进行分析。</p>
+<pre><code class="JSON">&quot;badge&quot;:
+  {
+    &quot;identity&quot;: null,
+    &quot;best_answerer&quot;:
+      {
+        &quot;topics&quot;: [],
+        &quot;description&quot;: &quot;优秀回答者&quot;
+      }
+  }
+</code></pre>
 <ul>
 <li>identity 官方帐号</li>
 <li>best_answerer 优秀回答者<ul>
@@ -624,9 +904,37 @@
 </ul>
 </li>
 </ul>
-<h4 id="获取评论列表"><a href="#获取评论列表" class="headerlink" title="获取评论列表"></a>获取评论列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/posts/文章slug/comments?limit=数量限制&amp;offset=偏移量</div></pre></td></tr></table></figure>
-<p>这里拼接url的方法和获取文章列表时的方法时一样的，不再赘述。例如获取文章slug为22591792的前30条评论。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/posts/22591792/comments?limit=30&amp;offset=0</div></pre></td></tr></table></figure></p>
-<p>获取到的信息为<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"content"</span>: <span class="string">"小管家棒棒哒！支持~"</span>,</div><div class="line">    <span class="attr">"liked"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"href"</span>: <span class="string">"/api/posts/22591792/comments/169039008"</span>,</div><div class="line">    <span class="attr">"inReplyToCommentId"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"reviewing"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"author"</span>:</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"profileUrl"</span>: <span class="string">"https://www.zhihu.com/people/fei-xiao-gui"</span>, <span class="attr">"bio"</span>: <span class="string">"心中有爱 脚下有风 所以我跑得快~"</span>,</div><div class="line">        <span class="attr">"hash"</span>: <span class="string">"41cd5c7249081389da3a523b3cb0629b"</span>, <span class="attr">"uid"</span>: <span class="number">28048833380352</span>,</div><div class="line">        <span class="attr">"isOrg"</span>: <span class="literal">false</span>,</div><div class="line">        <span class="attr">"description"</span>: <span class="string">"品学兼优~"</span>,</div><div class="line">        <span class="attr">"slug"</span>: <span class="string">"fei-xiao-gui"</span>,</div><div class="line">        <span class="attr">"avatar"</span>:</div><div class="line">          &#123;</div><div class="line">            <span class="attr">"id"</span>: <span class="string">"a061ebdd61bb57c81b3206dda51418fc"</span>, <span class="attr">"template"</span>: <span class="string">"https://pic1.zhimg.com/&#123;id&#125;_&#123;size&#125;.jpg"</span></div><div class="line">          &#125;,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"菲小桂"</span></div><div class="line">      &#125;,</div><div class="line">    <span class="attr">"createdTime"</span>: <span class="string">"2016-09-23T17:35:54+08:00"</span>,</div><div class="line">    <span class="attr">"featured"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"id"</span>: <span class="number">169039008</span>,</div><div class="line">    <span class="attr">"likesCount"</span>: <span class="number">1</span></div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h4 id="获取评论列表"><a href="#获取评论列表" class="headerlink" title="获取评论列表"></a>获取评论列表</h4><pre><code>https://zhuanlan.zhihu.com/api/posts/文章slug/comments?limit=数量限制&amp;offset=偏移量
+</code></pre><p>这里拼接url的方法和获取文章列表时的方法时一样的，不再赘述。例如获取文章slug为22591792的前30条评论。</p>
+<pre><code>https://zhuanlan.zhihu.com/api/posts/22591792/comments?limit=30&amp;offset=0
+</code></pre><p>获取到的信息为</p>
+<pre><code class="JSON">[
+  {
+    &quot;content&quot;: &quot;小管家棒棒哒！支持~&quot;,
+    &quot;liked&quot;: false,
+    &quot;href&quot;: &quot;/api/posts/22591792/comments/169039008&quot;,
+    &quot;inReplyToCommentId&quot;: 0,
+    &quot;reviewing&quot;: false,
+    &quot;author&quot;:
+      {
+        &quot;profileUrl&quot;: &quot;https://www.zhihu.com/people/fei-xiao-gui&quot;, &quot;bio&quot;: &quot;心中有爱 脚下有风 所以我跑得快~&quot;,
+        &quot;hash&quot;: &quot;41cd5c7249081389da3a523b3cb0629b&quot;, &quot;uid&quot;: 28048833380352,
+        &quot;isOrg&quot;: false,
+        &quot;description&quot;: &quot;品学兼优~&quot;,
+        &quot;slug&quot;: &quot;fei-xiao-gui&quot;,
+        &quot;avatar&quot;:
+          {
+            &quot;id&quot;: &quot;a061ebdd61bb57c81b3206dda51418fc&quot;, &quot;template&quot;: &quot;https://pic1.zhimg.com/{id}_{size}.jpg&quot;
+          },
+        &quot;name&quot;: &quot;菲小桂&quot;
+      },
+    &quot;createdTime&quot;: &quot;2016-09-23T17:35:54+08:00&quot;,
+    &quot;featured&quot;: false,
+    &quot;id&quot;: 169039008,
+    &quot;likesCount&quot;: 1
+  }
+]
+</code></pre>
 <ul>
 <li>content: 评论内容</li>
 <li>liked: 是否给这条评论点过赞</li>
@@ -655,9 +963,10 @@
 <li>likesCount: 获得的赞的数量</li>
 </ul>
 <p>对他人评论的回复数据有些许的不同，inReplyToCommentId的值不为0，json数据中增加了inReplyToUser字段，内容为author类型。这里不再具体分析。</p>
-<h4 id="获取点赞信息"><a href="#获取点赞信息" class="headerlink" title="获取点赞信息"></a>获取点赞信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/posts/22591792/likers?limit=获取数量&amp;offset=偏移量</div></pre></td></tr></table></figure>
-<p>例如，获取文章slug为22591792的最新20个点赞的人的信息，author类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://zhuanlan.zhihu.com/api/posts/22591792/likers?limit=20&amp;offset=0</div></pre></td></tr></table></figure></p>
-<p>url的拼接方法和上面获取文章信息时方法相同，不再赘述。</p>
+<h4 id="获取点赞信息"><a href="#获取点赞信息" class="headerlink" title="获取点赞信息"></a>获取点赞信息</h4><pre><code>https://zhuanlan.zhihu.com/api/posts/22591792/likers?limit=获取数量&amp;offset=偏移量
+</code></pre><p>例如，获取文章slug为22591792的最新20个点赞的人的信息，author类型。</p>
+<pre><code>https://zhuanlan.zhihu.com/api/posts/22591792/likers?limit=20&amp;offset=0
+</code></pre><p>url的拼接方法和上面获取文章信息时方法相同，不再赘述。</p>
 <p>最后还是放上自己的示例项目地址：<br><a href="https://github.com/TonnyL/zhuanlan" target="_blank" rel="external">知乎专栏Android</a></p>
 
     

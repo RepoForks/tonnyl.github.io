@@ -418,11 +418,22 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>简单实用的教程，教你如何一步一步从新建Library到上传至JCenter<br><a id="more"></a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在开发app的过程中，我们经常会遇到需要使用第三方库的情况，例如常用的<a href="https://github.com/square/okhttp" target="_blank" rel="external">Okhttp</a>，只需要添加一行代码到app下到gradle文件中就可以实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.squareup.okhttp3:okhttp:3.4.1&apos;</div></pre></td></tr></table></figure></p>
-<p>这种方式使用的就是squareup上传到JCenter的Library。那么这种方式是如何实现的呢？</p>
-<h3 id="Maven与JCenter"><a href="#Maven与JCenter" class="headerlink" title="Maven与JCenter"></a>Maven与JCenter</h3><p>JCenter是由<a href="https://bintray.com/" target="_blank" rel="external">bintray.com</a>维护的Maven库。在项目的根目录下的build.gradle文件中定义如下，就可以使用JCenter了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Maven Central<br>Maven是由<a href="https://sonatype.org/" target="_blank" rel="external">sonatype.org</a>维护的Maven仓库。<br>在使用一些开源库的时候可能会要求你在根目录下的build.gradle文件中添加如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenCentral()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样就能使用mavenCentral了。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在开发app的过程中，我们经常会遇到需要使用第三方库的情况，例如常用的<a href="https://github.com/square/okhttp" target="_blank" rel="external">Okhttp</a>，只需要添加一行代码到app下到gradle文件中就可以实现。</p>
+<pre><code>compile &#39;com.squareup.okhttp3:okhttp:3.4.1&#39;
+</code></pre><p>这种方式使用的就是squareup上传到JCenter的Library。那么这种方式是如何实现的呢？</p>
+<h3 id="Maven与JCenter"><a href="#Maven与JCenter" class="headerlink" title="Maven与JCenter"></a>Maven与JCenter</h3><p>JCenter是由<a href="https://bintray.com/" target="_blank" rel="external">bintray.com</a>维护的Maven库。在项目的根目录下的build.gradle文件中定义如下，就可以使用JCenter了。</p>
+<pre><code>allprojects {
+    repositories {
+        jcenter()
+    }
+}
+</code></pre><p>Maven Central<br>Maven是由<a href="https://sonatype.org/" target="_blank" rel="external">sonatype.org</a>维护的Maven仓库。<br>在使用一些开源库的时候可能会要求你在根目录下的build.gradle文件中添加如下代码：</p>
+<pre><code>allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+</code></pre><p>这样就能使用mavenCentral了。</p>
 <p>这两者是什么关系呢？</p>
 <p>啊哈哈哈哈，没有关系（知道真相的我表情是这样的：你tm在逗我.jpg）。都是Maven仓库，只是存放的地方不一样罢了。在较老版本的Android Studio中，默认使用的是 Maven Central，不过由于它对开发者不那么的友好，后来就默认使用JCenter了。</p>
 <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="1-注册bintray帐号"><a href="#1-注册bintray帐号" class="headerlink" title="1. 注册bintray帐号"></a>1. 注册bintray帐号</h4><p>这是当然了，要在人家的平台上发布Library当然首先得有一个帐号了。你可以创建一个全新的，也可以直接使用GitHub登录。</p>
@@ -448,9 +459,15 @@
 <li>现在就可以在库目录(我这里是CircleProgressBar)下编写代码了。</li>
 </ol>
 <h3 id="打包文件"><a href="#打包文件" class="headerlink" title="打包文件"></a>打包文件</h3><p>之前看的教程都是通过配置炒鸡复杂(好吧，可能是我太菜了，配置了很久都没有成功…)的build.gradle的方法来实现的。这里介绍一种炒鸡炒鸡简单的方法。</p>
-<p>1.找到Library下的build.gradle文件，添加如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">    PUBLISH_GROUP_ID = &apos;io.github.marktony&apos;</div><div class="line">    PUBLISH_ARTIFACT_ID = &apos;circle-progress-bar&apos;</div><div class="line">    PUBLISH_VERSION = &apos;1.1&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>文件末尾添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apply from: &apos;https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle&apos;</div></pre></td></tr></table></figure></p>
-<img src="/2016/10/21/Android-Studio新建Library并上传到JCenter/AndroidStudio_set_gradle.png" alt="配置gradle文件" title="配置gradle文件">
+<p>1.找到Library下的build.gradle文件，添加如下代码：</p>
+<pre><code>ext {
+    PUBLISH_GROUP_ID = &#39;io.github.marktony&#39;
+    PUBLISH_ARTIFACT_ID = &#39;circle-progress-bar&#39;
+    PUBLISH_VERSION = &#39;1.1&#39;
+}
+</code></pre><p>文件末尾添加</p>
+<pre><code>apply from: &#39;https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle&#39;
+</code></pre><img src="/2016/10/21/Android-Studio新建Library并上传到JCenter/AndroidStudio_set_gradle.png" alt="配置gradle文件" title="配置gradle文件">
 <table>
 <thead>
 <tr>
@@ -473,11 +490,14 @@
 </tr>
 </tbody>
 </table>
-<p>对比compile地址，可以很方便的理解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;io.github.marktony:circle-progress-bar:1.1&apos;</div></pre></td></tr></table></figure></p>
-<p>2.打包<br>在Android Studio的terminal中执行：</p>
-<p>Windows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gradlew clean build generateRelease</div></pre></td></tr></table></figure></p>
-<p>MacOS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew clean build generateRelease</div></pre></td></tr></table></figure></p>
-<p>经过一系列的下载＋各种编译之后(第一次编译的话，建议你吃个饭或者结个婚生个娃什么的再回来(笑，大概30分钟左右)，时间比较长，要下载文件超级多，不知道是不是只有我一个人是这样。以后再编译就炒鸡快了。)就会提示你BUILD SUCCESS,还有zip包的存放路径，找到这个zip，后面会用到。</p>
+<p>对比compile地址，可以很方便的理解：</p>
+<pre><code>compile &#39;io.github.marktony:circle-progress-bar:1.1&#39;
+</code></pre><p>2.打包<br>在Android Studio的terminal中执行：</p>
+<p>Windows:</p>
+<pre><code>gradlew clean build generateRelease
+</code></pre><p>MacOS:</p>
+<pre><code>./gradlew clean build generateRelease
+</code></pre><p>经过一系列的下载＋各种编译之后(第一次编译的话，建议你吃个饭或者结个婚生个娃什么的再回来(笑，大概30分钟左右)，时间比较长，要下载文件超级多，不知道是不是只有我一个人是这样。以后再编译就炒鸡快了。)就会提示你BUILD SUCCESS,还有zip包的存放路径，找到这个zip，后面会用到。</p>
 <h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><p>回到之前bintray的网站，进入package的详情，就会看到下面的界面。</p>
 <img src="/2016/10/21/Android-Studio新建Library并上传到JCenter/bintray_package_detail.png" alt="package详情" title="package详情">
 <p>点击version，新建一个版本。完成后点击刚刚新建的版本，点击Upload Files，上传之前生成的zip文件，注意要选中exploding the archive选项。</p>

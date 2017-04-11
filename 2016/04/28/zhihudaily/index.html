@@ -510,7 +510,9 @@ public LatestPostAdapter(Context context, List&lt;LatestPost&gt; list){
 <ul>
 <li>1.简单粗暴型 直接禁止横屏，当然这只是适用于极少数的情况。可以在manifest文件中对应的activity配置：</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">android:screenOrientation="portrait"</div><div class="line">android:screenOrientation="landscape"</div></pre></td></tr></table></figure>
+<pre><code class="xml">android:screenOrientation=&quot;portrait&quot;
+android:screenOrientation=&quot;landscape&quot;
+</code></pre>
 <p>或者在Java代码中处理</p>
 <pre><code>setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);  

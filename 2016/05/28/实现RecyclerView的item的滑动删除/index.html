@@ -426,25 +426,78 @@
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
 <li>修改build.gradle文件，添加依赖。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.android.support:recyclerview-v7:23.4.0&apos;</div></pre></td></tr></table></figure>
-<ul>
+<pre><code>compile &#39;com.android.support:recyclerview-v7:23.4.0&#39;
+</code></pre><ul>
 <li>构建object与Adapter</li>
 </ul>
 <p>这里假设我已经构建好了实体类CodeLanguage和adapter，在构建adapter时，需要添加一个方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">   mMovies.remove(position);</div><div class="line">   notifyItemRemoved(position);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java">public void remove(int position) {
+   mMovies.remove(position);
+   notifyItemRemoved(position);
+}
+</code></pre>
 <ul>
 <li>创建ItemTouchHelper.SimpleCallback子类</li>
 </ul>
 <p>为了处理拖动和滑动事件，需要创建ItemTouchHelper.SimpleCallback的实现类。这里，只对滑动事件感兴趣，这是我们的callback.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CodeLanguageItemTouchHelper</span> <span class="title">extens</span> <span class="title">ItemTouchHelper</span>.<span class="title">SimpleCallback</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> CodeLanguageAdapter adapter;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CodeLanguageItemTouchHelper</span><span class="params">(CodeLanguageAdapter adapter)</span></span>&#123;</div><div class="line">      <span class="keyword">super</span>(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);</div><div class="line">      <span class="keyword">this</span>.adapter = adapter;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	* If you don't support drag &amp; drop, this method will never be called.</div><div class="line">    * 如果不支持拖拽，那么这个方法就不会被执行。</div><div class="line">	* <span class="doctag">@param</span> recyclerView The RecyclerView to which ItemTouchHelper is attached to. ItemTouchHelper需要附加到的RecyclerView</div><div class="line">	* <span class="doctag">@param</span> viewHolder The ViewHolder which is being dragged by the user. 拖动的ViewHolder</div><div class="line">	* <span class="doctag">@param</span> target The ViewHolder over which the currently active item is being dragged. 目标位置的ViewHolder</div><div class="line">	* <span class="doctag">@return</span> True if the viewHolder has been moved to the adapter position of target. viewHolder是否被移动到目标位置</div><div class="line">	*/</div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onMove</span><span class="params">(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target)</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">   &#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	* Called when a ViewHolder is swiped by the user.</div><div class="line">	* If you don't support swiping, this method will never be called.</div><div class="line">	* 如果不支持滑动，方法不会被执行。</div><div class="line">	* <span class="doctag">@param</span> viewHolder The ViewHolder which has been swiped by the user.</div><div class="line">	* <span class="doctag">@param</span> direction  The direction to which the ViewHolder is swiped.</div><div class="line">	*					It is one of UP, DOWN, LEFT or RIGHT.</div><div class="line">	*					If your getMovementFlags(RecyclerView, ViewHolder) method returned relative flags instead of LEFT / RIGHT;</div><div class="line">	*					`direction` will be relative as well. (START or END).</div><div class="line">	*/</div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSwiped</span><span class="params">(RecyclerView.ViewHolder viewHolder, <span class="keyword">int</span> direction)</span> </span>&#123;</div><div class="line">      <span class="comment">//Remove item</span></div><div class="line">      adapter.remove(viewHolder.getAdapterPosition());</div><div class="line">   &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java">public class CodeLanguageItemTouchHelper extens ItemTouchHelper.SimpleCallback{
+
+    private CodeLanguageAdapter adapter;
+
+    public CodeLanguageItemTouchHelper(CodeLanguageAdapter adapter){
+      super(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+      this.adapter = adapter;
+   }
+
+    /**
+    * If you don&#39;t support drag &amp; drop, this method will never be called.
+    * 如果不支持拖拽，那么这个方法就不会被执行。
+    * @param recyclerView The RecyclerView to which ItemTouchHelper is attached to. ItemTouchHelper需要附加到的RecyclerView
+    * @param viewHolder The ViewHolder which is being dragged by the user. 拖动的ViewHolder
+    * @param target The ViewHolder over which the currently active item is being dragged. 目标位置的ViewHolder
+    * @return True if the viewHolder has been moved to the adapter position of target. viewHolder是否被移动到目标位置
+    */
+   @Override
+   public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+      return false;  
+   }
+
+    /**
+    * Called when a ViewHolder is swiped by the user.
+    * If you don&#39;t support swiping, this method will never be called.
+    * 如果不支持滑动，方法不会被执行。
+    * @param viewHolder The ViewHolder which has been swiped by the user.
+    * @param direction  The direction to which the ViewHolder is swiped.
+    *                    It is one of UP, DOWN, LEFT or RIGHT.
+    *                    If your getMovementFlags(RecyclerView, ViewHolder) method returned relative flags instead of LEFT / RIGHT;
+    *                    `direction` will be relative as well. (START or END).
+    */
+   @Override
+   public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+      //Remove item
+      adapter.remove(viewHolder.getAdapterPosition());
+   }
+
+}
+</code></pre>
 <p>CodeLanguageItemTouchHelper默认的构造方法需要传入两个参数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* Creates a Callback for the given drag and swipe allowance.</div><div class="line">* <span class="doctag">@param</span> dragDirs 表示拖拽的方向，有六个类型的值：LEFT、RIGHT、START、END、UP、DOWN</div><div class="line">* <span class="doctag">@param</span> swipeDirs 表示滑动的方向，有六个类型的值：LEFT、RIGHT、START、END、UP、DOWN</div><div class="line">*/</div><div class="line">ItemTouchHelper.SimpleCallback(<span class="keyword">int</span> dragDirs, <span class="keyword">int</span> swipeDirs)</div></pre></td></tr></table></figure>
+<pre><code class="java">
+/**
+* Creates a Callback for the given drag and swipe allowance.
+* @param dragDirs 表示拖拽的方向，有六个类型的值：LEFT、RIGHT、START、END、UP、DOWN
+* @param swipeDirs 表示滑动的方向，有六个类型的值：LEFT、RIGHT、START、END、UP、DOWN
+*/
+ItemTouchHelper.SimpleCallback(int dragDirs, int swipeDirs)
+</code></pre>
 <p>CodeLanguageItemTouchHelper默认需要实现两个方法onMove(),onSwiped()，onMove()是对拖拽的实现，onSwiped()是对滑动的实现。</p>
 <ul>
 <li>将ItemTouchHelper添加至RecyclerView</li>
 </ul>
 <p>创建好自己的ItemTouchHelper类后，将它附加到RecyclerView就很简单了。在Activity或者Fragment的onCreate()方法中：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ItemTouchHelper.Callback callback = <span class="keyword">new</span> MovieTouchHelper(adapter);</div><div class="line">ItemTouchHelper helper = <span class="keyword">new</span> ItemTouchHelper(callback);</div><div class="line">helper.attachToRecyclerView(codeLanguageRecyclerView);</div></pre></td></tr></table></figure>
+<pre><code class="java">ItemTouchHelper.Callback callback = new MovieTouchHelper(adapter);
+ItemTouchHelper helper = new ItemTouchHelper(callback);
+helper.attachToRecyclerView(codeLanguageRecyclerView);
+</code></pre>
 <p>现在所有的工作已经完成。我们现在还没有添加动画，默认的动画系统已经添加。现在就可以使用了。</p>
 <p>示例project在这里：<a href="https://github.com/TonnyL/zhuanlan" target="_blank" rel="external">GitHub</a>，与上述项目稍有不同。</p>
 

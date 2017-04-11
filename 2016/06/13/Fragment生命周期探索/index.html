@@ -424,19 +424,213 @@
 <p>下面直接通过工程来认识Fragment的生命周期</p>
 <p>首先新建FragmentDemo工程。</p>
 <p>MainActivity.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> com.marktony.fragmentdemo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.support.v4.app.FragmentManager;</div><div class="line"><span class="keyword">import</span> android.support.v4.app.FragmentTransaction;</div><div class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> android.util.Log;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.widget.Button;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Button btnAddFragment;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> FragmentManager fragmentManager;</div><div class="line">    <span class="keyword">private</span> FragmentTransaction fragmentTransaction;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"MainActivity"</span>;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        initViews();</div><div class="line"></div><div class="line">        initData();</div><div class="line"></div><div class="line">        btnAddFragment.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                MyFragment fragment = <span class="keyword">new</span> MyFragment();</div><div class="line">                fragmentTransaction.replace(R.id.container,fragment);</div><div class="line">                fragmentTransaction.commit();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onCreate"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        fragmentManager = getSupportFragmentManager();</div><div class="line">        fragmentTransaction = fragmentManager.beginTransaction();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initViews</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        btnAddFragment = (Button) findViewById(R.id.btn_add_fragment);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java">
+package com.marktony.fragmentdemo;
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity {
+
+    private Button btnAddFragment;
+
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+
+    public static final String TAG = &quot;MainActivity&quot;;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        initViews();
+
+        initData();
+
+        btnAddFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyFragment fragment = new MyFragment();
+                fragmentTransaction.replace(R.id.container,fragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        Log.d(TAG,&quot;onCreate&quot;);
+    }
+
+    private void initData() {
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+    }
+
+    private void initViews() {
+
+        btnAddFragment = (Button) findViewById(R.id.btn_add_fragment);
+
+    }
+}
+</code></pre>
 <p>代码很简单，加载相应的布局，通过监听button的点击事件，加载fragment。</p>
 <p>activity_main.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/container"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:paddingBottom</span>=<span class="string">"@dimen/activity_vertical_margin"</span></div><div class="line">    <span class="attr">android:paddingLeft</span>=<span class="string">"@dimen/activity_horizontal_margin"</span></div><div class="line">    <span class="attr">android:paddingRight</span>=<span class="string">"@dimen/activity_horizontal_margin"</span></div><div class="line">    <span class="attr">android:paddingTop</span>=<span class="string">"@dimen/activity_vertical_margin"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">"com.marktony.fragmentdemo.MainActivity"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/btn_add_fragment"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"add_fragment"</span>/&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>MyFragment.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.marktony.fragmentdemo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.content.Context;</div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> android.support.annotation.Nullable;</div><div class="line"><span class="keyword">import</span> android.support.v4.app.Fragment;</div><div class="line"><span class="keyword">import</span> android.util.Log;</div><div class="line"><span class="keyword">import</span> android.view.LayoutInflater;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.view.ViewGroup;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by lizhaotailang on 2016/6/13.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"MY_FRAGMENT"</span>;</div><div class="line"></div><div class="line">    <span class="comment">// empty constructor</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyFragment</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttach</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onAttach(context);</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onAttach"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onCreate"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Nullable</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onCreateView"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> inflater.inflate(R.layout.fragment_my,container,<span class="keyword">false</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onActivityCreated</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onActivityCreated(savedInstanceState);</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onActivityCreated"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onStart();</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onStart"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onResume();</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onResume"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onPause();</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onPause"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onStop();</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onStop"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroyView</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDestroyView();</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onDestroyView"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onDestroy"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDetach</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDetach();</div><div class="line"></div><div class="line">        Log.d(TAG,<span class="string">"onDetach"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/container&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
+    android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
+    tools:context=&quot;com.marktony.fragmentdemo.MainActivity&quot;&gt;
+
+    &lt;Button
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/btn_add_fragment&quot;
+        android:text=&quot;add_fragment&quot;/&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre>
+<p>MyFragment.java</p>
+<pre><code class="java">package com.marktony.fragmentdemo;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+/**
+ * Created by lizhaotailang on 2016/6/13.
+ */
+public class MyFragment extends Fragment {
+
+    public static final String TAG = &quot;MY_FRAGMENT&quot;;
+
+    // empty constructor
+    public MyFragment(){
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        Log.d(TAG,&quot;onAttach&quot;);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Log.d(TAG,&quot;onCreate&quot;);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Log.d(TAG,&quot;onCreateView&quot;);
+
+        return inflater.inflate(R.layout.fragment_my,container,false);
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        Log.d(TAG,&quot;onActivityCreated&quot;);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Log.d(TAG,&quot;onStart&quot;);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Log.d(TAG,&quot;onResume&quot;);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        Log.d(TAG,&quot;onPause&quot;);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        Log.d(TAG,&quot;onStop&quot;);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        Log.d(TAG,&quot;onDestroyView&quot;);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        Log.d(TAG,&quot;onDestroy&quot;);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        Log.d(TAG,&quot;onDetach&quot;);
+    }
+
+}
+</code></pre>
 <p>MyFragment中复写了一些方法，每个方法被调用时打印日志。</p>
 <p>ok，大功告成，现在就跑到手机上。</p>
-<p>观察打印日志，可以看到:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">com.marktony.fragmentdemo D/MainActivity: onCreate</div></pre></td></tr></table></figure></p>
-<p>按下按钮时<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onAttach</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onCreate</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onCreateView</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onActivityCreated</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onStart</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onResume</div></pre></td></tr></table></figure></p>
-<p>此时按下home键<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onPause</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onStop</div></pre></td></tr></table></figure></p>
-<p>重新回到应用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onStart</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onResume</div></pre></td></tr></table></figure></p>
-<p>按下back键，此时fragment和activity均被销毁。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onPause</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onStop</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onDestroyView</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onDestroy</div><div class="line">com.marktony.fragmentdemo D/MY_FRAGMENT: onDetach</div></pre></td></tr></table></figure></p>
-<p>观察日志，不难发现。</p>
+<p>观察打印日志，可以看到:</p>
+<pre><code>com.marktony.fragmentdemo D/MainActivity: onCreate
+</code></pre><p>按下按钮时</p>
+<pre><code>com.marktony.fragmentdemo D/MY_FRAGMENT: onAttach
+com.marktony.fragmentdemo D/MY_FRAGMENT: onCreate
+com.marktony.fragmentdemo D/MY_FRAGMENT: onCreateView
+com.marktony.fragmentdemo D/MY_FRAGMENT: onActivityCreated
+com.marktony.fragmentdemo D/MY_FRAGMENT: onStart
+com.marktony.fragmentdemo D/MY_FRAGMENT: onResume
+</code></pre><p>此时按下home键</p>
+<pre><code>com.marktony.fragmentdemo D/MY_FRAGMENT: onPause
+com.marktony.fragmentdemo D/MY_FRAGMENT: onStop
+</code></pre><p>重新回到应用</p>
+<pre><code>com.marktony.fragmentdemo D/MY_FRAGMENT: onStart
+com.marktony.fragmentdemo D/MY_FRAGMENT: onResume
+</code></pre><p>按下back键，此时fragment和activity均被销毁。</p>
+<pre><code>com.marktony.fragmentdemo D/MY_FRAGMENT: onPause
+com.marktony.fragmentdemo D/MY_FRAGMENT: onStop
+com.marktony.fragmentdemo D/MY_FRAGMENT: onDestroyView
+com.marktony.fragmentdemo D/MY_FRAGMENT: onDestroy
+com.marktony.fragmentdemo D/MY_FRAGMENT: onDetach
+</code></pre><p>观察日志，不难发现。</p>
 <p>当fragment被创建时，会依次经历以下状态：</p>
 <ul>
 <li>onAttach()</li>

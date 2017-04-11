@@ -427,9 +427,23 @@
 <p>ZXing (“zebra crossing”) is an open-source, multi-format 1D/2D barcode image processing library implemented in Java, with ports to other languages.</p>
 </blockquote>
 <h2 id="Set-up-the-project"><a href="#Set-up-the-project" class="headerlink" title="Set up the project"></a>Set up the project</h2><h3 id="Add-the-dependences"><a href="#Add-the-dependences" class="headerlink" title="Add the dependences"></a>Add the dependences</h3><p>In your build.gradle file(<strong>App module level</strong>), add the <code>ZXing core</code> library to it.</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile fileTree(<span class="string">include:</span> [<span class="string">'*.jar'</span>], <span class="string">dir:</span> <span class="string">'libs'</span>)</div><div class="line">    <span class="comment">// Other dependencies here...</span></div><div class="line">    compile <span class="string">'com.google.zxing:core:3.3.0'</span></div><div class="line">    testCompile <span class="string">'junit:junit:4.12'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="groovy">dependencies {
+    compile fileTree(include: [&#39;*.jar&#39;], dir: &#39;libs&#39;)
+    // Other dependencies here...
+    compile &#39;com.google.zxing:core:3.3.0&#39;
+    testCompile &#39;junit:junit:4.12&#39;
+}
+</code></pre>
 <h3 id="Ask-the-required-permissions"><a href="#Ask-the-required-permissions" class="headerlink" title="Ask the required permissions"></a>Ask the required permissions</h3><p>In your <code>AndroidManifest.xml</code> file, add the code below.</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">package</span>=<span class="string">"io.github.marktony.espresso"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CAMERA"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WAKE_LOCK"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.VIBRATE"</span> /&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">application</span> <span class="attr">...</span></span></div></pre></td></tr></table></figure>
+<pre><code class="xml">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;io.github.marktony.espresso&quot;&gt;
+
+    &lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.WAKE_LOCK&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot; /&gt;
+
+     &lt;application ...
+</code></pre>
 <h3 id="Import-the-needed-class-and-resource-files"><a href="#Import-the-needed-class-and-resource-files" class="headerlink" title="Import the needed class and resource files"></a>Import the needed class and resource files</h3><p>Copy <a href="https://github.com/TonnyL/Espresso/tree/master/mobile/src/main/java/io/github/marktony/espresso/zxing" target="_blank" rel="external">the whole package</a> to your project.</p>
 <p><img src="http://ww4.sinaimg.cn/large/006tKfTcgy1feizatturkj30ki0us76v.jpg" alt=""></p>
 <p><strong>Notice</strong>: I have simplified the classes and code in the package above, if you need the complete package, visit the <a href="https://github.com/zxing/zxing/tree/master/android" target="_blank" rel="external">ZXing samples</a> here and download the corresponding code.</p>
@@ -441,7 +455,50 @@
 <li><a href="https://github.com/TonnyL/Espresso/tree/master/mobile/src/main/res/drawable" target="_blank" rel="external"><code>res/drawable/...</code></a> - Three files in total: <a href="https://github.com/TonnyL/Espresso/blob/master/mobile/src/main/res/drawable/scan_line.png" target="_blank" rel="external">scan_line.png</a>, <a href="https://github.com/TonnyL/Espresso/blob/master/mobile/src/main/res/drawable/qr_code_bg.9.png" target="_blank" rel="external">qr_code_bg.9.png</a>, <a href="https://github.com/TonnyL/Espresso/blob/master/mobile/src/main/res/drawable/shadow.png" target="_blank" rel="external">shadow.png</a>.</li>
 </ul>
 <h2 id="Wrap-it-up"><a href="#Wrap-it-up" class="headerlink" title="Wrap it up"></a>Wrap it up</h2><p>Now we start the <code>CaptureActivity</code> from <code>MainActivity</code> and expect a result by:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> SCANNING_REQUEST_CODE = <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> TextView textView;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        textView = (TextView) findViewById(R.id.textView);</div><div class="line"></div><div class="line">        textView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, CaptureActivity.class);</div><div class="line">                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);</div><div class="line">                startActivityForResult(intent, SCANNING_REQUEST_CODE);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">        <span class="keyword">switch</span> (requestCode) &#123;</div><div class="line">            <span class="keyword">case</span> SCANNING_REQUEST_CODE:</div><div class="line">                <span class="keyword">if</span> (resultCode == RESULT_OK) &#123;</div><div class="line">                    <span class="keyword">final</span> Bundle bundle = data.getExtras();</div><div class="line">                    Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</div><div class="line">                    handler.post(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">                        <span class="meta">@Override</span></div><div class="line">                        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                            textView.setText(bundle.getString(<span class="string">"result"</span>));</div><div class="line">                        &#125;</div><div class="line">                    &#125;);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="java">public class MainActivity extends AppCompatActivity {
+
+    public final static int SCANNING_REQUEST_CODE = 1;
+
+    private TextView textView;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        textView = (TextView) findViewById(R.id.textView);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivityForResult(intent, SCANNING_REQUEST_CODE);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case SCANNING_REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    final Bundle bundle = data.getExtras();
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            textView.setText(bundle.getString(&quot;result&quot;));
+                        }
+                    });
+                }
+                break;
+            default:
+                break;
+        }
+    }
+}
+</code></pre>
 <p>We take care of the result in function <code>onActivityResult()</code>.</p>
 <p>Notice: If your target api level is 23 or higher, <strong>DO NOT</strong> forget adapt the runtime permissions because our app need to use the camera.<br>Tip: As you can see in my source code, I did not launch the <code>CaptureActivity</code> in <code>AddPackageFragment</code> instead of <code>MainActivity</code>, so it is a little bit different to the code above.</p>
 <h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>Now we can test our app if it works well. Go to <a href="http://www.qr-code-generator.com/" target="_blank" rel="external">qr-code-generator.com</a> and test it. We should expect something just this:</p>

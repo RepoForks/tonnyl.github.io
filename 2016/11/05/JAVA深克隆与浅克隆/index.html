@@ -448,38 +448,162 @@
 <img src="/2016/11/05/JAVA深克隆与浅克隆/shadow_clone_class_diagram.png" alt="浅克隆类图" title="浅克隆类图">
 <p>3.实例代码及解释</p>
 <p>(1) 抽象原型类Object</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> java.lang</div><div class="line">	...</div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">native</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedExceptioni</span>;</div><div class="line">	...</div></pre></td></tr></table></figure>
+<pre><code class="Java">package java.lang
+    ...
+    protected native Object clone() throws CloneNotSupportedExceptioni;
+    ...
+</code></pre>
 <p>Object作为抽象原型类，在Java中，所有的类都是Object的子类，在Object中提供克隆方法clone()，用于创建一个原型对象，其clone()方法具体实现由JVM完成，用户使用时无须关心。</p>
 <p>(2) 具体原型类Email(邮件类)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Email</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> Attachment attachment = <span class="keyword">null</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Email</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.attachment = <span class="keyword">new</span> Attachment();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">clone</span><span class="params">()</span> </span>&#123;</div><div class="line">        Email clone = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            clone = (Email) <span class="keyword">super</span>.clone();</div><div class="line">        &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>  clone;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> Attachment <span class="title">getAttachment</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.attachment;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"查看邮件"</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="Java">public class Email implements Cloneable {
+
+    private Attachment attachment = null;
+
+    public Email() {
+        this.attachment = new Attachment();
+    }
+
+    public Object clone() {
+        Email clone = null;
+        try {
+            clone = (Email) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return  clone;
+    }
+
+    public Attachment getAttachment() {
+        return this.attachment;
+    }
+
+    public void display() {
+        System.out.println(&quot;查看邮件&quot;);
+    }
+
+}
+</code></pre>
 <p>Email类是具体原型类，也是Object类的子类，在Java中，只有实现了Cloneable接口的类才能使用clone()方法来进行复制，因此Email类实现了Cloneable接口。在Email类中覆盖了Object的clone()方法，功过直接或间接调用Object的clone()方法返回一个克隆的原型对象。在Email类中定义了一个成员对象attachment，类型为Attachment。</p>
 <p>4.辅助代码</p>
 <p>(1) 附件类Attachment</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Attachment</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"下载附件"</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="Java">public class Attachment {
+
+    public void download() {
+        System.out.println(&quot;下载附件&quot;);
+    }
+
+}
+</code></pre>
 <p>为了更好的说明深克隆和浅克隆的区别，在本实例中引入了附件类Attachment,邮件类Email与附件类是组合关联关系，在邮件类中定义一个附件类对象作为其成员对象。</p>
 <p>(2) 客户端测试类Client</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Email email, copyEmail;</div><div class="line">        email = <span class="keyword">new</span> Email();</div><div class="line">        copyEmail = (Email) email.clone();</div><div class="line">        </div><div class="line">        System.out.println(<span class="string">"email == copyEmail?"</span>);</div><div class="line">        System.out.println(email == copyEmail);</div><div class="line">        </div><div class="line">        System.out.println(<span class="string">"email.getAttachment == copyEmail.getAttachment?"</span>);</div><div class="line">        System.out.println(email.getAttachment() == copyEmail.getAttachment());</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="Java">public class Client {
+
+    public static void main(String[] args) {
+        Email email, copyEmail;
+        email = new Email();
+        copyEmail = (Email) email.clone();
+
+        System.out.println(&quot;email == copyEmail?&quot;);
+        System.out.println(email == copyEmail);
+
+        System.out.println(&quot;email.getAttachment == copyEmail.getAttachment?&quot;);
+        System.out.println(email.getAttachment() == copyEmail.getAttachment());
+
+    }
+
+}
+</code></pre>
 <p>在Client客户端测试类中，比较原型对象和复制对象是否一致，并比较其成员对象attachment的引用是否一致。</p>
 <p>5.结果分析</p>
 <p>编译并运行客户端测试类，输出结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">email == copyEmail?</div><div class="line">false</div><div class="line">email.getAttachment == copyEmail.getAttachment?</div><div class="line">true</div></pre></td></tr></table></figure>
-<h4 id="邮件深克隆"><a href="#邮件深克隆" class="headerlink" title="邮件深克隆"></a>邮件深克隆</h4><p>1.实例说明</p>
+<pre><code>email == copyEmail?
+false
+email.getAttachment == copyEmail.getAttachment?
+true
+</code></pre><h4 id="邮件深克隆"><a href="#邮件深克隆" class="headerlink" title="邮件深克隆"></a>邮件深克隆</h4><p>1.实例说明</p>
 <p>使用深克隆实现邮件复制，即复制邮件的同时复制附件。</p>
 <p>2.实例类图</p>
 <img src="/2016/11/05/JAVA深克隆与浅克隆/deep_clone_class_diagram.png" alt="深克隆类图" title="深克隆类图">
 <p>3.实例代码与解释</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Email</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Attachment attachment = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Email</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.attachment = <span class="keyword">new</span> Attachment();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">deepClone</span><span class="params">()</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, OptionalDataException </span>&#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 将对象写入流中</span></div><div class="line">        ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">        ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(baos);</div><div class="line">        oos.writeObject(<span class="keyword">this</span>);</div><div class="line">        </div><div class="line">        <span class="comment">// 将对象从流中读出</span></div><div class="line">        ByteArrayInputStream bais = <span class="keyword">new</span> ByteArrayInputStream(baos.toByteArray());</div><div class="line">        ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(bais);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> ois.readObject();</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Attachment <span class="title">getAttachment</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.attachment;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"查看邮件"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="Java">import java.io.*;
+
+public class Email implements Serializable {
+
+    private Attachment attachment = null;
+
+    public Email() {
+        this.attachment = new Attachment();
+    }
+
+    public Object deepClone() throws IOException, ClassNotFoundException, OptionalDataException {
+
+        // 将对象写入流中
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject(this);
+
+        // 将对象从流中读出
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bais);
+
+        return ois.readObject();
+
+    }
+
+    public Attachment getAttachment() {
+        return this.attachment;
+    }
+
+    public void display() {
+        System.out.println(&quot;查看邮件&quot;);
+    }
+
+}
+</code></pre>
 <p>Email作为具体原型类，由于实现的是深克隆，无须使用Object的clone()方法，因此无须实现Cloneable接口；通过序列化的方式实现深克隆，由于要将Email类型的对象写入流中，因此Email类需要实现Serializiable接口。</p>
 <p>4.辅助代码</p>
 <p>(1)附件类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.Serializable;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Attachment</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"下载附件"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="Java">import java.io.Serializable;
+
+public class Attachment implements Serializable {
+
+    public void download() {
+        System.out.println(&quot;下载附件&quot;);
+    }
+
+}
+</code></pre>
 <p>作为Email类的对象成员，在深克隆中，Attachment类型的对象也将被写入流中，因此Attachment类也需要实现Serializiable接口。</p>
 <p>(2)客户端测试类Client</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Email email, copyEmail = <span class="keyword">null</span>;</div><div class="line">        email = <span class="keyword">new</span> Email();</div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            copyEmail = (Email) email.deepClone();</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"email == copyEmail?"</span>);</div><div class="line">        System.out.println(email == copyEmail);</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"email.getAttachment == copyEmail.getAttachment?"</span>);</div><div class="line">        System.out.println(email.getAttachment() == copyEmail.getAttachment());</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="Java">public class Client {
+
+    public static void main(String[] args) {
+        Email email, copyEmail = null;
+        email = new Email();
+
+        try {
+            copyEmail = (Email) email.deepClone();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(&quot;email == copyEmail?&quot;);
+        System.out.println(email == copyEmail);
+
+        System.out.println(&quot;email.getAttachment == copyEmail.getAttachment?&quot;);
+        System.out.println(email.getAttachment() == copyEmail.getAttachment());
+
+    }
+
+}
+</code></pre>
 <p>5.结果及分析</p>
 <p>编译运行客户端测试类，结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">email == copyEmail?</div><div class="line">false</div><div class="line">email.getAttachment == copyEmail.getAttachment?</div><div class="line">false</div></pre></td></tr></table></figure>
-<p>通过结果可以看出，表达式(email == copyEmail)结果为false，即通过复制得到的对象与原型对象的引用不一致，表达式(email.getAttachment() == copyEmail.getAttachment())结果为false，原型对象与克隆对象成员对象的引用不相同，说明其成员对象也复制了一份。</p>
+<pre><code>email == copyEmail?
+false
+email.getAttachment == copyEmail.getAttachment?
+false
+</code></pre><p>通过结果可以看出，表达式(email == copyEmail)结果为false，即通过复制得到的对象与原型对象的引用不一致，表达式(email.getAttachment() == copyEmail.getAttachment())结果为false，原型对象与克隆对象成员对象的引用不相同，说明其成员对象也复制了一份。</p>
 
     
 
