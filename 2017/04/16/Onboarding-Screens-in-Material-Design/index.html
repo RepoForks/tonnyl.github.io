@@ -10,7 +10,7 @@
     
     <title>
         
-            重构！将Google MVP应用于已有项目 | 
+            利用ViewPager实现Material Design风格炫酷引导页 | 
         
         Tonny&#39;s Blog
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Tonny">
     <meta name="description" content="null">
-    <meta name="keywords" content="null,Android">
+    <meta name="keywords" content="null,Android,Material Design,Onboarding">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://tonnyl.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="重构！将Google MVP应用于已有项目 | Tonny&#39;s Blog">
+    <meta property="og:title" content="利用ViewPager实现Material Design风格炫酷引导页 | Tonny&#39;s Blog">
     <meta property="og:description" content="null">
-    <meta property="og:article:tag" content="Android"> 
+    <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="Material Design"> <meta property="og:article:tag" content="Onboarding"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -242,7 +242,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Google示例项目"><span class="post-toc-number">2.</span> <span class="post-toc-text">Google示例项目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重构"><span class="post-toc-number">3.</span> <span class="post-toc-text">重构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本项目地址"><span class="post-toc-number">4.</span> <span class="post-toc-text">本项目地址</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#效果预览"><span class="post-toc-number">1.</span> <span class="post-toc-text">效果预览</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设计规范"><span class="post-toc-number">2.</span> <span class="post-toc-text">设计规范</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开始吧"><span class="post-toc-number">3.</span> <span class="post-toc-text">开始吧</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Tabbed-Activity-Template"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Tabbed Activity Template</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#布局"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">布局</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Fragment"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">Fragment</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#控制ViewPager的颜色"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">控制ViewPager的颜色</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#指示器Drawable"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">指示器Drawable</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#调用与触发首次加载"><span class="post-toc-number">4.</span> <span class="post-toc-text">调用与触发首次加载</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#高级用法"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">高级用法</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他优秀开源库"><span class="post-toc-number">5.</span> <span class="post-toc-text">其他优秀开源库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#One-More-Thing…"><span class="post-toc-number">6.</span> <span class="post-toc-text">One More Thing…</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在最后"><span class="post-toc-number">7.</span> <span class="post-toc-text">写在最后</span></a></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -266,19 +266,11 @@
                 
     <!-- Paradox Post Header -->
     
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script>
-    var randomNum = Math.floor(Math.random() * 19 + 1);
-
-    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
-</script>
-
-        
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://www.materialdoc.com/content/images/2015/11/materialdesign_introduction.png)">
     
             <p class="article-headline-p">
-                重构！将Google MVP应用于已有项目
+                利用ViewPager实现Material Design风格炫酷引导页
             </p>
         </div>
 
@@ -297,7 +289,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Tonny</strong>
-        <span>Sep 27, 2016</span>
+        <span>Apr 16, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -321,7 +313,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Android/">Android</a>
+        <a class="post_tag-link" href="/tags/Android/">Android</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Material-Design/">Material Design</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Onboarding/">Onboarding</a>
     </ul>
     
 
@@ -348,7 +340,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=重构！将Google MVP应用于已有项目&url=http://tonnyl.github.io//2016/09/27/重构！将Google-MVP应用于已有项目/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=利用ViewPager实现Material Design风格炫酷引导页&url=http://tonnyl.github.io//2017/04/16/Onboarding-Screens-in-Material-Design/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 Share to Weibo
             </li>
@@ -357,7 +349,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=重构！将Google MVP应用于已有项目&url=http://tonnyl.github.io//2016/09/27/重构！将Google-MVP应用于已有项目/index.html&via=Tonny" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=利用ViewPager实现Material Design风格炫酷引导页&url=http://tonnyl.github.io//2017/04/16/Onboarding-Screens-in-Material-Design/index.html&via=Tonny" target="_blank">
             <li class="mdl-menu__item">
                 Share to Twitter
             </li>
@@ -366,7 +358,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://tonnyl.github.io//2016/09/27/重构！将Google-MVP应用于已有项目/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://tonnyl.github.io//2017/04/16/Onboarding-Screens-in-Material-Design/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Facebook
             </li>
@@ -375,7 +367,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://tonnyl.github.io//2016/09/27/重构！将Google-MVP应用于已有项目/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://tonnyl.github.io//2017/04/16/Onboarding-Screens-in-Material-Design/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to Google+
             </li>
@@ -384,7 +376,7 @@
 
     <!-- Share LinkedIn -->
     
-        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://tonnyl.github.io//2016/09/27/重构！将Google-MVP应用于已有项目/index.html&title=重构！将Google MVP应用于已有项目" target="_blank">
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://tonnyl.github.io//2017/04/16/Onboarding-Screens-in-Material-Design/index.html&title=利用ViewPager实现Material Design风格炫酷引导页" target="_blank">
             <li class="mdl-menu__item">
                 Share to LinkedIn
             </li>
@@ -393,7 +385,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Tonny&#39;s Blog&title=重构！将Google MVP应用于已有项目&summary=null&pics=http://tonnyl.github.io/img/favicon.png&url=http://tonnyl.github.io/2016/09/27/重构！将Google-MVP应用于已有项目/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Tonny&#39;s Blog&title=利用ViewPager实现Material Design风格炫酷引导页&summary=null&pics=http://tonnyl.github.io/img/favicon.png&url=http://tonnyl.github.io/2017/04/16/Onboarding-Screens-in-Material-Design/index.html" target="_blank">
             <li class="mdl-menu__item">
                 Share to QQ
             </li>
@@ -402,7 +394,7 @@
 
     <!-- Share Telegram -->
     
-        <a class="post_share-link" href="https://telegram.me/share/url?url=http://tonnyl.github.io//2016/09/27/重构！将Google-MVP应用于已有项目/index.html&text=重构！将Google MVP应用于已有项目" target="_blank">
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://tonnyl.github.io//2017/04/16/Onboarding-Screens-in-Material-Design/index.html&text=利用ViewPager实现Material Design风格炫酷引导页" target="_blank">
             <li class="mdl-menu__item">
                 Share to Telegram
             </li>
@@ -417,358 +409,371 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>将Google官方的Android MVP架构引入到已有的项目中。<br><a id="more"></a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在本次项目重构之前，我的项目采用的是什么架构呢？</p>
-<p>额，没有架构…或者说，不那么标准的MVC，一个页面就是一个Activity或者Fragment，各种数据，网络请求，响应都写在Activity或者Fragment–这两个不怎么标准的Controller中，代码混乱，而且长长长长长长，写代码的时候一时爽，到了维护阶段，那酸爽，不敢相信。采用新的架构迫在眉睫。</p>
-<p>事实上，已经有很多的App项目采用了MVP或者MVVM等架构。由于并没有那么权威的实现，很多开发者也陷入了选择困难症，在各种架构直接摇摆不定，找不到适合自己项目架构。而Google也适时的推出了一系列官方示例用于参考。</p>
-<h3 id="Google示例项目"><a href="#Google示例项目" class="headerlink" title="Google示例项目"></a>Google示例项目</h3><blockquote>
-<p><a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="external">Android Architecture Blueprints [beta]</a></p>
+        <p>当我们第一次打开一个App，首先映入眼帘的就是引导页了。<br><a id="more"></a><br>引导页向我们展示了一些可以滑动的页面，并在页面中以图片方式展示了这个App的一些亮点。要实现这个效果，网上更多的是通过引入第三方库的形式，但是，这哪里有我们自己动手撸一个来的痛快呢？所以，今天我将手 <del>摸</del> 把手的带大家实现一个符合Material Design标准的炫酷引导页。</p>
+<h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><p>我们首先来看看Google Docs是实现的效果:</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1fenmtjv4a3g307i0dce21.gif" alt="Google Docs"></p>
+<p>下面是我们将要实现的效果:</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1fenmmjbz96g307i0dcn3q.gif" alt="Espresso"></p>
+<h3 id="设计规范"><a href="#设计规范" class="headerlink" title="设计规范"></a>设计规范</h3><p>在Material Design官方文档中，关于引导页的部分是这样说明的：</p>
+<blockquote>
+<p>Onboarding is a virtual unboxing experience that helps users get started with an app’s UI. It should be brief and enhance the use of the app.</p>
 </blockquote>
-<p>示例项目以一个TODO APP为例，目前仍然在进行中。本次项目重构采用的是基础版 <a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp/" target="_blank" rel="external">todo-mvp</a></p>
-<p>示例项目的代码组织方式和我之前以adapter, activity, fragment等组织方式不同，采用的是按照功能划分，一种功能就是一个包，包内文件以xxxactivity, xxxfragment, xxxcontract, xxxpresenter命名，xxx代表着所要实现的功能。本次项目重构两种方式均有采用。</p>
-<h3 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h3><p>首先是仿照TODO MVP，建立两个Base接口，BaseView和BasePresenter，这两个基本接口是所有的View和Presenter的基类。</p>
-<pre><code class="Java">public interface BasePresenter {
-
-    void start();
-
+<p>简单来说，引导应该是一个简短的过程，能够帮助用户理解App的使用。</p>
+<p>那么，我们应该什么时候使用引导呢？按照规范，当我们的应用添加了新的特色功能或者有重大改变时，应该使用引导页面。对于那些用户本来就期待的，很普通的功能，就不要滥用引导页了。</p>
+<p>更多关于设计规范的内容，请访问: <a href="https://material.io/guidelines/growth-communications/onboarding.html" target="_blank" rel="external">https://material.io/guidelines/growth-communications/onboarding.html</a>.</p>
+<h3 id="开始吧"><a href="#开始吧" class="headerlink" title="开始吧"></a>开始吧</h3><p>本次的教程主要分为以下三步：</p>
+<ol>
+<li>使用ViewPager创建引导页</li>
+<li>当页面滑动时，控制背景色的渐变</li>
+<li>当应用第一次加载时，显示引导页</li>
+</ol>
+<p>现在就开始吧。</p>
+<p>首先当然是要添加依赖了。在<code>build.gradle</code>文件中，添加支持库的依赖。</p>
+<pre><code class="groovy">dependencies {
+    compile &#39;com.android.support:appcompat-v7:25.3.1&#39;
+    compile &#39;com.android.support:design:25.3.1&#39;
+    // Other dependencies here.
 }
 </code></pre>
-<p>BasePresenter中有方法start()，作用是Presenter开始获取数据并改变界面显示，调用时机为Fragment的onResume()方法中。</p>
-<pre><code class="Java">public interface BaseView&lt;T&gt; {
+<p>然后我们就可以利用<code>Android Studio</code>自带的模板，创建一个<code>Tabbed Activity</code>: 在我们的Java包点击鼠标右键 -&gt; <code>New</code> -&gt; <code>Activity</code> -&gt; <code>Tabbed Activity</code>，然后选择<code>Navigation Style</code>为<strong> <code>Swipe Views (ViewPager)</code> </strong> .</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1fennpshdpqj31b2104alw.jpg" alt=""></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1fennu6b80mj31eo170479.jpg" alt=""></p>
+<h4 id="Tabbed-Activity-Template"><a href="#Tabbed-Activity-Template" class="headerlink" title="Tabbed Activity Template"></a>Tabbed Activity Template</h4><p>首先，我们来看看我们现有有了些什么：</p>
+<ol>
+<li>Activity(在我的工程中为<code>OnboardingActivity</code>);</li>
+<li><code>SectionsPagerAdapter</code>, ViewPager的适配器;</li>
+<li><code>PlaceholderFragment</code>, 用于相应每一个滑动页面的布局。</li>
+</ol>
+<p>现在我们就可以根据需要对代码进行改造了。打开<code>OnboardingActivity</code>对应的布局文件<code>activity_onboarding.xml</code>，完成下面的工作：</p>
+<ol>
+<li>移除<code>Toolbar</code>;</li>
+<li>添加底部导航按钮部分(用于控制ViewPager)。</li>
+</ol>
+<p>下面就是底部导航按钮：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1fens8al6o0j30u008iaaa.jpg" alt=""></p>
+<h4 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h4><p>底部导航按钮的类型包括：</p>
+<ol>
+<li>圆形的页面位置指示器;</li>
+<li>上一页/下一页按钮;</li>
+<li>完成按钮(理应包括跳过按钮，后面我会讲解为什么我没有做跳过按钮)。</li>
+</ol>
+<p>下面是<code>activity_onboarding.xml</code>文件的源码：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;android.support.design.widget.CoordinatorLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/main_content&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:background=&quot;@color/colorPrimary&quot;
+    tools:context=&quot;.ui.onboarding.OnboardingActivity&quot;&gt;
 
-    void setPresenter(T presenter);
+    &lt;android.support.v4.view.ViewPager
+        android:id=&quot;@+id/container&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:paddingBottom=&quot;?attr/actionBarSize&quot;
+        app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot; /&gt;
 
-    void initViews(View view);
+    &lt;!--分割线--&gt;
+    &lt;View
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;1dp&quot;
+        android:layout_gravity=&quot;bottom&quot;
+        android:layout_marginBottom=&quot;?attr/actionBarSize&quot;
+        android:alpha=&quot;0.12&quot;
+        android:background=&quot;@android:color/white&quot; /&gt;
 
-}
+    &lt;FrameLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;?attr/actionBarSize&quot;
+        android:layout_gravity=&quot;bottom&quot;
+        android:paddingEnd=&quot;@dimen/activity_horizontal_margin&quot;
+        android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+        android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+        android:paddingStart=&quot;@dimen/activity_horizontal_margin&quot;&gt;
+
+
+        &lt;ImageButton
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:id=&quot;@+id/imageButtonPre&quot;
+            style=&quot;@style/Widget.AppCompat.Button.Borderless&quot;
+            android:contentDescription=&quot;@string/onboarding_pre_button_description&quot;
+            android:layout_gravity=&quot;start|center&quot;
+            android:padding=&quot;@dimen/activity_horizontal_margin&quot;
+            android:src=&quot;@drawable/ic_chevron_left_white_24dp&quot;
+            android:visibility=&quot;gone&quot;
+            android:tint=&quot;@android:color/white&quot; /&gt;
+
+        &lt;!--圆形指示器--&gt;
+        &lt;LinearLayout
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_gravity=&quot;center&quot;
+            android:orientation=&quot;horizontal&quot;&gt;
+
+            &lt;ImageView
+                android:id=&quot;@+id/imageViewIndicator0&quot;
+                android:layout_width=&quot;8dp&quot;
+                android:layout_height=&quot;8dp&quot;
+                android:background=&quot;@drawable/onboarding_indicator_selected&quot; /&gt;
+
+            &lt;ImageView
+                android:id=&quot;@+id/imageViewIndicator1&quot;
+                android:layout_width=&quot;8dp&quot;
+                android:layout_height=&quot;8dp&quot;
+                android:layout_marginEnd=&quot;@dimen/activity_margin_half&quot;
+                android:layout_marginRight=&quot;@dimen/activity_margin_half&quot;
+                android:layout_marginLeft=&quot;@dimen/activity_margin_half&quot;
+                android:layout_marginStart=&quot;@dimen/activity_margin_half&quot;
+                android:background=&quot;@drawable/onboarding_indicator_unselected&quot; /&gt;
+
+            &lt;ImageView
+                android:id=&quot;@+id/imageViewIndicator2&quot;
+                style=&quot;@style/Widget.AppCompat.Button.Borderless&quot;
+                android:layout_width=&quot;8dp&quot;
+                android:layout_height=&quot;8dp&quot;
+                android:background=&quot;@drawable/onboarding_indicator_unselected&quot; /&gt;
+
+        &lt;/LinearLayout&gt;
+
+        &lt;android.support.v7.widget.AppCompatButton
+            android:id=&quot;@+id/buttonFinish&quot;
+            style=&quot;@style/Widget.AppCompat.Button.Borderless&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_gravity=&quot;end|center&quot;
+            android:text=&quot;@string/onboarding_finish_button_description&quot;
+            android:contentDescription=&quot;@string/onboarding_finish_button_description&quot;
+            android:textColor=&quot;@android:color/white&quot;
+            android:visibility=&quot;gone&quot; /&gt;
+
+        &lt;ImageButton
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            style=&quot;@style/Widget.AppCompat.Button.Borderless&quot;
+            android:id=&quot;@+id/imageButtonNext&quot;
+            android:contentDescription=&quot;@string/onboarding_next_button_description&quot;
+            android:layout_gravity=&quot;end|center&quot;
+            android:padding=&quot;@dimen/activity_horizontal_margin&quot;
+            android:src=&quot;@drawable/ic_chevron_right_white_24dp&quot;
+            android:tint=&quot;@android:color/white&quot; /&gt;
+
+    &lt;/FrameLayout&gt;
+
+&lt;/android.support.design.widget.CoordinatorLayout&gt;
 </code></pre>
-<p>BaseView中有方法setPresenter(),将Presenter示例传入view，调用时机为Presenter实现类的构造方法中，initViews()传入View实例，用于初始化界面元素，调用时机为Fragment的onCreate()方法中。</p>
-<p>接着创建契约类，用于统一管理View和Presenter的所有接口。这里以知乎日报的部分为例。</p>
-<pre><code class="Java">public interface ZhihuDailyContract {
+<h4 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h4><p>下面是我的<code>fragment_onboarding.xml</code>的全部代码:</p>
+<pre><code class="xml">&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;.ui.onboarding.OnboardingFragment&quot;&gt;
 
-    interface View extends BaseView&lt;Presenter&gt; {
+    &lt;FrameLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:background=&quot;@color/colorPrimary&quot;&gt;
 
-        void showError();
+        &lt;ImageView
+            android:id=&quot;@+id/section_img&quot;
+            android:layout_width=&quot;192dp&quot;
+            android:layout_height=&quot;192dp&quot;
+            android:layout_gravity=&quot;center&quot;
+            android:adjustViewBounds=&quot;true&quot;
+            android:src=&quot;@drawable/ic_notifications_black_24dp&quot;
+            android:alpha=&quot;0.30&quot;
+            android:scaleType=&quot;fitCenter&quot; /&gt;
 
-        void showLoading();
+    &lt;/FrameLayout&gt;
 
-        void stopLoading();
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_gravity=&quot;bottom&quot;
+        android:gravity=&quot;center&quot;
+        android:orientation=&quot;vertical&quot;
+        android:padding=&quot;@dimen/activity_horizontal_margin&quot;&gt;
 
-        void showResults(ArrayList&lt;ZhihuDailyNews.Question&gt; list);
+        &lt;android.support.v7.widget.AppCompatTextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:id=&quot;@+id/section_label&quot;
+            android:textAlignment=&quot;center&quot;
+            style=&quot;@style/TextAppearance.AppCompat.Headline&quot;
+            android:textColor=&quot;@android:color/white&quot;
+            tools:text=&quot;Page One&quot; /&gt;
 
-        void showNetworkError();
+        &lt;android.support.v7.widget.AppCompatTextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:id=&quot;@+id/section_intro&quot;
+            style=&quot;@style/TextAppearance.AppCompat.Body1&quot;
+            android:layout_marginTop=&quot;@dimen/activity_horizontal_margin&quot;
+            android:alpha=&quot;0.7&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;Your awesome description about the app&quot;
+            android:textColor=&quot;@android:color/white&quot; /&gt;
 
-    }
+    &lt;/LinearLayout&gt;
 
-    interface Presenter extends BasePresenter {
-
-        void loadPosts(long date, boolean clearing);
-
-        void refresh();
-
-        void loadMore(long date);
-
-        void startReading(int position);
-
-        void goToSettings();
-
-    }
-
-}
+&lt;/FrameLayout&gt;
 </code></pre>
-<p>然后创建相应的Activity，在官方的示例项目中，Activity是作为View和Presenter的桥梁使用，用于创建View和Presenter实例。本项目由于涉及了TabLayout和ViewPager的使用，所以创建View和Presenter的部分我放到了ViewPager的Adapter中实现。</p>
-<pre><code class="Java">public class MainPagerAdapter extends FragmentPagerAdapter {
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1fenspnj84uj30dy0nct9j.jpg" alt=""></p>
+<p>调整完布局文件之后，我们还可以对Java代码进行一定的调整，便于阅读，当然，这是可选的。我们可以把<code>PlaceholderFragment</code>和<code>SectionsPagerAdapter</code>单独抽取出来，然后统一命名，这样更加便于理解和管理，在后期的维护中也更加容易。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1fent0qe7jbj30gi05amxq.jpg" alt=""></p>
+<h4 id="控制ViewPager的颜色"><a href="#控制ViewPager的颜色" class="headerlink" title="控制ViewPager的颜色"></a>控制ViewPager的颜色</h4><p>由于<code>ViewPager</code>已经和<code>SectionsPagerAdapter</code>(<code>OnboardingPagerAdapter</code>)绑定了，所以不用我们就不用担心这个问题了。</p>
+<p>当我们滑动页面时，颜色应该自动的更新。也就是说，Pager的颜色应该根据滑动的距离自行调整。</p>
+<p>我们有三个页面，每个页面搭配不同的颜色。</p>
+<pre><code class="java">private int bgColors[];
 
-    private String[] titles;
-    private final Context context;
-
-    public MainPagerAdapter(FragmentManager fm, Context context) {
-        super(fm);
-        this.context = context;
-        titles = context.getResources().getStringArray(R.array.page_titles);
-    }
-
-    @Override
-    public Fragment getItem(int position) {
-        if (position == 1){
-            GuokrFragment fragment = GuokrFragment.newInstance();
-            new GuokrPresenter(context, fragment);
-            return fragment;
-        } else if (position == 2){
-            DoubanMomentFragment fragment = DoubanMomentFragment.newInstance();
-            new DoubanMomentPresenter(context, fragment);
-            return fragment;
-        }
-        ZhihuDailyFragment fragment = ZhihuDailyFragment.newInstance();
-        new ZhihuDailyPresenter(context, fragment);
-        return fragment;
-    }
-
-    @Override
-    public int getCount() {
-        return titles.length;
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return titles[position];
-    }
-
-}
+bgColors = new int[]{ContextCompat.getColor(this, R.color.colorPrimary),
+                ContextCompat.getColor(this, R.color.cyan_500),
+                ContextCompat.getColor(this, R.color.light_blue_500)};
 </code></pre>
-<p>Fragment在示例项目中的角色为View的具体实现类。</p>
-<pre><code class="Java">public class ZhihuDailyFragment extends Fragment
-        implements ZhihuDailyContract.View{
+<p>然后可以通过为<code>ViewPager</code>添加<code>OnPageChangeListener</code>做出相应的改变。</p>
+<pre><code class="java">viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-    private RecyclerView recyclerView;
-    private SwipeRefreshLayout refresh;
-    private FloatingActionButton fab;
-
-    private ZhihuDailyNewsAdapter adapter;
-
-    private ZhihuDailyContract.Presenter presenter;
-
-    public ZhihuDailyFragment() {
-
-    }
-
-    public static ZhihuDailyFragment newInstance() {
-        return new ZhihuDailyFragment();
-    }
-
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_douban_zhihu_daily,container,false);
-
-        initViews(view);
-
-        presenter.loadPosts(Calendar.getInstance().getTimeInMillis(), false);
-
-        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-            @Override
-            public void onRefresh() {
-                presenter.refresh();
-            }
-
-        });
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ...
-            }
-        });
-
-        return view;
-    }
-
-
-    @Override
-    public void setPresenter(ZhihuDailyContract.Presenter presenter) {
-        if (presenter != null) {
-            this.presenter = presenter;
-        }
-    }
-
-    @Override
-    public void initViews(View view) {
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv_main);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),LinearLayoutManager.VERTICAL));
-        refresh = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setRippleColor(getResources().getColor(R.color.colorPrimaryDark));
-
-    }
-
-    @Override
-    public void showError() {
-        Snackbar.make(fab, R.string.loaded_failed,Snackbar.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showLoading() {
-        refresh.post(new Runnable() {
-            @Override
-            public void run() {
-                refresh.setRefreshing(true);
-            }
-        });
-    }
-
-    @Override
-    public void stopLoading() {
-        refresh.post(new Runnable() {
-            @Override
-            public void run() {
-                refresh.setRefreshing(false);
-            }
-        });
-    }
-
-    @Override
-    public void showResults(ArrayList&lt;ZhihuDailyNews.Question&gt; list) {
-        if (adapter == null) {
-            adapter = new ZhihuDailyNewsAdapter(getContext(), list);
-            adapter.setItemClickListener(new OnRecyclerViewOnClickListener() {
                 @Override
-                public void OnItemClick(View v, int position) {
-                    presenter.startReading(position);
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    int colorUpdate = (Integer) new ArgbEvaluator().evaluate(positionOffset, bgColors[position], bgColors[position == 2 ? position : position + 1]);
+                    viewPager.setBackgroundColor(colorUpdate);
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    currentPosition = position;
+                    updateIndicators(position);
+                    viewPager.setBackgroundColor(bgColors[position]);
+                    buttonPre.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+                    buttonNext.setVisibility(position == 2 ? View.GONE : View.VISIBLE);
+                    buttonFinish.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
                 }
             });
-            recyclerView.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
+</code></pre>
+<p>我们创建了一个<code>ArgbEvaluator</code>用于更新颜色，在前一个页面和后一个页面的颜色之间进行过渡。</p>
+<p>想必你也猜到了，<code>updateIndicators()</code>方法通过切换两个不同的<code>drawable</code>来更新指示器。</p>
+<pre><code class="java">private void updateIndicators(int position) {
+        for (int i = 0; i &lt; indicators.length; i++) {
+            indicators[i].setBackgroundResource(
+                    i == position ? R.drawable.onboarding_indicator_selected : R.drawable.onboarding_indicator_unselected
+            );
         }
     }
-
-    @Override
-    public void showNetworkError() {
-        Snackbar.make(fab,R.string.no_network_connected,Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.go_to_set, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        presenter.goToSettings();
-                    }
-                }).show();
-    }
-
-}
 </code></pre>
-<p>创建Presenter。</p>
-<pre><code class="Java">public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter, OnStringListener {
+<p>注意：</p>
+<p><code>bgColors[position == 2 ? position : position + 1]</code>提示当前是否为最后一个位置，如果是，则不再增加，否则会出现<code>ArrayIndexOutOfBoundsException</code>数组越界异常。数组的范围为「0」 - 「n-1」。</p>
+<p><code>currentPosition</code>变量用于追踪ViewPager的当前位置，我们需要在Pre和Next按钮中对<code>currentPosition</code>进行减或者加的操作。</p>
+<p>最后，当页面处于最后一页时，需要将FINISH按钮的状态设置为可见。</p>
+<h4 id="指示器Drawable"><a href="#指示器Drawable" class="headerlink" title="指示器Drawable"></a>指示器Drawable</h4><p>onboarding_indicator_selected.xml:</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:shape=&quot;oval&quot;&gt;
+    &lt;corners android:radius=&quot;100dp&quot; /&gt;
+    &lt;solid android:color=&quot;@color/indicator_selected&quot; /&gt;
+&lt;/shape&gt;
+</code></pre>
+<p>onboarding_indicator_unselected.xml</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:shape=&quot;oval&quot;&gt;
+    &lt;corners android:radius=&quot;100dp&quot; /&gt;
+    &lt;solid android:color=&quot;@color/indicator_unselected&quot; /&gt;
+&lt;/shape&gt;
+</code></pre>
+<h3 id="调用与触发首次加载"><a href="#调用与触发首次加载" class="headerlink" title="调用与触发首次加载"></a>调用与触发首次加载</h3><p>App第一次启动是展示引导页的最佳时机，这样就可以提示用户此App有哪些值得注意的特色功能；但是，从第二次启动开始，App就不应该展示引导页了。我们可以通过在<code>SharedPreference</code>中存放一个<code>boolean</code>值来判断App是否是第一次加载。</p>
+<p>当用户按下FINISH按钮后，结束引导，将<code>SettingsUtil.KEY_FIRST_LAUNCH</code>对应的值修改为<code>false</code>。</p>
+<pre><code class="java">buttonFinish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences.Editor ed = sp.edit();
+                    ed.putBoolean(SettingsUtil.KEY_FIRST_LAUNCH, false);
+                    ed.apply();
+                    navigateToMainActivity();
+                }
+            });
+</code></pre>
+<p>如果不是第一次加载，则直接进入<code>MainActivity</code>。</p>
+<pre><code class="java">@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-    private ZhihuDailyContract.View view;
-    private Context context;
-    private StringModelImpl model;
+    final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+    if (sp.getBoolean(SettingsUtil.KEY_FIRST_LAUNCH, true)) {
 
-    private ArrayList&lt;ZhihuDailyNews.Question&gt; list = new ArrayList&lt;ZhihuDailyNews.Question&gt;();
+        setContentView(R.layout.activity_onboarding);
 
-    public ZhihuDailyPresenter(Context context, ZhihuDailyContract.View view) {
-        this.context = context;
-        this.view = view;
-        this.view.setPresenter(this);
-        model = new StringModelImpl(context);
+        // Do other things here.
+    } else {
+
+        navigateToMainActivity();
+
+        finish();
+    }
+
+private void navigateToMainActivity() {
+        Intent i = new Intent(this, MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+</code></pre>
+<p>现在我们把项目跑起来，不出意外的话，你就会看到<a href="#效果预览">效果预览</a>里的效果啦。</p>
+<h4 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h4><p>如果你还需要对页面的切换动画进行定制，请访问：<a href="https://developer.android.com/training/animation/screen-slide.html#pagetransformer。Medium上`Michell" target="_blank" rel="external">https://developer.android.com/training/animation/screen-slide.html#pagetransformer。Medium上`Michell</a> Bak`的这篇文章或许也能帮到你:<a href="https://android.jlelse.eu/creating-an-intro-screen-for-your-app-using-viewpager-pagetransformer-9950517ea04f" target="_blank" rel="external">Creating an intro screen for your app using ViewPager and PageTransformer</a>.</p>
+<h3 id="其他优秀开源库"><a href="#其他优秀开源库" class="headerlink" title="其他优秀开源库"></a>其他优秀开源库</h3><p>如果你需要更加简单的实现方式，你还可以选择：</p>
+<ul>
+<li><a href="https://github.com/apl-devs/AppIntro" target="_blank" rel="external">AppIntro</a> - Make a cool intro for your Android app.</li>
+<li><a href="https://github.com/TangoAgency/material-intro-screen" target="_blank" rel="external">material-intro-screen</a> - Inspired by Heinrich Reimer Material Intro and developed with love from scratch.</li>
+<li><a href="https://github.com/riggaroo/MaterialIntroTutorial" target="_blank" rel="external">MaterialIntroTutorial</a> - Library demonstrating a material intro tutorial much like the ones on Google Sheets.</li>
+</ul>
+<h3 id="One-More-Thing…"><a href="#One-More-Thing…" class="headerlink" title="One More Thing…"></a>One More Thing…</h3><p>还记得我之前立的flag吗？为什么我没有做<code>SKIP</code>跳过按钮？因为在我的引导页中，并不仅仅只是向用户展示了App的特色功能，实际上，在展示页面的同时还完成了一部分数据的初始化工作，向数据库中插入了几百条数据，而这很明显是耗时操作，放在主线程肯定是不合适的，所以我选择了使用<code>AsyncTask</code>，当任务完成后再将Button的状态设置为enable。</p>
+<pre><code class="java">private class InitCompaniesDataTask extends AsyncTask&lt;Void, Void, Void&gt; {
+
+    @Override
+    protected Void doInBackground(Void... params) {
+        CompaniesRepository.getInstance(CompaniesLocalDataSource.getInstance())
+                .initData();
+        return null;
     }
 
     @Override
-    public void loadPosts(long date, boolean clearing) {
-        view.showLoading();
-        if (clearing) {
-            list.clear();
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        handler.sendEmptyMessage(MSG_DATA_INSERT_FINISH);
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+
+    }
+}
+
+private Handler handler = new Handler() {
+    @Override
+    public void handleMessage(Message msg) {
+        switch (msg.what) {
+            case MSG_DATA_INSERT_FINISH:
+                buttonFinish.setText(R.string.onboarding_finish_button_description);
+                buttonFinish.setEnabled(true);
+                break;
         }
-        model.load(Api.ZHIHU_HISTORY + formatter.ZhihuDailyDateFormat(date), this);
     }
-
-    @Override
-    public void refresh() {
-        list.clear();
-        loadPosts(Calendar.getInstance().getTimeInMillis(), true);
-    }
-
-    @Override
-    public void loadMore(long date) {
-        if (NetworkState.networkConnected(context)) {
-            model.load(Api.ZHIHU_HISTORY + formatter.ZhihuDailyDateFormat(date), this);
-        } else {
-            view.showNetworkError();
-        }
-    }
-
-    @Override
-    public void startReading(int position) {
-        context.startActivity(new Intent(context, ZhihuDetailActivity.class)
-                .putExtra(&quot;id&quot;,list.get(position).getId())
-        );
-    }
-
-    @Override
-    public void goToSettings() {
-        context.startActivity(new Intent(Settings.ACTION_SETTINGS));
-    }
-
-    @Override
-    public void start() {
-
-    }
-
-    @Override
-    public void onSuccess(String result) {
-        Gson gson = new Gson();
-        ZhihuDailyNews post = gson.fromJson(result, ZhihuDailyNews.class);
-
-        for (ZhihuDailyNews.Question item : post.getStories()) {
-            list.add(item);
-        }
-        view.showResults(list);
-        view.stopLoading();
-
-    }
-
-    @Override
-    public void onError(VolleyError error) {
-        view.stopLoading();
-        view.showError();
-    }
-
-}
+};
 </code></pre>
-<p>Presenter获取到了View，并通过调用setPresenter()方法将自身传入，如果需要对改变界面显示，直接调用View层的方法即可。这样Presenter就于View层实现了分离。</p>
-<p>最后是Model层的实现。由于使用了Gson，数据的返回类型只需要为String类型即可。</p>
-<pre><code class="Java">public interface OnStringListener {
-
-    /**
-     * 请求成功时回调
-     * @param result
-     */
-    void onSuccess(String result);
-
-    /**
-     * 请求失败时回调
-     * @param error
-     */
-    void onError(VolleyError error);
-
-}
-</code></pre>
-<p>定义了两个方法，分别为请求成功时和请求失败时的回调。</p>
-<p>然后需要一个StringModel的实现类–StringModelImpl。</p>
-<pre><code class="Java">public class StringModelImpl {
-
-    private Context context;
-
-    public StringModelImpl(Context context) {
-        this.context = context;
-    }
-
-    public void load(String url, final OnStringListener listener) {
-        StringRequest request = new StringRequest(url, new Response.Listener&lt;String&gt;() {
-            @Override
-            public void onResponse(String s) {
-                listener.onSuccess(s);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                listener.onError(volleyError);
-            }
-        });
-        VolleySingleton.getVolleySingleton(context).addToRequestQueue(request);
-    }
-
-}
-</code></pre>
-<p>这样，Model, View, Presenter均已实现，实现了各个层次的分离。</p>
-<p>采用MVP架构进行重构，代码量上相对于原项目时有所增加的，但这种数量的增加相对于MVP架构带来的好处是显而易见的。当然这是对于代码量比较大的项目而言，平时用于练手的小项目就没有必要强项目所难，勉强的实现MVP了，这样只会增加代码量而已。</p>
-<h3 id="本项目地址"><a href="#本项目地址" class="headerlink" title="本项目地址"></a>本项目地址</h3><blockquote>
-<p><a href="https://github.com/marktony/ZhihuDaily" target="_blank" rel="external">纸飞机-采用MVP架构，一款集合了知乎日报、果壳精选和豆瓣一刻的综合性阅读客户端</a></p>
-</blockquote>
+<p>(事实上，我所使用的<code>Realm</code>数据库在数据插入的速度方面还是很乐观的，但是为了保险起见(避免引起ANR)，我仍然还是选择了<code>AsyncTask</code>，如果你有更好的解决方式，请不吝赐教。)</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>项目完整地址: <a href="https://github.com/TonnyL/Espresso" target="_blank" rel="external">Espresso</a> - Espresso is an express delivery tracking app designed with Material Design style, built on MVP(Model-View-Presenter) architecture with RxJava2, Retrofit2, Realm database and ZXing.</p>
+<p>参考:<a href="http://blog.iamsuleiman.com/onboarding-android-viewpager-google-way/" target="_blank" rel="external">Onboarding with Android ViewPager: The Google Way</a></p>
+<p>如果你觉得文章不错的话，请点个赞吧。有其他问题，可以通过以下方式联系我:</p>
+<p>Zhihu: <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank" rel="external">https://www.zhihu.com/people/kirin-momo/</a></p>
+<p>Slack: <a href="https://androiddevsslack.slack.com" target="_blank" rel="external">https://androiddevsslack.slack.com</a></p>
+<p>Weibo: <a href="http://weibo.com/u/5313690193" target="_blank" rel="external">http://weibo.com/u/5313690193</a></p>
+<p>Medium: <a href="https://medium.com/@TonnyL" target="_blank" rel="external">https://medium.com/@TonnyL</a></p>
+<p>Twitter: <a href="https://twitter.com/TonnyLZTL" target="_blank" rel="external">https://twitter.com/TonnyLZTL</a></p>
 
     
 
@@ -797,9 +802,9 @@
 <div id="comments">
     <!-- 多说评论框 start -->
     <div class="ds-thread"
-        data-thread-key="2016/09/27/重构！将Google-MVP应用于已有项目/"
-        data-url="http://tonnyl.github.io/2016/09/27/重构！将Google-MVP应用于已有项目/"
-        data-title="重构！将Google MVP应用于已有项目">
+        data-thread-key="2017/04/16/Onboarding-Screens-in-Material-Design/"
+        data-url="http://tonnyl.github.io/2017/04/16/Onboarding-Screens-in-Material-Design/"
+        data-title="利用ViewPager实现Material Design风格炫酷引导页">
     </div>
     <!-- 多说评论框 end -->
 </div>
@@ -819,21 +824,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2016/10/21/Android-Studio新建Library并上传到JCenter/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Newer
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2016/07/19/Java中的单例模式/" id="post_nav-older" class="next-content">
+        <a href="/2017/04/11/Make-android-app-barcode-and-QR-code-aware/" id="post_nav-older" class="next-content">
             Older
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

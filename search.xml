@@ -4,9 +4,484 @@
   
     
     <entry>
-      <title><![CDATA[Make android app barcode and QR code aware]]></title>
+      <title><![CDATA[利用ViewPager实现Material Design风格炫酷引导页]]></title>
+      <url>http://tonnyl.github.io/2017/04/16/Onboarding-Screens-in-Material-Design/</url>
+      <content type="html"><![CDATA[<p>当我们第一次打开一个App，首先映入眼帘的就是引导页了。<br><a id="more"></a><br>引导页向我们展示了一些可以滑动的页面，并在页面中以图片方式展示了这个App的一些亮点。要实现这个效果，网上更多的是通过引入第三方库的形式，但是，这哪里有我们自己动手撸一个来的痛快呢？所以，今天我将手 <del>摸</del> 把手的带大家实现一个符合Material Design标准的炫酷引导页。</p>
+<h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><p>我们首先来看看Google Docs是实现的效果:</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1fenmtjv4a3g307i0dce21.gif" alt="Google Docs"></p>
+<p>下面是我们将要实现的效果:</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1fenmmjbz96g307i0dcn3q.gif" alt="Espresso"></p>
+<h3 id="设计规范"><a href="#设计规范" class="headerlink" title="设计规范"></a>设计规范</h3><p>在Material Design官方文档中，关于引导页的部分是这样说明的：</p>
+<blockquote>
+<p>Onboarding is a virtual unboxing experience that helps users get started with an app’s UI. It should be brief and enhance the use of the app.</p>
+</blockquote>
+<p>简单来说，引导应该是一个简短的过程，能够帮助用户理解App的使用。</p>
+<p>那么，我们应该什么时候使用引导呢？按照规范，当我们的应用添加了新的特色功能或者有重大改变时，应该使用引导页面。对于那些用户本来就期待的，很普通的功能，就不要滥用引导页了。</p>
+<p>更多关于设计规范的内容，请访问: <a href="https://material.io/guidelines/growth-communications/onboarding.html" target="_blank" rel="external">https://material.io/guidelines/growth-communications/onboarding.html</a>.</p>
+<h3 id="开始吧"><a href="#开始吧" class="headerlink" title="开始吧"></a>开始吧</h3><p>本次的教程主要分为以下三步：</p>
+<ol>
+<li>使用ViewPager创建引导页</li>
+<li>当页面滑动时，控制背景色的渐变</li>
+<li>当应用第一次加载时，显示引导页</li>
+</ol>
+<p>现在就开始吧。</p>
+<p>首先当然是要添加依赖了。在<code>build.gradle</code>文件中，添加支持库的依赖。</p>
+<pre><code class="groovy">dependencies {
+    compile &#39;com.android.support:appcompat-v7:25.3.1&#39;
+    compile &#39;com.android.support:design:25.3.1&#39;
+    // Other dependencies here.
+}
+</code></pre>
+<p>然后我们就可以利用<code>Android Studio</code>自带的模板，创建一个<code>Tabbed Activity</code>: 在我们的Java包点击鼠标右键 -&gt; <code>New</code> -&gt; <code>Activity</code> -&gt; <code>Tabbed Activity</code>，然后选择<code>Navigation Style</code>为<strong> <code>Swipe Views (ViewPager)</code> </strong> .</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1fennpshdpqj31b2104alw.jpg" alt=""></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1fennu6b80mj31eo170479.jpg" alt=""></p>
+<h4 id="Tabbed-Activity-Template"><a href="#Tabbed-Activity-Template" class="headerlink" title="Tabbed Activity Template"></a>Tabbed Activity Template</h4><p>首先，我们来看看我们现有有了些什么：</p>
+<ol>
+<li>Activity(在我的工程中为<code>OnboardingActivity</code>);</li>
+<li><code>SectionsPagerAdapter</code>, ViewPager的适配器;</li>
+<li><code>PlaceholderFragment</code>, 用于相应每一个滑动页面的布局。</li>
+</ol>
+<p>现在我们就可以根据需要对代码进行改造了。打开<code>OnboardingActivity</code>对应的布局文件<code>activity_onboarding.xml</code>，完成下面的工作：</p>
+<ol>
+<li>移除<code>Toolbar</code>;</li>
+<li>添加底部导航按钮部分(用于控制ViewPager)。</li>
+</ol>
+<p>下面就是底部导航按钮：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1fens8al6o0j30u008iaaa.jpg" alt=""></p>
+<h4 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h4><p>底部导航按钮的类型包括：</p>
+<ol>
+<li>圆形的页面位置指示器;</li>
+<li>上一页/下一页按钮;</li>
+<li>完成按钮(理应包括跳过按钮，后面我会讲解为什么我没有做跳过按钮)。</li>
+</ol>
+<p>下面是<code>activity_onboarding.xml</code>文件的源码：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;android.support.design.widget.CoordinatorLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/main_content&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:background=&quot;@color/colorPrimary&quot;
+    tools:context=&quot;.ui.onboarding.OnboardingActivity&quot;&gt;
+
+    &lt;android.support.v4.view.ViewPager
+        android:id=&quot;@+id/container&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:paddingBottom=&quot;?attr/actionBarSize&quot;
+        app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot; /&gt;
+
+    &lt;!--分割线--&gt;
+    &lt;View
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;1dp&quot;
+        android:layout_gravity=&quot;bottom&quot;
+        android:layout_marginBottom=&quot;?attr/actionBarSize&quot;
+        android:alpha=&quot;0.12&quot;
+        android:background=&quot;@android:color/white&quot; /&gt;
+
+    &lt;FrameLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;?attr/actionBarSize&quot;
+        android:layout_gravity=&quot;bottom&quot;
+        android:paddingEnd=&quot;@dimen/activity_horizontal_margin&quot;
+        android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+        android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+        android:paddingStart=&quot;@dimen/activity_horizontal_margin&quot;&gt;
+
+
+        &lt;ImageButton
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:id=&quot;@+id/imageButtonPre&quot;
+            style=&quot;@style/Widget.AppCompat.Button.Borderless&quot;
+            android:contentDescription=&quot;@string/onboarding_pre_button_description&quot;
+            android:layout_gravity=&quot;start|center&quot;
+            android:padding=&quot;@dimen/activity_horizontal_margin&quot;
+            android:src=&quot;@drawable/ic_chevron_left_white_24dp&quot;
+            android:visibility=&quot;gone&quot;
+            android:tint=&quot;@android:color/white&quot; /&gt;
+
+        &lt;!--圆形指示器--&gt;
+        &lt;LinearLayout
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_gravity=&quot;center&quot;
+            android:orientation=&quot;horizontal&quot;&gt;
+
+            &lt;ImageView
+                android:id=&quot;@+id/imageViewIndicator0&quot;
+                android:layout_width=&quot;8dp&quot;
+                android:layout_height=&quot;8dp&quot;
+                android:background=&quot;@drawable/onboarding_indicator_selected&quot; /&gt;
+
+            &lt;ImageView
+                android:id=&quot;@+id/imageViewIndicator1&quot;
+                android:layout_width=&quot;8dp&quot;
+                android:layout_height=&quot;8dp&quot;
+                android:layout_marginEnd=&quot;@dimen/activity_margin_half&quot;
+                android:layout_marginRight=&quot;@dimen/activity_margin_half&quot;
+                android:layout_marginLeft=&quot;@dimen/activity_margin_half&quot;
+                android:layout_marginStart=&quot;@dimen/activity_margin_half&quot;
+                android:background=&quot;@drawable/onboarding_indicator_unselected&quot; /&gt;
+
+            &lt;ImageView
+                android:id=&quot;@+id/imageViewIndicator2&quot;
+                style=&quot;@style/Widget.AppCompat.Button.Borderless&quot;
+                android:layout_width=&quot;8dp&quot;
+                android:layout_height=&quot;8dp&quot;
+                android:background=&quot;@drawable/onboarding_indicator_unselected&quot; /&gt;
+
+        &lt;/LinearLayout&gt;
+
+        &lt;android.support.v7.widget.AppCompatButton
+            android:id=&quot;@+id/buttonFinish&quot;
+            style=&quot;@style/Widget.AppCompat.Button.Borderless&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_gravity=&quot;end|center&quot;
+            android:text=&quot;@string/onboarding_finish_button_description&quot;
+            android:contentDescription=&quot;@string/onboarding_finish_button_description&quot;
+            android:textColor=&quot;@android:color/white&quot;
+            android:visibility=&quot;gone&quot; /&gt;
+
+        &lt;ImageButton
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            style=&quot;@style/Widget.AppCompat.Button.Borderless&quot;
+            android:id=&quot;@+id/imageButtonNext&quot;
+            android:contentDescription=&quot;@string/onboarding_next_button_description&quot;
+            android:layout_gravity=&quot;end|center&quot;
+            android:padding=&quot;@dimen/activity_horizontal_margin&quot;
+            android:src=&quot;@drawable/ic_chevron_right_white_24dp&quot;
+            android:tint=&quot;@android:color/white&quot; /&gt;
+
+    &lt;/FrameLayout&gt;
+
+&lt;/android.support.design.widget.CoordinatorLayout&gt;
+</code></pre>
+<h4 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h4><p>下面是我的<code>fragment_onboarding.xml</code>的全部代码:</p>
+<pre><code class="xml">&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;.ui.onboarding.OnboardingFragment&quot;&gt;
+
+    &lt;FrameLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:background=&quot;@color/colorPrimary&quot;&gt;
+
+        &lt;ImageView
+            android:id=&quot;@+id/section_img&quot;
+            android:layout_width=&quot;192dp&quot;
+            android:layout_height=&quot;192dp&quot;
+            android:layout_gravity=&quot;center&quot;
+            android:adjustViewBounds=&quot;true&quot;
+            android:src=&quot;@drawable/ic_notifications_black_24dp&quot;
+            android:alpha=&quot;0.30&quot;
+            android:scaleType=&quot;fitCenter&quot; /&gt;
+
+    &lt;/FrameLayout&gt;
+
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_gravity=&quot;bottom&quot;
+        android:gravity=&quot;center&quot;
+        android:orientation=&quot;vertical&quot;
+        android:padding=&quot;@dimen/activity_horizontal_margin&quot;&gt;
+
+        &lt;android.support.v7.widget.AppCompatTextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:id=&quot;@+id/section_label&quot;
+            android:textAlignment=&quot;center&quot;
+            style=&quot;@style/TextAppearance.AppCompat.Headline&quot;
+            android:textColor=&quot;@android:color/white&quot;
+            tools:text=&quot;Page One&quot; /&gt;
+
+        &lt;android.support.v7.widget.AppCompatTextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:id=&quot;@+id/section_intro&quot;
+            style=&quot;@style/TextAppearance.AppCompat.Body1&quot;
+            android:layout_marginTop=&quot;@dimen/activity_horizontal_margin&quot;
+            android:alpha=&quot;0.7&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;Your awesome description about the app&quot;
+            android:textColor=&quot;@android:color/white&quot; /&gt;
+
+    &lt;/LinearLayout&gt;
+
+&lt;/FrameLayout&gt;
+</code></pre>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1fenspnj84uj30dy0nct9j.jpg" alt=""></p>
+<p>调整完布局文件之后，我们还可以对Java代码进行一定的调整，便于阅读，当然，这是可选的。我们可以把<code>PlaceholderFragment</code>和<code>SectionsPagerAdapter</code>单独抽取出来，然后统一命名，这样更加便于理解和管理，在后期的维护中也更加容易。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1fent0qe7jbj30gi05amxq.jpg" alt=""></p>
+<h4 id="控制ViewPager的颜色"><a href="#控制ViewPager的颜色" class="headerlink" title="控制ViewPager的颜色"></a>控制ViewPager的颜色</h4><p>由于<code>ViewPager</code>已经和<code>SectionsPagerAdapter</code>(<code>OnboardingPagerAdapter</code>)绑定了，所以不用我们就不用担心这个问题了。</p>
+<p>当我们滑动页面时，颜色应该自动的更新。也就是说，Pager的颜色应该根据滑动的距离自行调整。</p>
+<p>我们有三个页面，每个页面搭配不同的颜色。</p>
+<pre><code class="java">private int bgColors[];
+
+bgColors = new int[]{ContextCompat.getColor(this, R.color.colorPrimary),
+                ContextCompat.getColor(this, R.color.cyan_500),
+                ContextCompat.getColor(this, R.color.light_blue_500)};
+</code></pre>
+<p>然后可以通过为<code>ViewPager</code>添加<code>OnPageChangeListener</code>做出相应的改变。</p>
+<pre><code class="java">viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    int colorUpdate = (Integer) new ArgbEvaluator().evaluate(positionOffset, bgColors[position], bgColors[position == 2 ? position : position + 1]);
+                    viewPager.setBackgroundColor(colorUpdate);
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    currentPosition = position;
+                    updateIndicators(position);
+                    viewPager.setBackgroundColor(bgColors[position]);
+                    buttonPre.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+                    buttonNext.setVisibility(position == 2 ? View.GONE : View.VISIBLE);
+                    buttonFinish.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+</code></pre>
+<p>我们创建了一个<code>ArgbEvaluator</code>用于更新颜色，在前一个页面和后一个页面的颜色之间进行过渡。</p>
+<p>想必你也猜到了，<code>updateIndicators()</code>方法通过切换两个不同的<code>drawable</code>来更新指示器。</p>
+<pre><code class="java">private void updateIndicators(int position) {
+        for (int i = 0; i &lt; indicators.length; i++) {
+            indicators[i].setBackgroundResource(
+                    i == position ? R.drawable.onboarding_indicator_selected : R.drawable.onboarding_indicator_unselected
+            );
+        }
+    }
+</code></pre>
+<p>注意：</p>
+<p><code>bgColors[position == 2 ? position : position + 1]</code>提示当前是否为最后一个位置，如果是，则不再增加，否则会出现<code>ArrayIndexOutOfBoundsException</code>数组越界异常。数组的范围为「0」 - 「n-1」。</p>
+<p><code>currentPosition</code>变量用于追踪ViewPager的当前位置，我们需要在Pre和Next按钮中对<code>currentPosition</code>进行减或者加的操作。</p>
+<p>最后，当页面处于最后一页时，需要将FINISH按钮的状态设置为可见。</p>
+<h4 id="指示器Drawable"><a href="#指示器Drawable" class="headerlink" title="指示器Drawable"></a>指示器Drawable</h4><p>onboarding_indicator_selected.xml:</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:shape=&quot;oval&quot;&gt;
+    &lt;corners android:radius=&quot;100dp&quot; /&gt;
+    &lt;solid android:color=&quot;@color/indicator_selected&quot; /&gt;
+&lt;/shape&gt;
+</code></pre>
+<p>onboarding_indicator_unselected.xml</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:shape=&quot;oval&quot;&gt;
+    &lt;corners android:radius=&quot;100dp&quot; /&gt;
+    &lt;solid android:color=&quot;@color/indicator_unselected&quot; /&gt;
+&lt;/shape&gt;
+</code></pre>
+<h3 id="调用与触发首次加载"><a href="#调用与触发首次加载" class="headerlink" title="调用与触发首次加载"></a>调用与触发首次加载</h3><p>App第一次启动是展示引导页的最佳时机，这样就可以提示用户此App有哪些值得注意的特色功能；但是，从第二次启动开始，App就不应该展示引导页了。我们可以通过在<code>SharedPreference</code>中存放一个<code>boolean</code>值来判断App是否是第一次加载。</p>
+<p>当用户按下FINISH按钮后，结束引导，将<code>SettingsUtil.KEY_FIRST_LAUNCH</code>对应的值修改为<code>false</code>。</p>
+<pre><code class="java">buttonFinish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences.Editor ed = sp.edit();
+                    ed.putBoolean(SettingsUtil.KEY_FIRST_LAUNCH, false);
+                    ed.apply();
+                    navigateToMainActivity();
+                }
+            });
+</code></pre>
+<p>如果不是第一次加载，则直接进入<code>MainActivity</code>。</p>
+<pre><code class="java">@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+    if (sp.getBoolean(SettingsUtil.KEY_FIRST_LAUNCH, true)) {
+
+        setContentView(R.layout.activity_onboarding);
+
+        // Do other things here.
+    } else {
+
+        navigateToMainActivity();
+
+        finish();
+    }
+
+private void navigateToMainActivity() {
+        Intent i = new Intent(this, MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+</code></pre>
+<p>现在我们把项目跑起来，不出意外的话，你就会看到<a href="#效果预览">效果预览</a>里的效果啦。</p>
+<h4 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h4><p>如果你还需要对页面的切换动画进行定制，请访问：<a href="https://developer.android.com/training/animation/screen-slide.html#pagetransformer。Medium上`Michell" target="_blank" rel="external">https://developer.android.com/training/animation/screen-slide.html#pagetransformer。Medium上`Michell</a> Bak`的这篇文章或许也能帮到你:<a href="https://android.jlelse.eu/creating-an-intro-screen-for-your-app-using-viewpager-pagetransformer-9950517ea04f" target="_blank" rel="external">Creating an intro screen for your app using ViewPager and PageTransformer</a>.</p>
+<h3 id="其他优秀开源库"><a href="#其他优秀开源库" class="headerlink" title="其他优秀开源库"></a>其他优秀开源库</h3><p>如果你需要更加简单的实现方式，你还可以选择：</p>
+<ul>
+<li><a href="https://github.com/apl-devs/AppIntro" target="_blank" rel="external">AppIntro</a> - Make a cool intro for your Android app.</li>
+<li><a href="https://github.com/TangoAgency/material-intro-screen" target="_blank" rel="external">material-intro-screen</a> - Inspired by Heinrich Reimer Material Intro and developed with love from scratch.</li>
+<li><a href="https://github.com/riggaroo/MaterialIntroTutorial" target="_blank" rel="external">MaterialIntroTutorial</a> - Library demonstrating a material intro tutorial much like the ones on Google Sheets.</li>
+</ul>
+<h3 id="One-More-Thing…"><a href="#One-More-Thing…" class="headerlink" title="One More Thing…"></a>One More Thing…</h3><p>还记得我之前立的flag吗？为什么我没有做<code>SKIP</code>跳过按钮？因为在我的引导页中，并不仅仅只是向用户展示了App的特色功能，实际上，在展示页面的同时还完成了一部分数据的初始化工作，向数据库中插入了几百条数据，而这很明显是耗时操作，放在主线程肯定是不合适的，所以我选择了使用<code>AsyncTask</code>，当任务完成后再将Button的状态设置为enable。</p>
+<pre><code class="java">private class InitCompaniesDataTask extends AsyncTask&lt;Void, Void, Void&gt; {
+
+    @Override
+    protected Void doInBackground(Void... params) {
+        CompaniesRepository.getInstance(CompaniesLocalDataSource.getInstance())
+                .initData();
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        handler.sendEmptyMessage(MSG_DATA_INSERT_FINISH);
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+
+    }
+}
+
+private Handler handler = new Handler() {
+    @Override
+    public void handleMessage(Message msg) {
+        switch (msg.what) {
+            case MSG_DATA_INSERT_FINISH:
+                buttonFinish.setText(R.string.onboarding_finish_button_description);
+                buttonFinish.setEnabled(true);
+                break;
+        }
+    }
+};
+</code></pre>
+<p>(事实上，我所使用的<code>Realm</code>数据库在数据插入的速度方面还是很乐观的，但是为了保险起见(避免引起ANR)，我仍然还是选择了<code>AsyncTask</code>，如果你有更好的解决方式，请不吝赐教。)</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>项目完整地址: <a href="https://github.com/TonnyL/Espresso" target="_blank" rel="external">Espresso</a> - Espresso is an express delivery tracking app designed with Material Design style, built on MVP(Model-View-Presenter) architecture with RxJava2, Retrofit2, Realm database and ZXing.</p>
+<p>参考:<a href="http://blog.iamsuleiman.com/onboarding-android-viewpager-google-way/" target="_blank" rel="external">Onboarding with Android ViewPager: The Google Way</a></p>
+<p>如果你觉得文章不错的话，请点个赞吧。有其他问题，可以通过以下方式联系我:</p>
+<p>Zhihu: <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank" rel="external">https://www.zhihu.com/people/kirin-momo/</a></p>
+<p>Slack: <a href="https://androiddevsslack.slack.com" target="_blank" rel="external">https://androiddevsslack.slack.com</a></p>
+<p>Weibo: <a href="http://weibo.com/u/5313690193" target="_blank" rel="external">http://weibo.com/u/5313690193</a></p>
+<p>Medium: <a href="https://medium.com/@TonnyL" target="_blank" rel="external">https://medium.com/@TonnyL</a></p>
+<p>Twitter: <a href="https://twitter.com/TonnyLZTL" target="_blank" rel="external">https://twitter.com/TonnyLZTL</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android实现条形码与二维码扫描]]></title>
       <url>http://tonnyl.github.io/2017/04/11/Make-android-app-barcode-and-QR-code-aware/</url>
-      <content type="html"><![CDATA[<p>In this tutorial, we will carry out the barcode and QR code scanning within our app using ZXing library.<br><a id="more"></a></p>
+      <content type="html"><![CDATA[<p>利用Zxing实现条形码和二维码扫描 In this tutorial, we will carry out the barcode and QR code scanning within our app using ZXing library.<br><a id="more"></a></p>
+<h1 id="Android实现条形码与二维码扫描"><a href="#Android实现条形码与二维码扫描" class="headerlink" title="Android实现条形码与二维码扫描"></a>Android实现条形码与二维码扫描</h1><p><img src="http://upload-images.jianshu.io/upload_images/2440049-311f7e2a0b14d0cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在本次教程中，我们将使用ZXing库让我们的app实现条形码和二维码的扫描。</p>
+<h2 id="为什么选择ZXing"><a href="#为什么选择ZXing" class="headerlink" title="为什么选择ZXing"></a>为什么选择ZXing</h2><p>要实现条形码和二维码扫描功能，常用的有下面几种方法：</p>
+<ul>
+<li>使用Google Play Service和<a href="https://developers.google.com/vision/" target="_blank" rel="external">Mobile Vision APIs</a>。</li>
+<li>使用<a href="https://github.com/dm77/barcodescanner" target="_blank" rel="external">barcodescanner</a>库。</li>
+<li>使用<a href="https://github.com/zxing/zxing" target="_blank" rel="external">ZXing</a>库。</li>
+</ul>
+<p>我们来仔细分析以上三种方法各自的优缺点。</p>
+<ul>
+<li>第一种，使用Google Play Service和Mobile Vision APIs。不合适，因为不是所有的用户设备都有安装Google Play Service，特别是在中国。</li>
+<li>第二种，使用barcodescanner。也不合适，尽管barcodescanner的导入非常简单，识别也很快，但是UI的调整比较困难。特别是当UI非常复杂时，你就需要拉取整个项目的源码然后自己进行定制。</li>
+<li>现在就只剩下ZXing了。ZXing库由谷歌出品，所以在短期内应该不会停止维护。很多应用，报错barcodescanner，都是基于ZXingk开发的。使用ZXing我们不用担心用户没有安装Google Play Service，而聚焦于开发和处理结果本身。</li>
+</ul>
+<h2 id="ZXing是什么"><a href="#ZXing是什么" class="headerlink" title="ZXing是什么"></a>ZXing是什么</h2><blockquote>
+<p>Zxing是Google提供的关于条码（一维码、二维码）的解析工具，提供了二维码的生成与解析的方法。</p>
+</blockquote>
+<h2 id="设置项目"><a href="#设置项目" class="headerlink" title="设置项目"></a>设置项目</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><p>在你的<code>build.gradle</code>文件(<strong>application级别</strong>)中，添加<code>ZXing core</code>的库。</p>
+<pre><code class="groovy">dependencies {
+    compile fileTree(include: [&#39;*.jar&#39;], dir: &#39;libs&#39;)
+    // 其他的库在这里...
+    compile &#39;com.google.zxing:core:3.3.0&#39;
+    testCompile &#39;junit:junit:4.12&#39;
+}
+</code></pre>
+<h3 id="添加必要的权限"><a href="#添加必要的权限" class="headerlink" title="添加必要的权限"></a>添加必要的权限</h3><p>在你的<code>AndroidManifest.xml</code>文件中，添加下面的代码：</p>
+<pre><code class="xml">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;io.github.marktony.espresso&quot;&gt;
+
+    &lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.WAKE_LOCK&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot; /&gt;
+
+     &lt;application ...
+</code></pre>
+<h3 id="导入必要的类和资源文件"><a href="#导入必要的类和资源文件" class="headerlink" title="导入必要的类和资源文件"></a>导入必要的类和资源文件</h3><p>将<a href="https://github.com/TonnyL/Espresso/tree/master/mobile/src/main/java/io/github/marktony/espresso/zxing" target="_blank" rel="external">整个包</a>复制到你的项目中。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2440049-268d1ac434d52d2d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><strong>注意</strong>:上面的包中的代码我做了简化，如果你需要ZXing示例项目此部分的完整的代码，请访问<a href="https://github.com/zxing/zxing/tree/master/android" target="_blank" rel="external">这里</a>，并下载相应的代码。</p>
+<p>代码文件导入完成后，我们还需要导入下面的资源文件：</p>
+<ul>
+<li><a href="https://github.com/TonnyL/Espresso/blob/master/mobile/src/main/res/layout/activity_scan.xml" target="_blank" rel="external"><code>res/layout/activity_scan</code></a> -  <a href="https://github.com/TonnyL/Espresso/blob/master/mobile/src/main/java/io/github/marktony/espresso/zxing/CaptureActivity.java" target="_blank" rel="external">CaptureActivity</a>的布局文件.</li>
+<li><a href="https://github.com/TonnyL/Espresso/blob/master/mobile/src/main/res/values/zxing_ids.xml" target="_blank" rel="external"><code>res/values/zxing_ids.xml</code></a> - zxing id的集合.</li>
+<li><a href="https://github.com/TonnyL/Espresso/tree/master/mobile/src/main/res/raw" target="_blank" rel="external"><code>res/raw/beep.ogg</code></a> - 当扫描成功后播放的声音文件.</li>
+<li><a href="https://github.com/TonnyL/Espresso/tree/master/mobile/src/main/res/drawable" target="_blank" rel="external"><code>res/drawable/...</code></a> - 共3个文件: <a href="https://github.com/TonnyL/Espresso/blob/master/mobile/src/main/res/drawable/scan_line.png" target="_blank" rel="external">scan_line.png</a>, <a href="https://github.com/TonnyL/Espresso/blob/master/mobile/src/main/res/drawable/qr_code_bg.9.png" target="_blank" rel="external">qr_code_bg.9.png</a>, <a href="https://github.com/TonnyL/Espresso/blob/master/mobile/src/main/res/drawable/shadow.png" target="_blank" rel="external">shadow.png</a>.</li>
+</ul>
+<h2 id="开动吧"><a href="#开动吧" class="headerlink" title="开动吧"></a>开动吧</h2><p>现在我们从<code>MainActivity</code>启动<code>CaptureActivity</code>并期待获取相应的结果:</p>
+<pre><code class="java">public class MainActivity extends AppCompatActivity {
+
+    public final static int SCANNING_REQUEST_CODE = 1;
+
+    private TextView textView;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        textView = (TextView) findViewById(R.id.textView);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivityForResult(intent, SCANNING_REQUEST_CODE);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case SCANNING_REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    final Bundle bundle = data.getExtras();
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            textView.setText(bundle.getString(&quot;result&quot;));
+                        }
+                    });
+                }
+                break;
+            default:
+                break;
+        }
+    }
+}
+</code></pre>
+<p>我们可以在<code>onActivityResult()</code>方法中得到相应的结果。</p>
+<p>注意: 如果你的app的target api level是23或者更高, <strong>不要</strong><br>忘记适配运行时权限因为我们的app需要用到相机。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>现在我们可以测试app是否成功运行了。访问 <a href="http://www.qr-code-generator.com/" target="_blank" rel="external">qr-code-generator.com</a>生成你想要的二维码，然后进行愉快的测试吧。我们可以期待获得下面的结果:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2440049-541fcdbb3a4f70b4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在这篇教程中，我们使用ZXing库实现了条形码和二维码的扫描。在你自己的app中，你可能需要对扫描的结果进行进一步的处理，例如加载URL或者是从第三方数据源中获取数据等等。</p>
+<p>你可以在访问<a href="https://github.com/TonnyL/Espresso" target="_blank" rel="external">Espresso</a>项目主页下载全部源代码。Espresso是一个基于MVP架构，采用RxJava2, Retrofit2, Realm3.0, ZXing开发的快递查询App。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/zxing/zxing" target="_blank" rel="external">ZXing</a> - ZXing(“Zebra Crossing”)项目官方主页。</p>
+<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>如果你对这篇文章或者项目有任何问题，可以通过以下方式联系我：</p>
+<p>GitHub: <a href="https://github.com/TonnyL" target="_blank" rel="external">https://github.com/TonnyL</a></p>
+<p>Zhihu: <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank" rel="external">https://www.zhihu.com/people/kirin-momo/</a></p>
+<p>Slack: <a href="https://androiddevsslack.slack.com" target="_blank" rel="external">https://androiddevsslack.slack.com</a></p>
+<p>Weibo: <a href="http://weibo.com/u/5313690193" target="_blank" rel="external">http://weibo.com/u/5313690193</a></p>
+<p>Medium: <a href="https://medium.com/@TonnyL" target="_blank" rel="external">https://medium.com/@TonnyL</a></p>
+<p>Twitter: <a href="https://twitter.com/TonnyLZTL" target="_blank" rel="external">https://twitter.com/TonnyLZTL</a></p>
 <h1 id="Make-android-application-barcode-and-QR-code-aware"><a href="#Make-android-application-barcode-and-QR-code-aware" class="headerlink" title="Make android application barcode and QR code aware"></a>Make android application barcode and QR code aware</h1><p>In this tutorial, we will carry out the barcode and QR code scanning within our app using ZXing library.</p>
 <h2 id="Why-ZXing"><a href="#Why-ZXing" class="headerlink" title="Why ZXing"></a>Why ZXing</h2><p>Here are the several ways to carry out this function below:</p>
 <ul>
@@ -42,7 +517,7 @@
      &lt;application ...
 </code></pre>
 <h3 id="Import-the-needed-class-and-resource-files"><a href="#Import-the-needed-class-and-resource-files" class="headerlink" title="Import the needed class and resource files"></a>Import the needed class and resource files</h3><p>Copy <a href="https://github.com/TonnyL/Espresso/tree/master/mobile/src/main/java/io/github/marktony/espresso/zxing" target="_blank" rel="external">the whole package</a> to your project.</p>
-<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgy1feizatturkj30ki0us76v.jpg" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2440049-ca5581baeb7fe823.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><strong>Notice</strong>: I have simplified the classes and code in the package above, if you need the complete package, visit the <a href="https://github.com/zxing/zxing/tree/master/android" target="_blank" rel="external">ZXing samples</a> here and download the corresponding code.</p>
 <p>After import the code, we need to add the resource files below.</p>
 <ul>
@@ -99,13 +574,15 @@
 <p>We take care of the result in function <code>onActivityResult()</code>.</p>
 <p>Notice: If your target api level is 23 or higher, <strong>DO NOT</strong> forget adapt the runtime permissions because our app need to use the camera.<br>Tip: As you can see in my source code, I did not launch the <code>CaptureActivity</code> in <code>AddPackageFragment</code> instead of <code>MainActivity</code>, so it is a little bit different to the code above.</p>
 <h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>Now we can test our app if it works well. Go to <a href="http://www.qr-code-generator.com/" target="_blank" rel="external">qr-code-generator.com</a> and test it. We should expect something just this:</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tKfTcgy1fej415g8dej30u00hs7ca.jpg" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2440049-d26c687d70c9eb79.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this tutorial, we have run through the process of facilitating barcode and QR code scanning within Android apps using the ZXing library. In your own apps, you might want to carry out further processing on the retrieved scan results, such as loading URLs or looking the data up in a third party data source.</p>
 <p>You can download the complete source code of <a href="https://github.com/TonnyL/Espresso" target="_blank" rel="external">Espresso</a>, it is an express delivery tracking app designed with Material Design style, built on MVP(Model-View-Presenter) architecture with RxJava2, Retrofit2, Realm database and ZXing.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://github.com/zxing/zxing" target="_blank" rel="external">ZXing</a> - Official ZXing (“Zebra Crossing”) project home.</p>
 <h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h2><p>If you have any problem about this article or the Espresso project, contact me on:</p>
-<p>Slack: <a href="https://androiddevsslack.slack.com" target="_blank" rel="external">https://androiddevsslack.slack.com</a></p>
 <p>GitHub: <a href="https://github.com/TonnyL" target="_blank" rel="external">https://github.com/TonnyL</a></p>
+<p>Zhihu: <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank" rel="external">https://www.zhihu.com/people/kirin-momo/</a></p>
+<p>Slack: <a href="https://androiddevsslack.slack.com" target="_blank" rel="external">https://androiddevsslack.slack.com</a></p>
+<p>Weibo: <a href="http://weibo.com/u/5313690193" target="_blank" rel="external">http://weibo.com/u/5313690193</a></p>
 <p>Medium: <a href="https://medium.com/@TonnyL" target="_blank" rel="external">https://medium.com/@TonnyL</a></p>
 <p>Twitter: <a href="https://twitter.com/TonnyLZTL" target="_blank" rel="external">https://twitter.com/TonnyLZTL</a></p>
 ]]></content>
