@@ -4,6 +4,188 @@
   
     
     <entry>
+      <title><![CDATA[APK瘦身最佳实践]]></title>
+      <url>http://tonnyl.github.io/2017/04/17/Best-practice-of-reducing-apk-size/</url>
+      <content type="html"><![CDATA[<p>本篇文章将介绍如何对APK文件进行瘦身。<br><a id="more"></a></p>
+<p>在开始对APK进行正式的减肥之前，我们先来了解一下APK包的构成，这样才好对症下药嘛。知己知彼方能百战不殆。</p>
+<h3 id="APK文件内容速揽"><a href="#APK文件内容速揽" class="headerlink" title="APK文件内容速揽"></a>APK文件内容速揽</h3><p>我们可以通过 <code>unzip &lt;apkname&gt;.apk</code> 命令实现对apk的解压(你也可以直接将<code>&lt;apkname&gt;.apk</code>更名为<code>&lt;apkname&gt;.zip</code>后直接通过解压软件解压)。解压后，我们就会得到一个文件夹了，里面包含了:</p>
+<pre><code>AndroidManifest.xml
+/assets
+classes.dex
+classes2.dex
+...
+/lib
+    /arm64-v8a
+    /armeabi-v7a
+    /mips
+    /x86
+    /x86_64
+/META-INF
+    CERT.RSA
+    CERT.SF
+    MANIFEST.MF
+/res
+    /anim
+    ...
+resources.arsc
+</code></pre><p>各个文件和目录的作用是什么呢？</p>
+<table>
+<thead>
+<tr>
+<th>文件/目录</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AndroidManifest.xml</td>
+<td>清单文件，列出了应用的名称，版本，权限等信息。</td>
+</tr>
+<tr>
+<td>assets</td>
+<td>配置文件，放置一些本地资源，例如本地html，可以通过使用<code>AssetManager</code>检索。</td>
+</tr>
+<tr>
+<td>classes.dex, classes2.dex</td>
+<td>编译后的字节码文件，能够被Dalvik/ART理解。</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>存放特定平台使用的编译后的.so文件，每一个子文件夹对应一个特定的平台，例如<code>armeabi</code>, <code>armeabi-v7a</code>, <code>arm64-v8a</code>, <code>x86</code>, <code>x86_64</code>, and <code>mips</code>.</td>
+</tr>
+<tr>
+<td>META-NIF</td>
+<td>包含 <code>CERT.RSA</code>, <code>CERT.SF</code>, <code>MANIFEST.MF</code>， 存放的签名信息，用于保证系统的安全性和APK文件的完整性。</td>
+</tr>
+<tr>
+<td>res</td>
+<td>存放没有被编译到 <code>resources.arsc</code>文件中的资源文件。</td>
+</tr>
+<tr>
+<td>resouces.arsc</td>
+<td>编译后的二进制资源文件。存放 <code>res/values/</code> 目录下的所有XML内容。打包工具对XML内容进行提取，编译为二进制，并进行分类，其中，XML内容包含了不同语言的strings和styles，同时还包含没有被直接打包至 <code>resources.arsc</code> 文件的其他文件的路径，例如布局文件和图片文件。</td>
+</tr>
+</tbody>
+</table>
+<p>OK，既然我们已经了解了APK的各个组成部分，那么我们就可以针对下面的三个组成部分，采取逐个击破的方式，达到缩减APK体积的目的：</p>
+<ul>
+<li><a href="#Java代码">Java代码</a></li>
+<li><a href="#资源文件">资源文件</a></li>
+<li><a href="#navtive-code">Native Code</a></li>
+<li><a href="#其他">其他</a></li>
+</ul>
+<h3 id="Java代码"><a href="#Java代码" class="headerlink" title="Java代码"></a>Java代码</h3><p>我们可以使用Proguard，在编译时对Java代码进行混淆，优化和压缩。Proguard对代码进行遍历，然后剔除其中未被使用的冗余的代码，并对类，属性，接口等进行重命名，从而达到瘦身的目的。</p>
+<p>我们可以在 <code>build.gradle</code> 文件中配置Proguard。</p>
+<pre><code class="groovy">buildTypes {
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile(&#39;proguard-android.txt&#39;), &#39;proguard-rules.pro&#39;
+        }
+
+    }
+</code></pre>
+<p>在未使用Proguard之前，我们的APK体积达到了13.9M。</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1feosjj5w32j30hx081wfa.jpg" alt=""></p>
+<p>开启Proguard后，APK的体积缩减到了10.1M。可见，效果还是很明显的。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1feotydfii8j30i4087js4.jpg" alt=""></p>
+<p>除此之外，微信的工程师还开源了一个项目，可以直接对APK进行处理，缩小体积。具体的使用方法：<a href="https://github.com/shwenzhang/AndResGuard。" target="_blank" rel="external">https://github.com/shwenzhang/AndResGuard。</a></p>
+<h3 id="资源文件"><a href="#资源文件" class="headerlink" title="资源文件"></a>资源文件</h3><h4 id="Lint"><a href="#Lint" class="headerlink" title="Lint"></a>Lint</h4><p>由于Proguard只对Java代码起作用，对于资源文件，它就无能为力了。这个时候，<code>Lint</code>就派上用场了。Lint是一个静态的代码分析器，我们可以通过在 <code>Android Studio</code> -&gt; <code>Analyze</code> -&gt; <code>Inspect code...</code> ， 选择范围即可开始就检查。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1feowjdymlnj30sc0puq71.jpg" alt=""></p>
+<p>Lint在检查完成后，会提供一份详细的资源文件清单，并且将没有用到的资源在 <code>UnusedResources:Unused resources</code> 区域。只要我们没有通过反射使用这些资源，就可以放心的删掉它们了。</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1feowa244znj31kw0jpjzc.jpg" alt=""></p>
+<p>下面是我根据lint的提示，剔除了部分无用资源后，APK的体积：</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1feow8ygb4fj30hz089js4.jpg" alt=""></p>
+<p>Notice：需要注意的是，Lint并不会扫描 <code>assets</code> 目录，所以最好还是手动的检查一下 <code>assets</code> 目录下是否有未被使用的文件吧。</p>
+<p>我们还可以通过配置 <code>shrinkResources</code> 来移除未使用的资源。不过，使用 <code>shrinkResources</code> 必须开启代码混淆。在处理过程中，<code>ProGuard</code> 会移除未被使用的代码，但是不会移除资源。而开启 <code>shrinkResources</code> 后，Gradle就会移除资源了。</p>
+<p>下面为开启 <code>shrinkResources</code> 后APK体积的变化:</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79gy1feowxvf26ej30hz084gmb.jpg" alt=""></p>
+<p>又缩小了一点点。</p>
+<h4 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h4><p>对于资源文件的优化，其实占大头的还是图片。Android打包本身会对png进行无损压缩，在不那么影响图片显示效果的情况下，对图片进行有损压缩对apk体积的减小还是非常可观的。</p>
+<p>我们先使用<a href="https://tinypng.com/" target="_blank" rel="external">TinyPng</a>对项目中四张比较大的图片进行压缩，可以看出，效果还是非常不错的。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1feox9rux7rj31kw0vd4qp.jpg" alt=""></p>
+<p>使用TinyPng后，我们还可以将图片转换为 <code>WebP</code> 格式，进一步缩小图片的体积。不过需要注意的是，WebP格式仅适用于Android 4.0+版本，如果你的应用需要兼容Android 2.3，那么需要额外的引入 <code>.so</code> 文件，apk的体积自然也会增加。所以，根据你的需求，权衡利弊吧。</p>
+<p>在 <code>Android Studio</code> 中，选定需要转换的图片，然后右键鼠标，即可在菜单底部看到 <code>Convert to WebP</code> 的选项了，然后就可以进行转换的操作。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1feoxrpetfkj31kw0xn7wh.jpg" alt=""></p>
+<p>经过上面的处理，我们的App体积来到了9.6M。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1feoxx4abvvj30i00860tf.jpg" alt=""></p>
+<h4 id="矢量图"><a href="#矢量图" class="headerlink" title="矢量图"></a>矢量图</h4><p>如果你的项目中使用 <code>appcompat</code> 兼容包，并且版本在23.2以上，那么，使用矢量图或许是个不错的选择。矢量图和分辨率无关，理论上支持任何级别的缩放。以一张常用的 点赞 图标为例，在 Android中使用 <code>Vector</code> 矢量图，大小为：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79gy1feoyegvw6fj30i3082wf7.jpg" alt=""></p>
+<p>而它对应的xxxhdpi的png格式，大小为：</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1feoyaug3xij30i1084aav.jpg" alt=""></p>
+<p>效果显而易见，但是这也并不是意味着，我们就可以将所有的图片替换为 矢量图 了 。我们来看一看 <code>ic_favorite_black_24dp.xml</code> 的源代码:</p>
+<pre><code class="xml">&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        android:width=&quot;24dp&quot;
+        android:height=&quot;24dp&quot;
+        android:viewportWidth=&quot;24.0&quot;
+        android:viewportHeight=&quot;24.0&quot;&gt;
+    &lt;path
+        android:fillColor=&quot;#FF000000&quot;
+        android:pathData=&quot;M12,21.35l-1.45,-1.32C5.4,15.36 2,12.28 2,8.5 2,5.42 4.42,3 7.5,3c1.74,0 3.41,0.81 4.5,2.09C13.09,3.81 14.76,3 16.5,3 19.58,3 22,5.42 22,8.5c0,3.78 -3.4,6.86 -8.55,11.54L12,21.35z&quot;/&gt;
+&lt;/vector&gt;
+</code></pre>
+<p>正如你所见，vector的颜色是单一的颜色，所以，vector 适用于图标等颜色单一的图片，如果是颜色比较复杂，那么vector很明显就不合适了。</p>
+<h4 id="使用JPG"><a href="#使用JPG" class="headerlink" title="使用JPG"></a>使用JPG</h4><p>对于非透明的大图，JPG格式将会比PNG格式的大小有显著的优势，虽然不是绝对的，但是通常会减小到一半都不止。在启动页，活动页等之类的大图展示区采用JPG将是非常明智的选择。</p>
+<p>对于图片的使用，Google的建议，简单来说就是：VD-&gt;WebP-&gt;Png-&gt;JPG</p>
+<ul>
+<li>如果是纯色的icon，那么用svg</li>
+<li>如果是两种以上颜色的icon，用webp</li>
+<li>如果webp无法达到效果，选择png</li>
+<li>如果图片没有alpha通道，可以考虑jpg</li>
+</ul>
+<h4 id="复用图片"><a href="#复用图片" class="headerlink" title="复用图片"></a>复用图片</h4><p>项目中我们还可能遇到图片内容相同，仅仅是颜色不同的情况。这个时候我们就可以使用Android提供的着色来完成，而不用提供好几套图片。例如在Android 5.0+上我们可以使用 <code>android:tint</code> 和 <code>android:tintMode</code>，在低版本中可以使用 <code>ColorFilter</code>。</p>
+<p>对于那些内容颜色等都相同，只是方向不同的图片，我们可以只保留一中方向的，其他方向的图片通过代码实现。例如我们可以对上面提到的 <code>ic_favorite_black_24dp</code> 进行翻转。创建一个 <code>drawable</code>：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rotate xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:drawable=&quot;@drawable/ic_favorite_black_24dp&quot;
+    android:fromDegrees=&quot;180&quot;
+    android:pivotX=&quot;50%&quot;
+    android:pivotY=&quot;50%&quot;
+    android:toDegrees=&quot;180&quot; /&gt;
+</code></pre>
+<p>虽然Android设备的分辨率非常的多，但这并不代表着我们需要为每一种分辨率都准备一套资源。在显示差异不大的情况下，我们可以尽量复用一套图片资源，一套布局，然后再考虑特定屏幕密度。</p>
+<h4 id="语言资源"><a href="#语言资源" class="headerlink" title="语言资源"></a>语言资源</h4><p>说完了图片，我们还要来说说语言资源。对于大多数的应用，并不需要支持几十种的国际化。使用Gradle，对语言资源进行配置，也可以达到应用瘦身的目的。例如，我们的应用如果只需要支持中文和英语:</p>
+<pre><code class="groovy">android {
+    defaultConfig {
+        ...
+        resConfigs &quot;en&quot;, &quot;zh&quot;
+        // 支持分辨率
+        resConfigs &quot;nodpi&quot;, &quot;hdpi&quot;, &quot;xhdpi&quot;, &quot;xxhdpi&quot;, &quot;xxxhdpi&quot;
+    }
+}
+</code></pre>
+<h3 id="Native-Code"><a href="#Native-Code" class="headerlink" title="Native Code"></a>Native Code</h3><p>如果你的App使用到了Native code,在不影响功能的前提下，可以考虑去除部分平台对应的代码，例如移除对 <code>armeabi、mips</code>的支持，</p>
+<pre><code class="groovy">android {
+    ...
+    splits {
+        abi {
+            enable true
+            reset()
+            include &#39;armeabi-v7a&#39;, &#39;arm64-v8a&#39;, &#39;x86&#39;, &#39;x86_64&#39;
+            universalApk true
+        }
+    }
+
+ }
+</code></pre>
+<p>当然，如果是特别大的原生库，我们还可以通过网络，从云端获取，而不直接打包在APK中。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>别忘了最简单，也最容易忽视的，去除重复的依赖，或者是引用更加轻量级的库，也可以达到apk瘦身的效果。</li>
+<li>在Release版本中，去除那些只会在debug时才会出现的代码。</li>
+<li>对于那些使用频率很小的文件或者是图片，可以存放到云端后，通过网络加载。</li>
+</ul>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>相对小的体积能够在用户安装前就给用户留下不错的印象，但是，这不并代表着我们可以为了追求APK体积的小巧而过度的牺牲用户体验。权衡利弊后，选择合适的，才是最重要的。</p>
+<p>项目完整地址: <a href="https://github.com/TonnyL/Espresso" target="_blank" rel="external">Espresso</a> - Espresso is an express delivery tracking app designed with Material Design style, built on MVP(Model-View-Presenter) architecture with RxJava2, Retrofit2, Realm database and ZXing.</p>
+<p>如果你觉得文章不错的话，请点个赞吧。有其他问题，可以通过以下方式联系我:</p>
+<p>Zhihu: <a href="https://www.zhihu.com/people/kirin-momo/" target="_blank" rel="external">https://www.zhihu.com/people/kirin-momo/</a></p>
+<p>Slack: <a href="https://androiddevsslack.slack.com" target="_blank" rel="external">https://androiddevsslack.slack.com</a></p>
+<p>Weibo: <a href="http://weibo.com/u/5313690193" target="_blank" rel="external">http://weibo.com/u/5313690193</a></p>
+<p>Medium: <a href="https://medium.com/@TonnyL" target="_blank" rel="external">https://medium.com/@TonnyL</a></p>
+<p>Twitter: <a href="https://twitter.com/TonnyLZTL" target="_blank" rel="external">https://twitter.com/TonnyLZTL</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[利用ViewPager实现Material Design风格炫酷引导页]]></title>
       <url>http://tonnyl.github.io/2017/04/16/Onboarding-Screens-in-Material-Design/</url>
       <content type="html"><![CDATA[<p>当我们第一次打开一个App，首先映入眼帘的就是引导页了。<br><a id="more"></a><br>引导页向我们展示了一些可以滑动的页面，并在页面中以图片方式展示了这个App的一些亮点。要实现这个效果，网上更多的是通过引入第三方库的形式，但是，这哪里有我们自己动手撸一个来的痛快呢？所以，今天我将手 <del>摸</del> 把手的带大家实现一个符合Material Design标准的炫酷引导页。</p>
