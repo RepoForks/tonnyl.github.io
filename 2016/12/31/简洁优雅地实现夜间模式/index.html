@@ -412,7 +412,7 @@
         <p>使用官方Support Library实现日间与夜间模式<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android 6.0 Marshmallow 预览版中曾经短暂出现过相关的夜间模式的功能，只是在正式版中被移除了，在Android 7.0 Nougat上，用户们再次经历了「得而复失」的遗憾，在开发者预览版中，夜间模式和暗色模式先是开启，然后有再次被移除。而在正式版中，夜间模式也没有出现。但其实相关的代码一直存在于系统中，只是默认没有被开启。如何开启这项功能，可以参考少数派的这一篇文章，<a href="http://sspai.com/35273" target="_blank" rel="external">帮你找回 Android 7.0 夜间模式的 2 款应用</a>。</p>
 <p>不过，今天要介绍的主要内容并不是关于系统的夜间模式，而是如何给我们开发的APP添加夜间模式的功能。毫不夸张的说，夜间模式现在已经是阅读类App的标配了。事实上，日间模式与夜间模式就是给APP定义并应用两套不同颜色的主题。用户可以自动或者手动的开启。我们先看两个我认为实现地很优雅的例子：知乎和Twitter。</p>
-<img src="/2016/12/31/简洁优雅地实现夜间模式/zhihu_twitter_nightmode.gif" alt="zhihu_twitter_nightmode" title="zhihu_twitter_nightmode">
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1ff8hhnu0a9g30zk0k0hdw.gif" alt="zhihu_twitter_nightmode"></p>
 <p>这两个APP在切换的工程中，并没有出现闪现黑屏的情况，切换也比较顺滑。我们的目标就是利用Support Library实现同样的效果。</p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre><code>compile &#39;com.android.support:appcompat-v7:25.1.0&#39;
 </code></pre><p>由于Support Library在23.2.0的版本中才添加了Theme.AppCompat.DayNight主题，所以依赖的版本必须是高于23.2.0的，并且，这个特性支持的最低SDK版本为14，所以，需要兼容Android 4.0的设备，是不能使用这个特性的，在API Level 14以下的设备会默认使用亮色主题。不过现在4.0以下的设备应该比较少了吧，毕竟微信的minSdkVersion都设置为14了。</p>
@@ -438,9 +438,9 @@
      &lt;color name=&quot;textColorPrimary&quot;&gt;#616161&lt;/color&gt;
      &lt;color name=&quot;viewBackground&quot;&gt;@android:color/white&lt;/color&gt;
  &lt;/resources&gt;
-</code></pre>
-<pre><code class="xml"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
- &lt;!--values-night-colors.xml&gt;
+
+ &lt;!--values-night-colors.xml--&gt;
+ &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
  &lt;resources&gt;
      &lt;color name=&quot;colorPrimary&quot;&gt;#35464e&lt;/color&gt;
      &lt;color name=&quot;colorPrimaryDark&quot;&gt;#212a2f&lt;/color&gt;
@@ -492,9 +492,7 @@
     @Override
     public void onCreate() {
         super.onCreate();
-
         // other code here
-
 }
 </code></pre>
 <h4 id="动态应用"><a href="#动态应用" class="headerlink" title="动态应用"></a>动态应用</h4><p>虽然上面的静态应用的设置非常简单，但是这种方式的应用场景还是太少了。我们更多的还是需要动态的根据需要动态的切换。</p>
@@ -551,7 +549,7 @@
 </li>
 </ul>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本项目代码<a href="https://github.com/TonnyL/PaperPlane" target="_blank" rel="external">PaperPlane</a> .<br>运行效果</p>
-<img src="/2016/12/31/简洁优雅地实现夜间模式/paper_plane.gif" alt="Paper Plane" title="Paper Plane">
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1ff8hipftdxg30zk0k0e81.gif" alt="paper_plane"></p>
 <p>在Android 6.0及以下的设备上，本项目运行时会有切换的过渡动画效果，但是不支持Android 7.0及以上的设备。</p>
 
     

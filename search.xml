@@ -1608,20 +1608,20 @@ realm.where(Person.class).isNotNull(&quot;username&quot;).findAllAsync().asObser
       <url>http://tonnyl.github.io/2017/03/15/GitHub%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5/</url>
       <content type="html"><![CDATA[<p>欢迎来到GitHub的世界~<br><a id="more"></a></p>
 <blockquote>
-<p>本文同步发表于<a href="http://www.jianshu.com/p/f74b6900997b" target="_blank" rel="external">TonnyL的简书</a>, <a href="https://zhuanlan.zhihu.com/p/25960534" target="_blank" rel="external">知乎专栏</a>, <a href="https://tonnyl.github.io/2017/03/15/GitHub%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5/">TonnyL的博客</a>, 转载请注明作者和出处。</p>
+<p>本文同步发表于<a href="http://www.jianshu.com/u/49606f4d970f" target="_blank" rel="external">TonnyL的简书</a>, <a href="https://zhuanlan.zhihu.com/Tonnys-coffee-shop" target="_blank" rel="external">知乎专栏</a>。</p>
 </blockquote>
-<h2 id="Welcome-to-GitHub"><a href="#Welcome-to-GitHub" class="headerlink" title="Welcome to GitHub"></a>Welcome to GitHub</h2><h3 id="什么是GitHub"><a href="#什么是GitHub" class="headerlink" title="什么是GitHub"></a>什么是GitHub</h3><p><a href="https://github.com/" target="_blank" rel="external">GitHub</a>是一个<del>同性交友社区</del>，不好意思，拿错剧本了。<a href="https://github.com/" target="_blank" rel="external">GitHub</a>在<a href="https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5" target="_blank" rel="external">Wikipedia</a>上的介绍是<a href="https://zh.wikipedia.org/wiki/GitHub" target="_blank" rel="external">这样</a>的：</p>
+<h2 id="GitHub入门与实践-一-欢迎来到GitHub的世界"><a href="#GitHub入门与实践-一-欢迎来到GitHub的世界" class="headerlink" title="GitHub入门与实践(一) - 欢迎来到GitHub的世界"></a>GitHub入门与实践(一) - 欢迎来到GitHub的世界</h2><h3 id="1-1-什么是GitHub"><a href="#1-1-什么是GitHub" class="headerlink" title="1.1 什么是GitHub"></a>1.1 什么是GitHub</h3><p><a href="https://github.com/" target="_blank" rel="external">GitHub</a>是一个<del>同性交友社区</del>，不好意思，拿错剧本了。<a href="https://github.com/" target="_blank" rel="external">GitHub</a>在<a href="https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5" target="_blank" rel="external">Wikipedia</a>上的介绍是<a href="https://zh.wikipedia.org/wiki/GitHub" target="_blank" rel="external">这样</a>的：</p>
 <blockquote>
 <p>GitHub是一个通过<a href="https://zh.wikipedia.org/wiki/Git" target="_blank" rel="external">Git</a>进行<a href="https://zh.wikipedia.org/wiki/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6" target="_blank" rel="external">版本控制</a>的软件源代码托管服务，由GitHub公司（曾称Logical Awesome）的开发者Chris Wanstrath、PJ Hyett和Tom Preston-Werner使用<a href="https://zh.wikipedia.org/wiki/Ruby_on_Rails" target="_blank" rel="external">Ruby on Rails</a>编写而成。</p>
 </blockquote>
 <p>简单来说，GitHub是一个让开发者与他人共享代码的地方。其公司总部位于美国加利福利亚州旧金山，其logo是一只名为Octocat的可爱章鱼猫，就是下面的这个小萌萌了↓</p>
 <p><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1fdng5xb7ckj30m80ih1ky.jpg" alt="Octocat"></p>
 <p>当然，她还有可能是这样的🙃<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1fdngajog08j308c08cq33.jpg" alt="Octocat"></p>
-<h3 id="GitHub与Git有什么区别"><a href="#GitHub与Git有什么区别" class="headerlink" title="GitHub与Git有什么区别"></a>GitHub与Git有什么区别</h3><p>Git其实是一种版本控制的协议，定义了一个版本控制的各种操作，类似的还有SVN/CVS，但是和SVN/CVS不同的是，Git采用的是分布式的方式，并不需要服务器端的软件。</p>
+<h3 id="1-2-GitHub与Git有什么区别"><a href="#1-2-GitHub与Git有什么区别" class="headerlink" title="1.2 GitHub与Git有什么区别"></a>1.2 GitHub与Git有什么区别</h3><p>Git其实是一种版本控制的协议，定义了一个版本控制的各种操作，类似的还有SVN/CVS，但是和SVN/CVS不同的是，Git采用的是分布式的方式，并不需要服务器端的软件。</p>
 <p>而GitHub是基于Git协议的一个网络代码仓库，也就是说，GitHub上公开的软件源代码都是有Git进行管理，但是GitHub除了提供Git仓库的托管服务外，还为开发者或团队提供了一系列的功能(后面会详细说明)，例如在线浏览、搜索和管理、社交等等，帮助开发者和团队高效率、高品质的编写代码。</p>
 <p>(好吧，说了这么多拗口的话，简单来说，你可以将Git与GitHub的关系理解为「魔兽争霸」和「对战平台」的关系。)</p>
-<h3 id="GitHub的使用情况"><a href="#GitHub的使用情况" class="headerlink" title="GitHub的使用情况"></a>GitHub的使用情况</h3><p>截止到2015年，GitHub已经有超过九百万注册用户和2110万代码库。事实上已经成为了世界上最大的代码存放网站和开源社区。全世界每时每刻都有开发者在使用它。</p>
-<h3 id="GitHub提供的主要功能"><a href="#GitHub提供的主要功能" class="headerlink" title="GitHub提供的主要功能"></a>GitHub提供的主要功能</h3><ul>
+<h3 id="1-3-GitHub的使用情况"><a href="#1-3-GitHub的使用情况" class="headerlink" title="1.3 GitHub的使用情况"></a>1.3 GitHub的使用情况</h3><p>截止到2015年，GitHub已经有超过九百万注册用户和2110万代码库。事实上已经成为了世界上最大的代码存放网站和开源社区。全世界每时每刻都有开发者在使用它。</p>
+<h3 id="1-4-GitHub提供的主要功能"><a href="#1-4-GitHub提供的主要功能" class="headerlink" title="1.4 GitHub提供的主要功能"></a>1.4 GitHub提供的主要功能</h3><ul>
 <li><p>Git仓库</p>
 <p>一般情况下，当我们注册了GitHub账户之后，我们免费新建任意个GitHub提供的Git仓库。如果需要建立只对特定用户或自己公开的私有仓库，则需要按照<a href="https://github.com/pricing" target="_blank" rel="external">Plans for all workflows</a>支付每月最低7美元的费用。<br><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fdomdvwo4kj31kw0zaal1.jpg" alt="Plans for all workflows"></p>
 </li>
@@ -1655,14 +1655,86 @@ realm.where(Person.class).isNotNull(&quot;username&quot;).findAllAsync().asObser
 <p>这是我利用GitHub Pages和Hexo搭配的博客:<br><a href="https://tonnyl.github.io/">https://tonnyl.github.io/</a></p>
 </li>
 </ul>
-<h3 id="GitHub上的一些知名项目"><a href="#GitHub上的一些知名项目" class="headerlink" title="GitHub上的一些知名项目"></a>GitHub上的一些知名项目</h3><ul>
+<h3 id="1-5-GitHub上的一些知名项目"><a href="#1-5-GitHub上的一些知名项目" class="headerlink" title="1.5 GitHub上的一些知名项目"></a>1.5 GitHub上的一些知名项目</h3><ul>
 <li><a href="https://github.com/torvalds/linux" target="_blank" rel="external">Linux</a> - Linux kernel source tree.(43k star, 无穷个贡献者)</li>
 <li><a href="https://github.com/git/git" target="_blank" rel="external">Git</a></li>
 <li><a href="https://github.com/nodejs/node" target="_blank" rel="external">node</a> - Node.js JavaScript runtime.</li>
 <li><a href="https://github.com/rails/rails" target="_blank" rel="external">rails</a> - Ruby on Rails.</li>
 </ul>
-<h3 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h3><p><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fdx06fy4drj30us0q8q8x.jpg" alt="[GitHub](https://github.com/TonnyL)"></p>
+<h3 id="1-6-彩蛋"><a href="#1-6-彩蛋" class="headerlink" title="1.6 彩蛋"></a>1.6 彩蛋</h3><p><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fdx06fy4drj30us0q8q8x.jpg" alt="[GitHub](https://github.com/TonnyL)"></p>
 <p>GitHub，同性交友，真人约会，排解寂寞，释放压力。百分百真人，谁没事会去注册GitHub啊，通过“Follow”交到同性好友；通过Issue和PR互动和交流。So, f**k, oh no, follow me on GitHub。</p>
+<h2 id="GitHub入门与实践-二-Git的导入"><a href="#GitHub入门与实践-二-Git的导入" class="headerlink" title="GitHub入门与实践(二) - Git的导入"></a>GitHub入门与实践(二) - Git的导入</h2><p>Git仓库管理功能是GitHub的核心。因此，在使用GitHub之前必须先掌握Git的使用方法。</p>
+<h3 id="2-1-诞生背景"><a href="#2-1-诞生背景" class="headerlink" title="2.1 诞生背景"></a>2.1 诞生背景</h3><p>Git属于分散型版本管理系统，是为版本管理而设计的软件。</p>
+<p>Linux的创始人Linus Torvalds(没错，就是那个Linus)在2005年开发了Git的原型程序。当时，由于在Linux内核开发中使用的既有版本管理系统的开发方许可证发生了变更，为了更换新的版本管理系统，Torvalds开发了Git(大神总是一言不合就自己写软件)。</p>
+<p>在当时的情况下，虽然已经有许多版本管理软件，但是功能和性能都差强人意，特别是在开发Linux内核这样更新频繁的软件时，缺点就被进一步放大了。</p>
+<p>在Git诞生之前，人们普遍采用的Subversion(SVN)等集中型版本管理系统，而在Git出现之后，Git就成为了主流。</p>
+<h3 id="2-2-什么是版本管理"><a href="#2-2-什么是版本管理" class="headerlink" title="2.2 什么是版本管理"></a>2.2 什么是版本管理</h3><p>版本管理就是管理更新的历史记录。它为我们提供了一些在软件开发过程中必不可少的功能，例如记录一款软件添加或更改源代码的过程，回滚到特定阶段，恢复误删的文件等。</p>
+<h4 id="2-2-1-集中型与分散型"><a href="#2-2-1-集中型与分散型" class="headerlink" title="2.2.1 集中型与分散型"></a>2.2.1 集中型与分散型</h4><p>下面就比较一下集中型管理系统(以Subversion为例)与分散型管理系统(以Git为例)二者的不同点。</p>
+<h5 id="集中型"><a href="#集中型" class="headerlink" title="集中型"></a>集中型</h5><p>以Subversion为代表的集中型，会将仓库存集中存放在服务器中，所以只存在一个仓库。而这也是这种版本管理系统被称为集中型的原因。</p>
+<p>集中型将所有的数据都存放在服务器中，有便于管理的优点。但是一旦开发者所处的环境不能连接服务器，就无法获取最新的源代码，开发也几乎无法进行。服务器宕机时也是同样的道理，而且万一服务器故障导致数据消失，恐怕开发者就再也见不到最新的源代码了。</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1ff9n6k7uhtj30q808lmxq.jpg" alt="SVN"></p>
+<h5 id="分散型"><a href="#分散型" class="headerlink" title="分散型"></a>分散型</h5><p>GitHub将仓库Fork给了每一个用户。Fork就是讲GitHub的某个特定仓库复制到自己的账户下。Fork的仓库与原仓库是两个不同的仓库，开发者可以随意编辑。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79gy1ff9n8x4axgj30h70cbdgm.jpg" alt="Git"></p>
+<p>如图所示，分散型拥有多个仓库，相对于Subversion稍显复杂。但是，由于本地的开发环境中就有仓库，所以开发者不必连接远程仓库就可以进行开发(妈妈再也不用担心服务器宕机了)。</p>
+<p>图中只显示了一般的使用流程。实际上，所有仓库之间都可以进行push和pull。即使不通过GitHub，开发者A也可以直接向开发者B的仓库进行push和pull。因此在使用前如果不事先制定规范，开发过程往往就out of control了。</p>
+<h5 id="哪个更好"><a href="#哪个更好" class="headerlink" title="哪个更好"></a>哪个更好</h5><p>各有优缺点，视情况而定。但是，Git和GitHub的普及，已经有越来越多的开发者开始采用分散型版本管理。并且，只要规则制定得当，分散型也能像集中型那样进行管理。所以，我的推荐是，优先选择学习分散型，如果你的感兴趣且精力允许，可以学习集中型。</p>
+<h3 id="2-3-安装"><a href="#2-3-安装" class="headerlink" title="2.3 安装"></a>2.3 安装</h3><h4 id="2-3-1-MAC与Linux"><a href="#2-3-1-MAC与Linux" class="headerlink" title="2.3.1 MAC与Linux"></a>2.3.1 MAC与Linux</h4><p>在 Mac 上安装 Git 有两种方式。最容易的当属使用图形化的 Git 安装工具，界面如图，下载地址在：</p>
+<pre><code>http://sourceforge.net/projects/git-osx-installer/
+</code></pre><p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1ff9npshplgj30m80g4gmn.jpg" alt="git osx installer"></p>
+<p>另一种是通过 MacPorts (<a href="http://www.macports.org" target="_blank" rel="external">http://www.macports.org</a>) 安装。如果已经装好了 MacPorts，用下面的命令安装 Git：</p>
+<pre><code class="shell">$ sudo port install git-core +svn +doc +bash_completion +gitweb
+</code></pre>
+<p>这种方式就不需要再自己安装依赖库了，Macports 会帮你搞定这些麻烦事。一般上面列出的安装选项已经够用，要是你想用 Git 连接 Subversion 的代码仓库，还可以加上 +svn 选项，具体将在第八章作介绍。（译注：还有一种是使用 homebrew(<a href="https://github.com/mxcl/homebrew" target="_blank" rel="external">https://github.com/mxcl/homebrew</a>): <code>brew install git</code> 。）</p>
+<h4 id="2-3-2-Linux"><a href="#2-3-2-Linux" class="headerlink" title="2.3.2 Linux"></a>2.3.2 Linux</h4><p>如果要在 Linux 上安装预编译好的 Git 二进制安装包，可以直接用系统提供的包管理工具。在 Fedora 上用 yum 安装：</p>
+<pre><code>$ yum install git-core
+</code></pre><p>在 Ubuntu 这类 Debian 体系的系统上，可以用 apt-get 安装：</p>
+<pre><code>$ apt-get install git
+</code></pre><h4 id="2-3-3-Windows"><a href="#2-3-3-Windows" class="headerlink" title="2.3.3 Windows"></a>2.3.3 Windows</h4><p>在 Windows 上安装 Git 同样轻松，有个叫做 msysGit 的项目提供了安装包，可以到 GitHub 的页面上下载 exe 安装文件并运行：</p>
+<pre><code>http://msysgit.github.com/
+</code></pre><p>完成安装之后，就可以使用命令行的 <code>git</code> 工具（已经自带了 ssh 客户端）了，另外还有一个图形界面的 Git 项目管理工具。</p>
+<p>给 Windows 用户的敬告：你应该在 msysGit 提供的 Unix 风格的 shell 来运行 Git。在 Unix 风格的 shell 中，可以使用本书中提及的复杂多行的命令。对于那些需要在 Windows 命令行中使用 Git 的用户，必须注意：在参数中间有空格的时候，必须使用双引号将参数括起来（在 Linux 中是单引号）；另外，如果扬抑符（^）作为参数的结尾，并且作为这一行的最后一个字符，则这个参数也需要用双引号括起来。因为扬抑符在 Windows 命令行中表示续行（译注：即下一行为这一行命令的继续）。</p>
+<h4 id="2-3-4-从源代码安装"><a href="#2-3-4-从源代码安装" class="headerlink" title="2.3.4 从源代码安装"></a>2.3.4 从源代码安装</h4><p>若是条件允许，从源代码安装有很多好处，至少可以安装最新的版本。Git 的每个版本都在不断尝试改进用户体验，所以能通过源代码自己编译安装最新版本就再好不过了。有些 Linux 版本自带的安装包更新起来并不及时，所以除非你在用最新的 distro 或者 backports，那么从源代码安装其实该算是最佳选择。</p>
+<p>Git 的工作需要调用 curl，zlib，openssl，expat，libiconv 等库的代码，所以需要先安装这些依赖工具。在有 yum 的系统上（比如 Fedora）或者有 apt-get 的系统上（比如 Debian 体系），可以用下面的命令安装：</p>
+<pre><code>$ yum install curl-devel expat-devel gettext-devel \
+  openssl-devel zlib-devel
+
+$ apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \
+  libz-dev libssl-dev
+</code></pre><p>之后，从下面的 Git 官方站点下载最新版本源代码：</p>
+<pre><code>http://git-scm.com/download
+</code></pre><p>然后编译并安装：</p>
+<pre><code>$ tar -zxf git-1.7.2.2.tar.gz
+$ cd git-1.7.2.2
+$ make prefix=/usr/local all
+$ sudo make prefix=/usr/local install
+</code></pre><p>现在已经可以用 git 命令了，用 git 把 Git 项目仓库克隆到本地，以便日后随时更新：</p>
+<pre><code>$ git clone git://git.kernel.org/pub/scm/git/git.git
+</code></pre><p>本小节内容均来自: <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="external">https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git</a></p>
+<h5 id="组件的选择"><a href="#组件的选择" class="headerlink" title="组件的选择"></a>组件的选择</h5><p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1ff9o2q80b7g30dz0att8x.gif" alt="组件选择"></p>
+<h5 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h5><p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1ff9o3b8k91g30e90b3weq.gif" alt="设置环境变量"></p>
+<h5 id="换行符的处理"><a href="#换行符的处理" class="headerlink" title="换行符的处理"></a>换行符的处理</h5><p>GitHub 中公开的代码大部分都是以 Mac 或 Linux 中的 LF（Line Feed）换行。然而，由于 Windows 中是以 CRLF（Carriage Return ＋ Line Feed）换行的，所以在非对应的编辑器中将不能正常显示。</p>
+<p>Git 可以通过设置自动转换这些换行符。使用 Windows 环境的童鞋，请选择推荐的“Checkout Windows-style, commit Unix-style line endings”选项。换行符在签出时会自动转换为 CRLF，在提交时则会自动转换为 LF。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1ff9o4sbh3pg30e90b33yr.gif" alt="换行符的处理"></p>
+<p>请注意以上这几点，配合当前使用的环境进行安装。</p>
+<h5 id="Git-Bash"><a href="#Git-Bash" class="headerlink" title="Git Bash"></a>Git Bash</h5><p>顺利安装好 msysGit 之后，Git Bash 会作为一个应用程序添加进系统，接下来请启动它。双击之后，会弹出一个名为 Git Bash 的命令提示符，它附属于 msysGit。如果你是按照上面的配置安装的话，那么git命令就只能在Git Bash中使用，在Windows的命令提示符(CMD)中是无法运行的。</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1ff9o7p7wk3g30fq05q74m.gif" alt="Git Bash"></p>
+<p>从名字中带有 Bash 就不难猜到，Git Bash 中照搬了许多 Bash 命令，习惯 Linux 的人用起来会感觉比 Windows 命令提示符更得心应手。借这个机会，不妨也熟悉一下 Windows 的 CLI（Command Line Interface，命令行界面）操作。</p>
+<h4 id="2-3-3本教程所用的环境"><a href="#2-3-3本教程所用的环境" class="headerlink" title="2.3.3本教程所用的环境"></a>2.3.3本教程所用的环境</h4><p>本教程使用的macOS 10.12.4, Git 2.8.4，建议安装较新版本的Git。</p>
+<h3 id="2-4-初始设置"><a href="#2-4-初始设置" class="headerlink" title="2.4 初始设置"></a>2.4 初始设置</h3><h4 id="2-4-1-设置姓名和邮箱地址"><a href="#2-4-1-设置姓名和邮箱地址" class="headerlink" title="2.4.1 设置姓名和邮箱地址"></a>2.4.1 设置姓名和邮箱地址</h4><p>首先设置使用Git时的姓名和邮箱。注意名字需要为英文。</p>
+<pre><code>$ git config --global user.name &quot;Firstname Lastname&quot;
+$ git config --global user.email &quot;myemail@email.com&quot;
+</code></pre><p>这个命令会在「~/.gitconfig」文件中以下面的格式设置文件。</p>
+<pre><code>[user]
+    name = Firstname Lastname
+    email = myemail@email.com
+</code></pre><p>想要更改这些信息时，可以直接编辑这个文件，也可以使用上面的命令重新设置。这里的姓名和邮箱地址会用在Git的提交日志中，在GitHub上公开仓库时，这里的姓名和邮箱地址会随着提交日志一同公开，所以不要在这里使用不宜公开的隐私信息。</p>
+<p>在 GitHub 上公开代码后，前来参考的程序员可能来自世界任何地方，所以请不要使用汉字，尽量用英文进行描述。当然，如果您不想使用真名，使用 <code>two dog</code> (二狗)或者 <code>cuihuaer</code> (翠花儿)也是可以的。</p>
+<h3 id="2-4-2-提高命令输出的可读性"><a href="#2-4-2-提高命令输出的可读性" class="headerlink" title="2.4.2 提高命令输出的可读性"></a>2.4.2 提高命令输出的可读性</h3><p>将color.ui设置为auto可以让命令的输出的可读性更高。</p>
+<pre><code>$ git config --global color.ui auto
+</code></pre><p>「~/.gitconfig」文件就会增加下面的内容：</p>
+<pre><code>[color]
+  ui = auto
+</code></pre><h3 id="2-5-小结"><a href="#2-5-小结" class="headerlink" title="2.5 小结"></a>2.5 小结</h3><p>安装好Git,让我们走在时代前列线上，开始愉快的写代码吧。</p>
 ]]></content>
     </entry>
     
@@ -5495,7 +5567,7 @@ context.bindService(serviceIntent, mServiceConnection,
       <content type="html"><![CDATA[<p>使用官方Support Library实现日间与夜间模式<br><a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android 6.0 Marshmallow 预览版中曾经短暂出现过相关的夜间模式的功能，只是在正式版中被移除了，在Android 7.0 Nougat上，用户们再次经历了「得而复失」的遗憾，在开发者预览版中，夜间模式和暗色模式先是开启，然后有再次被移除。而在正式版中，夜间模式也没有出现。但其实相关的代码一直存在于系统中，只是默认没有被开启。如何开启这项功能，可以参考少数派的这一篇文章，<a href="http://sspai.com/35273" target="_blank" rel="external">帮你找回 Android 7.0 夜间模式的 2 款应用</a>。</p>
 <p>不过，今天要介绍的主要内容并不是关于系统的夜间模式，而是如何给我们开发的APP添加夜间模式的功能。毫不夸张的说，夜间模式现在已经是阅读类App的标配了。事实上，日间模式与夜间模式就是给APP定义并应用两套不同颜色的主题。用户可以自动或者手动的开启。我们先看两个我认为实现地很优雅的例子：知乎和Twitter。</p>
-<img src="/2016/12/31/简洁优雅地实现夜间模式/zhihu_twitter_nightmode.gif" alt="zhihu_twitter_nightmode" title="zhihu_twitter_nightmode">
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1ff8hhnu0a9g30zk0k0hdw.gif" alt="zhihu_twitter_nightmode"></p>
 <p>这两个APP在切换的工程中，并没有出现闪现黑屏的情况，切换也比较顺滑。我们的目标就是利用Support Library实现同样的效果。</p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre><code>compile &#39;com.android.support:appcompat-v7:25.1.0&#39;
 </code></pre><p>由于Support Library在23.2.0的版本中才添加了Theme.AppCompat.DayNight主题，所以依赖的版本必须是高于23.2.0的，并且，这个特性支持的最低SDK版本为14，所以，需要兼容Android 4.0的设备，是不能使用这个特性的，在API Level 14以下的设备会默认使用亮色主题。不过现在4.0以下的设备应该比较少了吧，毕竟微信的minSdkVersion都设置为14了。</p>
@@ -5521,9 +5593,9 @@ context.bindService(serviceIntent, mServiceConnection,
      &lt;color name=&quot;textColorPrimary&quot;&gt;#616161&lt;/color&gt;
      &lt;color name=&quot;viewBackground&quot;&gt;@android:color/white&lt;/color&gt;
  &lt;/resources&gt;
-</code></pre>
-<pre><code class="xml"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
- &lt;!--values-night-colors.xml&gt;
+
+ &lt;!--values-night-colors.xml--&gt;
+ &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
  &lt;resources&gt;
      &lt;color name=&quot;colorPrimary&quot;&gt;#35464e&lt;/color&gt;
      &lt;color name=&quot;colorPrimaryDark&quot;&gt;#212a2f&lt;/color&gt;
@@ -5575,9 +5647,7 @@ context.bindService(serviceIntent, mServiceConnection,
     @Override
     public void onCreate() {
         super.onCreate();
-
         // other code here
-
 }
 </code></pre>
 <h4 id="动态应用"><a href="#动态应用" class="headerlink" title="动态应用"></a>动态应用</h4><p>虽然上面的静态应用的设置非常简单，但是这种方式的应用场景还是太少了。我们更多的还是需要动态的根据需要动态的切换。</p>
@@ -5634,7 +5704,7 @@ context.bindService(serviceIntent, mServiceConnection,
 </li>
 </ul>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本项目代码<a href="https://github.com/TonnyL/PaperPlane" target="_blank" rel="external">PaperPlane</a> .<br>运行效果</p>
-<img src="/2016/12/31/简洁优雅地实现夜间模式/paper_plane.gif" alt="Paper Plane" title="Paper Plane">
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1ff8hipftdxg30zk0k0e81.gif" alt="paper_plane"></p>
 <p>在Android 6.0及以下的设备上，本项目运行时会有切换的过渡动画效果，但是不支持Android 7.0及以上的设备。</p>
 ]]></content>
     </entry>
